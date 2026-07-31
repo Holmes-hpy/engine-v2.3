@@ -1,0 +1,33 @@
+{
+    "general": {
+        "base_path": "../../",
+        "ai_wiki_dir": "03_ai_wiki",
+        "permanent_dir": "04_permanent",
+        "audit_dir": "08_audit",
+        "rejected_dir": "99_archive/rejected"
+    },
+    "validation": {
+        "audit_threshold": 70,
+        "excellent_threshold": 85,
+        "need_correction_threshold": 50,
+        "exclude_audited_in_hours": 24
+    },
+    "scoring": {
+        "weights": {
+            "accuracy": 0.25,
+            "completeness": 0.15,
+            "consistency": 0.20,
+            "timeliness": 0.15,
+            "relevance": 0.10,
+            "comprehensibility": 0.15
+        },
+        "dimensions": {
+            "accuracy": {"name": "准确性", "description": "事实是否准确，数据是否可靠，技术表述是否正确"},
+            "completeness": {"name": "完整性", "description": "是否涵盖核心要点，是否有重要信息遗漏"},
+            "consistency": {"name": "一致性", "description": "与知识库中现有知识是否一致，内部是否自洽"},
+            "timeliness": {"name": "时效性", "description": "信息是否最新，是否存在过时内容"},
+            "relevance": {"name": "相关性", "description": "与大模型技术领域的相关程度"},
+            "comprehensibility": {"name": "可理解性", "description": "表述是否清晰，技术术语是否有解释"}
+        }
+    }
+}

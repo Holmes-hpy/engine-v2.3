@@ -1,0 +1,48 @@
+[INFO] 日志已配置: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/logs/pipeline-2026-06-27.log
+############################################################
+# 开始运行完整知识流水线 - 2026-06-27 08:01:56
+############################################################
+============================================================
+[STAGE 1] 信息雷达 - 从 arXiv 等数据源采集
+============================================================
+============================================================
+开始执行信息雷达采集任务
+执行时间: 2026-06-27 08:01:56
+============================================================
+[INFO] 正在采集: arXiv_cs.CL
+[INFO] 采集到 30 条记录: arXiv_cs.CL
+[INFO] 正在采集: arXiv_cs.LG
+[INFO] 采集到 20 条记录: arXiv_cs.LG
+[INFO] 正在采集: arXiv_llm
+[INFO] 采集到 20 条记录: arXiv_llm
+[INFO] 原始数据已保存: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/02_raw/raw-2026-06-27.json (共 62 条)
+[OK] 信息雷达完成，共 62 条记录
+[INFO] 等待 2 秒后继续...
+============================================================
+[STAGE 2] 知识蒸馏 - 生成 AI Wiki 知识点
+============================================================
+============================================================
+开始执行知识蒸馏任务
+执行时间: 2026-06-27 08:02:10
+============================================================
+[INFO] 开始知识蒸馏: 62 条原始数据
+[OK] 知识蒸馏完成: 62 条
+[INFO] Wiki 已保存: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/../../03_ai_wiki/2026-06-27-知识蒸馏.md
+[INFO] 蒸馏 JSON 已保存: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/../../03_ai_wiki/2026-06-27-知识蒸馏.json
+[DONE] 知识蒸馏完成: 62 条
+[INFO] 等待 2 秒后继续...
+============================================================
+[STAGE 3] 知识审计 - 生成每日信息简报
+============================================================
+============================================================
+开始执行知识审计与简报生成
+执行时间: 2026-06-27 08:02:12
+============================================================
+[INFO] 每日信息简报已保存: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/../../01_inbox/2026-06-27-每日信息简报.md
+[DONE] 简报生成完成: 62 条内容
+[OK] 每日信息简报已生成: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/../../01_inbox/2026-06-27-每日信息简报.md
+############################################################
+# 完整流程执行结束 - 2026-06-27 08:02:12
+############################################################
+[SUMMARY] 原始采集: 62 条, 蒸馏: 62 条
+[FINAL] 流程执行成功！日志: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/logs/pipeline-2026-06-27.log

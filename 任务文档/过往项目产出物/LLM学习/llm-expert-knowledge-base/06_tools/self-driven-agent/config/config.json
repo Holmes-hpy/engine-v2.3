@@ -1,0 +1,29 @@
+{
+  "agent": {
+    "name": "自主驱动智能体",
+    "description": "能够自主规划、执行、检查、学习的智能体",
+    "max_iterations": 50,
+    "learning_enabled": true,
+    "auto_save": true
+  },
+  "planner": {
+    "max_plan_steps": 10,
+    "refinement_enabled": true
+  },
+  "executor": {
+    "tool_timeout": 30,
+    "max_retries": 3
+  },
+  "inspector": {
+    "pass_threshold": 80,
+    "quality_checks": ["completeness", "quality", "depth"]
+  },
+  "learner": {
+    "knowledge_storage_path": "../knowledge_base",
+    "max_sources_per_topic": 10
+  },
+  "controller": {
+    "check_interval": 5,
+    "auto_stop_threshold": 0.01
+  }
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- 任务标识符 -->
+    <key>Label</key>
+    <string>com.user.dailytechintel</string>
+
+    <!-- 任务类型：定时任务 -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/houpengyuan/Documents/trae_projects/a-stock-data/scripts/run_daily_tech_intel.sh</string>
+    </array>
+
+    <!-- 执行时间：每日上午9:30 -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+    </dict>
+
+    <!-- 工作目录 -->
+    <key>WorkingDirectory</key>
+    <string>/Users/houpengyuan/Documents/trae_projects/a-stock-data</string>
+
+    <!-- 标准输出日志 -->
+    <key>StandardOutPath</key>
+    <string>/Users/houpengyuan/Documents/trae_projects/a-stock-data/logs/launchd_stdout.log</string>
+
+    <!-- 标准错误日志 -->
+    <key>StandardErrorPath</key>
+    <string>/Users/houpengyuan/Documents/trae_projects/a-stock-data/logs/launchd_stderr.log</string>
+
+    <!-- 任务失败后自动重启 -->
+    <key>RunAtLoad</key>
+    <false/>
+
+    <!-- 不在登录时立即运行 -->
+    <key>StartInterval</key>
+    <integer>0</integer>
+
+    <!-- 任务持久化 -->
+    <key>KeepAlive</key>
+    <false/>
+
+    <!-- 环境变量 -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>PYTHONPATH</key>
+        <string>/Users/houpengyuan/Documents/trae_projects/a-stock-data</string>
+    </dict>
+</dict>
+</plist>

@@ -1,0 +1,46 @@
+{
+  "tasks": {
+    "radar": {
+      "enabled": true,
+      "script_path": "src/radar_collector.py",
+      "command": "python3",
+      "arguments": [],
+      "sources": [
+        {
+          "name": "arXiv_cs.CL",
+          "url": "http://export.arxiv.org/api/query?search_query=cat:cs.CL&sortBy=submittedDate&sortOrder=descending&max_results=30",
+          "type": "arxiv"
+        },
+        {
+          "name": "arXiv_cs.LG",
+          "url": "http://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=20",
+          "type": "arxiv"
+        },
+        {
+          "name": "arXiv_llm",
+          "url": "http://export.arxiv.org/api/query?search_query=all:large+language+model+OR+all:LLM+OR+all:agent&sortBy=submittedDate&sortOrder=descending&max_results=20",
+          "type": "arxiv"
+        }
+      ]
+    },
+    "distillation": {
+      "enabled": true,
+      "script_path": "src/knowledge_distiller.py",
+      "command": "python3",
+      "arguments": [],
+      "wait_after_radar": 5
+    },
+    "audit": {
+      "enabled": true,
+      "script_path": "src/knowledge_auditor.py",
+      "command": "python3",
+      "arguments": [],
+      "wait_after_distillation": 5
+    }
+  },
+  "output": {
+    "inbox_dir": "../../01_inbox",
+    "wiki_dir": "../../03_ai_wiki",
+    "error_log": "../../01_inbox/error.log"
+  }
+}

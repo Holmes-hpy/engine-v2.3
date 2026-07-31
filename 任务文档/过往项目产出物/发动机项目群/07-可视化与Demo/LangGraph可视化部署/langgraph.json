@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "智能文档处理系统": "./graph_demo.py:graph"
+  },
+  "env": ".env"
+}

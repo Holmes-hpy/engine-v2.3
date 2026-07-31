@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent 上下文窗口演化</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0c0c10;--sf:#15151c;--sf2:#1e1e28;--sf3:#272735;--bd:#2b2b3a;--tx:#e8e8f0;--txm:#8888a0;--txd:#55556a;--ac:#7c6bff;--acs:#7c6bff18;--acg:#7c6bff40;--ok:#4ade80;--wn:#fbbf24;--dg:#f87171;--info:#60a5fa;--pink:#f472b6;--c1:#7c6bff;--c2:#a78bfa;--c3:#34d399;--c4:#fbbf24;--c5:#60a5fa}
+body{background:var(--bg);color:var(--tx);font-family:"PingFang SC","SF Pro Text",system-ui,sans-serif;font-size:13px;overflow:hidden;height:100vh}
+
+/* Header */
+.hdr{height:48px;padding:0 20px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;background:var(--sf);flex-shrink:0}
+.hdr h1{font-size:15px;font-weight:600}
+.hdr .sub{font-size:11px;color:var(--txm);margin-top:1px}
+.dots{display:flex;gap:4px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--bd);cursor:pointer;transition:.3s;flex-shrink:0}
+.dot.on{background:var(--ac);box-shadow:0 0 8px var(--acg);transform:scale(1.4)}
+.dot.done{background:var(--ok)}
+
+/* Layout */
+.wrap{display:grid;grid-template-columns:200px 1fr 260px;height:calc(100vh - 48px - 52px)}
+
+/* Left: Flow */
+.fl{border-right:1px solid var(--bd);padding:12px;overflow-y:auto;background:var(--sf)}
+.fl h3{font-size:10px;font-weight:600;color:var(--txm);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.fn{display:flex;gap:6px;padding:6px 8px;border-radius:5px;margin-bottom:2px;cursor:pointer;transition:.15s;border:1px solid transparent;align-items:flex-start}
+.fn:hover{background:var(--sf2)}
+.fn.on{background:var(--acs);border-color:var(--ac)}
+.fn.past{opacity:.45}
+.fn .ic{width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.fn.leader .ic{background:var(--acs);color:var(--c1)}
+.fn.parser .ic{background:#34d39922;color:var(--c3)}
+.fn.writer .ic{background:#60a5fa22;color:var(--c5)}
+.fn.integrator .ic{background:#f472b622;color:var(--pink)}
+.fn .t{font-size:11px;font-weight:500;line-height:1.3}
+.fn .d{font-size:9px;color:var(--txm);margin-top:1px}
+.conn{width:1px;height:8px;background:var(--bd);margin-left:9px}
+
+/* Center: Main Token View */
+.ct{display:flex;flex-direction:column;overflow-y:auto;padding:16px 20px;gap:14px}
+
+/* Current Agent Window */
+.agent-window{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:16px;flex-shrink:0}
+.aw-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.aw-title{font-size:12px;font-weight:600;color:var(--txm);text-transform:uppercase;letter-spacing:.5px}
+.aw-agent{display:flex;align-items:center;gap:8px}
+.aw-av{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.aw-av.leader{background:var(--acs);color:var(--c1)}
+.aw-av.parser{background:#34d39922;color:var(--c3)}
+.aw-av.writer{background:#60a5fa22;color:var(--c5)}
+.aw-av.integrator{background:#f472b622;color:var(--pink)}
+.aw-nm{font-size:14px;font-weight:600}
+.aw-rl{font-size:10px;color:var(--txm)}
+.aw-stats{display:flex;gap:20px;align-items:baseline}
+.aw-stat{text-align:right}
+.aw-stat .lb{font-size:9px;color:var(--txm);text-transform:uppercase}
+.aw-stat .vl{font-size:18px;font-weight:700;font-family:monospace}
+.aw-stat .vl.ok{color:var(--ok)}.aw-stat .vl.wn{color:var(--wn)}.aw-stat .vl.dg{color:var(--dg)}
+.aw-bar{height:28px;background:var(--bg);border-radius:6px;overflow:hidden;position:relative;border:1px solid var(--bd)}
+.aw-seg{height:100%;float:left;transition:width .6s cubic-bezier(.4,0,.2,1);position:relative;display:flex;align-items:center;justify-content:center}
+.aw-seg span{font-size:9px;font-weight:600;color:#fff;mix-blend-mode:difference;white-space:nowrap}
+.aw-marker{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--dg);z-index:2;opacity:.6}
+.aw-marker::after{content:'';position:absolute;top:-4px;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--dg)}
+.aw-legend{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap}
+.aw-legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--txm)}
+.aw-legend-item .dt{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
+/* Global Cumulative */
+.global-panel{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:16px;flex-shrink:0}
+.gp-title{font-size:12px;font-weight:600;color:var(--txm);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.gp-title .warn{font-size:10px;color:var(--wn);font-weight:400;text-transform:none;letter-spacing:0}
+.gp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.gp-card{background:var(--sf2);border-radius:8px;padding:12px;text-align:center;border:1px solid var(--bd)}
+.gp-card .lb{font-size:9px;color:var(--txm);text-transform:uppercase;margin-bottom:4px}
+.gp-card .vl{font-size:20px;font-weight:700;font-family:monospace}
+.gp-card .vl.ac{color:var(--ac)}
+.gp-card .vl.ok{color:var(--ok)}
+.gp-card .vl.wn{color:var(--wn)}
+.gp-card .vl.dg{color:var(--dg)}
+.gp-card .unt{font-size:10px;color:var(--txd);margin-top:2px}
+
+/* Step bar chart */
+.step-chart{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:16px;flex-shrink:0}
+.sc-title{font-size:12px;font-weight:600;color:var(--txm);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.sc-chart{display:flex;align-items:flex-end;gap:6px;height:120px;padding-top:8px;border-bottom:1px solid var(--bd);margin-bottom:6px}
+.sc-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;position:relative;height:100%}
+.sc-bar{width:100%;border-radius:4px 4px 0 0;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;min-height:2px}
+.sc-bar.new{background:var(--ac)}
+.sc-bar.old{background:var(--sf3)}
+.sc-bar.active{box-shadow:0 0 12px var(--acg);background:var(--ac)}
+.sc-bar:hover{filter:brightness(1.3)}
+.sc-bar .lbl{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:8px;font-family:monospace;color:var(--txm);white-space:nowrap}
+.sc-xlbl{font-size:8px;color:var(--txd);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
+.sc-legend{display:flex;gap:14px;margin-top:8px}
+.sc-legend-item{display:flex;align-items:center;gap:4px;font-size:9px;color:var(--txm)}
+.sc-legend-item .sq{width:10px;height:10px;border-radius:2px}
+
+/* Changes */
+.changes{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:14px;flex-shrink:0}
+.ch-title{font-size:11px;font-weight:600;color:var(--txm);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.ch-list{display:flex;flex-direction:column;gap:3px}
+.ch-item{font-size:11px;line-height:1.5;padding:4px 8px;border-radius:4px;background:var(--sf2)}
+.ch-item.a{border-left:2px solid var(--ok)}
+.ch-item.r{border-left:2px solid var(--dg)}
+.ch-item.n{border-left:2px solid var(--info)}
+.ch-item.a{color:var(--ok)}.ch-item.r{color:var(--dg)}.ch-item.n{color:var(--info)}
+.ch-item b{color:var(--tx)}
+
+/* Right: Agent info + Messages */
+.rt{border-left:1px solid var(--bd);display:flex;flex-direction:column;background:var(--sf);overflow:hidden}
+.rt-header{padding:12px 14px;border-bottom:1px solid var(--bd);background:var(--sf2);flex-shrink:0}
+.rt-step{font-size:13px;font-weight:600}
+.rt-desc{font-size:10px;color:var(--txm);margin-top:2px}
+.rt-msgs{flex:1;overflow-y:auto;padding:10px}
+.rm{border-radius:6px;margin-bottom:6px;border:1px solid var(--bd);overflow:hidden;font-size:10px}
+.rm-h{display:flex;align-items:center;justify-content:space-between;padding:5px 8px;background:var(--sf2);cursor:pointer}
+.rm-role{font-size:8px;font-weight:600;padding:1px 5px;border-radius:2px;text-transform:uppercase}
+.rm-role.sys{background:var(--acs);color:var(--c1)}
+.rm-role.usr{background:#60a5fa22;color:var(--c5)}
+.rm-role.ast{background:#fbbf2422;color:var(--c4)}
+.rm-role.tl{background:#34d39922;color:var(--c3)}
+.rm-tk{font-size:8px;font-family:monospace;color:var(--txd)}
+.rm-bd{padding:8px;color:var(--txm);line-height:1.5;display:none;background:var(--bg)}
+.rm:not(.collapsed) .rm-bd{display:block}
+.rm-bd b{color:var(--tx);font-size:10px}
+.rm-bd code{font-family:monospace;font-size:9px;background:var(--sf);padding:0 3px;border-radius:2px;color:var(--ac)}
+.rm-bd pre{background:var(--sf2);padding:6px;border-radius:3px;margin-top:4px;font-size:9px;line-height:1.4;white-space:pre-wrap;border:1px solid var(--bd);max-height:80px;overflow-y:auto}
+.rm-bd .fade{color:var(--txd);font-style:italic}
+.rm.new{animation:pulse 1.2s ease}
+
+/* Bottom */
+.ctrl{height:52px;padding:0 20px;background:var(--sf);border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ctrl .si{font-size:12px;color:var(--txm)}
+.ctrl .si b{color:var(--tx)}
+.bg{display:flex;gap:8px}
+.btn{padding:7px 18px;border-radius:6px;border:1px solid var(--bd);background:var(--sf2);color:var(--tx);font-size:12px;font-weight:500;cursor:pointer;transition:.15s;font-family:inherit}
+.btn:hover:not(:disabled){background:var(--sf3);border-color:var(--txm)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn.p{background:var(--ac);border-color:var(--ac);color:#fff}
+.btn.p:hover:not(:disabled){background:#8a7aff;box-shadow:0 0 10px var(--acg)}
+
+/* Session switch indicator */
+.session-switch{background:var(--acs);border:1px dashed var(--ac);border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:10px;color:var(--ac);text-align:center;display:none}
+.session-switch.show{display:block}
+
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
+@keyframes pulse{0%{border-color:var(--ac);box-shadow:0 0 0 0 var(--acg)}50%{border-color:var(--ac);box-shadow:0 0 12px 2px var(--acg)}100%{border-color:var(--bd);box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="hdr">
+<div><h1>Agent 上下文窗口演化</h1><div class="sub">可研报告智能体团队 · Token 消耗与窗口占用追踪</div></div>
+<div class="dots" id="dots"></div>
+</div>
+<div class="wrap">
+<div class="fl"><h3>执行流程</h3><div id="flist"></div></div>
+<div class="ct" id="ct">
+<!-- Agent Window -->
+<div class="agent-window">
+<div class="aw-header">
+<div class="aw-agent" id="awAgent"><div class="aw-av leader">L</div><div><div class="aw-nm">Leader</div><div class="aw-rl">团长</div></div></div>
+<div class="aw-stats">
+<div class="aw-stat"><div class="lb">当前窗口占用</div><div class="vl ok" id="awUsed">0</div></div>
+<div class="aw-stat"><div class="lb">窗口上限</div><div class="vl" id="awLimit">128K</div></div>
+<div class="aw-stat"><div class="lb">剩余可用</div><div class="vl ok" id="awFree">128K</div></div>
+<div class="aw-stat"><div class="lb">占用率</div><div class="vl ok" id="awPct">0%</div></div>
+</div>
+</div>
+<div class="aw-bar" id="awBar"></div>
+<div class="aw-legend" id="awLegend"></div>
+</div>
+<!-- Global Cumulative -->
+<div class="global-panel">
+<div class="gp-title">全局累计消耗统计 <span class="warn">（所有Agent的LLM调用Token总量，跨Session累加）</span></div>
+<div class="gp-stats">
+<div class="gp-card"><div class="lb">本步新增</div><div class="vl ac" id="gpStep">0</div><div class="unt">tokens</div></div>
+<div class="gp-card"><div class="lb">累计总消耗</div><div class="vl ok" id="gpTotal">0</div><div class="unt">tokens</div></div>
+<div class="gp-card"><div class="lb">累计API调用</div><div class="vl" id="gpCalls">0</div><div class="unt">次</div></div>
+<div class="gp-card"><div class="lb">预计成本</div><div class="vl wn" id="gpCost">$0.00</div><div class="unt">GPT-4o级</div></div>
+</div>
+</div>
+<!-- Step Chart -->
+<div class="step-chart">
+<div class="sc-title"><span>每步Token消耗对比</span><span style="font-size:10px;color:var(--txm);font-weight:400">点击柱状图可跳转</span></div>
+<div class="sc-chart" id="scChart"></div>
+<div class="sc-legend">
+<div class="sc-legend-item"><div class="sq" style="background:var(--sf3)"></div>历史步骤</div>
+<div class="sc-legend-item"><div class="sq" style="background:var(--ac)"></div>当前步骤新增</div>
+</div>
+</div>
+<!-- Changes -->
+<div class="changes">
+<div class="ch-title">本步关键变化</div>
+<div class="ch-list" id="chList"></div>
+</div>
+</div>
+<div class="rt">
+<div class="rt-header">
+<div class="rt-step" id="rtStep">等待开始</div>
+<div class="rt-desc" id="rtDesc"></div>
+</div>
+<div class="session-switch" id="ssSwitch"></div>
+<div class="rt-msgs" id="rtMsgs"></div>
+</div>
+</div>
+<div class="ctrl">
+<div class="si" id="sinfo">点击"下一步"开始追踪Token变化</div>
+<div class="bg">
+<button class="btn" id="bp" onclick="prev()">← 上一步</button>
+<button class="btn p" id="bn" onclick="next()">下一步 →</button>
+</div>
+</div>
+<script>
+var LIMIT=128000;
+var COST_PER_1M=2.5; // GPT-4o input ~$2.5/M, approximate
+var S=[
+{id:0,agent:"leader",name:"Leader",role:"团长",title:"Step 0 · Leader初始加载",desc:"加载SKILL文件, System Prompt就绪",
+ cur:{s:1500,k:3500,t:2000,h:0,i:500,n:7500},prev:0,delta:7500,calls:1,session:"leader",
+ newSession:true,
+ msgs:[
+  {role:"sys",label:"System+SKILL+Tools",tk:7000,n:1,html:"<b>System Prompt:</b> 你是Leader，负责自主编排可研报告团队...<br><br><b>SKILL文件 (~3,500tk):</b><br>- feasibility_report/SKILL.md (~500行)<br>- feasibility_common.md (~150行)<br>- chapter_writing.md (~250行)<br>- report_integration.md (~200行)<br><br><b>工具定义 (~2,000tk):</b><br>TeamCreate/AgentCreate/TeamSay/TeamDelete + File工具 + MCP工具"},
+  {role:"usr",label:"User Input",tk:500,n:1,html:"请帮我生成XX科技公司可研报告。<br>材料: <code>融资协议.docx</code> · <code>工商登记.pdf</code> · <code>项目方案书.docx</code>"}
+ ],
+ ch:[{t:"Leader首次被创建,加载全部SKILL文件+工具定义",c:"a"},{t:"初始上下文即达7.5K, System+SKILL占93%",c:"n"},{t:"用户输入仅500tk,占比很小",c:"n"}]},
+
+{id:1,agent:"leader",name:"Leader",role:"团长",title:"Step 1 · 扫描输入文件",desc:"第一轮ReAct,读取文件列表",
+ cur:{s:1500,k:3500,t:2000,h:1000,i:0,n:8000},prev:7500,delta:500,calls:2,session:"leader",
+ newSession:false,
+ msgs:[
+  {role:"sys",label:"System+SKILL+Tools",tk:7000,n:0,html:"<span class='fade'>[System基础内容不变 ~7,000tk]</span>"},
+  {role:"usr",label:"User Input",tk:500,n:0,html:"<span class='fade'>[用户输入...]</span>"},
+  {role:"ast",label:"Thought+Action",tk:400,n:1,html:"<b>Thought:</b> 先扫描文件确定分配...<br><b>Action:</b> Read(文件列表)"},
+  {role:"tl",label:"Tool Result",tk:300,n:1,html:"<b>Read返回:</b><pre>[\"融资协议.docx\",\"工商登记.pdf\",\"项目方案书.docx\"]</pre><br>→ Parser-A/B/D分配确定, Parser-C需MCP补全"}
+ ],
+ ch:[{t:"第一轮ReAct循环,Thought+Tool Result共+500tk",c:"a"},{t:"对话历史开始累积,上下文缓慢膨胀",c:"n"}]},
+
+{id:2,agent:"leader",name:"Leader",role:"团长",title:"Step 2 · 创建4个Parser",desc:"4次AgentCreate,分配任务",
+ cur:{s:1500,k:3500,t:2000,h:2500,i:0,n:9500},prev:8000,delta:1500,calls:3,session:"leader",
+ newSession:false,
+ msgs:[
+  {role:"sys",label:"System+SKILL+Tools",tk:7000,n:0,html:"<span class='fade'>[~7,000tk 不变]</span>"},
+  {role:"usr",label:"History",tk:1500,n:0,html:"<span class='fade'>[Step0-1历史...]</span>"},
+  {role:"ast",label:"AgentCreate x4",tk:1600,n:1,html:"<b>AgentCreate(parser_finance)</b> → OK<br><b>AgentCreate(parser_corporate)</b> → OK<br><b>AgentCreate(parser_business)</b> → OK<br><b>AgentCreate(parser_project)</b> → OK<br><br><b>Thought:</b> 4个Parser就绪,TeamWait等待完成"}
+ ],
+ ch:[{t:"4次AgentCreate调用记录 +1,500tk",c:"a"},{t:"Leader上下文达9.5K,仍很健康(7.4%)",c:"n"},{t:"4个Parser各自拥有独立Session,不计入Leader上下文",c:"i"}]},
+
+{id:3,agent:"parser",name:"Parser-A",role:"财务模块",title:"Step 3 · Parser-A启动",desc:"【新Session】全新上下文,看不到Leader",
+ cur:{s:800,k:500,t:1500,h:0,i:1200,n:4000},prev:0,delta:4000,calls:4,session:"parser-a",
+ newSession:true,
+ msgs:[
+  {role:"sys",label:"System+SKILL+Tools",tk:2800,n:1,html:"<b>System (parser_a.md, ~800tk):</b><br>你是Parser-A,解析财务文件,输出Markdown信息表<br><br><b>SKILL: feasibility_common.md (~500tk)</b><br><br><b>工具 (~1,500tk):</b><br>Read/Write/Edit + MCP财务工具 + <b style='color:var(--dg)'>TeamSay(仅Worker权限)</b><br><br><span style='color:var(--dg)'><b>⚠ 无TeamCreate/AgentCreate权限!</b></span>"},
+  {role:"usr",label:"First Task",tk:1200,n:1,html:"<b>任务:</b> 解析融资协议.docx<br><b>输出:</b> info_table_finance.md<br><br>提取[轮次/时间/金额/估值/投资方],标注来源,缺失标【待补充】"}
+ ],
+ ch:[{t:"🔄 切换到Parser-A新Session!上下文从0开始",c:"r"},{t:"Parser-A仅加载自己的System+SKILL (~2,800tk)",c:"a"},{t:"看不到Leader的9.5K历史,完全隔离",c:"r"},{t:"全局累计仍在增长(+4K),但当前窗口占用重置为4K",c:"n"}]},
+
+{id:4,agent:"parser",name:"Parser-A",role:"财务模块",title:"Step 4 · Parser-A执行完成",desc:"3轮ReAct,读取原始材料+MCP查询",
+ cur:{s:800,k:500,t:1500,h:5000,i:0,n:7800},prev:4000,delta:3800,calls:7,session:"parser-a",
+ newSession:false,
+ msgs:[
+  {role:"sys",label:"System+SKILL+Tools",tk:2800,n:0,html:"<span class='fade'>[~2,800tk 不变]</span>"},
+  {role:"usr",label:"First Task",tk:1200,n:0,html:"<span class='fade'>[解析融资协议任务...]</span>"},
+  {role:"ast",label:"R1: Thought",tk:300,n:1,html:"<b>Thought:</b> 先读融资协议..."},
+  {role:"tl",label:"R1: Read结果",tk:3000,n:1,html:"<pre>XX科技 B轮融资协议\n投资方:红杉、高瓴\n金额:2亿元\n估值:10亿元\n时间:2024年3月\n...[10页内容 ~3,000tk]</pre>"},
+  {role:"ast",label:"R2: MCP查询",tk:400,n:1,html:"<b>Thought:</b> MCP补充A轮数据..."},
+  {role:"tl",label:"R2: MCP结果",tk:800,n:1,html:"<pre>A轮:2022-01,5000万,IDG\nB轮:2024-03,2亿,红杉/高瓴</pre>"},
+  {role:"ast",label:"R3: Write输出",tk:800,n:1,html:"<b>Thought:</b> 写入信息表 → <b>Result:</b> OK"}
+ ],
+ ch:[{t:"3轮ReAct循环,对话历史暴涨+3,800tk",c:"a"},{t:"原始材料~3,800tk读入上下文(对话历史占64%)",c:"n"},{t:"Parser-A最终7.8K,仍健康(6.1%)",c:"ok"},{t:"信息压缩:原始4,500tk → 输出信息表1,500tk",c:"i"}]},
+
+{id:5,agent:"leader",name:"Leader",role:"团长",title:"Step 5 · 回到Leader检查",desc:"【切回Leader】读取4份信息表",
+ cur:{s:1500,k:3500,t:2000,h:4500,i:4000,n:15500},prev:9500,delta:6000,calls:8,session:"leader",
+ newSession:false,
+ msgs:[
+  {role:"sys",label:"System+SKILL+Tools",tk:7000,n:0,html:"<span class='fade'>[~7,000tk]</span>"},
+  {role:"usr",label:"History(Step0-2)",tk:2500,n:0,html:"<span class='fade'>[之前的历史保留在Session中 ~2,500tk]</span>"},
+  {role:"tl",label:"TeamWait通知",tk:200,n:1,html:"<b>Event:</b> 4个Parser全部完成"},
+  {role:"ast",label:"Read x4",tk:200,n:1,html:"<b>Action:</b> Read(4份信息表)"},
+  {role:"tl",label:"信息表内容",tk:3800,n:1,html:"<pre>=== 财务表 ===\nA轮(2022,5000万)/B轮(2024,2亿)/C轮【待补】\n=== 工商表 ===\nXX科技/信用代码/注册资本1000万\n=== 业务表 ===\nAI/计算机视觉/工业质检\n=== 项目表 ===\n智能质检基地/研发+生产+测试\n[共~3,800tk]</pre>"}
+ ],
+ ch:[{t:"🔄 切回Leader Session,上下文从9.5K继续",c:"n"},{t:"读取4份信息表 +6,000tk",c:"a"},{t:"Leader上下文达15.5K(12.1%),开始有压力",c:"wn"},{t:"只检查信息表,不读原始材料(否则更膨胀)",c:"i"}]},
+
+{id:6,agent:"writer",name:"Writer-1",role:"第1章·概述",title:"Step 6 · Writer-1写第1章",desc:"【新Session】只加载第1章规范",
+ cur:{s:600,k:1500,t:1000,h:0,i:2500,n:5600},prev:0,delta:5600,calls:9,session:"writer-1",
+ newSession:true,
+ msgs:[
+  {role:"sys",label:"System+Ch1 SKILL",tk:2100,n:1,html:"<b>System (writer_1.md):</b><br>撰写第1章\"概述\",目标3,000字±20%<br>标题:1.1项目概况/1.2编制依据/1.3研究结论<br><br><b>SKILL (仅第1章相关 ~1,500tk):</b><br>标题格式/正文格式/字数控制<br><br><b>工具:</b> Read/Write/Edit + TeamSay"},
+  {role:"usr",label:"Task+信息表",tk:2500,n:1,html:"<b>任务:</b> 写第1章到chapter_1.txt<br><br><b>参考:</b> info_table_corporate/business/project 摘要 (~2,500tk)"}
+ ],
+ ch:[{t:"🔄 新Session Writer-1,上下文重置为0",c:"r"},{t:"只加载第1章SKILL,不加载第2-10章规范",c:"a"},{t:"细粒度分工避免上下文污染",c:"i"},{t:"起始5.6K,非常健康",c:"ok"}]},
+
+{id:7,agent:"writer",name:"Writer-6",role:"第6章·投融资",title:"Step 7 · Writer-6写第6章",desc:"【新Session】独享完整财务数据",
+ cur:{s:600,k:1500,t:1000,h:0,i:4500,n:7600},prev:0,delta:7600,calls:10,session:"writer-6",
+ newSession:true,
+ msgs:[
+  {role:"sys",label:"System+Ch6 SKILL",tk:2100,n:1,html:"<b>System (writer_6.md):</b><br>撰写第6章\"投融资与财务\",目标4,000字(最长章节)<br>含IRR/NPV/投资回收期/敏感性分析计算<br><br><b>SKILL (第6章财务规范 ~1,500tk)</b>"},
+  {role:"usr",label:"Task+完整财务数据",tk:4500,n:1,html:"<b>任务:</b> 写第6章到chapter_6.txt<br><br><b>完整财务数据 (~3,000tk):</b><pre>融资:A轮(5000万)/B轮(2亿)\n三年财务:营收1.2→2.8→5.1亿\n资产:总3.2亿/负债1.1亿</pre><br><b>计算要求:</b> IRR/NPV/回收期/敏感性分析"}
+ ],
+ ch:[{t:"🔄 新Session Writer-6,上下文从0开始",c:"r"},{t:"加载完整财务信息表(~3,000tk),起始7.6K",c:"a"},{t:"独占策略:复杂计算需要足够窗口空间",c:"n"},{t:"ReAct执行后预计膨胀到~12K",c:"wn"}]},
+
+{id:8,agent:"writer",name:"Writer-9",role:"第9章·结论",title:"Step 8 · Writer-9读8章全文",desc:"【新Session】窗口危机!读8章26,000字",
+ cur:{s:600,k:1500,t:1000,h:0,i:30000,n:33100},prev:0,delta:33100,calls:11,session:"writer-9",
+ newSession:true,
+ msgs:[
+  {role:"sys",label:"System+Ch9 SKILL",tk:2100,n:1,html:"<b>System (writer_9.md):</b><br>撰写第9章\"结论与建议\",目标2,500字<br>综合前8章核心结论,提炼可行性判断"},
+  {role:"usr",label:"前8章全文",tk:30000,n:1,html:"<b>任务:</b> 综合前8章写结论<br><br><b>读取8章全文 (~26,000字→30,000tk):</b><pre>chapter_1.txt ~3,000字\nchapter_2.txt ~3,500字\nchapter_3.txt ~2,800字\nchapter_4.txt ~4,200字\nchapter_5.txt ~3,500字\nchapter_6.txt ~4,000字\nchapter_7.txt ~2,500字\nchapter_8.txt ~2,800字\n共26,000字 → ~30,000tk</pre><br><span style='color:var(--dg)'><b>⚠ 占用26%! 32K模型会爆窗口!</b></span>"}
+ ],
+ ch:[{t:"🔄 新Session Writer-9,上下文从0开始",c:"r"},{t:"读取8章全文+30,000tk!单步消耗最大",c:"a"},{t:"上下文达33.1K,占用率25.9%",c:"wn"},{t:"剩余94.9K,足够生成2,500字结论",c:"ok"},{t:"必须使用128K+模型,32K会失败",c:"r"}]},
+
+{id:9,agent:"integrator",name:"Integrator",role:"整合·Word",title:"Step 9 · Integrator整合9章",desc:"【新Session】读全部9章+三层质检",
+ cur:{s:800,k:2000,t:1500,h:0,i:33000,n:37300},prev:0,delta:37300,calls:12,session:"integrator",
+ newSession:true,
+ msgs:[
+  {role:"sys",label:"System+Integration SKILL",tk:2800,n:1,html:"<b>System (integrator.md):</b><br>整合9章→三层质检→生成Word<br><br><b>SKILL (~2,000tk):</b><br>report_integration.md: Word结构/样式表/质检流程"},
+  {role:"usr",label:"9章全文+质检指令",tk:33000,n:1,html:"<b>任务:</b> 整合全部9章→质检→输出Word<br><br><b>读取全部9章 (~28,500字→33,000tk)</b><br><br><b>质检:</b><br>L1:格式合规(标题/字数/表格)<br>L2:内容一致性(数据矛盾)<br>L3:NDRC大纲符合性"}
+ ],
+ ch:[{t:"🔄 新Session Integrator,上下文从0开始",c:"r"},{t:"读全部9章+33,000tk,本步消耗最大",c:"a"},{t:"上下文达37.3K,占用率29.1%(全流程峰值!)",c:"dg"},{t:"剩余90.7K,以读为主写很少,够用",c:"ok"},{t:"全流程累计消耗约130K tokens",c:"n"}]},
+];
+
+var cur=-1;
+var COLORS={s:"var(--c1)",k:"var(--c2)",t:"var(--c3)",h:"var(--c4)",i:"var(--c5)"};
+var LABELS={s:"System",k:"SKILL",t:"Tools",h:"History",i:"Input/Data"};
+
+function fmt(n){if(n>=1000)return (n/1000).toFixed(1)+'K';return n+''}
+function pct(n){return((n/LIMIT)*100).toFixed(1)}
+
+function init(){
+  var d=document.getElementById('dots');
+  d.innerHTML=S.map(function(_,i){return '<div class="dot" onclick="go('+i+')"></div>'}).join('');
+  renderFL();
+  render();
+}
+
+function renderFL(){
+  var c=document.getElementById('flist');
+  c.innerHTML=S.map(function(s,i){
+    var tp=s.agent,ic=s.name[0];
+    var cls='fn '+tp+(i===cur?' on':'')+(i<cur?' past':'');
+    return '<div class="'+cls+'" onclick="go('+i+')"><div class="ic">'+ic+'</div><div><div class="t">'+s.title.replace(/^Step \d+ · /,'')+'</div><div class="d">'+fmt(s.cur.n)+' tk</div></div></div>'+(i<S.length-1?'<div class="conn"></div>':'');
+  }).join('');
+}
+
+function renderAgentWindow(step){
+  var c=document.getElementById('awAgent');
+  c.innerHTML='<div class="aw-av '+step.agent+'">'+step.name[0]+'</div><div><div class="aw-nm">'+step.name+'</div><div class="aw-rl">'+step.role+' · Session: '+step.session+'</div></div>';
+
+  var t=step.cur,used=t.n,free=LIMIT-used,p=pct(used);
+  document.getElementById('awUsed').textContent=fmt(used);
+  document.getElementById('awFree').textContent=fmt(free);
+  document.getElementById('awPct').textContent=p+'%';
+
+  var usedEl=document.getElementById('awUsed');
+  var pctEl=document.getElementById('awPct');
+  usedEl.className='vl'+(p>50?' wn':'')+(p>80?' dg':' ok');
+  pctEl.className='vl'+(p>50?' wn':'')+(p>80?' dg':' ok');
+
+  // Stacked bar
+  var bar=document.getElementById('awBar');
+  var segs=[['s',t.s],['k',t.k],['t',t.t],['h',t.h],['i',t.i]];
+  var html='';
+  var dangerPos=100; // position of danger zone marker (80%)
+  segs.forEach(function(seg){
+    if(seg[1]>0){
+      var w=(seg[1]/LIMIT*100);
+      html+='<div class="aw-seg" style="width:'+w+'%;background:'+COLORS[seg[0]]+'"><span>'+fmt(seg[1])+'</span></div>';
+    }
+  });
+  // Free space
+  var freeW=(free/LIMIT*100);
+  html+='<div class="aw-seg" style="width:'+freeW+'%;background:var(--bg)"></div>';
+  // Danger marker at 80%
+  html+='<div class="aw-marker" style="left:80%"></div>';
+  bar.innerHTML=html;
+
+  // Legend
+  var lg=document.getElementById('awLegend');
+  lg.innerHTML=segs.filter(function(s){return s[1]>0}).map(function(s){
+    return '<div class="aw-legend-item"><div class="dt" style="background:'+COLORS[s[0]]+'"></div>'+LABELS[s[0]]+': '+fmt(s[1])+' ('+((s[1]/used*100).toFixed(0))+'%)</div>';
+  }).join('')+'<div class="aw-legend-item"><div class="dt" style="background:var(--bd)"></div>剩余: '+fmt(free)+'</div><div class="aw-legend-item"><div class="dt" style="background:var(--dg);opacity:.5"></div>80%警戒线</div>';
+}
+
+function renderGlobal(step){
+  var cumTotal=0,cumCalls=0;
+  for(var i=0;i<=cur;i++){cumTotal+=S[i].delta;cumCalls=S[i].calls}
+  var cost=(cumTotal/1000000*COST_PER_1M).toFixed(4);
+
+  document.getElementById('gpStep').textContent='+'+fmt(step.delta);
+  document.getElementById('gpTotal').textContent=fmt(cumTotal);
+  document.getElementById('gpCalls').textContent=cumCalls;
+  document.getElementById('gpCost').textContent='$'+cost;
+}
+
+function renderChart(){
+  var chart=document.getElementById('scChart');
+  var maxDelta=0;
+  S.forEach(function(s){if(s.delta>maxDelta)maxDelta=s.delta});
+  chart.innerHTML=S.map(function(s,i){
+    var isActive=i===cur,isPast=i<cur;
+    var h=Math.max((s.delta/maxDelta*100),2);
+    var cls='sc-bar'+(isActive?' active':'')+(isPast?' old':' new');
+    var xlbl=s.title.replace(/Step \d+ · /,'').substring(0,6);
+    return '<div class="sc-bar-wrap" onclick="go('+i+')" title="'+s.title+': '+fmt(s.delta)+'tk"><div class="'+cls+'" style="height:'+h+'%"><div class="lbl">'+fmt(s.delta)+'</div></div><div class="sc-xlbl">'+xlbl+'</div></div>';
+  }).join('');
+}
+
+function renderChanges(step){
+  var cl=document.getElementById('chList');
+  cl.innerHTML=step.ch.map(function(c){
+    var cls=c.c==='a'?'a':c.c==='r'?'r':c.c==='i'?'n':'n';
+    var prefix=c.c==='a'?'+ ':c.c==='r'?'⚠ ':c.c==='i'?'💡 ':'→ ';
+    return '<div class="ch-item '+cls+'">'+prefix+c.t+'</div>';
+  }).join('');
+}
+
+function renderMsgs(step){
+  document.getElementById('rtStep').textContent=step.title;
+  document.getElementById('rtDesc').textContent=step.desc;
+
+  var sw=document.getElementById('ssSwitch');
+  if(step.newSession&&cur>0){
+    sw.textContent='🔄 新Session启动: '+step.name+' (上下文重置为0)';
+    sw.className='session-switch show';
+  }else{
+    sw.className='session-switch';
+  }
+
+  var c=document.getElementById('rtMsgs');
+  c.innerHTML='';
+  step.msgs.forEach(function(m,i){
+    var roleMap={sys:'sys',usr:'usr',ast:'ast',tl:'tl'};
+    var roleLabel={sys:'System',usr:'User',ast:'Assist',tl:'Tool'};
+    var d=document.createElement('div');
+    d.className='rm'+(m.n?' new':' collapsed');
+    d.innerHTML='<div class="rm-h" onclick="tglRm(this)"><span class="rm-role '+roleMap[m.role]+'">'+roleLabel[m.role]+'</span><span class="rm-tk">'+fmt(m.tk)+'tk</span></div><div class="rm-bd">'+m.html+'</div>';
+    c.appendChild(d);
+  });
+}
+
+function tglRm(h){h.parentElement.classList.toggle('collapsed')}
+
+function updateDots(){document.querySelectorAll('.dot').forEach(function(d,i){d.classList.toggle('on',i===cur);d.classList.toggle('done',i<cur)})}
+
+function render(){
+  if(cur<0){
+    document.getElementById('rtStep').textContent='等待开始';
+    document.getElementById('rtDesc').textContent='';
+    document.getElementById('rtMsgs').innerHTML='<div style="text-align:center;padding:40px 10px;color:var(--txd);font-size:11px">点击"下一步"开始<br>追踪Token变化</div>';
+    document.getElementById('ssSwitch').className='session-switch';
+    // Empty state for center
+    document.getElementById('awUsed').textContent='0';
+    document.getElementById('awFree').textContent='128K';
+    document.getElementById('awPct').textContent='0%';
+    document.getElementById('awBar').innerHTML='<div class="aw-seg" style="width:100%;background:var(--bg)"></div><div class="aw-marker" style="left:80%"></div>';
+    document.getElementById('awAgent').innerHTML='<div class="aw-av leader" style="background:var(--sf3);color:var(--txd)">?</div><div><div class="aw-nm" style="color:var(--txd)">未启动</div><div class="aw-rl">点击下一步</div></div>';
+    document.getElementById('awLegend').innerHTML='';
+    document.getElementById('gpStep').textContent='0';
+    document.getElementById('gpTotal').textContent='0';
+    document.getElementById('gpCalls').textContent='0';
+    document.getElementById('gpCost').textContent='$0.00';
+    document.getElementById('chList').innerHTML='<div class="ch-item n">准备开始追踪...</div>';
+    renderChart();
+    document.getElementById('bp').disabled=true;
+    document.getElementById('bn').disabled=false;
+    document.getElementById('sinfo').innerHTML='点击"下一步"追踪Token变化';
+    updateDots();
+    renderFL();
+    return;
+  }
+  var step=S[cur];
+  renderAgentWindow(step);
+  renderGlobal(step);
+  renderChart();
+  renderChanges(step);
+  renderMsgs(step);
+  document.getElementById('bp').disabled=cur<=0;
+  document.getElementById('bn').disabled=cur>=S.length-1;
+  document.getElementById('sinfo').innerHTML='<b>'+step.title+'</b> — 当前Session占用 '+fmt(step.cur.n)+'/'+fmt(LIMIT)+' ('+pct(step.cur.n)+'%)';
+  updateDots();
+  renderFL();
+}
+
+function next(){if(cur<S.length-1){cur++;render()}}
+function prev(){if(cur>=0){cur--;if(cur<0){cur=-1;render()}else render()}}
+function go(i){cur=i;render()}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev()});
+init();
+</script>
+</body>
+</html>

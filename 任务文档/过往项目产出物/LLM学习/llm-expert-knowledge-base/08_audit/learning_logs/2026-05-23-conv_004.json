@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-05-23T16:45:00",
+  "conversation_id": "conv_004",
+  "conversation_data": {
+    "type": "行业分析类",
+    "key_info": {
+      "topic": "AI行业",
+      "concept": "市场趋势"
+    }
+  },
+  "quality_scores": {
+    "overall_score": 72.5,
+    "dimensions": {
+      "准确性": 75.0,
+      "完整性": 68.0,
+      "相关性": 80.0,
+      "清晰度": 70.0,
+      "实用性": 72.0,
+      "时效性": 70.0
+    }
+  },
+  "feedback_analysis": {
+    "type": "followup",
+    "sentiment": "neutral"
+  },
+  "knowledge_gaps": [
+    {
+      "type": "已过时",
+      "description": "部分市场数据需要更新"
+    },
+    {
+      "type": "不完整或不准确",
+      "description": "竞争格局分析"
+    }
+  ],
+  "optimization": {
+    "suggestions": ["增加回答深度", "优化表述清晰度"],
+    "preference_update": false
+  }
+}

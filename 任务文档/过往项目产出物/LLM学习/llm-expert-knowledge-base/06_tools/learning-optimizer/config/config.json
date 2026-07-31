@@ -1,0 +1,56 @@
+{
+  "general": {
+    "base_path": "../",
+    "knowledge_base_path": "04_permanent",
+    "audit_path": "08_audit",
+    "papers_path": "05_papers",
+    "reports_path": "08_audit",
+    "learning_logs_path": "08_audit/learning_logs"
+  },
+  "health_assessment": {
+    "coverage_weight": 0.30,
+    "quality_weight": 0.25,
+    "timeliness_weight": 0.20,
+    "relevance_weight": 0.15,
+    "utility_weight": 0.10,
+    "min_knowledge_count_threshold": 5,
+    "quality_score_threshold": 70,
+    "staleness_threshold_days": 180
+  },
+  "trend_analysis": {
+    "analysis_period_days": 30,
+    "prediction_period_months": 3,
+    "priority_levels": {
+      "critical": "极高优先级",
+      "high": "高优先级",
+      "medium": "中优先级",
+      "low": "低优先级"
+    }
+  },
+  "user_analysis": {
+    "analysis_period_days": 30,
+    "priority_levels": {
+      "critical": "极高优先级",
+      "high": "高优先级",
+      "medium": "中优先级",
+      "low": "低优先级"
+    }
+  },
+  "learning_schedule": {
+    "weekly_report_day": 5,
+    "weekly_report_hour": 10,
+    "full_health_scan_frequency": "weekly",
+    "trend_scan_frequency": "weekly"
+  },
+  "resource_allocation": {
+    "critical_priority": "高级模型",
+    "high_priority": "中级模型",
+    "medium_priority": "中级模型",
+    "low_priority": "基础模型",
+    "model_mapping": {
+      "高级模型": ["Claude 3.5 Sonnet", "GPT-4o"],
+      "中级模型": ["Gemini 2.0 Flash", "DeepSeek V3"],
+      "基础模型": ["GPT-3.5-turbo", "Qwen 2.5 72B"]
+    }
+  }
+}

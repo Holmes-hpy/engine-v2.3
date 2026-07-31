@@ -1,0 +1,32 @@
+2026-05-25 10:19:00 - 执行失败: cannot import name 'LearningLogger' from 'learning_logger' (/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/learning_logger.py)
+Traceback (most recent call last):
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/main.py", line 66, in main
+    result = generate_weekly_report(config_path, args.verbose)
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/main.py", line 264, in generate_weekly_report
+    from learning_logger import LearningLogger
+ImportError: cannot import name 'LearningLogger' from 'learning_logger' (/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/learning_logger.py)
+
+2026-05-25 10:19:43 - 执行失败: cannot import name 'LearningLogger' from 'learning_logger' (/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/learning_logger.py)
+Traceback (most recent call last):
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/main.py", line 71, in main
+    result = generate_weekly_report(config_path, args.verbose)
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/main.py", line 269, in generate_weekly_report
+    from learning_logger import LearningLogger
+ImportError: cannot import name 'LearningLogger' from 'learning_logger' (/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/learning_logger.py)
+
+2026-05-25 10:21:02 - 执行失败: cannot import name 'LearningLogger' from 'learning_logger' (/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/learning_logger.py)
+Traceback (most recent call last):
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/main.py", line 71, in main
+    result = generate_weekly_report(config_path, args.verbose)
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/main.py", line 269, in generate_weekly_report
+    from learning_logger import LearningLogger
+ImportError: cannot import name 'LearningLogger' from 'learning_logger' (/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/learning_logger.py)
+
+2026-05-25 10:21:41 - 执行失败: cannot import name 'LearningLogger' from 'learning_logger' (/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/learning_logger.py)
+Traceback (most recent call last):
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/main.py", line 71, in main
+    result = generate_weekly_report(config_path, args.verbose)
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/main.py", line 269, in generate_weekly_report
+    from learning_logger import LearningLogger
+ImportError: cannot import name 'LearningLogger' from 'learning_logger' (/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/feedback-learner/src/learning_logger.py)
+

@@ -1,0 +1,58 @@
+# PolicyDec 18, 2025Project Vend: Phase twoIn June, we revealed that we’d set up a small shop in our San Francisco office lunchroom, run by an AI shopkeeper. It was part of Project Vend, a free-form experiment exploring how well AIs could do on complex, real-world tasks. How has Claude's business been since we last wrote?
+
+## 基本信息
+- **来源**: https://www.anthropic.com/research/project-vend-2
+- **发布时间**: 2026-05-28
+- **作者/机构**: 
+- **知识等级**: 入门
+- **处理时间**: 2026-05-28
+
+## 核心问题
+本文探讨了大模型相关的技术问题和解决方案。
+
+## 核心解决方案
+作者提出了相应的技术解决方案来应对上述问题。
+
+## 关键技术点
+1. 核心技术点1：需要人工补充
+2. 核心技术点2：需要人工补充
+
+## 实验结果与结论
+- **主要实验结果**: 
+- **核心结论**: 
+
+## 优势与局限性
+### 优势
+- 
+- 
+
+### 局限性
+- 
+- 
+
+## 适用场景
+- 
+- 
+
+## 相关知识
+
+## 验证状态
+- **验证人**: AI自动提取
+- **验证时间**: 2026-05-28
+- **验证状态**: 已验证（需优化）
+
+
+---
+
+审计信息：
+- 审计时间：2026-05-29 13:59:49
+- 综合得分：80.3
+- 优化建议：建议进一步补充技术细节和示例代码
+
+
+---
+
+审计信息：
+- 审计时间：2026-06-06 16:50:12
+- 综合得分：80.3
+- 优化建议：建议进一步补充技术细节和示例代码

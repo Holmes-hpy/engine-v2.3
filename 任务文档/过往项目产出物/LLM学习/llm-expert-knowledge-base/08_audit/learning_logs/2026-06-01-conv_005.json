@@ -1,0 +1,37 @@
+
+{
+  "timestamp": "2026-06-01T11:00:00",
+  "conversation_id": "conv_005",
+  "conversation_data": {
+    "type": "技术咨询类",
+    "key_info": {
+      "topic": "大语言模型",
+      "concept": "RAG技术"
+    }
+  },
+  "quality_scores": {
+    "overall_score": 88.5,
+    "dimensions": {
+      "准确性": 92.0,
+      "完整性": 85.0,
+      "相关性": 95.0,
+      "清晰度": 88.0,
+      "实用性": 82.0,
+      "时效性": 89.0
+    }
+  },
+  "feedback_analysis": {
+    "type": "positive",
+    "sentiment": "good"
+  },
+  "knowledge_gaps": [
+    {
+      "type": "检索不到",
+      "description": "最新RAG优化技巧"
+    }
+  ],
+  "optimization": {
+    "suggestions": [],
+    "preference_update": false
+  }
+}

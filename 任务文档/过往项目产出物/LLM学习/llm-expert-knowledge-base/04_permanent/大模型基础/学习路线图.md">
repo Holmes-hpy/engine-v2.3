@@ -1,0 +1,336 @@
+
+# 大模型学习路线图
+
+## 概览
+
+大模型学习分为三个主要方向，你可以根据兴趣和目标选择合适的路径：
+
+- **LLM Fundamentals（基础理论）** - 数学、Python、神经网络基础
+- **LLM Scientist（科学家）** - 专注于模型训练和优化
+- **LLM Engineer（工程师）** - 专注于应用开发和部署
+
+---
+
+## 一、LLM Fundamentals（基础理论）
+
+### 1.1 机器学习数学
+
+**核心知识**：
+- **线性代数**：向量、矩阵、行列式、特征值、线性变换
+- **微积分**：导数、积分、梯度、多元微积分
+- **概率统计**：概率分布、期望、方差、贝叶斯推断、假设检验
+
+**推荐资源**：
+- 3Blue1Brown - 《线性代数的本质》
+- StatQuest - 统计学基础
+- Khan Academy - 线性代数、微积分、概率统计
+
+---
+
+### 1.2 Python数据科学
+
+**核心知识**：
+- **Python基础**：语法、数据类型、面向对象
+- **数据科学库**：NumPy（数值计算）、Pandas（数据分析）、Matplotlib（可视化）
+- **数据预处理**：特征缩放、缺失值处理、编码、数据分割
+- **机器学习库**：Scikit-learn（经典ML算法）
+
+**推荐资源**：
+- Real Python - 全面的Python教程
+- Python Data Science Handbook - 免费电子书
+- freeCodeCamp - 机器学习入门
+
+---
+
+### 1.3 神经网络基础
+
+**核心知识**：
+- **基础结构**：层、权重、偏置、激活函数（sigmoid、tanh、ReLU）
+- **训练优化**：反向传播、损失函数（MSE、交叉熵）、优化器（SGD、Adam）
+- **过拟合处理**：Dropout、L1/L2正则化、早停、数据增强
+- **MLP实现**：用PyTorch实现多层感知机
+
+**推荐资源**：
+- 3Blue1Brown - 《什么是神经网络》
+- Fast.ai - 实用深度学习课程
+- Patrick Loeber - PyTorch教程
+
+---
+
+### 1.4 自然语言处理（NLP）
+
+**核心知识**：
+- **文本预处理**：分词、词干提取、词形还原、停用词移除
+- **特征提取**：词袋模型、TF-IDF、n-gram
+- **词嵌入**：Word2Vec、GloVe、FastText
+- **序列模型**：RNN、LSTM、GRU
+
+**推荐资源**：
+- Lena Voita - 词嵌入入门
+- Jay Alammar - 图解Word2Vec
+- colah's blog - 理解LSTM
+
+---
+
+## 二、LLM Scientist（科学家路线）
+
+### 2.1 LLM架构
+
+**核心知识**：
+- **架构演化**：从Encoder-Decoder到Decoder-Only架构（GPT系列）
+- **分词**：文本转数值表示的方法，不同策略的影响
+- **注意力机制**：自注意力及其变体，处理长距离依赖
+- **采样技术**：贪心搜索、束搜索、温度采样、核采样
+
+**推荐资源**：
+- 3Blue1Brown - 可视化Transformer介绍
+- Andrej Karpathy - nanoGPT视频教程
+- Lilian Weng - 注意力机制历史
+
+---
+
+### 2.2 预训练
+
+**核心知识**：
+- **数据准备**：海量数据集（如Llama 3.1用15T tokens），需要清洗、去重、分词
+- **分布式训练**：数据并行、流水线并行、张量并行
+- **训练优化**：学习率预热、梯度裁剪、混合精度、AdamW/Lion优化器
+- **监控**：跟踪损失、梯度、GPU状态
+
+**推荐资源**：
+- FineWeb - 大规模预训练数据集
+- nanotron - Hugging Face的训练代码库
+- OLMo 2 - 开源模型及完整训练代码
+
+---
+
+### 2.3 训练后数据集
+
+**核心知识**：
+- **存储格式**：ShareGPT、OpenAI/HF格式，ChatML/Alpaca对话模板
+- **合成数据生成**：用前沿模型（GPT-4o）生成指令-响应对
+- **数据增强**：验证输出、拒绝采样、Auto-Evol、思维链、分支求解合并
+- **质量过滤**：规则过滤、去重、n-gram去污、奖励模型
+
+**推荐资源**：
+- LLM Datasets - 精选数据集和工具
+- NeMo-Curator - 数据准备框架
+- Distilabel - 合成数据生成框架
+
+---
+
+### 2.4 监督微调（SFT）
+
+**核心知识**：
+- **训练技术**：
+  - 全量微调：更新所有参数，需大量算力
+  - LoRA/QLoRA：参数高效微调，只训练少量适配器参数
+  - QLoRA：4位量化+LoRA，显存需求极低
+- **训练参数**：学习率、批量大小、梯度累积、epoch数、优化器
+- **分布式训练**：DeepSpeed、FSDP，支持梯度检查点
+- **工具**：TRL、Unsloth、Axolotl
+
+**推荐资源**：
+- LoRA insights - LoRA参数选择实践
+- Axolotl - 分布式训练文档
+
+---
+
+### 2.5 偏好对齐
+
+**核心知识**：
+- **拒绝采样**：为每个提示生成多个响应，评分选优
+- **DPO**：直接偏好优化，无需奖励建模，计算高效
+- **奖励模型**：用人类反馈训练，预测偏好指标
+- **强化学习**：GRPO、PPO，迭代更新策略
+
+**推荐资源**：
+- DPO详解 - 偏好对齐算法比较
+- RLHF图解 - Hugging Face介绍
+
+---
+
+### 2.6 评估
+
+**核心知识**：
+- **自动Benchmark**：MMLU等，适合具体任务但有数据污染问题
+- **人工评估**：主观评估，适合创意任务
+- **基于模型的评估**：用评判模型评分，与人类偏好高度相关
+- **反馈信号**：分析错误模式识别弱点
+
+**推荐资源**：
+- Open LLM Leaderboard - 公开LLM排名
+- Chatbot Arena - 基于人类比较的Elo评分
+
+---
+
+### 2.7 量化
+
+**核心知识**：
+- **基础技术**：FP32→FP16→INT8，absmax和zero-point量化
+- **GGUF/llama.cpp**：CPU运行LLM的标准工具，单文件存储所有信息
+- **GPTQ/AWQ**：逐层校准，在极低比特位保持性能
+- **SmoothQuant/ZeroQuant**：量化友好变换和编译器优化
+
+**推荐资源**：
+- llama.cpp - 量化和推理库
+- EXL2 - 高性能推理库
+
+---
+
+### 2.8 新趋势
+
+**核心知识**：
+- **模型合并**：用mergekit合并多个模型，无需微调（SLERP、DARE、TIES）
+- **多模态模型**：CLIP、Stable Diffusion、LLaVA，处理多种输入
+- **可解释性**：稀疏自编码器（SAE）、abliteration修改行为
+- **测试时计算**：用MCTS、PRM在推理时扩展计算
+
+**推荐资源**：
+- mergekit - 模型合并库
+- SAEs直觉 - 可解释性技术介绍
+
+---
+
+## 三、LLM Engineer（工程师路线）
+
+### 3.1 运行LLMs
+
+**核心知识**：
+- **LLM APIs**：OpenAI、Google、Anthropic等私有API；OpenRouter、HF等开源API
+- **开源LLMs**：Hugging Face Hub获取，LM Studio本地运行，ollama/llama.cpp命令行运行
+- **提示工程**：零样本、少样本、思维链、ReAct
+- **结构化输出**：Outlines、JSON Schema
+
+**推荐资源**：
+- Prompting Guide - 提示技术大全
+- LM Studio - 本地运行LLMs
+
+---
+
+### 3.2 构建向量存储
+
+**核心知识**：
+- **文档加载**：处理PDF、JSON、HTML、Markdown等格式
+- **文档切分**：按标题或递归切分，保留语义完整性
+- **嵌入模型**：Sentence-BERT等，任务专用模型提升性能
+- **向量数据库**：Chroma、Pinecone、Milvus、FAISS、Annoy
+
+**推荐资源**：
+- MTEB Leaderboard - 嵌入模型排名
+- Sentence Transformers - 嵌入库
+
+---
+
+### 3.3 RAG（检索增强生成）
+
+**核心知识**：
+- **编排框架**：LangChain、LlamaIndex、MCP协议
+- **检索器**：查询重写、生成式检索、多向量/混合检索
+- **记忆**：对话历史缓冲、摘要、向量存储+RAG
+- **评估**：Ragas、DeepEval，评估检索和生成质量
+
+**推荐资源**：
+- RAG指标 - Ragas评估指标详解
+- MCP协议 - 模型上下文协议
+
+---
+
+### 3.4 高级RAG
+
+**核心知识**：
+- **查询构建**：Text-to-SQL、Cypher、元数据查询
+- **工具**：Agents自动选择工具（Google、Python、Jira等）
+- **后处理**：重排序、RAG-fusion、分类提升相关性
+- **程序式LLM**：DSPy基于自动评估优化提示
+
+**推荐资源**：
+- DSPy入门 - 程序式提示优化
+- RAG-fusion - 检索增强技术
+
+---
+
+### 3.5 Agents
+
+**核心知识**：
+- **Agent基础**：思考（推理）→ 行动（执行）→ 观察（反馈）循环
+- **协议**：MCP（连接工具/数据）、A2A（Agent间通信）
+- **厂商框架**：OpenAI SDK、Google ADK、Claude Agent SDK
+- **多Agent框架**：LangGraph（工作流）、CrewAI（角色团队）、AutoGen（对话协作）
+
+**推荐资源**：
+- Agents Course - Hugging Face的Agent课程
+- LangGraph - 工作流可视化框架
+
+---
+
+### 3.6 推理优化
+
+**核心知识**：
+- **Flash Attention**：注意力优化，复杂度O(n)而非O(n²)
+- **KV Cache**：键值缓存，MQA（多查询注意力）、GQA（分组查询注意力）
+- **推测解码**：小模型生成草稿，大模型验证，EAGLE-3是流行方案
+
+**推荐资源**：
+- GPU Inference - Hugging Face推理优化指南
+
+---
+
+## 四、学习策略建议
+
+### 4.1 初学者路径
+
+1. **先学基础**：数学 → Python → 神经网络 → NLP
+2. **动手实践**：从小项目开始，逐步增加复杂度
+3. **利用工具**：Colab免费GPU，避免环境配置困扰
+4. **关注社区**：Hugging Face、GitHub、arXiv论文
+
+---
+
+### 4.2 科学家路径重点
+
+- 深入理解模型架构和训练机制
+- 掌握微调、对齐、评估技术
+- 关注最新论文和方法
+- 参与开源项目和竞赛
+
+---
+
+### 4.3 工程师路径重点
+
+- 熟练使用RAG、Agents等应用技术
+- 掌握部署和优化技巧
+- 构建实际项目和产品
+- 关注工程化最佳实践
+
+---
+
+## 五、重要工具清单
+
+| 类别 | 工具 | 用途 |
+|------|------|------|
+| **微调** | TRL、Unsloth、Axolotl | 监督微调、参数高效微调 |
+| **量化** | llama.cpp、GPTQ、EXL2 | 模型量化和加速推理 |
+| **RAG** | LangChain、LlamaIndex、Chroma | 检索增强生成应用 |
+| **Agents** | LangGraph、CrewAI、AutoGen | 智能体应用开发 |
+| **评估** | LM Evaluation Harness、Lighteval | 模型评估和测试 |
+| **部署** | vLLM、TGI、Ollama | 模型服务和部署 |
+
+---
+
+## 六、进阶资源
+
+### 论文阅读
+- arXiv:cs.CL - 计算语言学期论文
+- OpenReview - 会议论文
+- PapersWithCode - 论文及代码
+
+### 社区资源
+- Hugging Face Blog - 最新技术和教程
+- LIL - Lilian Weng的博客
+- MLabonne Blog - 实用教程
+
+---
+
+**学习是一个持续的过程，保持好奇心和实践！**
+

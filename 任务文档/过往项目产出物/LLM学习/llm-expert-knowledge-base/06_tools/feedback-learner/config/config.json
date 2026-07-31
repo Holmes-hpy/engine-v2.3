@@ -1,0 +1,86 @@
+{
+  "general": {
+    "base_path": "../../",
+    "learning_logs_dir": "08_audit/learning_logs",
+    "weekly_report_dir": "08_audit",
+    "error_log": "08_audit/feedback_learner_error.log"
+  },
+  "quality_assessment": {
+    "dimensions": {
+      "accuracy": {
+        "weight": 0.30,
+        "name": "准确性",
+        "description": "回答内容是否准确，是否有事实性错误"
+      },
+      "completeness": {
+        "weight": 0.20,
+        "name": "完整性",
+        "description": "是否完整回答了用户的所有问题，是否有重要信息遗漏"
+      },
+      "relevance": {
+        "weight": 0.15,
+        "name": "相关性",
+        "description": "回答内容是否与用户问题直接相关，是否有无关内容"
+      },
+      "clarity": {
+        "weight": 0.15,
+        "name": "清晰度",
+        "description": "表述是否清晰易懂，逻辑是否严密，结构是否合理"
+      },
+      "practicality": {
+        "weight": 0.10,
+        "name": "实用性",
+        "description": "是否提供了可操作的建议和解决方案"
+      },
+      "timeliness": {
+        "weight": 0.10,
+        "name": "时效性",
+        "description": "信息是否最新，是否符合当前技术现状"
+      }
+    },
+    "score_thresholds": {
+      "excellent": 85,
+      "good": 70,
+      "needs_improvement": 50
+    }
+  },
+  "feedback_analysis": {
+    "positive_keywords": ["很好", "谢谢", "有帮助", "正确", "满意", "不错", "棒", "优秀"],
+    "negative_keywords": ["不对", "不准确", "不完整", "错误", "差", "糟糕", "不满意"],
+    "correction_keywords": ["不对", "应该是", "实际上是", "补充", "修正"],
+    "followup_keywords": ["为什么", "详细", "还有", "追问", "具体"]
+  },
+  "knowledge_gap": {
+    "types": {
+      "missing": "完全缺失",
+      "incomplete": "不完整或不准确",
+      "unretrievable": "检索不到",
+      "outdated": "已过时"
+    },
+    "trigger_actions": {
+      "missing": "trigger_radar",
+      "incomplete": "trigger_distillation",
+      "unretrievable": "update_index",
+      "outdated": "mark_for_update"
+    }
+  },
+  "conversation_types": {
+    "technical": "技术咨询类",
+    "problem_solving": "问题解决类",
+    "research_support": "研究支持类",
+    "industry_analysis": "行业分析类",
+    "other": "其他类"
+  },
+  "learning": {
+    "user_preferences": {
+      "detail_level": "auto",
+      "format_preference": "auto",
+      "technical_depth": "auto"
+    },
+    "style_guides": []
+  },
+  "reporting": {
+    "weekly": true,
+    "day_of_week": "sunday"
+  }
+}

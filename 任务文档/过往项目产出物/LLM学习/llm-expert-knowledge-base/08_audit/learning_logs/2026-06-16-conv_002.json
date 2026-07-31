@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-06-16T14:20:00",
+  "conversation_id": "conv_002",
+  "conversation_data": {
+    "type": "问题解决类",
+    "key_info": {
+      "topic": "RAG技术优化",
+      "concept": "检索增强生成",
+      "context": "用户希望了解如何优化 RAG 系统的检索精度"
+    }
+  },
+  "quality_scores": {
+    "overall_score": 85.0,
+    "dimensions": {
+      "准确性": 88.0,
+      "完整性": 82.0,
+      "相关性": 90.0,
+      "清晰度": 85.0,
+      "实用性": 84.0,
+      "时效性": 86.0
+    }
+  },
+  "feedback_analysis": {
+    "type": "followup",
+    "sentiment": "neutral",
+    "comment": "希望了解更多具体的代码实现方案"
+  },
+  "knowledge_gaps": [
+    {
+      "type": "检索不到",
+      "description": "缺少 RAG 混合检索的最新算法实现"
+    },
+    {
+      "type": "已过时",
+      "description": "部分 RAG 架构描述需要更新到 2026 最新版本"
+    }
+  ],
+  "optimization": {
+    "suggestions": [
+      "补充 RAG 混合检索的代码实现",
+      "更新 Agentic RAG 等最新架构描述"
+    ],
+    "preference_update": true
+  }
+}

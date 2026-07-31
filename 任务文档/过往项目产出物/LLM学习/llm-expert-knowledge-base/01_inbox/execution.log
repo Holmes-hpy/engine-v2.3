@@ -1,0 +1,79 @@
+请选择运行模式:
+  --full-pipeline: 运行完整流程
+  --full-audit: 运行全面审计
+  --skip-wait: 跳过等待时间（用于测试）
+  --no-auto-trigger: 禁用知识蒸馏后的自动延迟审计
+
+另外可使用 scheduler_manager.py 设置定时任务
+[2026-05-27 13:54:50] [INFO] ============================================================
+[2026-05-27 13:54:50] [INFO] 开始运行完整知识流水线
+[2026-05-27 13:54:50] [INFO] ============================================================
+[2026-05-27 13:54:50] [INFO] 开始执行任务: radar
+[2026-05-27 13:55:30] [INFO] 任务 radar 执行成功
+[2026-05-27 13:55:30] [INFO] 输出: 
+==================================================
+信息采集完成！
+共采集 131 条内容
+每日简报已保存至: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/01_inbox/2026-05-27-每日信息简报.md
+==================================================
+[2026-05-27 13:55:30] [INFO] 等待 1800 秒 (30.0 分钟) 后执行知识蒸馏...
+Traceback (most recent call last):
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/src/pipeline.py", line 270, in <module>
+    main()
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/src/pipeline.py", line 257, in main
+    pipeline.run_full_pipeline(skip_wait=args.skip_wait, auto_trigger_audit=not args.no_auto_trigger)
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/src/pipeline.py", line 179, in run_full_pipeline
+    time.sleep(wait_time)
+KeyboardInterrupt
+[2026-05-27 14:04:22] [INFO] ============================================================
+[2026-05-27 14:04:22] [INFO] 开始运行完整知识流水线
+[2026-05-27 14:04:22] [INFO] ============================================================
+[2026-05-27 14:04:22] [INFO] 开始执行任务: radar
+[2026-05-27 14:05:01] [INFO] 任务 radar 执行成功
+[2026-05-27 14:05:01] [INFO] 输出: 
+==================================================
+信息采集完成！
+共采集 131 条内容
+每日简报已保存至: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/01_inbox/2026-05-27-每日信息简报.md
+==================================================
+[2026-05-27 14:05:01] [INFO] 开始执行任务: distillation
+[2026-05-27 14:05:01] [INFO] 任务 distillation 执行成功
+[2026-05-27 14:05:01] [INFO] 输出: 
+==================================================
+知识蒸馏完成！
+处理文件数: 131
+生成知识文档数: 131
+失败文件数: 0
+处理报告已保存至: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/03_ai_wiki/2026-05-27-知识蒸馏报告.md
+==================================================
+[2026-05-27 14:05:01] [INFO] 开始执行任务: audit
+[2026-05-27 14:05:01] [INFO] 任务 audit 执行成功
+[2026-05-27 14:05:01] [INFO] 输出:       时效性:95.0 相关性:58.0 可理解性:80.0
+   分类: 合格 (综合得分: 79.1)
+   ✅ 已移动到: 部署工程/无人车遇水则瘫？Waymo大规模召回，叫停多城Robotaxi服务.md
+
+📖 分析: dograh-hq_dograh.md
+   评分 - 准确性:65.0 完整性:92.0 一致性:85.0
+         时效性:95.0 相关性:58.0 可理解性:80.0
+   分类: 合格 (综合得分: 79.1)
+   ✅ 已移动到: 行业动态/dograh-hq_dograh.md
+
+📝 生成审计报告...
+   报告已保存: 2026-05-27-单次审计报告.md
+
+============================================================
+📊 审计完成总结
+============================================================
+优秀知识: 0 篇
+合格知识: 24 篇
+待修正知识: 0 篇
+不合格知识: 0 篇
+
+✅ 知识质量审计完成！
+[2026-05-27 14:05:01] [INFO] 
+知识蒸馏已完成，设置30分钟后自动审计...
+[2026-05-27 14:05:01] [INFO] 设置延迟审计任务，将在 30.0 分钟后执行...
+[2026-05-27 14:05:01] [INFO] ✓ 已设置延迟审计任务
+[2026-05-27 14:05:01] [INFO] ============================================================
+[2026-05-27 14:05:01] [INFO] 完整流程执行结束
+[2026-05-27 14:05:01] [INFO] ============================================================

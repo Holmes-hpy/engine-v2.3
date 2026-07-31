@@ -1,0 +1,9 @@
+artifacts: []
+
+# 产出物清单格式示例：
+# artifacts:
+#   - version: "v1.0"
+#     file: "v1.0-20260718-{描述}.md"
+#     type: "draft"
+#     description: "初稿"
+#     created_at: "{ISO8601}"

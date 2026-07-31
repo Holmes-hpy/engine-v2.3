@@ -1,0 +1,45 @@
+{
+  "general": {
+    "base_path": "../../",
+    "papers_dir": "05_papers",
+    "permanent_dir": "04_permanent",
+    "inbox_dir": "01_inbox"
+  },
+  "filtering": {
+    "weekly_paper_count": 5,
+    "top_conferences": [
+      "ICML", "NeurIPS", "ICLR", "ACL", "EMNLP", "NACL", "AAAI", "IJCAI",
+      "CVPR", "ICCV", "ECCV", "KDD", "SIGIR", "WWW", "SIGKDD"
+    ],
+    "top_institutions": [
+      "OpenAI", "Anthropic", "Google DeepMind", "Google Research",
+      "Meta AI", "Microsoft Research", "Amazon", "Apple", "NVIDIA",
+      "Stanford", "MIT", "Berkeley", "CMU", "Oxford", "Cambridge"
+    ],
+    "min_citation_growth": 5,
+    "exclude_duplicate_days": 30
+  },
+  "reading": {
+    "output_format": "markdown",
+    "include_code_analysis": true,
+    "include_experiment_details": true,
+    "extract_technical_points": true
+  },
+  "reproduction": {
+    "max_dataset_size_gb": 10,
+    "virtual_env_dir": "venv_paper_repro",
+    "timeout_minutes": 120,
+    "reproduce_main_experiments": true,
+    "max_experiments_to_reproduce": 2
+  },
+  "knowledge_integration": {
+    "create_knowledge_docs": true,
+    "update_index": true,
+    "establish_links": true
+  },
+  "report": {
+    "weekly_report_dir": "05_papers",
+    "report_filename_template": "YYYY-MM-DD-周度研究报告.md",
+    "push_summary": true
+  }
+}

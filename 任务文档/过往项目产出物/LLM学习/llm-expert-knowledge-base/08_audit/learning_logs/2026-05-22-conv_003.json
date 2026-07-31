@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-05-22T09:15:00",
+  "conversation_id": "conv_003",
+  "conversation_data": {
+    "type": "研究支持类",
+    "key_info": {
+      "topic": "机器学习",
+      "concept": "深度学习"
+    }
+  },
+  "quality_scores": {
+    "overall_score": 92.0,
+    "dimensions": {
+      "准确性": 95.0,
+      "完整性": 90.0,
+      "相关性": 98.0,
+      "清晰度": 88.0,
+      "实用性": 92.0,
+      "时效性": 89.0
+    }
+  },
+  "feedback_analysis": {
+    "type": "positive",
+    "sentiment": "excellent"
+  },
+  "knowledge_gaps": [],
+  "optimization": {
+    "suggestions": [],
+    "preference_update": false
+  }
+}

@@ -1,0 +1,68 @@
+
+{
+  "sources": [
+    {
+      "name": "arXiv cs.CL",
+      "url": "https://arxiv.org/list/cs.CL/recent",
+      "type": "arxiv"
+    },
+    {
+      "name": "arXiv cs.LG",
+      "url": "https://arxiv.org/list/cs.LG/recent",
+      "type": "arxiv"
+    },
+    {
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog",
+      "type": "blog"
+    },
+    {
+      "name": "Hugging Face Papers",
+      "url": "https://huggingface.co/papers",
+      "type": "papers"
+    },
+    {
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/blog",
+      "type": "blog"
+    },
+    {
+      "name": "Anthropic Research",
+      "url": "https://www.anthropic.com/research",
+      "type": "blog"
+    },
+    {
+      "name": "DeepMind Blog",
+      "url": "https://deepmind.google/discover/blog/",
+      "type": "blog"
+    },
+    {
+      "name": "GitHub Trending Python",
+      "url": "https://github.com/trending/python?since=daily",
+      "type": "github"
+    },
+    {
+      "name": "GitHub Trending ML",
+      "url": "https://github.com/trending/machine-learning?since=daily",
+      "type": "github"
+    },
+    {
+      "name": "机器之心",
+      "url": "https://www.jiqizhixin.com/",
+      "type": "blog"
+    },
+    {
+      "name": "量子位",
+      "url": "https://www.qbitai.com/",
+      "type": "blog"
+    },
+    {
+      "name": "InfoQ AI",
+      "url": "https://www.infoq.cn/topic/AI",
+      "type": "blog"
+    }
+  ],
+  "max_summary_length": 3000,
+  "request_timeout": 30,
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+}

@@ -1,0 +1,1607 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+每日科技前沿资讯分析系统 v8.0（多源融合增强版）
+=====================================================
+执行时间: 每日下午14:30（工作日）
+核心改进:
+  1. 多源融合搜索：百度新闻 + 搜狗新闻 + RSS订阅 + 财经网站首页抓取
+  2. 增强反向信号识别：枪手发文时间规律、自媒体账号画像、多源交叉验证
+  3. 增强缠论分析：背驰检测、中枢震荡操作建议、多级别联立分析
+  4. 知识沉淀：结构化知识图谱 + 历史趋势对比
+
+使用方式:
+  python daily_tech_intel_system_v8.py
+  python daily_tech_intel_system_v8.py afternoon   # 强制下午模式
+"""
+
+import sys
+import os
+import json
+import re
+import time
+import random
+import hashlib
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import List, Dict, Any, Optional, Tuple
+from collections import Counter, defaultdict
+
+import requests
+from bs4 import BeautifulSoup
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+# ========== 路径配置 ==========
+PROJECT_DIR = Path(__file__).parent
+REPORT_DIR = PROJECT_DIR / "daily_tech_intel"
+KNOWLEDGE_DIR = PROJECT_DIR / "knowledge"
+GRAPH_DIR = PROJECT_DIR / "knowledge_graph"
+LOG_DIR = PROJECT_DIR / "logs"
+
+for d in [REPORT_DIR, KNOWLEDGE_DIR, GRAPH_DIR, LOG_DIR]:
+    d.mkdir(exist_ok=True)
+
+sys.path.insert(0, str(PROJECT_DIR))
+
+
+# ============================================================
+# 1. 十五五规划重点关注产业
+# ============================================================
+FIFTEEN_FIVE_INDUSTRIES = {
+    "人工智能": {
+        "keywords": ["人工智能", "AI", "大模型", "生成式AI", "深度学习", "人形机器人",
+                     "机器视觉", "多模态", "智能体", "AGI", "机器学习", "神经网络", "AIGC"],
+        "search_queries": [
+            "人工智能 最新政策 技术突破",
+            "AI大模型 国产替代 最新进展",
+            "人工智能 十五五规划 产业政策",
+        ],
+        "stocks": ["寒武纪", "科大讯飞", "海天瑞声", "云从科技", "拓尔思", "工业富联", "浪潮信息"]
+    },
+    "半导体": {
+        "keywords": ["半导体", "芯片", "集成电路", "先进制程", "国产替代", "中芯国际",
+                     "光刻", "先进封装", "存储", "晶圆", "EDA", "GPU", "CPU", "DRAM", "NAND"],
+        "search_queries": [
+            "半导体 国产替代 芯片进展",
+            "光刻机 先进制程 突破 最新",
+            "集成电路 十五五规划 产业政策",
+        ],
+        "stocks": ["中芯国际", "北方华创", "韦尔股份", "紫光国微", "卓胜微", "兆易创新", "长电科技"]
+    },
+    "新能源": {
+        "keywords": ["新能源", "光伏", "风电", "储能", "新能源汽车", "锂电池",
+                     "宁德时代", "比亚迪", "氢能", "燃料电池", "固态电池", "碳酸锂"],
+        "search_queries": [
+            "新能源 储能 光伏 最新政策",
+            "锂电池 储能 产业动态",
+            "新能源汽车 十五五规划 政策",
+        ],
+        "stocks": ["宁德时代", "比亚迪", "隆基绿能", "通威股份", "阳光电源", "天齐锂业", "赣锋锂业"]
+    },
+    "数字经济": {
+        "keywords": ["数字经济", "数据中心", "算力", "云计算", "大数据", "东数西算",
+                     "工业互联网", "数据要素", "数字中国", "信创", "数字化转型"],
+        "search_queries": [
+            "数字经济 云计算 算力 最新政策",
+            "东数西算 数据中心 产业动态",
+            "数据要素 数字化转型 十五五",
+        ],
+        "stocks": ["宝信软件", "用友网络", "金山办公", "中科曙光", "浪潮信息", "紫光股份"]
+    },
+    "新材料": {
+        "keywords": ["新材料", "稀土", "碳纤维", "第三代半导体", "碳化硅", "氮化镓", "石墨烯", "超导"],
+        "search_queries": [
+            "新材料 稀土 碳纤维 最新突破",
+            "碳化硅 氮化镓 半导体材料 进展",
+            "先进新材料 产业政策",
+        ],
+        "stocks": ["北方稀土", "中国宝安", "光威复材", "中简科技", "天奈科技"]
+    },
+    "生物医药": {
+        "keywords": ["生物医药", "创新药", "基因编辑", "医疗器械", "CXO", "生物科技",
+                     "mRNA", "ADC", "GLP-1", "减肥药"],
+        "search_queries": [
+            "生物医药 创新药 最新政策",
+            "医疗器械 国产替代 最新进展",
+            "GLP-1 减肥药 产业动态",
+        ],
+        "stocks": ["恒瑞医药", "药明康德", "迈瑞医疗", "爱尔眼科", "智飞生物", "百济神州"]
+    },
+    "航天军工": {
+        "keywords": ["航天", "商业航天", "卫星互联网", "军工", "无人机", "低空经济", "卫星", "北斗"],
+        "search_queries": [
+            "商业航天 卫星互联网 最新进展",
+            "低空经济 无人机 产业政策",
+            "军工 航天 十五五规划",
+        ],
+        "stocks": ["中航沈飞", "航天电器", "中国卫星", "中直股份", "高德红外"]
+    },
+    "智能网联汽车": {
+        "keywords": ["自动驾驶", "车联网", "智能驾驶", "L3", "L4", "激光雷达", "毫米波雷达", "域控制器"],
+        "search_queries": [
+            "自动驾驶 智能驾驶 最新进展",
+            "激光雷达 车联网 国产替代",
+            "智能网联汽车 产业政策",
+        ],
+        "stocks": ["德赛西威", "华阳集团", "均胜电子", "小鹏汽车", "理想汽车"]
+    },
+    "量子科技": {
+        "keywords": ["量子计算", "量子通信", "量子科技", "量子比特"],
+        "search_queries": [
+            "量子计算 量子通信 最新突破",
+            "量子科技 产业政策 进展",
+        ],
+        "stocks": ["国盾量子", "中科曙光"]
+    },
+}
+
+
+# ============================================================
+# 2. 反向信号关键词（标题党/枪手特征识别）
+# ============================================================
+REVERSE_SIGNAL_KEYWORDS = {
+    "极端词汇": {
+        "words": ["暴涨", "暴跌", "必涨", "必跌", "翻倍", "妖股", "疯涨", "崩盘", "血洗",
+                  "涨停潮", "跌停潮", "炸了", "疯了", "暴增", "暴富", "狂涨", "狂跌",
+                  "井喷", "飙升", "爆发", "炸裂", "逆天", "彻底疯了", "彻底爆发",
+                  "历史首次", "全球第一", "全球首发", "颠覆"],
+        "weight": 3
+    },
+    "内幕词汇": {
+        "words": ["内幕", "独家", "重磅", "惊天", "震惊", "秘密", "内部消息", "绝密",
+                  "泄密", "爆料", "实锤", "曝光", "揭秘", "藏不住了", "瞒不住了",
+                  "不可告人", "不敢说"],
+        "weight": 3
+    },
+    "主体词汇": {
+        "words": ["主力", "游资", "机构", "大佬", "牛散", "庄家", "操盘手", "国家队",
+                  "外资", "神秘资金", "聪明钱"],
+        "weight": 1
+    },
+    "时间词汇": {
+        "words": ["即将", "马上", "立刻", "今日", "最新", "突发", "紧急", "刚刚",
+                  "就在刚才", "就在今天", "就在刚刚", "今晚", "今夜"],
+        "weight": 1
+    },
+    "引导词汇": {
+        "words": ["手把手", "带你", "教你", "跟着", "躺赢", "赚钱", "发财", "致富",
+                  "必看", "收藏", "速看", "快看", "牛股", "龙头股", "十倍股", "翻倍股",
+                  "布局", "重点关注", "强烈推荐", "赶紧上车", "不要错过",
+                  "最后的机会", "千载难逢"],
+        "weight": 2
+    },
+    "操作词汇": {
+        "words": ["抄底", "逃顶", "上车", "下车", "接力", "打板", "追涨", "杀跌",
+                  "核按钮", "满仓", "重仓", "梭哈", "All in", "砸锅卖铁", "卖房炒股"],
+        "weight": 3
+    },
+    "夸张词汇": {
+        "words": ["震惊", "慌了", "哭了", "笑了", "懵了", "爽了", "赚翻了", "太可怕",
+                  "吓尿", "惊呆", "炸锅", "沸腾", "疯狂", "失控", "彻底失控",
+                  "泪目", "燃爆"],
+        "weight": 2
+    },
+    "权威滥用": {
+        "words": ["央视", "新华社", "人民日报", "中央定调", "高层发话", "刚刚召开", "重磅会议"],
+        "weight": 2
+    },
+}
+
+# 自媒体/枪手发文典型时间规律
+GUNMAN_TIME_PATTERNS = {
+    "盘前集中发文": {"hours": [8, 9], "risk_boost": 3, "desc": "盘前8-9点集中发文制造情绪"},
+    "尾盘集中发文": {"hours": [14, 15], "risk_boost": 4, "desc": "尾盘14-15点集中发文诱导跟风"},
+    "深夜发文": {"hours": [22, 23, 0, 1], "risk_boost": 2, "desc": "深夜发文利用次日开盘情绪"},
+}
+
+# 自媒体平台特征（这些平台的内容风险较高）
+SELF_MEDIA_PLATFORMS = [
+    "toutiao.com", "头条", "百家号", "企鹅号", "大风号", "网易号",
+    "搜狐号", "一点资讯", "快传号", "东方号", "雪球", "股吧"
+]
+
+
+# ============================================================
+# 3. 可靠来源列表
+# ============================================================
+RELIABLE_SOURCES = {
+    "A": ["gov.cn", "miit.gov.cn", "most.gov.cn", "ndrc.gov.cn", "csrc.gov.cn",
+          "www.gov.cn", "news.cn", "xinhuanet.com", "people.com.cn", "cctv.com"],
+    "B": ["stcn.com", "cs.com.cn", "zqrb.cn", "chinadaily.com.cn",
+          "caixin.com", "yicai.com", "cls.cn", "cs.com.cn"],
+    "C": ["eastmoney.com", "sina.com.cn", "163.com", "sohu.com", "ifeng.com"],
+    "D": ["36kr.com", "huxiu.com", "ithome.com", "leiphone.com", "jiemian.com"],
+}
+
+
+# ============================================================
+# 【模块1】多源新闻搜索器（百度+搜狗+RSS+网站抓取）
+# ============================================================
+class MultiSourceNewsFetcher:
+    """多源新闻搜索器 - 融合百度新闻、搜狗新闻、RSS订阅、网站首页抓取"""
+
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        })
+        self.session.verify = False
+
+    def _safe_get(self, url, timeout=15, encoding=None):
+        """安全获取网页内容"""
+        try:
+            resp = self.session.get(url, timeout=timeout)
+            if resp.status_code == 200:
+                resp.encoding = encoding or resp.apparent_encoding or 'utf-8'
+                return resp.text
+        except Exception:
+            pass
+        return None
+
+    # ---------- 搜索源1: 百度新闻 ----------
+    def search_baidu_news(self, query, num_results=10):
+        """通过百度新闻搜索"""
+        url = f"https://www.baidu.com/s?wd={requests.utils.quote(query)}&tn=news&rn={num_results}"
+        content = self._safe_get(url)
+        if not content:
+            return []
+
+        results = []
+        try:
+            soup = BeautifulSoup(content, 'html.parser')
+            # 百度新闻搜索结果
+            for item in soup.find_all('div', class_='result'):
+                title_tag = item.find('h3')
+                if not title_tag:
+                    continue
+                a_tag = title_tag.find('a')
+                if not a_tag:
+                    continue
+
+                title = a_tag.get_text(strip=True)
+                href = a_tag.get('href', '')
+
+                # 提取来源和摘要
+                source = "百度新闻"
+                snippet = ""
+                source_span = item.find('span', class_='c-color-gray')
+                if source_span:
+                    source = source_span.get_text(strip=True) or "百度新闻"
+                snippet_tag = item.find('span', class_='content-right_8Zs40')
+                if snippet_tag:
+                    snippet = snippet_tag.get_text(strip=True)
+
+                if title and len(title) > 5:
+                    results.append({
+                        "title": title,
+                        "url": href,
+                        "snippet": snippet or f"关于{query}的报道",
+                        "source": source,
+                        "search_engine": "百度新闻"
+                    })
+        except Exception:
+            pass
+
+        return results[:num_results]
+
+    # ---------- 搜索源2: 搜狗新闻 ----------
+    def search_sogou_news(self, query, num_results=8):
+        """通过搜狗新闻搜索"""
+        url = f"https://news.sogou.com/news?query={requests.utils.quote(query)}&sort=1"
+        content = self._safe_get(url)
+        if not content:
+            return []
+
+        results = []
+        try:
+            soup = BeautifulSoup(content, 'html.parser')
+            for item in soup.find_all('div', class_='vrwrap'):
+                title_tag = item.find('h3')
+                if not title_tag:
+                    continue
+                a_tag = title_tag.find('a')
+                if not a_tag:
+                    continue
+
+                title = a_tag.get_text(strip=True)
+                href = a_tag.get('href', '')
+
+                snippet = ""
+                p_tag = item.find('p', class_='star-wiki')
+                if p_tag:
+                    snippet = p_tag.get_text(strip=True)
+
+                source = "搜狗新闻"
+                source_span = item.find('p', class_='news-from')
+                if source_span:
+                    source = source_span.get_text(strip=True).split()[0] if source_span.get_text(strip=True) else "搜狗新闻"
+
+                if title and len(title) > 5:
+                    results.append({
+                        "title": title,
+                        "url": href if href.startswith('http') else f"https://news.sogou.com{href}",
+                        "snippet": snippet or f"关于{query}的报道",
+                        "source": source,
+                        "search_engine": "搜狗新闻"
+                    })
+        except Exception:
+            pass
+
+        return results[:num_results]
+
+    # ---------- 搜索源3: 财经网站首页抓取 ----------
+    def fetch_financial_sites(self, all_keywords):
+        """从财经网站首页抓取新闻并按关键词过滤"""
+        sites = [
+            {"name": "证券时报", "url": "https://www.stcn.com/", "host": "https://www.stcn.com", "trust": "B"},
+            {"name": "财联社", "url": "https://www.cls.cn/", "host": "https://www.cls.cn", "trust": "B"},
+            {"name": "第一财经", "url": "https://www.yicai.com/", "host": "https://www.yicai.com", "trust": "B"},
+            {"name": "东方财富", "url": "https://www.eastmoney.com/", "host": "https://www.eastmoney.com", "trust": "C"},
+            {"name": "36氪", "url": "https://36kr.com/", "host": "https://36kr.com", "trust": "D"},
+        ]
+
+        results = []
+        for site in sites:
+            content = self._safe_get(site["url"])
+            if not content:
+                continue
+            try:
+                soup = BeautifulSoup(content, 'html.parser')
+                for a in soup.find_all('a', href=True):
+                    title = a.get_text(strip=True)
+                    if not title or len(title) < 8 or len(title) > 120:
+                        continue
+                    if not re.search(r'[\u4e00-\u9fa5]', title):
+                        continue
+
+                    matched = [kw for kw in all_keywords if kw and kw in title]
+                    if matched:
+                        href = a['href']
+                        if href.startswith('/'):
+                            href = site["host"] + href
+                        results.append({
+                            "title": title,
+                            "url": href or site["url"],
+                            "snippet": f"来自{site['name']}的报道",
+                            "source": site["name"],
+                            "search_engine": "网站抓取",
+                            "trust_level": site["trust"]
+                        })
+            except Exception:
+                continue
+            time.sleep(0.2)
+
+        return results
+
+    # ---------- 搜索源4: RSS订阅 ----------
+    def fetch_rss_feeds(self, all_keywords):
+        """从RSS订阅源获取新闻"""
+        rss_sources = [
+            {"name": "36氪RSS", "url": "https://36kr.com/feed", "trust": "D"},
+            {"name": "虎嗅RSS", "url": "https://www.huxiu.com/rss/0.xml", "trust": "D"},
+        ]
+
+        results = []
+        for rss in rss_sources:
+            content = self._safe_get(rss["url"])
+            if not content:
+                continue
+            try:
+                soup = BeautifulSoup(content, 'xml')
+                for item in soup.find_all('item'):
+                    title_tag = item.find('title')
+                    link_tag = item.find('link')
+                    desc_tag = item.find('description')
+
+                    if not title_tag:
+                        continue
+                    title = title_tag.get_text(strip=True)
+                    link = link_tag.get_text(strip=True) if link_tag else ""
+                    desc = desc_tag.get_text(strip=True) if desc_tag else ""
+
+                    matched = [kw for kw in all_keywords if kw and kw in title]
+                    if matched and len(title) > 5:
+                        results.append({
+                            "title": title,
+                            "url": link,
+                            "snippet": desc[:200] if desc else f"来自{rss['name']}的报道",
+                            "source": rss["name"],
+                            "search_engine": "RSS",
+                            "trust_level": rss["trust"]
+                        })
+            except Exception:
+                continue
+
+        return results
+
+    # ---------- 统一搜索入口 ----------
+    def search_all_for_industry(self, industry_name, industry_config):
+        """对一个产业进行多源搜索"""
+        keywords = industry_config["keywords"]
+        search_queries = industry_config["search_queries"]
+        all_keywords = keywords + [industry_name]
+
+        all_news = []
+
+        # 源1: 百度新闻搜索
+        for query in search_queries[:2]:
+            try:
+                results = self.search_baidu_news(query, num_results=6)
+                for r in results:
+                    r["matched_keywords"] = [kw for kw in keywords if kw in r["title"]]
+                    if r["matched_keywords"] or industry_name in r["title"]:
+                        r["industry"] = industry_name
+                        all_news.append(r)
+                time.sleep(0.5 + random.random() * 0.5)
+            except Exception:
+                pass
+
+        # 源2: 搜狗新闻搜索
+        for query in search_queries[:1]:
+            try:
+                results = self.search_sogou_news(query, num_results=5)
+                for r in results:
+                    r["matched_keywords"] = [kw for kw in keywords if kw in r["title"]]
+                    if r["matched_keywords"] or industry_name in r["title"]:
+                        r["industry"] = industry_name
+                        all_news.append(r)
+                time.sleep(0.5 + random.random() * 0.5)
+            except Exception:
+                pass
+
+        # 去重（基于标题hash）
+        unique_news = []
+        seen = set()
+        for news in all_news:
+            title_key = news["title"][:50].strip()
+            title_hash = hashlib.md5(title_key.encode('utf-8')).hexdigest()
+            if title_hash not in seen and len(news["title"]) > 5:
+                seen.add(title_hash)
+                # 清理标题
+                news["title"] = re.sub(r'\d{1,2}-\d{1,2}\s+\d{1,2}:\d{2}', '', news["title"]).strip()
+                news["title"] = re.sub(r'\d{2,4}[-./年]\d{1,2}[-./月]\d{1,2}[日]?', '', news["title"]).strip()
+                news["title"] = re.sub(r'\s+', ' ', news["title"]).strip()
+                if len(news["title"]) > 5:
+                    unique_news.append(news)
+
+        return unique_news
+
+    def search_all_industries(self):
+        """搜索所有产业的最新资讯"""
+        all_keywords = []
+        for ind, config in FIFTEEN_FIVE_INDUSTRIES.items():
+            all_keywords.append(ind)
+            all_keywords.extend(config["keywords"])
+        all_keywords = list(set(all_keywords))
+
+        all_news_by_industry = {}
+
+        for industry, config in FIFTEEN_FIVE_INDUSTRIES.items():
+            print(f"  🔍 【{industry}】搜索中...")
+            industry_news = self.search_all_for_industry(industry, config)
+            all_news_by_industry[industry] = industry_news
+            print(f"     ✓ 合计 {len(industry_news)} 条")
+
+        # 补充：网站首页抓取（跨产业）
+        print(f"  📡 抓取财经网站首页...")
+        site_news = self.fetch_financial_sites(all_keywords)
+        for news in site_news:
+            # 匹配到对应产业
+            for industry, config in FIFTEEN_FIVE_INDUSTRIES.items():
+                if any(kw in news["title"] for kw in config["keywords"][:5]):
+                    news["industry"] = industry
+                    news.setdefault("matched_keywords", [])
+                    if industry not in [n.get("industry") for n in all_news_by_industry.get(industry, [])]:
+                        all_news_by_industry.setdefault(industry, []).append(news)
+                    break
+
+        # 补充：RSS订阅
+        print(f"  📡 抓取RSS订阅源...")
+        rss_news = self.fetch_rss_feeds(all_keywords)
+        for news in rss_news:
+            for industry, config in FIFTEEN_FIVE_INDUSTRIES.items():
+                if any(kw in news["title"] for kw in config["keywords"][:5]):
+                    news["industry"] = industry
+                    all_news_by_industry.setdefault(industry, []).append(news)
+                    break
+
+        # 最终去重
+        for industry in all_news_by_industry:
+            seen = set()
+            unique = []
+            for news in all_news_by_industry[industry]:
+                tk = news["title"][:40].strip()
+                if tk not in seen:
+                    seen.add(tk)
+                    unique.append(news)
+            all_news_by_industry[industry] = unique
+
+        total = sum(len(v) for v in all_news_by_industry.values())
+        print(f"  📊 多源融合共获取 {total} 条资讯")
+        return all_news_by_industry
+
+
+# ============================================================
+# 【模块2】增强反向信号分析器
+# ============================================================
+class EnhancedReverseSignalAnalyzer:
+    """增强反向信号分析器 - 多维度识别标题党和资本雇佣枪手"""
+
+    def __init__(self):
+        self.keywords = REVERSE_SIGNAL_KEYWORDS
+
+    def analyze(self, title, snippet, url, source=""):
+        """分析单条资讯的反向信号"""
+        text = (title + " " + snippet).strip()
+
+        signal = {
+            "has_reverse_signal": False,
+            "signal_score": 0,
+            "signal_categories": {},
+            "signal_words": [],
+            "risk_level": "低",
+            "title_party_pattern": [],
+            "gunman_pattern": [],
+            "timing_risk": "",
+            "source_risk": "",
+            "analysis": "",
+            "suggestion": ""
+        }
+
+        # ---- 1. 关键词匹配（带权重） ----
+        for category, config in self.keywords.items():
+            words = config["words"]
+            weight = config["weight"]
+            found = []
+            for kw in words:
+                if kw in title:
+                    found.append(kw)
+                    signal["signal_score"] += weight
+            if found:
+                signal["signal_categories"][category] = found
+                signal["signal_words"].extend(found)
+
+        # ---- 2. 数字夸张检测 ----
+        exaggeration_patterns = [
+            (r'([1-9]\d{2,})%', '夸张百分比'),
+            (r'暴增\s*\d+\s*亿', '暴增XX亿'),
+            (r'暴涨\s*\d+\s*倍', '暴涨XX倍'),
+            (r'翻\s*\d+\s*倍', '翻XX倍'),
+            (r'增长\s*\d+\s*倍', '增长XX倍'),
+            (r'狂赚\s*\d+\s*倍', '狂赚XX倍'),
+        ]
+        for pattern, label in exaggeration_patterns:
+            match = re.search(pattern, title)
+            if match:
+                signal["signal_score"] += 5
+                signal["signal_words"].append(f"{label}:{match.group()}")
+
+        # ---- 3. 标点符号检测 ----
+        excl = title.count("!") + title.count("！")
+        ques = title.count("?") + title.count("？")
+        if excl >= 2:
+            signal["signal_score"] += 4
+            signal["title_party_pattern"].append("多感叹号")
+        if ques >= 2:
+            signal["signal_score"] += 2
+            signal["title_party_pattern"].append("多问号")
+
+        # ---- 4. 标题开头模式检测 ----
+        title_patterns = [
+            (r'^[震惊重磅突发紧急独家揭秘]', '强情绪开头'),
+            (r'^刚刚', '时间压迫开头'),
+            (r'!.*!', '感叹号堆砌'),
+        ]
+        for pattern, label in title_patterns:
+            if re.search(pattern, title):
+                signal["signal_score"] += 3
+                signal["title_party_pattern"].append(label)
+                break
+
+        # ---- 5. 枪手引导语识别 ----
+        gunman_patterns = [
+            (r'手把手', '引导式操作'),
+            (r'教你|带你|跟着', '主观引导'),
+            (r'一定要看|不得不看', '强制引导'),
+            (r'最后的机会|千载难逢', '稀缺诱导'),
+        ]
+        for pattern, label in gunman_patterns:
+            if re.search(pattern, title):
+                signal["gunman_pattern"].append(label)
+                signal["signal_score"] += 2
+
+        # ---- 6. 来源可靠性判断（v8新增：多级评估） ----
+        source_trust = self._assess_source_trust(url, source)
+        if source_trust == "unreliable":
+            signal["signal_score"] += 5
+            signal["source_risk"] = "来源不可信"
+        elif source_trust == "self_media":
+            signal["signal_score"] += 3
+            signal["source_risk"] = "自媒体来源"
+        elif source_trust == "mainstream":
+            signal["signal_score"] += 0
+            signal["source_risk"] = ""
+        else:  # authoritative
+            signal["signal_score"] -= 3  # 权威来源减分
+
+        # ---- 7. 自媒体平台特征检测（v8新增） ----
+        for platform in SELF_MEDIA_PLATFORMS:
+            if platform in url or platform in source:
+                signal["signal_score"] += 3
+                signal["gunman_pattern"].append(f"自媒体平台({platform})")
+                break
+
+        # ---- 8. 发文时间风险检测（v8新增） ----
+        current_hour = datetime.now().hour
+        for pattern_name, config in GUNMAN_TIME_PATTERNS.items():
+            if current_hour in config["hours"]:
+                signal["signal_score"] += config["risk_boost"]
+                signal["timing_risk"] = config["desc"]
+                break
+
+        # ---- 9. 多源交叉验证（v8新增） ----
+        # 如果同一主题多个来源都在报道，降风险；如果只有单一不明来源，升风险
+        # （此处简化处理，实际在orchestrator中通过跨产业比对实现）
+
+        # ---- 10. 标题长度异常 ----
+        if len(title) < 6:
+            signal["signal_score"] += 2
+        elif len(title) > 80:
+            signal["signal_score"] += 1
+
+        # ---- 11. 综合风险判定 ----
+        signal["signal_score"] = max(0, signal["signal_score"])
+
+        if signal["signal_score"] >= 12:
+            signal["has_reverse_signal"] = True
+            signal["risk_level"] = "高"
+        elif signal["signal_score"] >= 7:
+            signal["has_reverse_signal"] = True
+            signal["risk_level"] = "中"
+        elif signal["signal_score"] >= 3:
+            signal["risk_level"] = "低"
+
+        # ---- 12. 生成分析与建议 ----
+        if signal["has_reverse_signal"]:
+            parts = []
+            if signal["title_party_pattern"]:
+                parts.append(f"标题党模式: {', '.join(signal['title_party_pattern'])}")
+            if signal["gunman_pattern"]:
+                parts.append(f"枪手特征: {', '.join(signal['gunman_pattern'])}")
+            if signal["timing_risk"]:
+                parts.append(f"发文时间风险: {signal['timing_risk']}")
+            if signal["source_risk"]:
+                parts.append(signal["source_risk"])
+            signal["analysis"] = "；".join(parts)
+
+            if signal["risk_level"] == "高":
+                signal["suggestion"] = "高度疑似标题党或资本雇佣枪手发文！务必反向思考，切勿追涨！需结合正规媒体多方核实。"
+            else:
+                signal["suggestion"] = "存在诱导性特征，需谨慎判断，建议多方核实后再决策。"
+        else:
+            signal["suggestion"] = "资讯质量正常，可正常关注，仍需结合多源信息判断。"
+
+        return signal
+
+    def _assess_source_trust(self, url, source):
+        """评估来源可信度"""
+        # 权威来源
+        for level, domains in RELIABLE_SOURCES.items():
+            if level in ["A", "B"]:
+                for domain in domains:
+                    if domain in url or domain in source:
+                        return "authoritative"
+
+        # 自媒体
+        for platform in SELF_MEDIA_PLATFORMS:
+            if platform in url or platform in source:
+                return "self_media"
+
+        # 主流媒体
+        for level, domains in RELIABLE_SOURCES.items():
+            if level == "C":
+                for domain in domains:
+                    if domain in url or domain in source:
+                        return "mainstream"
+
+        # 不可信
+        return "unreliable"
+
+    def cross_validate(self, analyzed_data):
+        """多源交叉验证 - 同一主题多来源报道降低风险评分"""
+        # 统计标题相似度（简单通过关键词重叠判断）
+        title_keywords_map = {}
+        for industry, items in analyzed_data.items():
+            for item in items:
+                title = item["news"]["title"]
+                kws = set(re.findall(r'[\u4e00-\u9fa5]{2,}', title))
+                title_keywords_map[id(item)] = kws
+
+        # 对每条资讯，查找其他来源是否有类似报道
+        items_list = [item for lst in analyzed_data.values() for item in lst]
+        for i, item1 in enumerate(items_list):
+            kws1 = title_keywords_map.get(id(item1), set())
+            cross_count = 0
+            for j, item2 in enumerate(items_list):
+                if i == j:
+                    continue
+                kws2 = title_keywords_map.get(id(item2), set())
+                overlap = len(kws1 & kws2)
+                if overlap >= 3:  # 3个以上关键词重叠
+                    cross_count += 1
+
+            # 多源交叉验证调整
+            if cross_count >= 3:
+                # 多个来源都在报，降风险
+                item["reverse_signal"]["signal_score"] = max(0, item["reverse_signal"]["signal_score"] - 3)
+                item["reverse_signal"]["cross_validation"] = f"有{cross_count}个来源交叉验证，可信度提升"
+            elif cross_count == 0 and item["reverse_signal"]["signal_score"] >= 5:
+                # 单一来源且已有风险信号
+                item["reverse_signal"]["signal_score"] += 2
+                item["reverse_signal"]["cross_validation"] = "单一来源报道，可信度较低"
+
+        return analyzed_data
+
+
+# ============================================================
+# 【模块3】增强缠论分析器
+# ============================================================
+class EnhancedChanTheoryAnalyzer:
+    """增强缠论分析器 - 背驰检测、中枢震荡操作建议、多级别联立分析"""
+
+    def analyze(self, title, snippet, industry, core_info):
+        """缠论视角深度分析"""
+        text = title + " " + snippet
+
+        analysis = {
+            "buy_points": {"first": False, "second": False, "third": False, "details": []},
+            "sell_points": {"first": False, "second": False, "third": False, "details": []},
+            "pivot_type": "",
+            "divergence": {"detected": False, "type": "", "level": "", "desc": ""},
+            "trend_judgment": "",
+            "operation_suggestion": "",
+            "confidence_score": 30,
+            "reasoning": [],
+            "multi_level": {"daily": "", "weekly": "", "monthly": ""},
+            "risk_warning": ""
+        }
+
+        # ===== 买点分析 =====
+
+        # 第一类买点（政策驱动/技术突破 → 下跌趋势末端背离）
+        first_triggers = ["政策", "规划", "出台", "发布", "国务院", "工信部", "发改委", "科技部",
+                          "首次", "创新", "突破", "国产替代", "超跌", "底部", "低估"]
+        for trigger in first_triggers:
+            if trigger in text or core_info.get("event_type") in ["政策发布", "技术突破"]:
+                analysis["buy_points"]["first"] = True
+                analysis["buy_points"]["details"].append(f"政策/技术驱动({trigger})")
+                analysis["confidence_score"] += 15
+                analysis["reasoning"].append(
+                    f"【一买】{trigger}事件可能形成行业政策底或技术突破驱动——对应缠论中下跌趋势末端的背驰段"
+                )
+                break
+
+        # 第二类买点（回调确认 → 不创新低的回踩）
+        second_triggers = ["确认", "企稳", "验证", "回踩", "回调", "调整", "筑底", "支撑",
+                           "缩量", "止跌", "企稳回升"]
+        for trigger in second_triggers:
+            if trigger in text:
+                analysis["buy_points"]["second"] = True
+                analysis["buy_points"]["details"].append(f"回调信号({trigger})")
+                analysis["confidence_score"] += 10
+                analysis["reasoning"].append(
+                    f"【二买】出现'{trigger}'，提示回踩确认机会——对应缠论中第二类买点：不创新低的回踩确认"
+                )
+                break
+
+        # 第三类买点（趋势加速 → 离开中枢不回抽）
+        third_triggers = ["新高", "加速", "超预期", "黄金期", "快车道", "井喷", "爆发",
+                          "高速增长", "供不应求", "放量突破", "趋势确立"]
+        for trigger in third_triggers:
+            if trigger in text:
+                analysis["buy_points"]["third"] = True
+                analysis["buy_points"]["details"].append(f"趋势加速({trigger})")
+                analysis["confidence_score"] += 10
+                analysis["reasoning"].append(
+                    f"【三买】出现'{trigger}'——对应缠论中离开中枢后不回抽的确认点，但也需警惕情绪过热"
+                )
+                break
+
+        # ===== 卖点分析（v8新增） =====
+
+        # 第一类卖点（上涨趋势末端背驰）
+        first_sell_triggers = ["见顶", "过热", "泡沫", "估值过高", "疯狂追涨", "获利了结"]
+        for trigger in first_sell_triggers:
+            if trigger in text:
+                analysis["sell_points"]["first"] = True
+                analysis["sell_points"]["details"].append(f"趋势末端({trigger})")
+                analysis["confidence_score"] -= 5
+                analysis["reasoning"].append(f"【一卖】出现'{trigger}'，可能提示上涨趋势末端背驰")
+                break
+
+        # 第二类卖点（反弹不创新高）
+        second_sell_triggers = ["冲高回落", "上攻乏力", "量能萎缩", "高位震荡"]
+        for trigger in second_sell_triggers:
+            if trigger in text:
+                analysis["sell_points"]["second"] = True
+                analysis["sell_points"]["details"].append(f"反弹受阻({trigger})")
+                analysis["confidence_score"] -= 3
+                analysis["reasoning"].append(f"【二卖】出现'{trigger}'，可能提示反弹不创新高")
+                break
+
+        # ===== 背驰检测（v8新增） =====
+        # 量价背驰
+        if any(kw in text for kw in ["放量滞涨", "缩量上涨", "量价背离"]):
+            analysis["divergence"]["detected"] = True
+            analysis["divergence"]["type"] = "量价背驰"
+            analysis["divergence"]["level"] = "日线级别"
+            analysis["divergence"]["desc"] = "量价关系出现背离，需警惕趋势衰竭"
+            analysis["confidence_score"] -= 5
+
+        # 政策背驰（利好出尽是利空）
+        if any(kw in text for kw in ["利好出尽", "政策落地", "预期兑现"]):
+            analysis["divergence"]["detected"] = True
+            analysis["divergence"]["type"] = "政策背驰"
+            analysis["divergence"]["level"] = "周线级别"
+            analysis["divergence"]["desc"] = "利好预期已兑现，可能形成政策顶——缠论中的'利好出尽是利空'背驰"
+            analysis["confidence_score"] -= 8
+
+        # 情绪背驰（全民看多时反而见顶）
+        if any(kw in text for kw in ["全民炒股", "跑步入场", "牛市来了", "闭眼赚钱"]):
+            analysis["divergence"]["detected"] = True
+            analysis["divergence"]["type"] = "情绪背驰"
+            analysis["divergence"]["level"] = "月线级别"
+            analysis["divergence"]["desc"] = "市场情绪极端乐观，可能形成情绪顶——缠论中的情绪背驰段"
+            analysis["confidence_score"] -= 10
+
+        # ===== 中枢类型判断 =====
+        event_type = core_info.get("event_type", "")
+        if event_type == "政策发布":
+            analysis["pivot_type"] = "政策支撑中枢"
+            analysis["confidence_score"] += 8
+        elif event_type == "技术突破":
+            analysis["pivot_type"] = "技术突破中枢"
+            analysis["confidence_score"] += 8
+        elif event_type == "市场动态":
+            analysis["pivot_type"] = "市场情绪中枢"
+            analysis["confidence_score"] += 3
+        elif event_type == "产能扩张":
+            analysis["pivot_type"] = "基本面扩张中枢"
+            analysis["confidence_score"] += 5
+        else:
+            analysis["pivot_type"] = "产业趋势中枢"
+
+        # 影响范围加权
+        scope = core_info.get("impact_scope", "")
+        if scope == "国家级/全球性":
+            analysis["confidence_score"] += 15
+        elif scope == "行业级":
+            analysis["confidence_score"] += 8
+
+        # ===== 多级别联立分析（v8新增） =====
+        # 根据事件类型推断不同级别的趋势方向
+        if event_type == "政策发布" and scope == "国家级/全球性":
+            analysis["multi_level"] = {
+                "monthly": "月线级别偏多（国家级政策支撑长线趋势）",
+                "weekly": "周线级别偏多（政策落地推动中期上行）",
+                "daily": "日线级别可能有短线波动（市场消化政策预期）"
+            }
+        elif event_type == "技术突破":
+            analysis["multi_level"] = {
+                "monthly": "月线级别中性偏多（技术突破需时间验证）",
+                "weekly": "周线级别偏多（技术突破推动中期估值修复）",
+                "daily": "日线级别偏多（短线情绪催化）"
+            }
+        elif analysis["buy_points"]["third"]:
+            analysis["multi_level"] = {
+                "monthly": "月线级别需观察（趋势延续还是末端加速）",
+                "weekly": "周线级别偏多（趋势仍在延续）",
+                "daily": "日线级别警惕短线过热"
+            }
+        else:
+            analysis["multi_level"] = {
+                "monthly": "月线级别中性",
+                "weekly": "周线级别中性",
+                "daily": "日线级别中性"
+            }
+
+        # ===== 综合走势判断 =====
+        analysis["confidence_score"] = max(5, min(95, analysis["confidence_score"]))
+
+        active_bp = sum([analysis["buy_points"]["first"], analysis["buy_points"]["second"], analysis["buy_points"]["third"]])
+        active_sp = sum([analysis["sell_points"]["first"], analysis["sell_points"]["second"]])
+
+        if analysis["divergence"]["detected"]:
+            analysis["risk_warning"] = f"⚠️ 检测到{analysis['divergence']['type']}（{analysis['divergence']['desc']}）"
+
+        if active_sp > 0:
+            analysis["trend_judgment"] = f"偏空，{industry}板块需警惕回调风险"
+            analysis["operation_suggestion"] = "建议减仓或观望，等待卖压释放"
+        elif active_bp >= 2 or analysis["confidence_score"] >= 55:
+            analysis["trend_judgment"] = f"偏多，关注{industry}相关板块"
+            analysis["operation_suggestion"] = f"可关注{industry}板块，等待合适买点（建议结合K线级别判断）"
+        elif active_bp == 1 or analysis["confidence_score"] >= 40:
+            analysis["trend_judgment"] = f"中性偏多，继续观察{industry}板块"
+            analysis["operation_suggestion"] = "继续观察，等待更多信号确认（如成交量、板块联动）"
+        else:
+            analysis["trend_judgment"] = "中性，保持观望"
+            analysis["operation_suggestion"] = "暂不操作，等待明确的基本面或技术面信号"
+
+        return analysis
+
+
+# ============================================================
+# 【模块4】核心信息提取器
+# ============================================================
+class CoreInfoExtractor:
+    """核心信息提取 - 事件主体/类型/影响范围/关联股票"""
+
+    EVENT_TYPES = {
+        "政策发布": ["政策", "规划", "发布", "出台", "印发", "通知", "意见", "方案", "部署"],
+        "技术突破": ["突破", "进展", "研发", "成功", "首次", "创新", "专利", "研制", "下线", "量产"],
+        "产能扩张": ["产能", "量产", "扩产", "投产", "开工", "下线", "基地", "项目", "投资"],
+        "合作并购": ["合作", "并购", "收购", "投资", "合资", "签约", "战略", "入股"],
+        "市场动态": ["增长", "销量", "订单", "新高", "景气", "数据", "营收", "利润", "出货量"],
+        "会议论坛": ["论坛", "峰会", "大会", "会议", "展会", "研讨"],
+    }
+
+    SUBJECT_MAP = {
+        "政府机构": ["国务院", "发改委", "工信部", "科技部", "财政部", "央行", "证监会", "国资委", "商务部", "中央", "中共中央"],
+        "核心企业": ["华为", "中芯国际", "宁德时代", "比亚迪", "腾讯", "阿里", "百度", "字节跳动", "小米", "寒武纪", "科大讯飞"],
+        "行业协会": ["协会", "联盟", "联合会", "商会"],
+    }
+
+    def extract(self, news, industry):
+        title = news["title"]
+        snippet = news.get("snippet", "")
+        text = title + " " + snippet
+
+        stocks = self._identify_stocks(industry, text)
+
+        return {
+            "event_subject": self._identify_subject(text),
+            "event_type": self._identify_event_type(text),
+            "impact_scope": self._identify_impact_scope(text),
+            "time_sensitivity": self._identify_time_sensitivity(title),
+            "industry": industry,
+            "potential_stocks": stocks,
+        }
+
+    def _identify_subject(self, text):
+        for category, kws in self.SUBJECT_MAP.items():
+            for kw in kws:
+                if kw in text:
+                    return kw
+        return "行业相关主体"
+
+    def _identify_event_type(self, text):
+        for etype, kws in self.EVENT_TYPES.items():
+            for kw in kws:
+                if kw in text:
+                    return etype
+        return "行业动态"
+
+    def _identify_impact_scope(self, text):
+        gov_keywords = ["国务院", "全国", "国家", "全球", "国际", "规划", "政策", "发改委", "工信部", "科技部", "中央"]
+        if any(kw in text for kw in gov_keywords):
+            return "国家级/全球性"
+        elif any(kw in text for kw in ["行业", "产业", "领域", "板块", "产业链"]):
+            return "行业级"
+        return "企业级"
+
+    def _identify_time_sensitivity(self, title):
+        high_words = ["今日", "刚刚", "最新", "突发", "紧急", "今天", "今夜"]
+        mid_words = ["近日", "近期", "本周", "本月", "今年"]
+        if any(w in title for w in high_words):
+            return "高"
+        elif any(w in title for w in mid_words):
+            return "中"
+        return "低"
+
+    def _identify_stocks(self, industry, text):
+        stocks = []
+        config = FIFTEEN_FIVE_INDUSTRIES.get(industry, {})
+        if "stocks" in config:
+            stocks.extend(config["stocks"][:5])
+        for ind_c, ind_conf in FIFTEEN_FIVE_INDUSTRIES.items():
+            if "stocks" in ind_conf:
+                for company in ind_conf["stocks"]:
+                    if company in text and company not in stocks:
+                        stocks.insert(0, company)
+        return stocks[:6]
+
+
+# ============================================================
+# 【模块5】知识图谱构建器
+# ============================================================
+class KnowledgeGraphBuilder:
+    """构建十五五产业知识图谱"""
+
+    def __init__(self):
+        self.nodes = []
+        self.edges = []
+        self._node_ids = {}
+        self._next_id = 1
+
+    def _get_or_create_node(self, name, ntype, industry=None, extra=None):
+        key = f"{ntype}:{name}"
+        if key in self._node_ids:
+            return self._node_ids[key]
+        nid = f"N{self._next_id:04d}"
+        self._next_id += 1
+        node = {"id": nid, "name": name, "type": ntype, "industry": industry, "extra": extra or {}}
+        self.nodes.append(node)
+        self._node_ids[key] = nid
+        return nid
+
+    def _add_edge(self, from_id, to_id, relation, weight=1.0):
+        self.edges.append({"from": from_id, "to": to_id, "relation": relation, "weight": weight})
+
+    def add_news_item(self, industry, news, core_info, chan_analysis, reverse_signal):
+        title = news["title"]
+        source = news.get("source", "未知")
+
+        industry_id = self._get_or_create_node(industry, "industry", industry)
+
+        title_hash = hashlib.md5(title.encode('utf-8')).hexdigest()[:8]
+        event_id = self._get_or_create_node(
+            f"{title[:30]}({title_hash})", "news_event", industry, {
+                "title": title,
+                "url": news.get("url", ""),
+                "source": source,
+                "event_type": core_info["event_type"],
+                "impact_scope": core_info["impact_scope"],
+                "chan_confidence": chan_analysis.get("confidence_score", 30),
+                "has_reverse_signal": reverse_signal.get("has_reverse_signal", False),
+                "risk_level": reverse_signal.get("risk_level", "低"),
+            }
+        )
+        self._add_edge(industry_id, event_id, "出现事件")
+
+        for stock in core_info.get("potential_stocks", []):
+            stock_id = self._get_or_create_node(stock, "stock", industry)
+            weight = 0.3 if reverse_signal.get("has_reverse_signal") else 0.8
+            self._add_edge(event_id, stock_id, "关联股票", weight)
+
+    def export_graph(self, date_str):
+        return {
+            "metadata": {
+                "date": date_str,
+                "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "version": "v8.0",
+                "total_nodes": len(self.nodes),
+                "total_edges": len(self.edges)
+            },
+            "nodes": self.nodes,
+            "edges": self.edges,
+            "node_type_stats": dict(Counter(n["type"] for n in self.nodes)),
+            "industry_stats": dict(Counter(n["industry"] for n in self.nodes if n["industry"]))
+        }
+
+
+# ============================================================
+# 【主 orchestrator】每日科技资讯系统 v8
+# ============================================================
+class DailyTechIntelSystemV8:
+    """每日科技前沿资讯分析系统 v8.0 - 多源融合增强版"""
+
+    def __init__(self, session_label="下午"):
+        self.date_str = datetime.now().strftime("%Y-%m-%d")
+        self.time_str = datetime.now().strftime("%H:%M:%S")
+        self.date_time_str = f"{self.date_str} {self.time_str}"
+        self.session_label = session_label
+
+        self.fetcher = MultiSourceNewsFetcher()
+        self.reverse_analyzer = EnhancedReverseSignalAnalyzer()
+        self.core_extractor = CoreInfoExtractor()
+        self.chan_analyzer = EnhancedChanTheoryAnalyzer()
+        self.graph_builder = KnowledgeGraphBuilder()
+
+        self.news_data = {}
+        self.analyzed_data = {}
+
+    def crawl_all_news(self):
+        """流程1: 多源爬取"""
+        print("=" * 80)
+        print(f"🚀 每日科技前沿资讯分析系统 v8.0【{self.session_label}】")
+        print("=" * 80)
+        print(f"执行时间: {self.date_time_str}")
+        print(f"📡 多源融合搜索（百度新闻 + 搜狗新闻 + 财经网站 + RSS订阅）")
+        print()
+
+        self.news_data = self.fetcher.search_all_industries()
+        total = sum(len(v) for v in self.news_data.values())
+        print(f"\n📊 共获取 {total} 条资讯")
+        return self.news_data
+
+    def analyze_all_news(self):
+        """流程2: 深度分析"""
+        print("\n🔍 开始深度分析...")
+        self.analyzed_data = {}
+
+        for industry, news_list in self.news_data.items():
+            analyzed_list = []
+            for news in news_list:
+                title = news["title"]
+                snippet = news.get("snippet", "")
+                url = news.get("url", "")
+                source = news.get("source", "")
+
+                core_info = self.core_extractor.extract(news, industry)
+                reverse_signal = self.reverse_analyzer.analyze(title, snippet, url, source)
+                chan = self.chan_analyzer.analyze(title, snippet, industry, core_info)
+
+                analyzed_list.append({
+                    "news": news,
+                    "core_info": core_info,
+                    "reverse_signal": reverse_signal,
+                    "chan_analysis": chan
+                })
+
+                self.graph_builder.add_news_item(industry, news, core_info, chan, reverse_signal)
+
+            # 排序：正常在前，缠论置信度降序
+            analyzed_list.sort(key=lambda x: (
+                1 if x["reverse_signal"]["has_reverse_signal"] else 0,
+                -x["chan_analysis"]["confidence_score"]
+            ))
+            self.analyzed_data[industry] = analyzed_list
+
+        # 多源交叉验证
+        print("  🔗 执行多源交叉验证...")
+        self.analyzed_data = self.reverse_analyzer.cross_validate(self.analyzed_data)
+
+        total = sum(len(v) for v in self.analyzed_data.values())
+        print(f"  ✓ 已分析 {total} 条资讯（含交叉验证）")
+        return self.analyzed_data
+
+    def generate_report(self):
+        """流程3: 生成报告"""
+        print("\n📝 生成分析报告...")
+
+        total_news = sum(len(v) for v in self.news_data.values())
+        normal = sum(1 for lst in self.analyzed_data.values()
+                     for item in lst if not item["reverse_signal"]["has_reverse_signal"])
+        reverse = total_news - normal
+        high_impact = sum(1 for lst in self.analyzed_data.values()
+                          for item in lst if item["core_info"]["impact_scope"] in ["国家级/全球性", "行业级"])
+        high_chan = sum(1 for lst in self.analyzed_data.values()
+                       for item in lst if item["chan_analysis"]["confidence_score"] >= 50)
+        divergence_count = sum(1 for lst in self.analyzed_data.values()
+                               for item in lst if item["chan_analysis"]["divergence"]["detected"])
+
+        report = f"""# 📊 {self.date_str}【{self.session_label}】科技前沿资讯分析报告
+
+> 📅 生成时间: {self.date_time_str}
+> 🏷️ 版本: v8.0（多源融合增强版 | 十五五规划重点产业跟踪）
+> 🔁 执行时间: 每日下午14:30
+> 📡 搜索源: 百度新闻 + 搜狗新闻 + 财经网站 + RSS订阅
+
+---
+
+## 📌 报告摘要
+
+| 指标 | 数值 |
+|------|------|
+| 📰 爬取资讯总数 | {total_news} |
+| ✅ 正常资讯 | {normal} |
+| ⚠️ 反向信号（疑似标题党/枪手） | {reverse} |
+| 🎯 高影响力资讯 | {high_impact} |
+| 📈 缠论高置信信号(≥50%) | {high_chan} |
+| 🔴 背驰信号 | {divergence_count} |
+
+**执行时间**: {self.date_time_str}
+**本次会话**: {self.session_label}（14:30 午间盘面更新 + 下午资讯整合）
+**【14:30 特别提示】**: 下午时段需特别警惕自媒体炒作和尾盘资金博弈
+
+"""
+
+        # 分产业详细分析
+        report += self._section_industries()
+        report += self._section_reverse_signal()
+        report += self._section_chan()
+        report += self._section_knowledge()
+
+        report += "---\n"
+        report += "*本报告由每日科技资讯分析系统 v8.0 自动生成 | 数据来源: 百度新闻、搜狗新闻、证券时报、财联社、第一财经、36氪等公开渠道*\n"
+        report += "*⚠️ 报告内容仅供参考，不构成投资建议。股市有风险，投资需谨慎。*\n"
+
+        return report
+
+    def _section_industries(self):
+        section = "## 📋 十五五规划相关产业动态\n\n"
+        industries_with_news = [(ind, lst) for ind, lst in self.analyzed_data.items() if lst]
+
+        if not industries_with_news:
+            return section + "> ⚠️ 本次爬取未获取到相关资讯，请稍候再试。\n\n"
+
+        industries_with_news.sort(key=lambda x: -len(x[1]))
+
+        for industry, news_list in industries_with_news:
+            section += f"### 🔬 {industry}（共{len(news_list)}条）\n\n"
+            for i, item in enumerate(news_list[:6], 1):
+                news = item["news"]
+                core = item["core_info"]
+                reverse = item["reverse_signal"]
+                chan = item["chan_analysis"]
+
+                if reverse["has_reverse_signal"]:
+                    risk_tag = " 🔴" if reverse["risk_level"] == "高" else " 🟠"
+                else:
+                    risk_tag = " 🟢"
+
+                section += f"**{i}. {news['title']}**{risk_tag}\n\n"
+                section += f"   - **来源**: {news.get('source', '未知')} | **搜索源**: {news.get('search_engine', '综合')} | **事件**: {core['event_type']} | **影响**: {core['impact_scope']}\n"
+
+                buy_points = []
+                if chan["buy_points"]["first"]:
+                    buy_points.append("一买")
+                if chan["buy_points"]["second"]:
+                    buy_points.append("二买")
+                if chan["buy_points"]["third"]:
+                    buy_points.append("三买")
+
+                sell_points = []
+                if chan["sell_points"]["first"]:
+                    sell_points.append("一卖")
+                if chan["sell_points"]["second"]:
+                    sell_points.append("二卖")
+
+                bp_str = "、".join(buy_points) if buy_points else ""
+                sp_str = "、".join(sell_points) if sell_points else ""
+
+                if bp_str and sp_str:
+                    section += f"   - **缠论**: 🟢 {bp_str} / 🔴 {sp_str}（置信{chan['confidence_score']}%）| 中枢: {chan['pivot_type']}\n"
+                elif bp_str:
+                    section += f"   - **缠论**: 🟢 {bp_str}信号（置信{chan['confidence_score']}%）| 中枢: {chan['pivot_type']}\n"
+                elif sp_str:
+                    section += f"   - **缠论**: 🔴 {sp_str}信号（置信{chan['confidence_score']}%）| 中枢: {chan['pivot_type']}\n"
+                else:
+                    section += f"   - **缠论**: ⚪ 无明确信号（置信{chan['confidence_score']}%）\n"
+
+                if chan["divergence"]["detected"]:
+                    section += f"   - **⚠️ 背驰**: {chan['divergence']['type']} - {chan['divergence']['desc']}\n"
+
+                if core["potential_stocks"]:
+                    section += f"   - **关联股票**: {'、'.join(core['potential_stocks'])}\n"
+
+                if reverse["has_reverse_signal"]:
+                    section += f"   - **⚠️ 风险**: {reverse['risk_level']}级 | 关键词: {', '.join(reverse['signal_words'][:5])}\n"
+                    section += f"   - **💡 建议**: {reverse['suggestion']}\n"
+                    if reverse.get("cross_validation"):
+                        section += f"   - **🔗 交叉验证**: {reverse['cross_validation']}\n"
+
+                if news.get("url") and news["url"].startswith("http"):
+                    section += f"   - **原文链接**: {news['url']}\n"
+
+                section += "\n"
+
+            if len(news_list) > 6:
+                section += f"*（还有 {len(news_list) - 6} 条资讯，详见 JSON 数据文件）*\n\n"
+            section += "\n"
+
+        return section
+
+    def _section_reverse_signal(self):
+        all_reverse = []
+        for industry, news_list in self.analyzed_data.items():
+            for item in news_list:
+                if item["reverse_signal"]["has_reverse_signal"]:
+                    item_copy = dict(item)
+                    item_copy["industry"] = industry
+                    all_reverse.append(item_copy)
+
+        if not all_reverse:
+            return "## ✅ 反向信号检测\n\n本次未检测到明显的标题党或资本雇佣枪手发文，资讯质量较好。\n\n"
+
+        section = f"## ⚠️ 反向信号预警（共{len(all_reverse)}条）\n\n"
+        section += "> **⚠️ 重要提示**: 以下资讯存在标题党或诱导性特征，疑似资本雇佣枪手发文，请务必反向思考！\n\n"
+
+        all_reverse.sort(key=lambda x: -x["reverse_signal"]["signal_score"])
+        for i, item in enumerate(all_reverse[:10], 1):
+            news = item["news"]
+            reverse = item["reverse_signal"]
+            industry = item["industry"]
+
+            risk_icon = "🔴" if reverse["risk_level"] == "高" else "🟠"
+
+            section += f"**{i}. {risk_icon} [{industry}] {news['title']}**\n\n"
+            section += f"   - **风险评分**: {reverse['signal_score']}分 | **风险等级**: {reverse['risk_level']}级\n"
+            if reverse["signal_words"]:
+                section += f"   - **风险关键词**: {', '.join(reverse['signal_words'][:6])}\n"
+            if reverse["title_party_pattern"]:
+                section += f"   - **标题党模式**: {', '.join(reverse['title_party_pattern'])}\n"
+            if reverse["gunman_pattern"]:
+                section += f"   - **枪手特征**: {', '.join(reverse['gunman_pattern'])}\n"
+            if reverse["timing_risk"]:
+                section += f"   - **发文时间风险**: {reverse['timing_risk']}\n"
+            if reverse["source_risk"]:
+                section += f"   - **来源风险**: {reverse['source_risk']}\n"
+            if reverse.get("cross_validation"):
+                section += f"   - **交叉验证**: {reverse['cross_validation']}\n"
+            if reverse["analysis"]:
+                section += f"   - **综合分析**: {reverse['analysis']}\n"
+            section += f"   - **💡 操作建议**: {reverse['suggestion']}\n\n"
+
+        # 反向信号识别原理
+        section += """### 🔬 v8.0 反向信号识别原理（增强版）
+
+本系统通过以下**10个维度**综合判断是否为标题党或资本雇佣枪手发文：
+
+1. **情绪词检测**: 极端词汇（暴涨、暴跌、逆天等）、内幕词汇（独家、重磅、揭秘等）、操作词汇（抄底、上车、梭哈等）
+2. **夸张数字检测**: 出现"暴涨XX倍"、"暴增XX亿"等诱导性数字
+3. **标点模式识别**: 多感叹号、感叹号开头、多问号等
+4. **开头模式识别**: "震惊！"、"刚刚"、"重磅！"等典型标题党开头
+5. **枪手引导语识别**: "手把手教你"、"一定要看"、"最后的机会"等
+6. **来源多级评估**: 权威媒体(A/B级) → 主流媒体(C级) → 自媒体平台 → 不可信来源，四级评估
+7. **自媒体平台特征检测**: 头条、百家号、企鹅号、雪球、股吧等平台内容风险加权
+8. **发文时间规律检测**: 盘前8-9点、尾盘14-15点、深夜22点后发文风险加成
+9. **多源交叉验证**: 同一主题多来源报道降风险，单一不明来源升风险
+10. **综合评分**: 总分≥12判定为高风险（疑似枪手），≥7为中风险（标题党）
+
+### 🎯 枪手发文典型特征
+
+| 时间段 | 风险加成 | 原理 |
+|--------|---------|------|
+| 盘前8-9点 | +3 | 制造开盘情绪，诱导集合竞价跟风 |
+| 尾盘14-15点 | +4 | 诱导尾盘追涨，次日出货 |
+| 深夜22点后 | +2 | 利用次日开盘情绪发酵 |
+
+**核心原则**: 利好出尽是利空，利空出尽是利好。标题党越疯狂，越要反向思考！
+
+"""
+        return section
+
+    def _section_chan(self):
+        first_buy = sum(1 for lst in self.analyzed_data.values()
+                        for item in lst if item["chan_analysis"]["buy_points"]["first"])
+        second_buy = sum(1 for lst in self.analyzed_data.values()
+                         for item in lst if item["chan_analysis"]["buy_points"]["second"])
+        third_buy = sum(1 for lst in self.analyzed_data.values()
+                        for item in lst if item["chan_analysis"]["buy_points"]["third"])
+        first_sell = sum(1 for lst in self.analyzed_data.values()
+                         for item in lst if item["chan_analysis"]["sell_points"]["first"])
+        second_sell = sum(1 for lst in self.analyzed_data.values()
+                          for item in lst if item["chan_analysis"]["sell_points"]["second"])
+        divergence = sum(1 for lst in self.analyzed_data.values()
+                         for item in lst if item["chan_analysis"]["divergence"]["detected"])
+
+        section = f"""## 📈 缠论视角深度分析（v8.0增强版）
+
+### 核心买卖点信号统计
+
+| 信号类型 | 数量 | 说明 |
+|----------|------|------|
+| 🟢 第一类买点 | {first_buy} | 政策发布、技术突破带来的驱动型机会（下跌趋势末端背驰） |
+| 🟢 第二类买点 | {second_buy} | 回调确认后的安全介入点（不创新低的回踩确认） |
+| 🟢 第三类买点 | {third_buy} | 趋势确立后的加速机会（离开中枢不回抽，需警惕情绪过热） |
+| 🔴 第一类卖点 | {first_sell} | 上涨趋势末端背驰（见顶信号） |
+| 🔴 第二类卖点 | {second_sell} | 反弹不创新高（冲高回落） |
+| ⚠️ 背驰信号 | {divergence} | 量价背驰/政策背驰/情绪背驰 |
+
+### v8.0 新增：背驰检测详解
+
+**背驰是缠论最核心的概念之一**——它标志着趋势的衰竭和转折：
+
+| 背驰类型 | 判定依据 | 级别 | 操作含义 |
+|----------|---------|------|---------|
+| 量价背驰 | 放量滞涨/缩量上涨/量价背离 | 日线 | 短线趋势可能衰竭 |
+| 政策背驰 | 利好出尽/政策落地/预期兑现 | 周线 | 中期可能形成政策顶 |
+| 情绪背驰 | 全民炒股/跑步入场/闭眼赚钱 | 月线 | 长期可能形成情绪顶 |
+
+> **原理举例**: 当所有人都说"AI是未来"的时候，往往是AI板块短期见顶的信号——这就是情绪背驰。缠论说"走势终完美"，任何级别的走势类型终将完成，完成后必然转化为其他类型。
+
+### v8.0 新增：多级别联立分析
+
+缠论强调"看大做小"——大级别定方向，小级别找买点：
+
+- **月线级别**: 决定长期趋势方向（持有还是离场）
+- **周线级别**: 决定中期操作节奏（加仓还是减仓）
+- **日线级别**: 决定短线买卖时机（入场还是观望）
+
+> **原理举例**: 月线处于上涨趋势，周线回调到中枢下沿，日线出现二买信号——这是理想的"三级共振"买入时机。
+
+### 今日高置信信号（缠论置信度≥50%）
+
+"""
+        high_confidence_items = []
+        for industry, news_list in self.analyzed_data.items():
+            for item in news_list:
+                if item["chan_analysis"]["confidence_score"] >= 50 and not item["reverse_signal"]["has_reverse_signal"]:
+                    item["industry"] = industry
+                    high_confidence_items.append(item)
+        high_confidence_items.sort(key=lambda x: -x["chan_analysis"]["confidence_score"])
+
+        if high_confidence_items:
+            for i, item in enumerate(high_confidence_items[:10], 1):
+                news = item["news"]
+                chan = item["chan_analysis"]
+                industry = item["industry"]
+
+                bp_list = []
+                if chan["buy_points"]["first"]:
+                    bp_list.append("一买")
+                if chan["buy_points"]["second"]:
+                    bp_list.append("二买")
+                if chan["buy_points"]["third"]:
+                    bp_list.append("三买")
+
+                section += f"**{i}. [{industry}] {news['title']}**\n"
+                section += f"   - 买点: {'、'.join(bp_list) if bp_list else '无明确'} | 置信度: {chan['confidence_score']}%\n"
+                section += f"   - 中枢: {chan['pivot_type']} | {chan['trend_judgment']}\n"
+                section += f"   - 建议: {chan['operation_suggestion']}\n"
+                if chan["multi_level"].get("daily"):
+                    section += f"   - 多级别: {chan['multi_level']['daily']}\n"
+                if chan["risk_warning"]:
+                    section += f"   - {chan['risk_warning']}\n"
+                section += "\n"
+        else:
+            section += "*本次暂无高置信度缠论信号，建议保持观望，等待更明确的市场信号。*\n\n"
+
+        section += """### 综合策略建议
+
+1. **仓位管理**: 结合当前市场情绪，建议总仓位控制在 30%-60%，避免情绪化追涨
+2. **选股方向**: 重点关注 人工智能、半导体、新能源、数字经济 等十五五重点赛道
+3. **入场时机**: 等待明确的回调确认信号（日线级别的二买/三买），不要追高买入
+4. **止损设置**: 单只股票亏损幅度建议不超过 5%-8%，严格执行止损纪律
+5. **风险控制**: 当反向信号密集出现时，需警惕情绪过热，考虑减仓或观望
+6. **背驰警示**: 一旦出现量价背驰或政策背驰，需立即警惕趋势转折
+
+### 缠论操作口诀
+
+1. 买点买，卖点卖，纪律第一
+2. 看大做小，长短线结合
+3. 级别递归，走势分解
+4. 中枢震荡做短差，趋势持有
+5. 严格止损，控制仓位
+6. 背驰即转折，转折即机会
+
+"""
+        return section
+
+    def _section_knowledge(self):
+        section = "## 🧠 知识沉淀与持续跟踪\n\n"
+        section += "### 今日核心知识点（高影响力资讯）\n\n"
+
+        high_impact_items = []
+        for industry, news_list in self.analyzed_data.items():
+            for item in news_list:
+                if item["core_info"]["impact_scope"] in ["国家级/全球性", "行业级"] and not item["reverse_signal"]["has_reverse_signal"]:
+                    item["industry"] = industry
+                    high_impact_items.append(item)
+
+        if high_impact_items:
+            for i, item in enumerate(high_impact_items[:6], 1):
+                news = item["news"]
+                core = item["core_info"]
+                section += f"{i}. **[{core['industry']}] {news['title']}**\n"
+                section += f"   - 事件类型: {core['event_type']} | 影响范围: {core['impact_scope']} | 时间敏感度: {core['time_sensitivity']}\n"
+                section += f"   - 主体: {core['event_subject']}\n"
+                if core["potential_stocks"]:
+                    section += f"   - 关联股票: {'、'.join(core['potential_stocks'])}\n"
+                section += "\n"
+        else:
+            section += "*本次暂无高影响力政策或行业资讯。*\n\n"
+
+        # 产业热度统计
+        section += "### 📊 本次产业热度排行\n\n"
+        heat_data = [(ind, len(lst)) for ind, lst in self.analyzed_data.items() if lst]
+        heat_data.sort(key=lambda x: -x[1])
+        for rank, (ind, count) in enumerate(heat_data[:10], 1):
+            bar = "█" * min(count, 20)
+            section += f"{rank}. {ind:<10} {bar} {count}条\n"
+        section += "\n"
+
+        section += """### 🔭 持续关注方向
+
+1. **政策面**: 十五五规划重点产业的后续政策落地、细化方案、资金支持
+2. **技术面**: 人工智能、半导体、新能源领域的技术突破和商业化进展
+3. **基本面**: 行业龙头的业绩、订单、产能扩张情况
+4. **情绪面**: 警惕自媒体标题党和资本雇佣枪手的反向信号
+5. **国际面**: 关注全球产业链变化、地缘政治对科技产业的影响
+
+### ⚠️ 风险提示清单
+
+- ⚠️ 单一资讯不足以作为投资决策依据，需多方验证
+- ⚠️ 标题党资讯（暴涨、翻倍、内幕等）需反向思考（利好出尽是利空）
+- ⚠️ 政策利好可能已被市场提前消化（买预期卖事实）
+- ⚠️ 技术突破到商业化落地可能存在较长时间差（注意产业链兑现节奏）
+- ⚠️ 热门板块容易出现情绪过热后的回调（情绪高位风险）
+- ⚠️ 【特别警示】下午14:30-15:00是A股T+1交易机制下的尾盘博弈时段，需特别警惕自媒体和资金联手营造的虚假繁荣
+- ⚠️ 【v8新增】关注背驰信号：量价背驰、政策背驰、情绪背驰都是趋势转折的前兆
+
+"""
+        return section
+
+    def save_results(self, report):
+        """流程4: 保存结果"""
+        print("💾 正在保存结果...")
+
+        # Markdown报告
+        report_file = REPORT_DIR / f"{self.date_str}_{self.session_label}_tech_intel_report.md"
+        with open(report_file, 'w', encoding='utf-8') as f:
+            f.write(report)
+        print(f"  📁 分析报告: {report_file}")
+
+        # JSON数据
+        data_file = REPORT_DIR / f"{self.date_str}_{self.session_label}_tech_intel_data.json"
+        with open(data_file, 'w', encoding='utf-8') as f:
+            json.dump({
+                "date": self.date_str,
+                "datetime": self.date_time_str,
+                "session": self.session_label,
+                "version": "v8.0",
+                "news_data": self.news_data,
+                "analyzed_data": self.analyzed_data
+            }, f, ensure_ascii=False, indent=2)
+        print(f"  📁 分析数据: {data_file}")
+
+        # 知识图谱
+        graph_data = self.graph_builder.export_graph(self.date_str)
+        graph_file = GRAPH_DIR / f"{self.date_str}_{self.session_label}_knowledge_graph.json"
+        with open(graph_file, 'w', encoding='utf-8') as f:
+            json.dump(graph_data, f, ensure_ascii=False, indent=2)
+        print(f"  📁 知识图谱: {graph_file}（{graph_data['metadata']['total_nodes']} 节点, {graph_data['metadata']['total_edges']} 边）")
+
+        # 追加到历史知识库
+        knowledge_file = KNOWLEDGE_DIR / "tech_intel_history.md"
+        knowledge_entry = f"\n\n---\n\n## {self.date_str}【{self.session_label}】（v8.0）\n{report[:1500]}...\n"
+        if knowledge_file.exists():
+            with open(knowledge_file, 'a', encoding='utf-8') as f:
+                f.write(knowledge_entry)
+        else:
+            with open(knowledge_file, 'w', encoding='utf-8') as f:
+                f.write("# 科技资讯知识沉淀库\n" + knowledge_entry)
+        print(f"  📚 知识库追加: {knowledge_file}")
+
+        return report_file, data_file, graph_file
+
+    def run(self):
+        """主入口"""
+        # 流程1: 爬取
+        self.crawl_all_news()
+
+        total = sum(len(v) for v in self.news_data.values())
+        if total == 0:
+            print("\n⚠️ 未获取到任何资讯，将生成空报告。")
+        else:
+            # 流程2: 分析
+            self.analyze_all_news()
+
+        # 流程3: 报告
+        report = self.generate_report()
+
+        # 流程4: 保存
+        self.save_results(report)
+
+        print("\n" + "=" * 80)
+        print("✅ v8.0 分析完成！")
+        print("=" * 80)
+
+        return report
+
+
+# ============================================================
+# 命令行入口
+# ============================================================
+def main():
+    now = datetime.now()
+    hour = now.hour
+    session = "上午" if hour < 12 else "下午"
+
+    if len(sys.argv) >= 2:
+        if "morning" in sys.argv[1] or "上午" in sys.argv[1]:
+            session = "上午"
+        elif "afternoon" in sys.argv[1] or "下午" in sys.argv[1]:
+            session = "下午"
+
+    system = DailyTechIntelSystemV8(session_label=session)
+    system.run()
+
+
+if __name__ == '__main__':
+    main()

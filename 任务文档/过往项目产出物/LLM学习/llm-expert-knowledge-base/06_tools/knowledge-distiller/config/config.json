@@ -1,0 +1,6 @@
+
+{
+  "max_content_length": 10000,
+  "min_content_length": 100,
+  "skip_keywords": ["每日信息简报", "已处理", "知识蒸馏报告"]
+}

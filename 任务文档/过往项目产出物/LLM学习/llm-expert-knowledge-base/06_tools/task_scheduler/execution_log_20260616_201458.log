@@ -1,0 +1,7 @@
+请选择运行模式:
+  --full-pipeline: 运行完整流程
+  --full-audit: 运行全面审计
+  --skip-wait: 跳过等待时间（用于测试）
+  --no-auto-trigger: 禁用知识蒸馏后的自动延迟审计
+
+另外可使用 scheduler_manager.py 设置定时任务

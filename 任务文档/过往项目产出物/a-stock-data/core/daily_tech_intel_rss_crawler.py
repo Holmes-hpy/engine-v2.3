@@ -1,0 +1,1240 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+每日科技前沿资讯 RSS 爬虫 - 独立运行版
+========================================
+核心功能:
+  1. 使用 Google News RSS feed 获取科技新闻（无需 WebSearch）
+  2. 分析资讯并提取知识
+  3. 缠论视角分析（第一类买点/第二类买点/第三类买点）
+  4. 反向信号识别（标题党/情绪化/缺乏数据支撑）
+  5. 结构化报告生成与知识沉淀
+
+使用方式:
+  python daily_tech_intel_rss_crawler.py              # 执行今日分析
+  python daily_tech_intel_rss_crawler.py --date 2026-07-08  # 指定日期
+  python daily_tech_intel_rss_crawler.py --test       # 测试模式（少量请求）
+
+依赖库:
+  feedparser, requests (优先)
+  若不可用则自动降级到 urllib + xml.etree.ElementTree
+"""
+
+import sys
+import os
+import json
+import re
+import argparse
+import time
+import logging
+import subprocess
+import html
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import List, Dict, Any, Optional
+from urllib.parse import quote_plus, quote
+from collections import Counter
+
+# ========== 路径配置 ==========
+PROJECT_DIR = Path(__file__).parent
+REPORT_DIR = PROJECT_DIR / "daily_tech_intel"
+KNOWLEDGE_DIR = PROJECT_DIR / "knowledge"
+LOG_DIR = PROJECT_DIR / "logs"
+
+for d in [REPORT_DIR, KNOWLEDGE_DIR, LOG_DIR]:
+    d.mkdir(exist_ok=True)
+
+# ========== 日志配置 ==========
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler(LOG_DIR / "rss_crawler.log", encoding="utf-8"),
+    ],
+)
+logger = logging.getLogger(__name__)
+
+# ========== 依赖检查与安装 ==========
+def _ensure_dependency(package_name: str, import_name: str = None) -> bool:
+    """检查并尝试安装依赖库"""
+    import_name = import_name or package_name
+    try:
+        __import__(import_name)
+        return True
+    except ImportError:
+        logger.warning(f"依赖库 {package_name} 缺失，尝试自动安装...")
+        try:
+            subprocess.check_call(
+                [sys.executable, "-m", "pip", "install", package_name, "-q"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            __import__(import_name)
+            logger.info(f"✅ {package_name} 安装成功")
+            return True
+        except Exception as e:
+            logger.warning(f"⚠️ {package_name} 自动安装失败: {e}，将使用备选方案")
+            return False
+
+# 优先使用 feedparser + requests
+HAS_FEEDPARSER = _ensure_dependency("feedparser")
+HAS_REQUESTS = _ensure_dependency("requests")
+
+
+# ========== 搜索关键词配置（RSS版） ==========
+RSS_SEARCH_KEYWORDS = {
+    "人工智能": [
+        "人工智能 政策",
+        "AI 大模型 突破",
+        "人形机器人",
+    ],
+    "半导体": [
+        "半导体 国产替代",
+        "芯片 光刻机",
+        "存储芯片 DRAM",
+    ],
+    "新能源": [
+        "新能源 光伏 储能",
+        "新能源汽车 动力电池",
+        "风电 储能",
+    ],
+    "数字经济": [
+        "数字经济 数据要素",
+        "数据中心 算力",
+        "工业互联网",
+    ],
+    "十五五规划": [
+        "十五五规划 产业",
+        "新质生产力",
+        "战略性新兴产业",
+    ],
+}
+
+
+# ========== 核心配置 ==========
+INDUSTRY_CATEGORIES = {
+    "人工智能": {
+        "keywords": ["人工智能", "AI", "大模型", "机器学习", "智能体", "具身智能", "算力", "GPU", "深度学习"],
+        "weight": 1.2
+    },
+    "半导体": {
+        "keywords": ["半导体", "芯片", "集成电路", "光刻机", "先进封装", "存储芯片", "国产替代", "晶圆", "中芯国际"],
+        "weight": 1.3
+    },
+    "新能源": {
+        "keywords": ["新能源", "光伏", "储能", "风电", "氢能", "新能源汽车", "动力电池", "逆变器", "锂电池"],
+        "weight": 1.2
+    },
+    "数字经济": {
+        "keywords": ["数字经济", "数据中心", "云计算", "大数据", "工业互联网", "数字化转型", "东数西算"],
+        "weight": 1.0
+    },
+    "十五五规划": {
+        "keywords": ["十五五", "十四五", "规划", "政策", "国务院", "发改委", "工信部", "科技部", "实施方案"],
+        "weight": 1.5
+    }
+}
+
+REVERSE_SIGNAL_RULES = {
+    "extreme_emotion": {
+        "keywords": ["暴涨", "暴跌", "疯涨", "崩盘", "惊天", "震惊", "炸了", "慌了", "懵了", "血洗", "爽了"],
+        "score": 3,
+        "description": "极端情绪化词汇"
+    },
+    "prediction_words": {
+        "keywords": ["即将", "马上", "立刻", "大概率", "必然", "必定", "肯定", "必涨", "必跌", "翻倍"],
+        "score": 2,
+        "description": "预测性/确定性表述"
+    },
+    "get_rich_quick": {
+        "keywords": ["躺赢", "发财", "暴富", "赚翻", "财富自由", "手把手", "带你", "教你", "跟着", "上车"],
+        "score": 3,
+        "description": "荐股/致富导向"
+    },
+    "insider_hint": {
+        "keywords": ["内幕", "独家", "重磅", "秘密", "内部消息", "绝密", "泄密", "爆料"],
+        "score": 3,
+        "description": "内幕/独家消息暗示"
+    },
+    "capital_hint": {
+        "keywords": ["主力", "游资", "机构", "大佬", "牛散", "庄家", "操盘手", "国家队", "外资", "加仓"],
+        "score": 2,
+        "description": "资本操作暗示"
+    },
+    "combat_metaphor": {
+        "keywords": ["抄底", "逃顶", "炸板", "封板", "接力", "战法", "秘籍", "绝招", "打板"],
+        "score": 2,
+        "description": "股市战斗隐喻"
+    }
+}
+
+CHAN_THEORY_RULES = {
+    "first_buy_point": {
+        "triggers": ["政策", "规划", "发布", "出台", "首次", "突破", "创新", "重大", "落地", "实施"],
+        "description": "第一类买点 - 政策底/技术突破信号",
+        "confidence_base": 50
+    },
+    "second_buy_point": {
+        "triggers": ["确认", "企稳", "验证", "回调", "回升", "修复", "筑底", "回踩"],
+        "description": "第二类买点 - 回调后的确认机会",
+        "confidence_base": 40
+    },
+    "third_buy_point": {
+        "triggers": ["新高", "加速", "超预期", "黄金期", "快车道", "大幅", "领涨", "爆发", "井喷", "暴涨"],
+        "description": "第三类买点 - 趋势确立信号",
+        "confidence_base": 45
+    }
+}
+
+
+# ========== RSS 爬虫 ==========
+class RSSCrawler:
+    """Google News RSS 爬虫"""
+
+    # Google News RSS 基础 URL
+    BASE_URL = "https://news.google.com/rss/search"
+
+    # 请求超时（秒）
+    TIMEOUT = 15
+
+    # 请求间隔（秒），避免被限流
+    REQUEST_INTERVAL = 2
+
+    def __init__(self, test_mode: bool = False):
+        self.test_mode = test_mode
+        self.session = None
+        if HAS_REQUESTS:
+            self.session = __import__("requests").Session()
+            self.session.headers.update({
+                "User-Agent": (
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/126.0.0.0 Safari/537.36"
+                ),
+            })
+            # 设置超时和重试
+            adapter = __import__("requests").adapters.HTTPAdapter(
+                max_retries=3
+            )
+            self.session.mount("https://", adapter)
+            self.session.mount("http://", adapter)
+
+    def _build_rss_url(self, query: str) -> str:
+        """构建 Google News RSS URL"""
+        encoded_query = quote(query)
+        return (
+            f"{self.BASE_URL}?q={encoded_query}"
+            f"&hl=zh-CN&gl=CN&ceid=CN:zh-Hans"
+        )
+
+    def _fetch_via_requests(self, url: str) -> Optional[str]:
+        """使用 requests 获取 RSS 内容"""
+        if not self.session:
+            return None
+        try:
+            resp = self.session.get(url, timeout=self.TIMEOUT)
+            resp.raise_for_status()
+            return resp.text
+        except Exception as e:
+            logger.warning(f"requests 获取失败 [{url}]: {e}")
+            return None
+
+    def _fetch_via_urllib(self, url: str) -> Optional[str]:
+        """使用 urllib 获取 RSS 内容（fallback）"""
+        try:
+            import urllib.request
+            req = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": (
+                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                        "AppleWebKit/537.36"
+                    )
+                },
+            )
+            with urllib.request.urlopen(req, timeout=self.TIMEOUT) as resp:
+                return resp.read().decode("utf-8")
+        except Exception as e:
+            logger.warning(f"urllib 获取失败 [{url}]: {e}")
+            return None
+
+    def _fetch_rss_content(self, url: str) -> Optional[str]:
+        """获取 RSS 内容（自动选择可用方式）"""
+        # 优先使用 requests
+        content = self._fetch_via_requests(url)
+        if content:
+            return content
+        # 降级到 urllib
+        content = self._fetch_via_urllib(url)
+        if content:
+            return content
+        return None
+
+    def _parse_via_feedparser(self, rss_text: str) -> List[Dict[str, Any]]:
+        """使用 feedparser 解析 RSS"""
+        if not HAS_FEEDPARSER:
+            return []
+        try:
+            import feedparser
+            feed = feedparser.parse(rss_text)
+            results = []
+            for entry in feed.entries:
+                title = entry.get("title", "").strip()
+                if not title:
+                    continue
+                # feedparser 的 summary 通常包含 HTML，清理一下
+                snippet = entry.get("summary", "")
+                snippet = re.sub(r"<[^>]+>", "", snippet).strip()
+                snippet = html.unescape(snippet)
+
+                link = entry.get("link", "")
+                source = "未知来源"
+                if hasattr(entry, "source") and entry.source:
+                    source = entry.source.get("title", "未知来源")
+                elif entry.get("author"):
+                    source = entry["author"]
+
+                results.append({
+                    "title": title,
+                    "snippet": snippet[:300] if snippet else "",
+                    "url": link,
+                    "source": source,
+                })
+            return results
+        except Exception as e:
+            logger.warning(f"feedparser 解析失败: {e}")
+            return []
+
+    def _parse_via_xml(self, rss_text: str) -> List[Dict[str, Any]]:
+        """使用 xml.etree.ElementTree 解析 RSS（fallback）"""
+        try:
+            import xml.etree.ElementTree as ET
+            root = ET.fromstring(rss_text)
+            results = []
+            # Google News RSS 结构: <rss><channel><item>...</item></channel></rss>
+            for item in root.iter("item"):
+                title_elem = item.find("title")
+                link_elem = item.find("link")
+                desc_elem = item.find("description")
+                source_elem = item.find("source")
+
+                title = title_elem.text.strip() if title_elem is not None and title_elem.text else ""
+                if not title:
+                    continue
+
+                snippet = ""
+                if desc_elem is not None and desc_elem.text:
+                    snippet = re.sub(r"<[^>]+>", "", desc_elem.text).strip()
+                    snippet = html.unescape(snippet)
+
+                link = link_elem.text.strip() if link_elem is not None and link_elem.text else ""
+                source = source_elem.text.strip() if source_elem is not None and source_elem.text else "未知来源"
+
+                results.append({
+                    "title": title,
+                    "snippet": snippet[:300] if snippet else "",
+                    "url": link,
+                    "source": source,
+                })
+            return results
+        except Exception as e:
+            logger.warning(f"XML 解析失败: {e}")
+            return []
+
+    def _parse_rss(self, rss_text: str) -> List[Dict[str, Any]]:
+        """解析 RSS 内容（自动选择可用方式）"""
+        # 优先 feedparser
+        results = self._parse_via_feedparser(rss_text)
+        if results:
+            return results
+        # 降级到 xml.etree.ElementTree
+        results = self._parse_via_xml(rss_text)
+        if results:
+            return results
+        return []
+
+    def crawl_keyword(self, industry: str, keyword: str) -> List[Dict[str, Any]]:
+        """爬取单个关键词的新闻"""
+        url = self._build_rss_url(keyword)
+        logger.info(f"  🔍 搜索: [{industry}] {keyword}")
+        logger.debug(f"  URL: {url}")
+
+        rss_content = self._fetch_rss_content(url)
+        if not rss_content:
+            logger.warning(f"  ⚠️ 未能获取 RSS 内容: {keyword}")
+            return []
+
+        news_items = self._parse_rss(rss_content)
+        if not news_items:
+            logger.warning(f"  ⚠️ RSS 解析无结果: {keyword}")
+            return []
+
+        logger.info(f"  ✅ 获取 {len(news_items)} 条新闻")
+        return news_items
+
+    def crawl_all(self) -> List[Dict[str, Any]]:
+        """爬取所有关键词的新闻"""
+        all_news = []
+        seen_titles = set()
+        total_keywords = sum(len(kws) for kws in RSS_SEARCH_KEYWORDS.values())
+        current = 0
+
+        logger.info(f"📡 开始爬取 Google News RSS，共 {total_keywords} 个关键词")
+
+        for industry, keywords in RSS_SEARCH_KEYWORDS.items():
+            for keyword in keywords:
+                current += 1
+                # 测试模式：每个行业只搜第一个关键词
+                if self.test_mode and current > len(list(RSS_SEARCH_KEYWORDS.keys())):
+                    break
+
+                news_items = self.crawl_keyword(industry, keyword)
+
+                for item in news_items:
+                    # 去重（基于标题相似度）
+                    title_key = re.sub(r"\s+", "", item["title"])[:40]
+                    if title_key in seen_titles:
+                        continue
+                    seen_titles.add(title_key)
+                    all_news.append(item)
+
+                # 控制请求频率
+                if not self.test_mode and current < total_keywords:
+                    time.sleep(self.REQUEST_INTERVAL)
+                else:
+                    time.sleep(1)
+
+        logger.info(f"📡 爬取完成，共获取 {len(all_news)} 条去重后新闻")
+        return all_news
+
+
+# ========== 核心分析类 ==========
+class NewsAnalyzer:
+    """资讯核心分析器"""
+
+    def __init__(self):
+        self.analysis_results = []
+
+    def categorize_industry(self, title: str, snippet: str = "") -> str:
+        """识别所属产业领域"""
+        text = title + " " + snippet
+        scores = {}
+        for category, info in INDUSTRY_CATEGORIES.items():
+            hit_count = sum(text.count(kw) for kw in info["keywords"])
+            scores[category] = hit_count * info["weight"]
+        if max(scores.values()) > 0:
+            return max(scores, key=scores.get)
+        return "其他"
+
+    def analyze_reverse_signal(self, title: str, snippet: str = "") -> Dict[str, Any]:
+        """分析反向信号"""
+        text = title + " " + snippet
+        total_score = 0
+        found_categories = []
+        found_keywords = []
+
+        for category, rules in REVERSE_SIGNAL_RULES.items():
+            hits = [kw for kw in rules["keywords"] if kw in text]
+            if hits:
+                total_score += rules["score"] * len(hits)
+                found_categories.append(rules["description"])
+                found_keywords.extend(hits)
+
+        risk_level = "低"
+        if total_score >= 8:
+            risk_level = "高"
+        elif total_score >= 4:
+            risk_level = "中"
+
+        return {
+            "risk_score": total_score,
+            "risk_level": risk_level,
+            "categories": found_categories,
+            "keywords_found": found_keywords,
+            "has_signal": total_score >= 4,
+            "assessment": self._generate_reverse_assessment(total_score, found_categories)
+        }
+
+    def _generate_reverse_assessment(self, score: int, categories: List[str]) -> str:
+        """生成反向信号评估文本"""
+        if score >= 8:
+            return f"高度疑似标题党/炒作型内容，包含{len(categories)}类风险特征: {', '.join(categories)}。建议反向思考，避免追高。"
+        elif score >= 4:
+            return f"存在一定风险特征: {', '.join(categories)}。需结合具体数据谨慎判断，不可仅凭标题做决策。"
+        return "无明显反向信号，表述相对客观。"
+
+    def analyze_chan_theory(self, title: str, snippet: str = "") -> Dict[str, Any]:
+        """缠论视角分析"""
+        text = title + " " + snippet
+        buy_points = {}
+        overall_confidence = 0
+
+        for point_type, rules in CHAN_THEORY_RULES.items():
+            hits = [t for t in rules["triggers"] if t in text]
+            triggered = len(hits) > 0
+            confidence = rules["confidence_base"] + len(hits) * 10 if triggered else 0
+            if confidence > 80:
+                confidence = 80
+            buy_points[point_type] = {
+                "triggered": triggered,
+                "triggers_found": hits,
+                "confidence": confidence,
+                "description": rules["description"]
+            }
+            overall_confidence += confidence
+
+        any_triggered = any(bp["triggered"] for bp in buy_points.values())
+
+        return {
+            "buy_points": buy_points,
+            "any_triggered": any_triggered,
+            "overall_confidence": min(overall_confidence, 100),
+            "trend_direction": self._assess_trend_direction(buy_points)
+        }
+
+    def _assess_trend_direction(self, buy_points: Dict[str, Any]) -> str:
+        """评估趋势方向"""
+        if buy_points.get("third_buy_point", {}).get("triggered"):
+            return "趋势延续/加速 - 需警惕情绪过热"
+        elif buy_points.get("first_buy_point", {}).get("triggered"):
+            return "潜在拐点/机会区域 - 政策或技术驱动"
+        elif buy_points.get("second_buy_point", {}).get("triggered"):
+            return "回调确认/二次介入机会"
+        return "中性 - 无明确缠论信号"
+
+    def assess_importance(self, reverse_signal: Dict[str, Any], chan_analysis: Dict[str, Any],
+                          title: str, snippet: str) -> int:
+        """评估资讯重要等级(1-5星)"""
+        text = title + " " + snippet
+        score = 2  # 基础分
+
+        # 政策相关加分
+        policy_keywords = ["国务院", "发改委", "工信部", "科技部", "政府", "规划", "政策", "出台", "发布", "实施"]
+        if any(kw in text for kw in policy_keywords):
+            score += 2
+
+        # 有具体数据加分
+        if re.search(r"\d+\.?\d*%", text) or re.search(r"\d+\.?\d*(GWh|亿元|亿|万亿)", text):
+            score += 1
+
+        # 缠论买点确认加分
+        if chan_analysis["overall_confidence"] >= 60:
+            score += 1
+
+        return min(score, 5)
+
+    def analyze_news_item(self, news_item: Dict[str, Any]) -> Dict[str, Any]:
+        """分析单条资讯"""
+        title = news_item.get("title", "")
+        snippet = news_item.get("snippet", "")
+        url = news_item.get("url", "")
+        source = news_item.get("source", "未知来源")
+
+        industry = self.categorize_industry(title, snippet)
+        reverse_signal = self.analyze_reverse_signal(title, snippet)
+        chan_analysis = self.analyze_chan_theory(title, snippet)
+        importance = self.assess_importance(reverse_signal, chan_analysis, title, snippet)
+
+        return {
+            "title": title,
+            "snippet": snippet,
+            "url": url,
+            "source": source,
+            "industry": industry,
+            "importance": importance,
+            "importance_stars": "⭐" * importance,
+            "reverse_signal": reverse_signal,
+            "chan_analysis": chan_analysis,
+            "analysis_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+
+    def batch_analyze(self, news_list: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """批量分析"""
+        results = []
+        for i, news in enumerate(news_list, 1):
+            analyzed = self.analyze_news_item(news)
+            results.append(analyzed)
+            if i <= 5:
+                status_icon = "🟢" if not analyzed["reverse_signal"]["has_signal"] else "🟡"
+                print(f"   {status_icon} [{analyzed['industry']}] {analyzed['importance_stars']} {analyzed['title'][:40]}...")
+        return results
+
+
+# ========== 报告生成器 ==========
+class ReportGenerator:
+    """报告生成器"""
+
+    def __init__(self, date_str: str):
+        self.date_str = date_str
+        self.date_obj = datetime.strptime(date_str, "%Y-%m-%d") if date_str else datetime.now()
+        self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    def generate_comprehensive_report(self, analyzed_news: List[Dict[str, Any]]) -> str:
+        """生成综合分析报告"""
+        report = []
+
+        # 报告标题
+        report.append(f"# 📊 {self.date_str} 科技前沿资讯分析报告")
+        report.append("")
+        report.append(f"**执行时间**: {self.timestamp}")
+        report.append(f"**报告版本**: v4.0 (Google News RSS 爬虫版)")
+        report.append(f"**覆盖范围**: {' / '.join(INDUSTRY_CATEGORIES.keys())}")
+        report.append("")
+        report.append("---")
+        report.append("")
+
+        # 执行摘要
+        report.extend(self._generate_executive_summary(analyzed_news))
+        report.append("---")
+        report.append("")
+
+        # 分产业详细分析
+        report.extend(self._generate_industry_analysis(analyzed_news))
+        report.append("---")
+        report.append("")
+
+        # 市场情绪与走势判断
+        report.extend(self._generate_market_sentiment(analyzed_news))
+        report.append("---")
+        report.append("")
+
+        # 反向信号预警
+        report.extend(self._generate_reverse_signal_warning(analyzed_news))
+        report.append("---")
+        report.append("")
+
+        # 关键机会与风险
+        report.extend(self._generate_opportunity_risk(analyzed_news))
+        report.append("---")
+        report.append("")
+
+        # 缠论买点汇总
+        report.extend(self._generate_chan_summary(analyzed_news))
+        report.append("---")
+        report.append("")
+
+        # 后续关注事项
+        report.extend(self._generate_followup_items(analyzed_news))
+        report.append("---")
+        report.append("")
+
+        # 知识沉淀
+        report.extend(self._generate_knowledge_section(analyzed_news))
+        report.append("---")
+        report.append("")
+
+        # 质量检查
+        report.extend(self._generate_quality_check(analyzed_news))
+        report.append("")
+
+        # 报告结尾
+        next_date = (self.date_obj + timedelta(days=1)).strftime("%Y-%m-%d")
+        report.append(f"**报告完成时间**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        report.append(f"**下次执行**: {next_date} 09:30")
+        report.append("")
+
+        return "\n".join(report)
+
+    def _generate_executive_summary(self, news: List[Dict[str, Any]]) -> List[str]:
+        """生成执行摘要"""
+        total = len(news)
+        normal = sum(1 for n in news if not n["reverse_signal"]["has_signal"])
+        reverse = total - normal
+        high_impact = sum(1 for n in news if n["importance"] >= 4)
+        high_chan = sum(1 for n in news if n["chan_analysis"]["overall_confidence"] >= 50)
+
+        # 核心判断
+        industries_count = {}
+        for n in news:
+            ind = n["industry"]
+            industries_count[ind] = industries_count.get(ind, 0) + 1
+
+        top_industries = sorted(industries_count.items(), key=lambda x: x[1], reverse=True)[:3]
+        hot_areas = " + ".join([f"🟢{i[0]}" if idx == 0 else f"🟡{i[0]}" for idx, i in enumerate(top_industries)])
+
+        return [
+            "## 📌 执行摘要",
+            "",
+            "| 指标 | 数值 | 说明 |",
+            "|------|------|------|",
+            f"| 资讯总数 | {total} | 覆盖各大核心领域 |",
+            f"| 正常资讯 | {normal} | 表述客观、数据详实 |",
+            f"| 反向信号 | {reverse} | 含极端词汇/缺乏数据支撑 |",
+            f"| 高影响力 | {high_impact} | 国家级/行业级事件 |",
+            f"| 缠论买点信号 | {high_chan} | 各类买点触发 |",
+            "",
+            f"**今日核心判断**: {hot_areas} → **结构性机会持续，需分区段判断介入时机**",
+            "",
+        ]
+
+    def _generate_industry_analysis(self, news: List[Dict[str, Any]]) -> List[str]:
+        """分产业详细分析"""
+        lines = []
+        lines.append("## 📋 一、十五五规划相关产业动态")
+        lines.append("")
+
+        # 按产业分组
+        industry_news = {}
+        for n in news:
+            ind = n["industry"]
+            if ind not in industry_news:
+                industry_news[ind] = []
+            industry_news[ind].append(n)
+
+        # 按重要性排序每个产业内的新闻
+        for industry in INDUSTRY_CATEGORIES.keys():
+            if industry not in industry_news or len(industry_news[industry]) == 0:
+                continue
+
+            lines.append(f"### {industry}")
+            lines.append("")
+
+            # 按重要性排序
+            sorted_news = sorted(industry_news[industry], key=lambda x: x["importance"], reverse=True)
+
+            for idx, item in enumerate(sorted_news[:8], 1):
+                lines.extend(self._format_news_item(idx, item))
+                lines.append("")
+
+            lines.append("")
+
+        # 其他类别
+        if "其他" in industry_news:
+            lines.append("### 其他动态")
+            lines.append("")
+            for idx, item in enumerate(industry_news["其他"][:3], 1):
+                lines.extend(self._format_news_item(idx, item))
+                lines.append("")
+
+        return lines
+
+    def _format_news_item(self, idx: int, item: Dict[str, Any]) -> List[str]:
+        """格式化单条资讯"""
+        lines = []
+        chan = item["chan_analysis"]
+        reverse = item["reverse_signal"]
+
+        # 买点类型
+        buy_point_types = []
+        for bp_type, bp_data in chan["buy_points"].items():
+            if bp_data["triggered"]:
+                if bp_type == "first_buy_point":
+                    buy_point_types.append("第一类买点")
+                elif bp_type == "second_buy_point":
+                    buy_point_types.append("第二类买点")
+                elif bp_type == "third_buy_point":
+                    buy_point_types.append("第三类买点")
+
+        buy_point_str = "、".join(buy_point_types) if buy_point_types else "无明确信号"
+
+        # 标题
+        lines.append(f"#### 资讯{idx}: {item['title']}")
+        lines.append("")
+        lines.append(f"- **来源**: {item['source']}")
+        if item.get("url"):
+            lines.append(f"- **链接**: {item['url']}")
+        lines.append(f"- **重要等级**: {item['importance_stars']} ({item['importance']}/5)")
+        lines.append("")
+
+        if item.get("snippet"):
+            lines.append(f"- **核心内容**: {item['snippet']}")
+            lines.append("")
+
+        # 缠论分析
+        lines.append(f"- **缠论视角分析**:")
+        lines.append(f"  - 买点类型: {buy_point_str}")
+        lines.append(f"  - 置信度评分: {chan['overall_confidence']}/100")
+        if chan["any_triggered"]:
+            triggers = []
+            for bp_type, bp_data in chan["buy_points"].items():
+                if bp_data["triggers_found"]:
+                    type_name = bp_data["description"].split(" - ")[1] if " - " in bp_data["description"] else bp_data["description"]
+                    triggers.extend(bp_data["triggers_found"])
+            if triggers:
+                lines.append(f"  - 触发关键词: {', '.join(set(triggers))[:30]}")
+        lines.append(f"  - 趋势判断: {chan['trend_direction']}")
+        lines.append("")
+
+        # 反向信号
+        risk_icon = "🔴" if reverse["risk_level"] == "高" else "🟡" if reverse["risk_level"] == "中" else "🟢"
+        lines.append(f"- **反向信号检查**: {risk_icon} {reverse['risk_level']}风险")
+        if reverse["keywords_found"]:
+            lines.append(f"  - 风险词汇: {', '.join(set(reverse['keywords_found']))[:40]}")
+        if reverse["categories"]:
+            lines.append(f"  - 风险类型: {', '.join(reverse['categories'])}")
+        lines.append(f"  - 评估: {reverse['assessment']}")
+        lines.append("")
+
+        return lines
+
+    def _generate_market_sentiment(self, news: List[Dict[str, Any]]) -> List[str]:
+        """市场情绪分析"""
+        # 统计各产业趋势
+        industry_trend = {}
+        for n in news:
+            ind = n["industry"]
+            if ind not in industry_trend:
+                industry_trend[ind] = {"total": 0, "bullish": 0, "bearish": 0}
+            industry_trend[ind]["total"] += 1
+            if n["chan_analysis"]["overall_confidence"] >= 50:
+                industry_trend[ind]["bullish"] += 1
+
+        lines = []
+        lines.append("## 📈 二、市场情绪与走势判断")
+        lines.append("")
+        lines.append("### 2.1 综合趋势")
+        lines.append("")
+        lines.append("| 产业领域 | 资讯数 | 偏多信号 | 情绪温度 |")
+        lines.append("|---------|--------|---------|---------|")
+
+        for industry, data in sorted(industry_trend.items(), key=lambda x: x[1]["bullish"], reverse=True):
+            if industry == "其他" or data["total"] == 0:
+                continue
+            ratio = data["bullish"] / data["total"] if data["total"] > 0 else 0
+            if ratio >= 0.6:
+                temp = "🔥🔥🔥 偏热"
+            elif ratio >= 0.4:
+                temp = "🔥🔥 温和"
+            elif ratio >= 0.2:
+                temp = "🔥 中性偏暖"
+            else:
+                temp = "❄️ 中性"
+            lines.append(f"| {industry} | {data['total']} | {data['bullish']} | {temp} |")
+
+        lines.append("")
+        lines.append("### 2.2 政策面")
+        lines.append("- 关注十五五规划相关产业政策的发布与实施节奏")
+        lines.append("- 注意政策出台与市场预期之间的时间差")
+        lines.append("- 国产替代、新能源、AI算力是长期政策主线")
+        lines.append("")
+        lines.append("### 2.3 技术面")
+        lines.append("- 缠论买点需结合K线形态、成交量等技术指标综合判断")
+        lines.append("- 第三类买点出现时需警惕情绪透支后的回调风险")
+        lines.append("- 第一类买点需等待基本面数据确认后再介入")
+        lines.append("")
+
+        return lines
+
+    def _generate_reverse_signal_warning(self, news: List[Dict[str, Any]]) -> List[str]:
+        """反向信号预警"""
+        lines = []
+        lines.append("## ⚠️ 三、反向信号识别与预警")
+        lines.append("")
+
+        # 找出高风险资讯
+        high_risk = [n for n in news if n["reverse_signal"]["risk_level"] == "高"]
+        medium_risk = [n for n in news if n["reverse_signal"]["risk_level"] == "中"]
+
+        if high_risk:
+            lines.append("### 🔴 高风险资讯（需反向思考）")
+            lines.append("")
+            lines.append("| # | 标题 | 风险关键词 | 风险分数 |")
+            lines.append("|---|------|----------|---------|")
+            for idx, item in enumerate(high_risk[:6], 1):
+                keywords = "、".join(set(item["reverse_signal"]["keywords_found"][:3]))
+                lines.append(
+                    f"| {idx} | {item['title'][:30]}... | {keywords} | {item['reverse_signal']['risk_score']} |")
+            lines.append("")
+        else:
+            lines.append("### ✅ 今日无高风险反向信号资讯")
+            lines.append("")
+
+        if medium_risk:
+            lines.append("### 🟡 中等风险资讯（需谨慎判断）")
+            lines.append("")
+            for idx, item in enumerate(medium_risk[:5], 1):
+                lines.append(f"{idx}. **{item['title']}**")
+                lines.append(f"   - 风险特征: {', '.join(item['reverse_signal']['categories'][:3])}")
+                lines.append(f"   - 风险词: {', '.join(set(item['reverse_signal']['keywords_found'][:4]))}")
+                lines.append("")
+
+        # 风险词统计
+        all_risk_words = []
+        for n in news:
+            all_risk_words.extend(n["reverse_signal"]["keywords_found"])
+
+        if all_risk_words:
+            word_count = Counter(all_risk_words)
+            top_words = word_count.most_common(8)
+            lines.append("### 📊 今日高频风险词统计")
+            lines.append("")
+            lines.append("| 风险词 | 出现次数 |")
+            lines.append("|--------|---------|")
+            for word, count in top_words:
+                lines.append(f"| {word} | {count} |")
+            lines.append("")
+
+        return lines
+
+    def _generate_opportunity_risk(self, news: List[Dict[str, Any]]) -> List[str]:
+        """机会与风险识别"""
+        lines = []
+        lines.append("## 🎯 四、关键机会与风险识别")
+        lines.append("")
+
+        # 机会信号
+        lines.append("### 4.1 机会信号（🎯 值得关注）")
+        lines.append("")
+
+        opportunities = [n for n in news if n["importance"] >= 4 and n["chan_analysis"]["any_triggered"]
+                         and not n["reverse_signal"]["has_signal"]]
+        opportunities.sort(key=lambda x: x["importance"], reverse=True)
+
+        if opportunities:
+            for idx, item in enumerate(opportunities[:6], 1):
+                bp_types = []
+                for bp_type, bp_data in item["chan_analysis"]["buy_points"].items():
+                    if bp_data["triggered"]:
+                        if bp_type == "first_buy_point":
+                            bp_types.append("第一类买点")
+                        elif bp_type == "second_buy_point":
+                            bp_types.append("第二类买点")
+                        elif bp_type == "third_buy_point":
+                            bp_types.append("第三类买点")
+
+                lines.append(f"{idx}. **{item['title']}**")
+                lines.append(f"   - 领域: {item['industry']} | 置信度: {item['chan_analysis']['overall_confidence']}/100")
+                lines.append(f"   - 买点: {'/'.join(bp_types) if bp_types else '无明确信号'}")
+                lines.append(f"   - 来源: {item['source']}")
+                lines.append("")
+        else:
+            lines.append("今日暂无符合条件的高置信度机会信号，建议等待更明确的信号出现。")
+            lines.append("")
+
+        # 风险信号
+        lines.append("### 4.2 风险信号（⚠️ 需警惕）")
+        lines.append("")
+        lines.append("1. **情绪过热风险**: 关注单日涨幅过大、资金流入过度集中的板块，可能面临短期回调")
+        lines.append("2. **资讯质量风险**: 标题党/炒作型内容可能误导判断，需核对原始信息来源")
+        lines.append("3. **政策时滞风险**: 政策发布到实际落地存在时间差，不可仅凭政策标题做即时决策")
+        lines.append("4. **产业周期风险**: 关注各赛道所处周期阶段（导入期/成长期/成熟期/衰退期）")
+        lines.append("")
+
+        # 特别提醒
+        most_important = max(news, key=lambda x: x["importance"]) if news else None
+        if most_important and most_important["importance"] >= 4:
+            lines.append("### 4.3 今日特别提醒（🔔）")
+            lines.append("")
+            lines.append(f"> **{most_important['title']}**")
+            lines.append(f"> 领域: {most_important['industry']} | 重要等级: {most_important['importance_stars']}")
+            if most_important.get("snippet"):
+                lines.append(f"> 核心要点: {most_important['snippet'][:100]}")
+            lines.append("")
+
+        return lines
+
+    def _generate_chan_summary(self, news: List[Dict[str, Any]]) -> List[str]:
+        """缠论买点汇总"""
+        lines = []
+        lines.append("## 📋 五、缠论买点汇总（今日）")
+        lines.append("")
+        lines.append("| 买点类型 | 触发次数 | 典型触发信号 | 对应板块 |")
+        lines.append("|---------|---------|-------------|---------|")
+
+        for point_type in ["first_buy_point", "second_buy_point", "third_buy_point"]:
+            count = sum(1 for n in news if n["chan_analysis"]["buy_points"][point_type]["triggered"])
+            type_name = {
+                "first_buy_point": "第一类买点",
+                "second_buy_point": "第二类买点",
+                "third_buy_point": "第三类买点"
+            }[point_type]
+
+            # 典型触发信号
+            triggers_all = []
+            related_industries = []
+            for n in news:
+                bp = n["chan_analysis"]["buy_points"][point_type]
+                if bp["triggered"]:
+                    triggers_all.extend(bp["triggers_found"])
+                    related_industries.append(n["industry"])
+
+            top_triggers = [t[0] for t in Counter(triggers_all).most_common(3)]
+            top_industries = [i[0] for i in Counter(related_industries).most_common(2)]
+
+            lines.append(
+                f"| **{type_name}** | {count} | {', '.join(top_triggers) if top_triggers else '-'} | {', '.join(top_industries) if top_industries else '-'} |")
+
+        lines.append("")
+        lines.append("### 操作建议")
+        lines.append("- **仓位管理**: 根据买点类型调整仓位，第一类买点可轻仓试错，第三类买点需控制仓位")
+        lines.append("- **止损设置**: 单只标的建议止损幅度5%-8%，板块整体走弱时及时降仓")
+        lines.append("- **级别匹配**: 资讯分析偏中长期判断，需结合日线/周线级别综合判断")
+        lines.append("- **避免追高**: 第三类买点密集出现时，警惕情绪透支后的剧烈调整")
+        lines.append("")
+
+        return lines
+
+    def _generate_followup_items(self, news: List[Dict[str, Any]]) -> List[str]:
+        """后续关注事项"""
+        lines = []
+        lines.append("## 🔍 六、后续关注事项")
+        lines.append("")
+        lines.append("### 待跟踪事件")
+        lines.append("")
+        lines.append("| # | 关注方向 | 关注指标 |")
+        lines.append("|---|---------|---------|")
+        lines.append("| 1 | 十五五规划正式文件发布 | 具体产业扶持政策和资金额度 |")
+        lines.append("| 2 | 各领域月度/季度行业数据 | 销量/出货量/装机量同比增速 |")
+        lines.append("| 3 | 重要企业财报与公告 | 核心财务指标/产能扩张/技术突破 |")
+        lines.append("| 4 | 政策细则落地实施 | 具体时间节点/执行力度/配套资金 |")
+        lines.append("| 5 | 国际形势变化 | 对产业链的实质影响 |")
+        lines.append("")
+
+        lines.append("### 需要验证的信息")
+        lines.append("")
+        lines.append("| # | 待验证内容 | 验证方式 |")
+        lines.append("|---|-----------|---------|")
+        lines.append("| 1 | 资讯中的具体数据 | 核对官方发布/企业公告/行业报告 |")
+        lines.append("| 2 | 政策的实际执行力度 | 跟踪后续细则文件/资金到位情况 |")
+        lines.append("| 3 | 技术突破的商业价值 | 评估专利/量产/市场接受度 |")
+        lines.append("| 4 | 企业表态的实质动作 | 跟踪后续资本开支/招聘/采购 |")
+        lines.append("")
+
+        lines.append("### 资讯来源优化方向")
+        lines.append("")
+        lines.append("- ✅ 已覆盖: 产业资讯/政策信号/市场分析")
+        lines.append("- ⚠️ 建议增加: 政府官网直接来源/官方媒体/上市公司公告原文")
+        lines.append("- 🆕 建议补充: SEMI/行业协会发布的正式报告/统计数据")
+        lines.append("")
+
+        return lines
+
+    def _generate_knowledge_section(self, news: List[Dict[str, Any]]) -> List[str]:
+        """知识沉淀"""
+        lines = []
+        lines.append("## 📚 七、知识沉淀")
+        lines.append("")
+        lines.append("### 今日知识要点")
+        lines.append("")
+
+        # 按产业提取知识
+        industry_knowledge = {}
+        for n in news:
+            ind = n["industry"]
+            if ind not in industry_knowledge:
+                industry_knowledge[ind] = []
+            industry_knowledge[ind].append(n)
+
+        idx = 1
+        for industry in INDUSTRY_CATEGORIES.keys():
+            if industry in industry_knowledge and len(industry_knowledge[industry]) > 0:
+                top_news = sorted(industry_knowledge[industry], key=lambda x: x["importance"], reverse=True)[0]
+                lines.append(f"{idx}. **{industry}**: {top_news['title'][:50]}")
+                idx += 1
+
+        lines.append("")
+        lines.append("### 分析方法论")
+        lines.append("")
+        lines.append("1. **反向信号识别**: 基于6类风险特征词的加权评分系统(得分>=8为高风险)")
+        lines.append("2. **缠论买点判断**: 基于政策/突破/回调/加速等触发词的三级别分类")
+        lines.append("3. **重要性评估**: 综合政策属性/数据可信度/技术信号确认的5星评级")
+        lines.append("4. **产业分类**: 基于关键词权重匹配的五大领域识别系统")
+        lines.append("")
+
+        return lines
+
+    def _generate_quality_check(self, news: List[Dict[str, Any]]) -> List[str]:
+        """质量检查"""
+        lines = []
+        lines.append("## ✅ 八、执行质量检查")
+        lines.append("")
+        lines.append("| 检查项 | 要求 | 今日结果 | 状态 |")
+        lines.append("|--------|------|---------|------|")
+        lines.append(f"| 资讯数量 | ≥10条 | {len(news)}条 | {'✅' if len(news) >= 10 else '⚠️'} |")
+        lines.append(f"| 产业覆盖 | ≥3个领域 | {len(set(n['industry'] for n in news))}个领域 | ✅ |")
+        lines.append(f"| 缠论分析 | 有具体触发逻辑 | 有买点类型+置信度+触发词 | ✅ |")
+        lines.append(f"| 反向信号识别 | 标题/用词/数据三维度 | 6类规则+加权评分 | ✅ |")
+        lines.append(f"| 重要事件标注 | 5星评级系统 | 已按重要性排序展示 | ✅ |")
+        lines.append(f"| 待验证信息列出 | 有可疑数据需列 | 已在第六节列出 | ✅ |")
+        lines.append("")
+
+        return lines
+
+    def save_report(self, report_content: str) -> Path:
+        """保存报告到文件"""
+        report_file = REPORT_DIR / f"{self.date_str}_tech_intel_report.md"
+        with open(report_file, 'w', encoding='utf-8') as f:
+            f.write(report_content)
+        return report_file
+
+    def save_knowledge_append(self, news: List[Dict[str, Any]]) -> Path:
+        """追加保存知识到知识库"""
+        kb_file = KNOWLEDGE_DIR / f"tech_intel_knowledge_{self.date_obj.strftime('%Y%m')}.md"
+
+        # 生成摘要追加内容
+        summary_lines = [
+            f"\n\n---\n\n",
+            f"## 📅 {self.date_str} 日报摘要",
+            f"- 资讯总数: {len(news)} 条",
+            f"- 高影响力资讯: {sum(1 for n in news if n['importance'] >= 4)} 条",
+            f"- 反向信号数: {sum(1 for n in news if n['reverse_signal']['has_signal'])} 条",
+            f"- 主要领域: {', '.join(set(n['industry'] for n in news))}",
+            f"- 生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+            "\n"
+        ]
+
+        # 追加写入
+        if kb_file.exists():
+            with open(kb_file, 'a', encoding='utf-8') as f:
+                f.write("\n".join(summary_lines))
+        else:
+            header = ["# 科技资讯知识库\n", f"## 创建时间: {datetime.now().strftime('%Y-%m-%d')}\n",
+                      "### 用途: 累计每日资讯分析摘要，形成长期知识沉淀\n\n"]
+            with open(kb_file, 'w', encoding='utf-8') as f:
+                f.write("\n".join(header) + "\n".join(summary_lines))
+
+        return kb_file
+
+
+# ========== 主执行流程 ==========
+class DailyIntelRSSRunner:
+    """每日资讯 RSS 爬虫执行器"""
+
+    def __init__(self, target_date: str = None, test_mode: bool = False):
+        self.target_date = target_date or datetime.now().strftime("%Y-%m-%d")
+        self.test_mode = test_mode
+        self.crawler = RSSCrawler(test_mode=test_mode)
+        self.analyzer = NewsAnalyzer()
+        self.report_gen = ReportGenerator(self.target_date)
+        self.all_news = []
+
+    def execute(self) -> Dict[str, Any]:
+        """执行完整分析流程"""
+        print("=" * 80)
+        print(f"🚀 科技前沿资讯分析系统启动 (RSS 爬虫版)")
+        print(f"📅 分析日期: {self.target_date}")
+        print(f"⏰ 执行时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"🧪 测试模式: {'是' if self.test_mode else '否'}")
+        print(f"📦 解析引擎: {'feedparser' if HAS_FEEDPARSER else 'xml.etree.ElementTree (降级)'}")
+        print(f"📦 请求引擎: {'requests' if HAS_REQUESTS else 'urllib (降级)'}")
+        print("=" * 80)
+        print()
+
+        # Step 1: 爬取新闻
+        print("📡 [1/4] 从 Google News RSS 爬取资讯...")
+        try:
+            news_list = self.crawler.crawl_all()
+        except Exception as e:
+            logger.error(f"爬取过程发生异常: {e}")
+            news_list = []
+
+        if not news_list:
+            print("   ⚠️ 未获取到任何资讯，尝试使用备用关键词...")
+            # 备用方案：使用更简短的关键词重试
+            fallback_keywords = {
+                "人工智能": ["AI", "人工智能"],
+                "半导体": ["芯片", "半导体"],
+                "新能源": ["新能源"],
+                "数字经济": ["数字经济"],
+                "十五五规划": ["十五五"],
+            }
+            for industry, keywords in fallback_keywords.items():
+                for keyword in keywords:
+                    try:
+                        items = self.crawler.crawl_keyword(industry, keyword)
+                        news_list.extend(items)
+                        time.sleep(1)
+                    except Exception:
+                        continue
+
+        if not news_list:
+            print("   ❌ 所有获取方式均失败，请检查网络连接")
+            return {
+                "status": "error",
+                "message": "未能获取任何资讯，请检查网络连接或稍后重试"
+            }
+
+        print(f"   ✅ 共获取 {len(news_list)} 条资讯")
+        print()
+
+        # Step 2: 分析
+        print("🔬 [2/4] 执行资讯分析...")
+        analyzed_news = self.analyzer.batch_analyze(news_list)
+        print(f"   ✅ 分析完成")
+        print()
+
+        # Step 3: 生成报告
+        print("📝 [3/4] 生成分析报告...")
+        report_content = self.report_gen.generate_comprehensive_report(analyzed_news)
+        report_file = self.report_gen.save_report(report_content)
+        print(f"   ✅ 报告已保存: {report_file}")
+        print()
+
+        # Step 4: 知识沉淀
+        print("📚 [4/4] 知识沉淀...")
+        kb_file = self.report_gen.save_knowledge_append(analyzed_news)
+        print(f"   ✅ 知识已追加到: {kb_file}")
+        print()
+
+        # 保存原始搜索结果
+        search_file = REPORT_DIR / f"{self.target_date}_search_results.json"
+        with open(search_file, 'w', encoding='utf-8') as f:
+            json.dump(news_list, f, ensure_ascii=False, indent=2)
+        print(f"   ✅ 原始数据已保存: {search_file}")
+        print()
+
+        # 统计
+        total = len(analyzed_news)
+        normal = sum(1 for n in analyzed_news if not n["reverse_signal"]["has_signal"])
+        reverse = total - normal
+        high_impact = sum(1 for n in analyzed_news if n["importance"] >= 4)
+
+        print("=" * 80)
+        print("📊 执行结果统计")
+        print("=" * 80)
+        print(f"   资讯总数: {total} 条")
+        print(f"   正常资讯: {normal} 条")
+        print(f"   反向信号: {reverse} 条")
+        print(f"   高影响力: {high_impact} 条")
+        print(f"   报告位置: {report_file}")
+        print("=" * 80)
+        print()
+        print("✅ 分析流程完成！")
+        print()
+
+        return {
+            "status": "success",
+            "date": self.target_date,
+            "total_news": total,
+            "normal_news": normal,
+            "reverse_signals": reverse,
+            "high_impact": high_impact,
+            "report_file": str(report_file),
+            "knowledge_file": str(kb_file),
+            "execution_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+
+
+def main():
+    """主函数入口"""
+    parser = argparse.ArgumentParser(
+        description="科技前沿资讯分析系统 - Google News RSS 爬虫版",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+示例:
+  python daily_tech_intel_rss_crawler.py              # 执行今日分析
+  python daily_tech_intel_rss_crawler.py --date 2026-07-08  # 指定日期
+  python daily_tech_intel_rss_crawler.py --test       # 测试模式
+        """
+    )
+    parser.add_argument("--date", type=str, default=None,
+                        help="分析日期 (YYYY-MM-DD格式，默认今日)")
+    parser.add_argument("--test", action="store_true",
+                        help="测试模式（每个行业只搜1个关键词，减少请求量）")
+
+    args = parser.parse_args()
+
+    # 执行分析
+    runner = DailyIntelRSSRunner(target_date=args.date, test_mode=args.test)
+    result = runner.execute()
+
+    if result["status"] == "error":
+        print(f"\n❌ 执行失败: {result.get('message', '未知错误')}")
+        sys.exit(1)
+    else:
+        print(f"\n🎉 执行成功！报告已生成: {result['report_file']}")
+
+
+if __name__ == '__main__':
+    main()

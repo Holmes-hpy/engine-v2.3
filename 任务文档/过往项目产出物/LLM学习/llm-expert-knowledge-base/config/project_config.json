@@ -1,0 +1,85 @@
+{
+    "project": {
+        "name": "LLM Expert Knowledge Base",
+        "version": "1.0.0",
+        "description": "一个自主进化的大模型专家知识库系统，能够自动采集、提炼、审计和优化知识",
+        "author": "LLM Expert Team",
+        "created_at": "2026-05-20",
+        "last_updated": "2026-07-07"
+    },
+    "directories": {
+        "inbox": "01_inbox",
+        "raw": "02_raw",
+        "ai_wiki": "03_ai_wiki",
+        "permanent": "04_permanent",
+        "papers": "05_papers",
+        "tools": "06_tools",
+        "case_studies": "07_case_studies",
+        "audit": "08_audit",
+        "archive": "99_archive"
+    },
+    "agents": {
+        "llm_info_radar": {
+            "name": "大模型信息雷达",
+            "description": "实时采集大模型领域最新技术动态",
+            "path": "06_tools/llm-info-radar",
+            "schedule": "daily"
+        },
+        "knowledge_distiller": {
+            "name": "知识蒸馏器",
+            "description": "将原始信息转化为结构化知识文档",
+            "path": "06_tools/knowledge-distiller",
+            "schedule": "daily"
+        },
+        "paper_reader": {
+            "name": "论文精读师",
+            "description": "深度阅读和分析学术论文",
+            "path": "06_tools/paper-reader",
+            "schedule": "weekly"
+        },
+        "feedback_learner": {
+            "name": "反馈学习器",
+            "description": "从用户交互中提取反馈驱动改进",
+            "path": "06_tools/feedback-learner",
+            "schedule": "on_demand"
+        },
+        "knowledge_auditor": {
+            "name": "知识审计师",
+            "description": "审核知识质量确保可靠性",
+            "path": "06_tools/knowledge-auditor",
+            "schedule": "weekly"
+        },
+        "learning_optimizer": {
+            "name": "学习总监",
+            "description": "制定学习计划驱动系统进化",
+            "path": "06_tools/learning-optimizer",
+            "schedule": "weekly"
+        },
+        "self_driven_agent": {
+            "name": "自主学习智能体",
+            "description": "自主规划执行学习任务",
+            "path": "06_tools/self-driven-agent",
+            "schedule": "on_demand"
+        }
+    },
+    "knowledge_categories": {
+        "基础理论": ["数学基础", "理论框架", "算法原理"],
+        "模型架构": ["Transformer", "GPT", "BERT", "LLaMA", "模型结构"],
+        "训练技术": ["预训练", "微调", "RLHF", "LoRA", "训练方法"],
+        "推理优化": ["量化", "蒸馏", "剪枝", "推理加速"],
+        "应用开发": ["RAG", "Agent", "多模态", "工具应用"],
+        "部署工程": ["部署方案", "容器化", "云服务", "工程实践"],
+        "行业动态": ["技术趋势", "市场分析", "产业报告"]
+    },
+    "quality_thresholds": {
+        "excellent": 85,
+        "pass": 70,
+        "needs_correction": 50,
+        "fail": 0
+    },
+    "logging": {
+        "level": "INFO",
+        "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        "log_dir": "logs"
+    }
+}

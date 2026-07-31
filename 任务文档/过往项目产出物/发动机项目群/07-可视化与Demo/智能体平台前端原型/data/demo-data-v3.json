@@ -1,0 +1,81 @@
+{
+  "version": "3.0",
+  "global": {
+    "refresh_interval": 5,
+    "max_concurrent": 10,
+    "default_strategy": "优先级",
+    "token_alert_threshold": 100000,
+    "auto_simulate": true,
+    "simulation_speed": 1
+  },
+  "leaders": [
+    {
+      "id": "L-3001",
+      "name": "智能风控总监",
+      "priority": "P0",
+      "status": "running",
+      "task": "Q4信贷资产质量压力测试",
+      "progress": 52,
+      "token": 685200,
+      "token_rate": 5500,
+      "elapsed": 38.6,
+      "workers": [
+        { "id": "W-3001-1", "name": "宏观经济分析师", "status": "completed", "progress": 100, "token": 42800, "token_rate": 0, "elapsed": 5.1, "trace_id": "f1e2d3c4b5a6", "description": "完成GDP/CPI/PMI三维度宏观情景建模，基准情景GDP增速4.8%" },
+        { "id": "W-3001-2", "name": "违约概率模型师", "status": "running", "progress": 88, "token": 285600, "token_rate": 5500, "elapsed": 19.3, "trace_id": "e2d3c4b5a6f7", "description": "Logistic回归模型训练中，当前AUC=0.847，特征重要性TOP3已输出" },
+        { "id": "W-3001-3", "name": "押品估值师", "status": "running", "progress": 35, "token": 192000, "token_rate": 3200, "elapsed": 11.2, "trace_id": "d3c4b5a6f7e8", "description": "评估1247套抵押物，已完成412套，整体贬值率8.3%" },
+        { "id": "W-3001-4", "name": "压力情景推演师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "c4b5a6f7e8d9", "queue_position": 1, "description": "等待违约概率模型与押品估值完成后启动" },
+        { "id": "W-3001-5", "name": "监管报表师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "b5a6f7e8d9c0", "queue_position": 2, "description": "等待压力测试结果，生成银保监报送格式报表" }
+      ]
+    },
+    {
+      "id": "L-3002",
+      "name": "数字营销总监",
+      "priority": "P1",
+      "status": "running",
+      "task": "双11全域营销策略智能生成",
+      "progress": 22,
+      "token": 156000,
+      "token_rate": 1200,
+      "elapsed": 12.8,
+      "workers": [
+        { "id": "W-3002-1", "name": "用户画像师", "status": "completed", "progress": 100, "token": 52300, "token_rate": 0, "elapsed": 4.5, "trace_id": "a1b2c3d4e5f0", "description": "完成8大人群聚类，高价值用户占比12.6%" },
+        { "id": "W-3002-2", "name": "创意文案师", "status": "running", "progress": 48, "token": 78500, "token_rate": 1200, "elapsed": 6.2, "trace_id": "b2c3d4e5f0a1", "description": "已生成32套文案方案，当前优化TOP5的CTR预估" },
+        { "id": "W-3002-3", "name": "预算分配师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "c3d4e5f0a1b2", "queue_position": 1, "description": "等待文案方案确定后做渠道预算切分" },
+        { "id": "W-3002-4", "name": "AB测试设计师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "d4e5f0a1b2c3", "queue_position": 2, "description": "等待预算分配方案后设计实验组" }
+      ]
+    },
+    {
+      "id": "L-3000",
+      "name": "合规审查总监",
+      "priority": "P2",
+      "status": "completed",
+      "task": "新产品上线前合规全面审查",
+      "progress": 100,
+      "token": 245000,
+      "token_rate": 0,
+      "elapsed": 35.2,
+      "workers": [
+        { "id": "W-3000-1", "name": "法规检索员", "status": "completed", "progress": 100, "token": 68500, "token_rate": 0, "elapsed": 8.6, "trace_id": "11aa22bb33cc", "description": "检索2025-2026年相关法规47部，标注高风险条款12条" },
+        { "id": "W-3000-2", "name": "合同审查师", "status": "completed", "progress": 100, "token": 112800, "token_rate": 0, "elapsed": 16.5, "trace_id": "22bb33cc44dd", "description": "审查23份合同模板，发现3处合规漏洞已标注修改建议" },
+        { "id": "W-3000-3", "name": "数据合规师", "status": "completed", "progress": 100, "token": 63700, "token_rate": 0, "elapsed": 10.1, "trace_id": "33cc44dd55ee", "description": "个人信息处理合规评分92分，2项待整改：用户授权链路、数据出境申报" }
+      ]
+    }
+  ],
+  "analysis": {
+    "title": "执行分析报告：合规审查总监 - 新产品上线前合规全面审查",
+    "status": "completed",
+    "generated_at": "2026-07-29 17:15:32",
+    "analysis_duration": 8.3,
+    "summary": {
+      "efficiency": "任务总耗时 35.2s，优于合规审查类任务均值（45s）。合同审查师耗时占比 47%，为主要耗时环节。",
+      "token_usage": "总计消耗 245.0K tokens。合同审查师消耗 112.8K（占比 46%），因需逐条比对23份合同条款导致 Token 偏高。",
+      "consistency": "三个 Worker 结论一致：产品可上线，但需完成2项数据合规整改后方可正式发布。",
+      "anomalies": "法规检索员在检索过程中遭遇知识库超时1次，自动切换备用索引后成功，未影响检索完整性。"
+    },
+    "recommendations": [
+      { "type": "warning", "title": "合规阻断项", "content": "数据合规师识别出2项待整改项（用户授权链路缺失、数据出境未申报），建议在产品发布前72小时内完成整改并通过复检。" },
+      { "type": "info", "title": "审查效率优化", "content": "合同审查可采用模板比对+差异提取策略，先比对待审查合同与标准模板的差异部分，预计可减少40% Token消耗。" },
+      { "type": "info", "title": "知识库稳定性", "content": "法规知识库超时问题建议增加本地缓存层，对高频检索的法规条文做预加载，降低超时概率。" }
+    ]
+  }
+}

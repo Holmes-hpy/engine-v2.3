@@ -1,0 +1,37 @@
+
+{
+  "timestamp": "2026-05-27T10:30:00",
+  "conversation_id": "conv_001",
+  "conversation_data": {
+    "type": "技术咨询类",
+    "key_info": {
+      "topic": "大语言模型",
+      "concept": "Transformer架构"
+    }
+  },
+  "quality_scores": {
+    "overall_score": 85.5,
+    "dimensions": {
+      "准确性": 90.0,
+      "完整性": 80.0,
+      "相关性": 95.0,
+      "清晰度": 85.0,
+      "实用性": 80.0,
+      "时效性": 88.0
+    }
+  },
+  "feedback_analysis": {
+    "type": "positive",
+    "sentiment": "good"
+  },
+  "knowledge_gaps": [
+    {
+      "type": "不完整或不准确",
+      "description": "Transformer的注意力机制细节"
+    }
+  ],
+  "optimization": {
+    "suggestions": [],
+    "preference_update": false
+  }
+}

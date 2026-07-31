@@ -1,0 +1,165 @@
+{
+  "audit_time": "2026-06-28 02:01:39",
+  "mode": "full",
+  "total_documents": 1806,
+  "categories": {
+    "优秀": 38,
+    "合格": 463,
+    "待修正": 1304,
+    "不合格": 1
+  },
+  "average_score": 69.85,
+  "score_distribution": {
+    "90-100": 12,
+    "85-89": 26,
+    "80-84": 18,
+    "70-79": 445,
+    "60-69": 1304,
+    "50-59": 0,
+    "< 50": 1
+  },
+  "dimension_averages": {
+    "准确性": 70.66,
+    "完整性": 63.32,
+    "一致性": 91.36,
+    "时效性": 75.77,
+    "相关性": 41.92,
+    "可理解性": 59.07
+  },
+  "directory_summary": [
+    {
+      "name": "03_ai_wiki",
+      "count": 6,
+      "avg_score": 89.94
+    },
+    {
+      "name": "01_inbox",
+      "count": 18,
+      "avg_score": 88.43
+    },
+    {
+      "name": "04_permanent",
+      "count": 355,
+      "avg_score": 78.42
+    },
+    {
+      "name": "02_raw",
+      "count": 1425,
+      "avg_score": 67.42
+    },
+    {
+      "name": "06_tools/03_ai_wiki",
+      "count": 1,
+      "avg_score": 63.2
+    },
+    {
+      "name": "05_papers",
+      "count": 1,
+      "avg_score": 46.65
+    }
+  ],
+  "top_documents": [
+    {
+      "file": "04_permanent/应用开发/知识图谱构建技术详解.md",
+      "score": 91.3,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-21-每日信息简报.md",
+      "score": 91.2,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-25-每日信息简报.md",
+      "score": 91.15,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-27-每日信息简报.md",
+      "score": 91.05,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-26-每日信息简报.md",
+      "score": 91.0,
+      "category": "优秀"
+    },
+    {
+      "file": "03_ai_wiki/2026-06-22-知识蒸馏.md",
+      "score": 90.9,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-22-每日信息简报.md",
+      "score": 90.7,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-23-每日信息简报.md",
+      "score": 90.7,
+      "category": "优秀"
+    },
+    {
+      "file": "03_ai_wiki/2026-06-24-知识蒸馏.md",
+      "score": 90.2,
+      "category": "优秀"
+    },
+    {
+      "file": "03_ai_wiki/2026-06-25-知识蒸馏.md",
+      "score": 90.2,
+      "category": "优秀"
+    }
+  ],
+  "bottom_documents": [
+    {
+      "file": "02_raw/已处理-2026-05-23-115-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 62.7,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-25-001-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 62.7,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-25-071-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 62.7,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-25-086-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 62.7,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-25-101-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 62.7,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-26-086-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 62.7,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-26-101-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 62.7,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-27-101-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 62.7,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-27-115-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 62.7,
+      "category": "待修正"
+    },
+    {
+      "file": "05_papers/test_from_cmd.md",
+      "score": 46.65,
+      "category": "不合格"
+    }
+  ]
+}

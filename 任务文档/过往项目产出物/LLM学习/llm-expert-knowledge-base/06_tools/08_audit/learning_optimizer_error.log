@@ -1,0 +1,24 @@
+2026-05-29 10:00:40 - 执行失败: No module named 'trend_analysis'
+Traceback (most recent call last):
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/learning-optimizer/src/main.py", line 45, in main
+    result = run_full_optimization(config_path, args.verbose)
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/learning-optimizer/src/main.py", line 85, in run_full_optimization
+    from trend_analysis import TrendAnalyzer
+ModuleNotFoundError: No module named 'trend_analysis'
+
+2026-05-29 10:01:47 - 执行失败: No module named 'plan_generator'
+Traceback (most recent call last):
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/learning-optimizer/src/main.py", line 45, in main
+    result = run_full_optimization(config_path, args.verbose)
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/learning-optimizer/src/main.py", line 132, in run_full_optimization
+    report_result = generate_learning_plan_report(
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/learning-optimizer/src/main.py", line 372, in generate_learning_plan_report
+    from plan_generator import LearningPlanGenerator
+ModuleNotFoundError: No module named 'plan_generator'
+
+2026-07-07 18:00:00 - 执行失败: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/learning-optimizer/src/main.py", line 64, in main
+    print(json.dumps(result["details"], ensure_ascii=False, indent=2))
+BrokenPipeError: [Errno 32] Broken pipe
+

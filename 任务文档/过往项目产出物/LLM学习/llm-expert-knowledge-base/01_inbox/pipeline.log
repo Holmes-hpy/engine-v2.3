@@ -1,0 +1,1877 @@
+知识质量审计执行日志
+时间: 2026-07-26 02:33:03
+模式: 全面审计
+
+[统计信息]
+- 扫描文档数: 1860
+- 分析成功: 1860
+- 处理错误: 0
+- 执行耗时: 934.3秒
+
+[分类统计]
+- 优秀: 81 篇
+- 合格: 456 篇
+- 待修正: 1322 篇
+- 不合格: 1 篇
+
+[文档处理记录]
+[优秀]  90.60 - 03_ai_wiki/2026-06-22-知识蒸馏.md
+[优秀]  88.75 - 03_ai_wiki/2026-06-23-知识蒸馏.md
+[优秀]  90.05 - 03_ai_wiki/2026-06-24-知识蒸馏.md
+[优秀]  90.20 - 03_ai_wiki/2026-06-25-知识蒸馏.md
+[优秀]  89.35 - 03_ai_wiki/2026-06-26-知识蒸馏.md
+[优秀]  89.35 - 03_ai_wiki/2026-06-27-知识蒸馏.md
+[优秀]  89.35 - 03_ai_wiki/2026-06-28-知识蒸馏.md
+[优秀]  89.50 - 03_ai_wiki/2026-06-29-知识蒸馏.md
+[优秀]  88.90 - 03_ai_wiki/2026-06-30-知识蒸馏.md
+[优秀]  90.20 - 03_ai_wiki/2026-07-01-知识蒸馏.md
+[优秀]  90.20 - 03_ai_wiki/2026-07-02-知识蒸馏.md
+[优秀]  90.20 - 03_ai_wiki/2026-07-03-知识蒸馏.md
+[优秀]  90.20 - 03_ai_wiki/2026-07-04-知识蒸馏.md
+[优秀]  90.20 - 03_ai_wiki/2026-07-05-知识蒸馏.md
+[优秀]  90.20 - 03_ai_wiki/2026-07-06-知识蒸馏.md
+[优秀]  90.00 - 03_ai_wiki/2026-07-07-知识蒸馏.md
+[优秀]  89.20 - 03_ai_wiki/2026-07-08-知识蒸馏.md
+[优秀]  90.90 - 03_ai_wiki/2026-07-09-知识蒸馏.md
+[优秀]  88.40 - 03_ai_wiki/2026-07-10-知识蒸馏.md
+[优秀]  88.40 - 03_ai_wiki/2026-07-11-知识蒸馏.md
+[优秀]  88.40 - 03_ai_wiki/2026-07-12-知识蒸馏.md
+[优秀]  88.40 - 03_ai_wiki/2026-07-13-知识蒸馏.md
+[优秀]  90.20 - 03_ai_wiki/2026-07-14-知识蒸馏.md
+[优秀]  90.75 - 03_ai_wiki/2026-07-15-知识蒸馏.md
+[优秀]  90.85 - 03_ai_wiki/2026-07-16-知识蒸馏.md
+[优秀]  89.60 - 03_ai_wiki/2026-07-17-知识蒸馏.md
+[优秀]  91.15 - 03_ai_wiki/2026-07-18-知识蒸馏.md
+[优秀]  89.80 - 03_ai_wiki/2026-07-20-知识蒸馏.md
+[优秀]  90.90 - 03_ai_wiki/2026-07-21-知识蒸馏.md
+[优秀]  89.00 - 03_ai_wiki/2026-07-22-知识蒸馏.md
+[优秀]  90.00 - 03_ai_wiki/2026-07-23-知识蒸馏.md
+[优秀]  90.50 - 03_ai_wiki/2026-07-24-知识蒸馏.md
+[优秀]  89.50 - 03_ai_wiki/2026-07-25-知识蒸馏.md
+[优秀]  87.85 - 04_permanent/前沿方向/多模态学习技术详解.md
+[合格]  84.80 - 04_permanent/基础理论/2026-05-27-知识蒸馏报告.md
+[合格]  83.65 - 04_permanent/基础理论/2026-06-03-知识蒸馏报告.md
+[合格]  81.90 - 04_permanent/基础理论/Transformer架构.md
+[合格]  77.45 - 04_permanent/基础理论/偏好对齐.md
+[合格]  82.40 - 04_permanent/基础理论/注意力机制.md
+[优秀]  90.05 - 04_permanent/应用开发/A2A协议实现详解.md
+[优秀]  86.35 - 04_permanent/应用开发/Graph RAG技术详解.md
+[优秀]  86.20 - 04_permanent/应用开发/LLM企业级部署方案指南.md
+[合格]  84.35 - 04_permanent/应用开发/LangGraph实践应用详解.md
+[优秀]  86.30 - 04_permanent/应用开发/MCP协议实现详解.md
+[合格]  83.80 - 04_permanent/应用开发/多Agent系统实战指南.md
+[优秀]  85.55 - 04_permanent/应用开发/大模型安全与伦理指南.md
+[优秀]  89.80 - 04_permanent/应用开发/知识图谱构建技术详解.md
+[优秀]  85.05 - 04_permanent/模型架构/2026-05-25-知识蒸馏报告.md
+[优秀]  85.50 - 04_permanent/模型架构/2026-05-26-知识蒸馏报告.md
+[合格]  84.65 - 04_permanent/模型架构/2026-05-28-知识蒸馏报告.md
+[合格]  80.15 - 04_permanent/模型架构/2026-05-29-知识蒸馏报告.md
+[合格]  83.60 - 04_permanent/模型架构/Agentic RAG技术详解.md
+[合格]  83.05 - 04_permanent/模型架构/Agents技术.md
+[合格]  84.30 - 04_permanent/模型架构/RAG技术.md
+[优秀]  85.70 - 04_permanent/模型架构/主要大模型介绍.md
+[合格]  84.25 - 04_permanent/模型架构/微调技术.md
+[合格]  84.65 - 04_permanent/模型架构/提示工程.md
+[合格]  82.30 - 04_permanent/模型架构/量化技术.md
+[合格]  80.60 - 04_permanent/模型训练/分布式训练实践指南.md
+[合格]  78.50 - 04_permanent/训练技术/1400亿Agent入场，“流量”这条护城河要塌了.md
+[合格]  77.05 - 04_permanent/训练技术/5秒完成3D场景编辑，北大&港中文&上海AI Lab搞出VGGT-Edit，120倍加速太炸了.md
+[合格]  76.55 - 04_permanent/训练技术/666ghj_MiroFish.md
+[合格]  77.00 - 04_permanent/训练技术/A Dual-Path Architecture for Scaling Compute and C.md
+[合格]  77.70 - 04_permanent/训练技术/A graph-based analysis of semantic types and coerc.md
+[合格]  76.60 - 04_permanent/训练技术/AI Adoption.md
+[合格]  76.60 - 04_permanent/训练技术/AI-Assisted Systematization for Evaluating GenAI S.md
+[合格]  77.00 - 04_permanent/训练技术/ARES_ Automated Rubric Synthesis for Scalable LLM .md
+[合格]  76.10 - 04_permanent/训练技术/Activation Steering for Synthetic Data Generation_.md
+[合格]  76.70 - 04_permanent/训练技术/Active Continual Learning with Metaplastic Binary .md
+[合格]  76.70 - 04_permanent/训练技术/Active Query Synthesis for Preference Learning.md
+[合格]  77.70 - 04_permanent/训练技术/Adaptive Targeted Dynamic Chunking for Tokenizatio.md
+[合格]  76.45 - 04_permanent/训练技术/Advancing content provenance for a safer, more tra.md
+[合格]  76.70 - 04_permanent/训练技术/AdvantageFlow_ Advantage-Weighted Least Squares fo.md
+[合格]  76.10 - 04_permanent/训练技术/Affective Music Recommendation_ A Rollout-Based Wo.md
+[合格]  79.05 - 04_permanent/训练技术/Agent Explorative Policy Optimization for Multimod.md
+[合格]  79.50 - 04_permanent/训练技术/AlignmentMay 8, 2026Teaching Claude whyNew researc.md
+[合格]  77.35 - 04_permanent/训练技术/Alishahryar1_free-claude-code.md
+[合格]  76.55 - 04_permanent/训练技术/AlphaGoMastering the game of Go.md
+[合格]  76.45 - 04_permanent/训练技术/An OpenAI model has disproved a central conjecture.md
+[合格]  78.05 - 04_permanent/训练技术/Anticipate and Learn_ Unleashing Idle-Time Compute.md
+[合格]  76.70 - 04_permanent/训练技术/Applications of temporal graph learning for predic.md
+[合格]  77.70 - 04_permanent/训练技术/Approaching I_O-optimality for Approximate Attenti.md
+[合格]  76.70 - 04_permanent/训练技术/Articulatory strategy as a source of variation in .md
+[合格]  77.50 - 04_permanent/训练技术/Asking For An Old Friend_ Diagnosing and Mitigatin.md
+[合格]  77.70 - 04_permanent/训练技术/Augmenting Attention with Exponentially Decaying M.md
+[合格]  78.75 - 04_permanent/训练技术/Automated Benchmark Auditing for AI Agents and Lar.md
+[合格]  76.90 - 04_permanent/训练技术/BASIS_ Batchwise Advantage Estimation from Single-.md
+[合格]  76.70 - 04_permanent/训练技术/BIRDNet_ Mining and Encoding Boolean Implication K.md
+[合格]  79.35 - 04_permanent/训练技术/Benchmarking Google Embeddings 2 against Open-Sour.md
+[合格]  76.10 - 04_permanent/训练技术/Beyond Binary_ Speech Representations Across the C.md
+[合格]  77.60 - 04_permanent/训练技术/Bucketsnew.md
+[合格]  75.95 - 04_permanent/训练技术/Building a safe, effective sandbox to enable Codex.md
+[合格]  77.45 - 04_permanent/训练技术/Building self-improving tax agents with CodexEngin.md
+[合格]  76.70 - 04_permanent/训练技术/CCS_ Clinical Consensus Selection for Radiology Re.md
+[合格]  76.70 - 04_permanent/训练技术/COMPOSE_ Composing Future Theorems from Citations .md
+[合格]  78.35 - 04_permanent/训练技术/Can LLMs Time Travel_ Enhancing Temporal Consisten.md
+[合格]  77.50 - 04_permanent/训练技术/Can LLMs Use Linguistic Uncertainty Markers to Rel.md
+[合格]  76.70 - 04_permanent/训练技术/Can Large Language Models Handle Discourse Particl.md
+[合格]  76.70 - 04_permanent/训练技术/Causal Risk Minimization for High-Dimensional Trea.md
+[合格]  76.40 - 04_permanent/训练技术/Causal methods for LLM development and evaluation.md
+[合格]  77.30 - 04_permanent/训练技术/ChartFI_ Benchmarking Faithfulness and Insightfuln.md
+[合格]  76.70 - 04_permanent/训练技术/Chartographer_ Counterfactual Chart Generation for.md
+[合格]  77.80 - 04_permanent/训练技术/Claude 通过率不到4%，SaaS-Bench撕碎了Computer-Use的「全自动办公」幻想.md
+[合格]  77.95 - 04_permanent/训练技术/Codex自我蒸馏玩法火了！OpenAI员工亲授：复制粘贴就能让AI消灭重复劳动.md
+[合格]  76.10 - 04_permanent/训练技术/Collections.md
+[合格]  77.90 - 04_permanent/训练技术/CommunityFact_ A Dynamic, Multilingual, Multi-doma.md
+[合格]  77.85 - 04_permanent/训练技术/Complete-muE_ Optimal Hyperparameter Transfer and .md
+[合格]  76.70 - 04_permanent/训练技术/Conditional KRR_ Injecting Unpenalized Features in.md
+[合格]  76.70 - 04_permanent/训练技术/Confidence and Calibration of Activation Oracles f.md
+[合格]  76.10 - 04_permanent/训练技术/Contrast to Detect_ Dynamic Graph Contrastive Regu.md
+[合格]  76.70 - 04_permanent/训练技术/CorPipe at CRAC 2026_ Empty Nodes and Cross-Lingua.md
+[合格]  77.40 - 04_permanent/训练技术/Creative Quality Alignment_ Expert Tacit Knowledge.md
+[合格]  76.55 - 04_permanent/训练技术/D4Vinci_Scrapling.md
+[合格]  76.70 - 04_permanent/训练技术/DEI_ Diversity in Evolutionary Inference for Quali.md
+[合格]  76.60 - 04_permanent/训练技术/Daily Papers.md
+[合格]  76.55 - 04_permanent/训练技术/Datalux_Osintgram.md
+[合格]  76.70 - 04_permanent/训练技术/Debiased Negative Mining Improves Out-of-distribut.md
+[合格]  76.70 - 04_permanent/训练技术/Deep-layer limit and stability analysis of the bas.md
+[合格]  78.45 - 04_permanent/训练技术/DeepSeek V4还能更省！新工具缓存命中率高达99.82%，2折稳定到手.md
+[合格]  77.70 - 04_permanent/训练技术/DeepSeek陈德里开发自动研究Skill，写一篇论文人类只动脑2小时.md
+[合格]  77.40 - 04_permanent/训练技术/Deployment-complete benchmarking.md
+[合格]  76.70 - 04_permanent/训练技术/Detectability in Diversity_ Improved Canary Crafti.md
+[合格]  77.30 - 04_permanent/训练技术/Developers.md
+[合格]  76.10 - 04_permanent/训练技术/Dial HEALTHDIAL for Advice_ A Multilingual and Mul.md
+[合格]  77.30 - 04_permanent/训练技术/Digitally enriching a screening population for pan.md
+[合格]  78.05 - 04_permanent/训练技术/DirectorBench_ Diagnosing Long-Form Video Generati.md
+[合格]  76.70 - 04_permanent/训练技术/Do Language Models Track Entities Across State Cha.md
+[合格]  78.95 - 04_permanent/训练技术/Do Proactive Agents Really Need an LLM to Decide W.md
+[合格]  76.70 - 04_permanent/训练技术/Does Continued Pretraining on a Learner Corpus Imp.md
+[合格]  79.45 - 04_permanent/训练技术/ENPMR-Bench_ Benchmarking Proactive Memory Retriev.md
+[合格]  76.55 - 04_permanent/训练技术/Economic Futures.md
+[合格]  76.55 - 04_permanent/训练技术/Economic Research.md
+[合格]  77.00 - 04_permanent/训练技术/Efficient Test-Time Finetuning of LLMs via Convex .md
+[合格]  76.60 - 04_permanent/训练技术/Engineering.md
+[合格]  77.25 - 04_permanent/训练技术/Enterprise Support.md
+[合格]  76.10 - 04_permanent/训练技术/Enterprise.md
+[合格]  76.70 - 04_permanent/训练技术/Entrywise Error Bounds for Spectral Ranking with S.md
+[合格]  76.70 - 04_permanent/训练技术/EpiCurveBench_ Evaluating VLMs on Epidemic Curve D.md
+[合格]  77.20 - 04_permanent/训练技术/EquiSumm _ A Gender Bias-Aware Framework for Inclu.md
+[合格]  76.70 - 04_permanent/训练技术/ExDBSCAN_ Explaining DBSCAN with Counterfactual Re.md
+[合格]  76.70 - 04_permanent/训练技术/Explainable Comparison of Feature-Based and Deep L.md
+[合格]  76.10 - 04_permanent/训练技术/Explore models.md
+[合格]  76.55 - 04_permanent/训练技术/Explore research.md
+[合格]  76.10 - 04_permanent/训练技术/Expressive Power of Floating-Point Neural Networks.md
+[合格]  77.10 - 04_permanent/训练技术/Extrapolative Weight Averaging Reveals Correctness.md
+[合格]  76.70 - 04_permanent/训练技术/Fairness-Aware Federated Learning with Trajectory .md
+[合格]  78.20 - 04_permanent/训练技术/Faithful Embeddings of Irregular and Asynchronous .md
+[合格]  76.10 - 04_permanent/训练技术/Falcon-X_ A Time Series Foundation Model for Heter.md
+[合格]  78.35 - 04_permanent/训练技术/FinHarness_ An Inline Lifecycle Safety Harness for.md
+[合格]  76.55 - 04_permanent/训练技术/Fincept-Corporation_FinceptTerminal.md
+[合格]  76.60 - 04_permanent/训练技术/Forgetting in Language Models_ Capacity, Optimizat.md
+[合格]  77.05 - 04_permanent/训练技术/Foundation(opens in a new window).md
+[合格]  78.05 - 04_permanent/训练技术/From Correctness to Preference_ A Framework for Pe.md
+[合格]  76.70 - 04_permanent/训练技术/From Scores to Gibbs Correctors_ Accelerating Unif.md
+[合格]  77.40 - 04_permanent/训练技术/Fuzzy PyTorch_ Rapid Numerical Variability Evaluat.md
+[合格]  77.00 - 04_permanent/训练技术/GRUFF_ LLM Pronoun Fidelity, Reasoning, and Biases.md
+[合格]  77.80 - 04_permanent/训练技术/Gemini AudioTalk, create and control audio.md
+[合格]  77.80 - 04_permanent/训练技术/Gemini OmniCreate anything from anything.md
+[合格]  78.50 - 04_permanent/训练技术/Gemini RoboticsPerceive, reason, use tools and int.md
+[合格]  78.80 - 04_permanent/训练技术/GeminiBuild intelligent agents.md
+[合格]  76.55 - 04_permanent/训练技术/GemmaBuild responsible AI applications at scale.md
+[合格]  76.55 - 04_permanent/训练技术/Genie 3Generate and explore interactive worlds.md
+[合格]  77.05 - 04_permanent/训练技术/Global Affairs.md
+[合格]  76.70 - 04_permanent/训练技术/Global Convergence of Wasserstein Policy Gradient .md
+[合格]  76.70 - 04_permanent/训练技术/Goal-driven Bayesian Optimal Experimental Design f.md
+[合格]  77.40 - 04_permanent/训练技术/Gram_ Assessing sabotage propensities via automate.md
+[合格]  77.20 - 04_permanent/训练技术/Graph-based Complexity Forecasts in UK En Route Ai.md
+[合格]  76.70 - 04_permanent/训练技术/GraphLit_ Learning Text-Enriched Dynamic Character.md
+[合格]  77.00 - 04_permanent/训练技术/GraphReview_ Scientific Paper Evaluation via LLM-B.md
+[合格]  77.40 - 04_permanent/训练技术/Greening AI Inference with Accuracy and Latency-aw.md
+[合格]  78.20 - 04_permanent/训练技术/Guiding LLM Post-training Data Engineering with Mo.md
+[合格]  76.10 - 04_permanent/训练技术/HPO_ Hysteretic Policy Optimization for Stable and.md
+[合格]  77.50 - 04_permanent/训练技术/Hidden in Plain Tokens_ Simply Robust, Gradient-Fr.md
+[合格]  76.70 - 04_permanent/训练技术/Hierarchical Concept Geometry in Language Models E.md
+[合格]  76.70 - 04_permanent/训练技术/High-Quality Synthetic Financial Time-Series using.md
+[合格]  76.70 - 04_permanent/训练技术/History-aware adaptive reduced-order models via in.md
+[合格]  77.70 - 04_permanent/训练技术/How Hard is it to Rig a Benchmark_ A Social Choice.md
+[合格]  77.85 - 04_permanent/训练技术/How Human-Like Are Large Language Models_ A Regist.md
+[合格]  76.70 - 04_permanent/训练技术/How's it going_ Reinforcement learning in language.md
+[合格]  76.10 - 04_permanent/训练技术/Hugging Face PRO.md
+[合格]  76.10 - 04_permanent/训练技术/Hugging Face.md
+[合格]  76.10 - 04_permanent/训练技术/HuggingChat.md
+[合格]  76.10 - 04_permanent/训练技术/Human Label Variation as Stable Signal_ Learning A.md
+[合格]  76.80 - 04_permanent/训练技术/IPO-Mine_ A Toolkit and Dataset for Section-Struct.md
+[合格]  76.55 - 04_permanent/训练技术/ImagenGenerate high-quality images from text.md
+[合格]  76.70 - 04_permanent/训练技术/In-Context Reward Adaptation for Robust Preference.md
+[合格]  77.25 - 04_permanent/训练技术/Inference Endpoints.md
+[合格]  76.55 - 04_permanent/训练技术/Inference Providers.md
+[合格]  76.10 - 04_permanent/训练技术/Interpretability-Guided Layer Selection over Subsp.md
+[合格]  76.55 - 04_permanent/训练技术/Interpretability.md
+[合格]  76.70 - 04_permanent/训练技术/Is a Document Educational or Just Wikipedia-Style_.md
+[合格]  77.50 - 04_permanent/训练技术/It's Not Always Sycophancy_ Measuring LLM Conformi.md
+[合格]  77.80 - 04_permanent/训练技术/It's the humans, not the data_ Geopolitical bias i.md
+[合格]  77.00 - 04_permanent/训练技术/Knowing What to Solve Before How_ Preplan Empowere.md
+[合格]  77.50 - 04_permanent/训练技术/LLM Zeroth-Order Fine-Tuning is an Inference Workl.md
+[合格]  77.90 - 04_permanent/训练技术/LLM-driven design of physics-constrained constitut.md
+[合格]  77.00 - 04_permanent/训练技术/LLMSurgeon_ Diagnosing Data Mixture of Large Langu.md
+[合格]  76.90 - 04_permanent/训练技术/LLMs as Noisy Channels_ A Shannon Perspective on M.md
+[合格]  76.70 - 04_permanent/训练技术/LUCoS_ Latent Unsupervised Context Selection for T.md
+[合格]  76.70 - 04_permanent/训练技术/Language Models Need Sleep.md
+[合格]  75.95 - 04_permanent/训练技术/LeRobot Humanoid_ An Open, Low-Cost, 3D-Printed Hu.md
+[合格]  78.05 - 04_permanent/训练技术/Learn from Weaknesses_ Automated Domain Specializa.md
+[合格]  77.00 - 04_permanent/训练技术/Learning Dynamic Stability Landscapes in Synchroni.md
+[合格]  76.70 - 04_permanent/训练技术/Learning Through Noise_ Why Subliminal Learning Wo.md
+[合格]  76.70 - 04_permanent/训练技术/Learning When to Think While Listening in Large Au.md
+[合格]  75.95 - 04_permanent/训练技术/Learning in Low-Dimensional Subspaces_ Orthogonal .md
+[合格]  76.70 - 04_permanent/训练技术/Length Generalization with Log-Depth Recurrent Uni.md
+[合格]  77.70 - 04_permanent/训练技术/Leveraging Foundation Models for Causal Generative.md
+[合格]  78.05 - 04_permanent/训练技术/Loong_ A Human-Like Long Document Translation Agen.md
+[合格]  76.70 - 04_permanent/训练技术/Looped Diffusion Language Models.md
+[合格]  77.90 - 04_permanent/训练技术/Lost in Sampling_ Assessing Lexical Reachability i.md
+[合格]  76.55 - 04_permanent/训练技术/LyriaGenerate high fidelity music and audio.md
+[合格]  77.40 - 04_permanent/训练技术/MATCHA_ Matching Text via Contrastive Semantic Ali.md
+[合格]  76.70 - 04_permanent/训练技术/Mapping the Schedule x Bit-Width Boundary in Sub-1.md
+[合格]  77.00 - 04_permanent/训练技术/MarginGate_ Sparse Margin-Triggered Verification f.md
+[合格]  77.05 - 04_permanent/训练技术/May 14, 2026Policy2028_ Two scenarios for global A.md
+[合格]  76.55 - 04_permanent/训练技术/May 22, 2026AnnouncementsProject Glasswing_ An ini.md
+[合格]  78.05 - 04_permanent/训练技术/May 27, 2026Economic ResearchCoding agents in the .md
+[合格]  78.50 - 04_permanent/训练技术/May 8, 2026AlignmentTeaching Claude why.md
+[合格]  76.70 - 04_permanent/训练技术/Measuring Form and Function in Language Models.md
+[合格]  77.40 - 04_permanent/训练技术/MedCase-Structured_ A Text-to-FHIR Dataset for Ben.md
+[合格]  76.10 - 04_permanent/训练技术/MemTrace_ Tracing and Attributing Errors in Large .md
+[合格]  76.40 - 04_permanent/训练技术/Metacognition as Reward_ Reinforcing LLM Reasoning.md
+[合格]  77.40 - 04_permanent/训练技术/Metadata Predictability Is Not Evidence Dependence.md
+[合格]  78.35 - 04_permanent/训练技术/Mobile-Aptus_ Confidence-Driven Proactive and Robu.md
+[合格]  79.35 - 04_permanent/训练技术/MobileMoE_ Scaling On-Device Mixture of Experts.md
+[合格]  76.70 - 04_permanent/训练技术/Multi-Mixer Models_ Flexible Sequence Modeling wit.md
+[合格]  76.70 - 04_permanent/训练技术/Multilingual Knowledge Transfer under Data Constra.md
+[合格]  76.70 - 04_permanent/训练技术/NLG Evaluation_ Past, Present, Future.md
+[合格]  76.55 - 04_permanent/训练技术/NVIDIA-NeMo_Megatron-Bridge.md
+[合格]  76.55 - 04_permanent/训练技术/NVlabs_LongLive.md
+[合格]  77.35 - 04_permanent/训练技术/Nano BananaCreate and edit detailed images.md
+[合格]  78.50 - 04_permanent/训练技术/Natural Language Autoencoders_ Turning Claude’s th.md
+[合格]  77.40 - 04_permanent/训练技术/Naturalistic measure of social norms alignment.md
+[合格]  76.10 - 04_permanent/训练技术/Neural Operator-Based Surrogate Model for CFD_Heli.md
+[合格]  77.70 - 04_permanent/训练技术/Neuronal Stochastic Attention Circuit (NSAC) for P.md
+[合格]  76.70 - 04_permanent/训练技术/Nonlinear Data Integration via Kernel Methods for .md
+[合格]  77.70 - 04_permanent/训练技术/Normal Guidance is what Attention Needs.md
+[合格]  76.90 - 04_permanent/训练技术/Not All Tokens Matter Equally_ Dynamic In-context .md
+[合格]  77.00 - 04_permanent/训练技术/OOD-GraphLLM_ Graph Large Language Model for Out-o.md
+[合格]  76.10 - 04_permanent/训练技术/OmniVerifier-M1_ Multimodal Meta-Verifier with Exp.md
+[合格]  76.10 - 04_permanent/训练技术/OnePred_ Next-Query Prediction via Recursive Inten.md
+[合格]  76.45 - 04_permanent/训练技术/OpenAI and Dell Technologies partner to bring Code.md
+[合格]  77.95 - 04_permanent/训练技术/OpenAI named a Leader in enterprise coding agents .md
+[合格]  77.65 - 04_permanent/训练技术/OpenAI大神教你如何榨干Codex.md
+[合格]  77.65 - 04_permanent/训练技术/OpenAI挖来了个F1级别车手搞公关.md
+[合格]  76.55 - 04_permanent/训练技术/OpenBB-finance_OpenBB.md
+[合格]  78.35 - 04_permanent/训练技术/OpenSkillEval_ Automatically Auditing the Open Ski.md
+[合格]  76.70 - 04_permanent/训练技术/Optimal Data Acquisition for Reinforcement Learnin.md
+[合格]  76.70 - 04_permanent/训练技术/Optimal Dimension-Free Sampling for Regularized Cl.md
+[合格]  76.70 - 04_permanent/训练技术/Optimal ridge regularization revisited.md
+[合格]  76.70 - 04_permanent/训练技术/Optimization of randomized neural networks for tra.md
+[合格]  76.55 - 04_permanent/训练技术/Organizations.md
+[合格]  76.10 - 04_permanent/训练技术/PEFT-Arena_ Understanding Parameter-Efficient Fine.md
+[合格]  77.80 - 04_permanent/训练技术/Pair-In, Pair-Out_ Latent Multi-Token Prediction f.md
+[合格]  77.40 - 04_permanent/训练技术/Peak-Then-Collapse and the Four Interface Channels.md
+[合格]  77.80 - 04_permanent/训练技术/PolicyDec 18, 2025Project Vend_ Phase twoIn June, .md
+[合格]  78.95 - 04_permanent/训练技术/PolyGnosis 2.0_ Enhancing LLM Reasoning via Agenti.md
+[合格]  76.70 - 04_permanent/训练技术/Principled Algorithms for Optimizing Generalized M.md
+[合格]  77.40 - 04_permanent/训练技术/Prism_ A Plug-in Reproducible Infrastructure for S.md
+[合格]  76.70 - 04_permanent/训练技术/Probabilistic Smoothing with Ratio-Monotone Transf.md
+[合格]  77.00 - 04_permanent/训练技术/Probing Cultural Awareness in LLMs_ A Case Study o.md
+[合格]  77.70 - 04_permanent/训练技术/QUIET_ A Multi-Blank Cascaded Story Cloze Benchmar.md
+[合格]  76.70 - 04_permanent/训练技术/Real Images, Worse Judgments_ Evaluating Vision-La.md
+[合格]  76.70 - 04_permanent/训练技术/Reasoning with Sampling_ Cutting at Decision Point.md
+[合格]  78.20 - 04_permanent/训练技术/Relevant Walk Search for Explaining Graph Neural N.md
+[合格]  77.30 - 04_permanent/训练技术/ResearchApr 24, 2026Project DealWe created a marke.md
+[合格]  77.50 - 04_permanent/训练技术/Resolution Diagnostics for Paired LLM Evaluation.md
+[合格]  76.10 - 04_permanent/训练技术/Rethinking Memory as Continuously Evolving Connect.md
+[合格]  76.80 - 04_permanent/训练技术/Rethinking Weak Supervision in Anomaly Detection_ .md
+[合格]  76.10 - 04_permanent/训练技术/Retrieval-Augmented Detection of Potentially Abusi.md
+[合格]  77.50 - 04_permanent/训练技术/Reverse Probing_ Supervised Token-level Uncertaint.md
+[合格]  77.70 - 04_permanent/训练技术/SEAL_ Can Saturated Benchmarks Be Revived by LLM-a.md
+[合格]  77.45 - 04_permanent/训练技术/SIMA 2An agent that plays, reasons, and learns wit.md
+[合格]  76.70 - 04_permanent/训练技术/SSDAU_ Structured Semantic Data Augmentation for J.md
+[合格]  77.80 - 04_permanent/训练技术/SafeCtrl-RL_ Inference-Time Adaptive Behaviour Con.md
+[合格]  76.10 - 04_permanent/训练技术/Same Evidence, Different Answers_ Canonical-Contex.md
+[合格]  76.70 - 04_permanent/训练技术/SeedER_ Seed-and-Expand Retrieval from Knowledge G.md
+[合格]  76.70 - 04_permanent/训练技术/Self-Ensembling Vision-Language Models for Chart D.md
+[合格]  76.70 - 04_permanent/训练技术/Self-Improving Language Models with Bidirectional .md
+[合格]  78.20 - 04_permanent/训练技术/Self-Trained Verification for Training- and Test-T.md
+[合格]  77.70 - 04_permanent/训练技术/Semantic Gradients Interactions in SSD_ A Case Stu.md
+[合格]  76.70 - 04_permanent/训练技术/Sense Representations Are Inducible Interfaces.md
+[合格]  78.05 - 04_permanent/训练技术/Separating Semantic Competition from Context Lengt.md
+[合格]  77.20 - 04_permanent/训练技术/Single-Rollout Hidden-State Dynamics for Training-.md
+[合格]  77.50 - 04_permanent/训练技术/Skill-Conditioned Gated Self-Distillation for LLM .md
+[合格]  76.55 - 04_permanent/训练技术/Skip to footer.md
+[合格]  77.05 - 04_permanent/训练技术/Skip to main content.md
+[合格]  76.55 - 04_permanent/训练技术/Snowflakenew.md
+[合格]  76.55 - 04_permanent/训练技术/Societal Impacts.md
+[合格]  77.80 - 04_permanent/训练技术/Societal ImpactsMar 18, 2026What 81,000 people wan.md
+[合格]  76.70 - 04_permanent/训练技术/SoundnessBench_ Can Your AI Scientist Really Tell .md
+[合格]  76.70 - 04_permanent/训练技术/Stage-wise Distortion-Perception Traversal in Zero.md
+[合格]  76.70 - 04_permanent/训练技术/StakeBench_ Evaluating Language Understanding Grou.md
+[合格]  76.70 - 04_permanent/训练技术/Stance Detection in Prediction Markets_ Addressing.md
+[合格]  78.40 - 04_permanent/训练技术/Statistical Embeddings for Similarity, Retrieval, .md
+[合格]  77.50 - 04_permanent/训练技术/Step-TP_ A Grounded, Step-Level Dataset with Chain.md
+[合格]  77.60 - 04_permanent/训练技术/Storage Buckets.md
+[合格]  77.50 - 04_permanent/训练技术/Strong Teacher Not Needed_ On Distillation in LLM .md
+[合格]  77.00 - 04_permanent/训练技术/Structure-Guided Entity Resolution_ Fine-Tuning LL.md
+[合格]  76.70 - 04_permanent/训练技术/Symbolic Regression via Latent Iterative Refinemen.md
+[合格]  76.55 - 04_permanent/训练技术/Team & Enterprise.md
+[合格]  76.10 - 04_permanent/训练技术/Temporal Simultaneity Predicts Annotation Quality .md
+[合格]  76.70 - 04_permanent/训练技术/Thaka at KSAA-2026 Task 2_ Regularized Fine-Tuning.md
+[合格]  76.70 - 04_permanent/训练技术/The Abstraction Gap in Vision-Language Causal Reas.md
+[合格]  78.05 - 04_permanent/训练技术/The Coverage Illusion_ From Pre-retrieval Routing .md
+[合格]  76.80 - 04_permanent/训练技术/The Role of Causal Features in Strategic Classific.md
+[合格]  76.10 - 04_permanent/训练技术/ThoughtWorks.md
+[合格]  77.50 - 04_permanent/训练技术/Towards Reliable Multilingual LLMs-as-a-Judge_ An .md
+[合格]  76.70 - 04_permanent/训练技术/Transfer Learning using 66 Diseases for Disease Fo.md
+[合格]  76.70 - 04_permanent/训练技术/TriSearch_ Learning to Optimize Triangulations via.md
+[合格]  77.40 - 04_permanent/训练技术/Triplet-Block Diffusion RWKV.md
+[合格]  77.35 - 04_permanent/训练技术/Try Claude.md
+[合格]  76.70 - 04_permanent/训练技术/Understanding Generalization and Forgetting in In-.md
+[合格]  76.70 - 04_permanent/训练技术/Unlocking the Working Memory of Large Language Mod.md
+[合格]  77.70 - 04_permanent/训练技术/VLMs May Not Globally Enhance Human Alignment over.md
+[合格]  76.70 - 04_permanent/训练技术/Valid and Expressive Copulas for Irregular Multiva.md
+[合格]  76.55 - 04_permanent/训练技术/VeoGenerate cinematic video with audio.md
+[合格]  78.05 - 04_permanent/训练技术/What Makes a Medical Checker Trainable_ Diagnosing.md
+[合格]  78.95 - 04_permanent/训练技术/When Do LLM Agents Treat Surface Noise Differently.md
+[合格]  76.70 - 04_permanent/训练技术/When Does Demographic Information Help_ Data and M.md
+[合格]  77.80 - 04_permanent/训练技术/When Gradients Collide_ Failure Modes of Multi-Obj.md
+[合格]  76.70 - 04_permanent/训练技术/When Interpretability Is Unequally Distributed_ Fa.md
+[合格]  76.70 - 04_permanent/训练技术/When, why, and how do diffusion posterior samplers.md
+[合格]  76.90 - 04_permanent/训练技术/WhoSaidIt_ Human-LLM Collaborative Annotation for .md
+[合格]  76.10 - 04_permanent/训练技术/Windows Azure.md
+[合格]  76.55 - 04_permanent/训练技术/Work with Codex from anywhereProductMay 14, 2026.md
+[合格]  78.55 - 04_permanent/训练技术/agentscope-ai_agentscope.md
+[合格]  78.05 - 04_permanent/训练技术/anthropics_claude-plugins-official.md
+[合格]  77.25 - 04_permanent/训练技术/anthropics_knowledge-work-plugins.md
+[合格]  77.45 - 04_permanent/训练技术/anthropics_skills.md
+[合格]  76.55 - 04_permanent/训练技术/bleachbit_bleachbit.md
+[合格]  78.05 - 04_permanent/训练技术/cheahjs_free-llm-api-resources.md
+[合格]  76.55 - 04_permanent/训练技术/dograh-hq_dograh.md
+[合格]  76.55 - 04_permanent/训练技术/donnemartin_system-design-primer.md
+[合格]  76.55 - 04_permanent/训练技术/elebumm_RedditVideoMakerBot.md
+[合格]  76.55 - 04_permanent/训练技术/francescopace_espectre.md
+[合格]  76.55 - 04_permanent/训练技术/freqtrade_freqtrade-strategies.md
+[合格]  76.55 - 04_permanent/训练技术/google-research_timesfm.md
+[合格]  76.55 - 04_permanent/训练技术/harry0703_MoneyPrinterTurbo.md
+[合格]  76.55 - 04_permanent/训练技术/harvard-edge_cs249r_book.md
+[合格]  76.55 - 04_permanent/训练技术/mukul975_Anthropic-Cybersecurity-Skills.md
+[合格]  76.55 - 04_permanent/训练技术/onyx-dot-app_onyx.md
+[合格]  76.10 - 04_permanent/训练技术/p-e-w_heretic.md
+[合格]  76.55 - 04_permanent/训练技术/paperless-ngx_paperless-ngx.md
+[合格]  76.55 - 04_permanent/训练技术/plastic-labs_honcho.md
+[合格]  77.05 - 04_permanent/训练技术/rohitg00_ai-engineering-from-scratch.md
+[合格]  76.55 - 04_permanent/训练技术/sansan0_TrendRadar.md
+[合格]  77.35 - 04_permanent/训练技术/shareAI-lab_learn-claude-code.md
+[合格]  76.55 - 04_permanent/训练技术/sherlock-project_sherlock.md
+[合格]  76.55 - 04_permanent/训练技术/shiyu-coder_Kronos.md
+[合格]  76.55 - 04_permanent/训练技术/st-tech_ppf-contact-solver.md
+[合格]  77.05 - 04_permanent/训练技术/unclecode_crawl4ai.md
+[合格]  78.55 - 04_permanent/训练技术/vllm-project_vllm.md
+[合格]  76.10 - 04_permanent/训练技术/yt-dlp_yt-dlp.md
+[合格]  77.05 - 04_permanent/训练技术/zai-org_GLM-OCR.md
+[合格]  76.55 - 04_permanent/训练技术/zhaoyunfeng@jiqizhixin.com.md
+[合格]  77.35 - 04_permanent/训练技术/“VLA和世界模型都不是终局，会有物理世界独有的模型” _ 蚂蚁灵波沈宇军@AIGC2026.md
+[合格]  77.20 - 04_permanent/训练技术/“五类人AI替代不了，企业做第二名最稳妥” _ 昆仑万维方汉@AIGC2026.md
+[合格]  77.65 - 04_permanent/训练技术/“卡车界特斯拉”，刚刚又融了2亿美元.md
+[合格]  77.65 - 04_permanent/训练技术/「斯隆奖」得主戴亮全职加盟复旦.md
+[合格]  76.55 - 04_permanent/训练技术/业务合作：hezuo@geekbang.com.md
+[合格]  77.35 - 04_permanent/训练技术/中国AIGC产业峰会2026.md
+[合格]  76.55 - 04_permanent/训练技术/京 ICP 备 16027448 号 - 5.md
+[合格]  77.35 - 04_permanent/训练技术/京东JoyInside戴文军：AI的终极形态不是聊天，是融入你家每一件物品丨AIGC2026.md
+[合格]  77.65 - 04_permanent/训练技术/什么！你说胡彦斌也在苦修Vibe Coding.md
+[合格]  76.55 - 04_permanent/训练技术/内容投稿：editors@geekbang.com.md
+[合格]  77.65 - 04_permanent/训练技术/刚刚，国产AI自己造了AI，全球首例！.md
+[合格]  79.25 - 04_permanent/训练技术/刚刚，国产Agent模型闯入全球第一梯队！限时免费.md
+[合格]  76.55 - 04_permanent/训练技术/加入我们：zhaopin@geekbang.com.md
+[合格]  77.45 - 04_permanent/训练技术/华为具身大脑一号位创业，用认知科学造世界模型，获亿元级融资.md
+[合格]  77.65 - 04_permanent/训练技术/华为发布AI DC数据基础设施全栈方案，加速行业智能化跃升.md
+[合格]  77.60 - 04_permanent/训练技术/卡帕西Anthropic最新头衔：技术员工（MTS）.md
+[合格]  79.00 - 04_permanent/训练技术/卷到今天，Agent的含金量还在提升丨AIGC2026圆桌论坛.md
+[合格]  76.55 - 04_permanent/训练技术/反馈投诉：feedback@geekbang.com.md
+[合格]  78.30 - 04_permanent/训练技术/国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[合格]  77.80 - 04_permanent/训练技术/图灵奖得主领衔，中国大模型第一梯队集结！2026智源大会，看懂AI下一程.md
+[合格]  82.85 - 04_permanent/训练技术/大模型预训练.md
+[合格]  78.85 - 04_permanent/训练技术/将DSA注意力引入多模态，快手Keye2.0开启强化推理新范式.md
+[合格]  76.55 - 04_permanent/训练技术/打造创投生态的超级枢纽， 2026投资界SuperLink大会定档6月.md
+[合格]  77.85 - 04_permanent/训练技术/无人车遇水则瘫？Waymo大规模召回，叫停多城Robotaxi服务.md
+[合格]  77.65 - 04_permanent/训练技术/清华有了新老师：黄仁勋.md
+[合格]  78.70 - 04_permanent/训练技术/编程权威榜单：千问3.7仅次于Claude，阿里全球第二.md
+[合格]  77.30 - 04_permanent/训练技术/荣耀600系列手机发布：4K闪光微单Live，国补价2294.15元起.md
+[合格]  77.65 - 04_permanent/训练技术/触觉具身来了个梦之队：天使轮近亿.md
+[合格]  77.65 - 04_permanent/训练技术/谷歌CEO承认Coding落后了.md
+[合格]  77.95 - 04_permanent/训练技术/顶流里最快！智谱，你是在「喷」代码吧.md
+[合格]  77.85 - 04_permanent/训练技术/龙虾养不动了？周鸿祎给虾搭了个云端办公室，专业私教在线炼虾.md
+[优秀]  91.20 - 01_inbox/2026-05-21-每日信息简报.md
+[优秀]  90.70 - 01_inbox/2026-05-22-每日信息简报.md
+[优秀]  90.70 - 01_inbox/2026-05-23-每日信息简报.md
+[优秀]  91.15 - 01_inbox/2026-05-25-每日信息简报.md
+[优秀]  91.00 - 01_inbox/2026-05-26-每日信息简报.md
+[优秀]  91.05 - 01_inbox/2026-05-27-每日信息简报.md
+[优秀]  89.80 - 01_inbox/2026-05-28-每日信息简报.md
+[合格]  83.45 - 01_inbox/2026-05-29-每日信息简报.md
+[优秀]  89.20 - 01_inbox/2026-06-03-每日信息简报.md
+[优秀]  85.95 - 01_inbox/2026-06-22-每日信息简报.md
+[优秀]  85.15 - 01_inbox/2026-06-23-每日信息简报.md
+[优秀]  86.70 - 01_inbox/2026-06-24-每日信息简报.md
+[优秀]  86.80 - 01_inbox/2026-06-25-每日信息简报.md
+[优秀]  86.35 - 01_inbox/2026-06-26-每日信息简报.md
+[优秀]  86.35 - 01_inbox/2026-06-27-每日信息简报.md
+[优秀]  86.35 - 01_inbox/2026-06-28-每日信息简报.md
+[合格]  84.90 - 01_inbox/2026-06-29-每日信息简报.md
+[合格]  84.35 - 01_inbox/2026-06-30-每日信息简报.md
+[优秀]  85.35 - 01_inbox/2026-07-01-每日信息简报.md
+[优秀]  86.65 - 01_inbox/2026-07-02-每日信息简报.md
+[优秀]  85.75 - 01_inbox/2026-07-03-每日信息简报.md
+[优秀]  86.50 - 01_inbox/2026-07-04-每日信息简报.md
+[优秀]  86.50 - 01_inbox/2026-07-05-每日信息简报.md
+[优秀]  86.50 - 01_inbox/2026-07-06-每日信息简报.md
+[优秀]  85.20 - 01_inbox/2026-07-07-每日信息简报.md
+[优秀]  86.25 - 01_inbox/2026-07-08-每日信息简报.md
+[优秀]  87.45 - 01_inbox/2026-07-09-每日信息简报.md
+[合格]  83.90 - 01_inbox/2026-07-10-每日信息简报.md
+[合格]  83.90 - 01_inbox/2026-07-11-每日信息简报.md
+[合格]  83.90 - 01_inbox/2026-07-12-每日信息简报.md
+[合格]  83.90 - 01_inbox/2026-07-13-每日信息简报.md
+[优秀]  85.65 - 01_inbox/2026-07-14-每日信息简报.md
+[优秀]  86.10 - 01_inbox/2026-07-15-每日信息简报.md
+[优秀]  86.50 - 01_inbox/2026-07-16-每日信息简报.md
+[优秀]  85.90 - 01_inbox/2026-07-17-每日信息简报.md
+[优秀]  86.10 - 01_inbox/2026-07-18-每日信息简报.md
+[优秀]  87.70 - 01_inbox/2026-07-20-每日信息简报.md
+[优秀]  86.50 - 01_inbox/2026-07-21-每日信息简报.md
+[优秀]  86.05 - 01_inbox/2026-07-22-每日信息简报.md
+[优秀]  86.45 - 01_inbox/2026-07-23-每日信息简报.md
+[优秀]  86.45 - 01_inbox/2026-07-24-每日信息简报.md
+[优秀]  87.25 - 01_inbox/2026-07-25-每日信息简报.md
+[合格]  84.55 - 01_inbox/LLM-Free-Information/README.md
+[优秀]  85.15 - 01_inbox/LLM-Free-Information/（免费）大模型学习教程.md
+[优秀]  90.05 - 01_inbox/llm-course/README.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-21-001-Leveraging_LLMs_for_Grammar_Adaptation:_A_Study_on.md
+[待修正]  66.90 - 02_raw/已处理-2026-05-21-002-Mem-$π$:_Adaptive_Memory_through_Learning_When_and.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-21-003-Quantifying_the_cross-linguistic_effects_of_syncre.md
+[待修正]  68.60 - 02_raw/已处理-2026-05-21-004-Post-Hoc_Understanding_of_Metaphor_Processing_in_D.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-21-005-Findings_of_the_Fifth_Shared_Task_on_Multilingual_.md
+[待修正]  68.80 - 02_raw/已处理-2026-05-21-006-"I_didn't_Make_the_Micro_Decisions":_Measuring,_In.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-21-007-LASH:_Adaptive_Semantic_Hybridization_for_Black-Bo.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-21-008-Text_Analytics_Evaluation_Framework:_A_Case_Study_.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-21-009-SymbolicLight_V1:_Spike-Gated_Dual-Path_Language_M.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-21-010-TextReg:_Mitigating_Prompt_Distributional_Overfitt.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-011-Tracing_the_ongoing_emergence_of_human-like_reason.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-012-Reliable_Automated_Triage_in_Spanish_Clinical_Note.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-013-LamPO:_A_Lambda_Style_Policy_Optimization_for_Reas.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-21-014-Do_LLMs_Know_What_Luxembourgish_Borrows?_Probing_L.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-21-015-Manga109-v2026:_Revisiting_Manga109_Annotations_fo.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-21-016-Metaphors_in_Literary_Post-Editing:_Opening_Pandor.md
+[待修正]  68.30 - 02_raw/已处理-2026-05-21-017-Automated_ICD_Classification_of_Psychiatric_Diagno.md
+[待修正]  67.50 - 02_raw/已处理-2026-05-21-018-Smarter_edits?_Post-editing_with_error_highlights_.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-019-ACL-Verbatim:_hallucination-free_question_answerin.md
+[待修正]  66.40 - 02_raw/已处理-2026-05-21-020-WCXB:_A_Multi-Type_Web_Content_Extraction_Benchmar.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-21-021-Variance_Reduction_for_Expectations_with_Diffusion.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-21-022-Equilibrium_Reasoners:_Learning_Attractors_Enables.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-21-023-Quantifying_Hyperparameter_Transfer_and_the_Import.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-024-EvoStruct:_Bridging_Evolutionary_and_Structural_Pr.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-21-025-Is_Fixing_Schema_Graphs_Necessary?_Full-Resolution.md
+[待修正]  69.40 - 02_raw/已处理-2026-05-21-026-Agent_JIT_Compilation_for_Latency-Optimizing_Web_A.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-21-027-You_Only_Need_Minimal_RLVR_Training:_Extrapolating.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-21-028-DelTA:_Discriminative_Token_Credit_Assignment_for_.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-029-A_Machine_Learning_Framework_for_Weighted_Least_Sq.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-21-030-Mitigating_Label_Bias_with_Interpretable_Rubric_Em.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-21-031-Approximation_Theory_for_Neural_Networks:_Old_and_.md
+[待修正]  69.10 - 02_raw/已处理-2026-05-21-032-torchtune:_PyTorch_native_post-training_library.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-21-033-Gaussian_Sheaf_Neural_Networks.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-034-Polynomial-Time_Robust_Multiclass_Linear_Classific.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-21-035-Adaptive_Signal_Resuscitation:_Channel-wise_Post-P.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-036-Preference-aware_Influence-function-based_Data_Sel.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-037-HiRes:_Inspectable_Precedent_Memory_for_Reaction_C.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-038-FedCritic:_Serverless_Federated_Critic_Learning-ba.md
+[合格]  70.55 - 02_raw/已处理-2026-05-21-039-What_Twelve_LLM_Agent_Benchmark_Papers_Disclose_Ab.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-21-040-On_the_Regularity_and_Generalization_of_One-Step_W.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-041-Hugging_Face.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-21-042-Bucketsnew.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-043-Enterprise.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-044-HuggingChat.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-045-Collections.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-046-Organizations.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-21-047-Daily_Papers.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-048-Team_&_Enterprise.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-049-Hugging_Face_PRO.md
+[待修正]  65.50 - 02_raw/已处理-2026-05-21-050-Enterprise_Support.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-051-Inference_Providers.md
+[待修正]  65.50 - 02_raw/已处理-2026-05-21-052-Inference_Endpoints.md
+[待修正]  67.80 - 02_raw/已处理-2026-05-21-053-Storage_Buckets.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-21-054-Training-Free_Reasoning_at_88.89%_on_GPQA_Diamond:.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-21-055-Skip_to_main_content.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-21-056-Developers.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-21-057-Foundation(opens_in_a_new_window).md
+[待修正]  68.40 - 02_raw/已处理-2026-05-21-058-Try_ChatGPT(opens_in_a_new_window).md
+[待修正]  67.10 - 02_raw/已处理-2026-05-21-059-Engineering.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-21-060-Global_Affairs.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-21-061-AI_Adoption.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-21-062-An_OpenAI_model_has_disproved_a_central_conjecture.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-21-063-Advancing_content_provenance_for_a_safer,_more_tra.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-21-064-OpenAI_and_Dell_Technologies_partner_to_bring_Code.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-21-065-A_new_personal_finance_experience_in_ChatGPTProduc.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-21-066-Work_with_Codex_from_anywhereProductMay_14,_2026.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-21-067-Helping_ChatGPT_better_recognize_context_in_sensit.md
+[待修正]  67.35 - 02_raw/已处理-2026-05-21-068-Building_a_safe,_effective_sandbox_to_enable_Codex.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-21-069-Our_response_to_the_TanStack_npm_supply_chain_atta.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-21-070-Skip_to_main_content.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-21-071-Skip_to_footer.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-21-072-Economic_Futures.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-21-073-Try_Claude.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-21-074-Economic_Research.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-21-075-Interpretability.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-21-076-Societal_Impacts.md
+[合格]  70.35 - 02_raw/已处理-2026-05-21-077-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+[合格]  71.20 - 02_raw/已处理-2026-05-21-078-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-21-079-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-21-080-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-21-081-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-21-082-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-21-083-May_8,_2026AlignmentTeaching_Claude_why.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-21-084-May_7,_2026InterpretabilityNatural_Language_Autoen.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-21-085-Skip_to_main_content.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-21-085-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  66.65 - 02_raw/已处理-2026-05-21-086-520当天400万AI人，都在量子位听这近20场演讲&对谈｜第四届中国AIGC产业峰会.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-086-Explore_models.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-21-087-2026中国AIGC最值得关注的企业&产品图鉴来了！谁在造浪，谁在落地？.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-21-087-GeminiBuild_intelligent_agents.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-21-088-Gemini_OmniCreate_anything_from_anything.md
+[待修正]  66.50 - 02_raw/已处理-2026-05-21-088-苏姿丰上海开讲：AI正在重新定义计算的每一层.md
+[待修正]  66.80 - 02_raw/已处理-2026-05-21-089-Nano_BananaCreate_and_edit_detailed_images.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-21-089-抢先李飞飞！世界模型能多人联机玩FPS游戏了.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-21-090-Gemini_AudioTalk,_create_and_control_audio.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-21-090-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-091-VeoGenerate_cinematic_video_with_audio.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-21-091-腾讯混元开源全新翻译模型Hy-MT2_，上线小程序「腾讯Hy翻译」.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-092-ImagenGenerate_high-quality_images_from_text.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-21-092-菲尔兹奖得主都看懵了：OpenAI非数学模型首次自主突破80年未解数学难题.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-093-LyriaGenerate_high_fidelity_music_and_audio.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-21-093-风行在线CEO易正朝：先全员Coding，再All_in众创丨AIGC2026.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-094-Genie_3Generate_and_explore_interactive_worlds.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-21-094-Snowflakenew.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-21-095-Gemini_RoboticsPerceive,_reason,_use_tools_and_int.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-095-内容投稿：editors@geekbang.com.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-21-096-GemmaBuild_responsible_AI_applications_at_scale.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-096-业务合作：hezuo@geekbang.com.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-097-Explore_research.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-097-反馈投诉：feedback@geekbang.com.md
+[待修正]  68.05 - 02_raw/已处理-2026-05-21-098-SIMA_2An_agent_that_plays,_reasons,_and_learns_wit.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-098-加入我们：zhaopin@geekbang.com.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-21-099-AlphaGoMastering_the_game_of_Go.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-21-099-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[待修正]  69.00 - 02_raw/已处理-2026-05-21-100-anthropics_claude-plugins-official.md
+[合格]  70.05 - 02_raw/已处理-2026-05-21-100-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  68.50 - 02_raw/已处理-2026-05-21-101-HKUDS_CLI-Anything.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-21-101-京_ICP_备_16027448_号_-_5.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-21-102-rohitg00_ai-engineering-from-scratch.md
+[合格]  70.35 - 02_raw/已处理-2026-05-21-103-teng-lin_notebooklm-py.md
+[待修正]  68.65 - 02_raw/已处理-2026-05-21-104-antoinezambelli_forge.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-21-105-Imbad0202_academic-research-skills.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-21-106-Alishahryar1_free-claude-code.md
+[待修正]  69.55 - 02_raw/已处理-2026-05-21-107-karpathy_autoresearch.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-21-108-microsoft_markitdown.md
+[待修正]  68.15 - 02_raw/已处理-2026-05-21-109-ZhuLinsen_daily_stock_analysis.md
+[待修正]  67.35 - 02_raw/已处理-2026-05-21-110-openai_whisper.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-21-111-aiming-lab_AutoResearchClaw.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-21-112-volcengine_OpenViking.md
+[待修正]  68.50 - 02_raw/已处理-2026-05-21-113-google_adk-samples.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-21-114-NousResearch_hermes-agent.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-21-115-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  66.65 - 02_raw/已处理-2026-05-21-116-520当天400万AI人，都在量子位听这近20场演讲&对谈｜第四届中国AIGC产业峰会.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-21-117-2026中国AIGC最值得关注的企业&产品图鉴来了！谁在造浪，谁在落地？.md
+[待修正]  66.50 - 02_raw/已处理-2026-05-21-118-苏姿丰上海开讲：AI正在重新定义计算的每一层.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-21-119-抢先李飞飞！世界模型能多人联机玩FPS游戏了.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-21-120-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-21-121-腾讯混元开源全新翻译模型Hy-MT2_，上线小程序「腾讯Hy翻译」.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-21-122-菲尔兹奖得主都看懵了：OpenAI非数学模型首次自主突破80年未解数学难题.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-21-123-风行在线CEO易正朝：先全员Coding，再All_in众创丨AIGC2026.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-21-124-Snowflakenew.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-125-内容投稿：editors@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-126-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-127-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-21-128-加入我们：zhaopin@geekbang.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-21-129-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[合格]  70.05 - 02_raw/已处理-2026-05-21-130-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-21-131-京_ICP_备_16027448_号_-_5.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-22-001-Leveraging_LLMs_for_Grammar_Adaptation:_A_Study_on.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-22-001-Tokenisation_via_Convex_Relaxations.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-22-002-Evaluating_Commercial_AI_Chatbots_as_News_Intermed.md
+[待修正]  66.90 - 02_raw/已处理-2026-05-22-002-Mem-$π$:_Adaptive_Memory_through_Learning_When_and.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-003-Quantifying_the_cross-linguistic_effects_of_syncre.md
+[待修正]  68.95 - 02_raw/已处理-2026-05-22-003-Reducing_Political_Manipulation_with_Consistency_T.md
+[待修正]  68.60 - 02_raw/已处理-2026-05-22-004-Post-Hoc_Understanding_of_Metaphor_Processing_in_D.md
+[待修正]  68.95 - 02_raw/已处理-2026-05-22-004-Understanding_Data_Temporality_Impact_on_Large_Lan.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-22-005-ChronoMedKG:_A_Temporally-Grounded_Biomedical_Know.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-22-005-Findings_of_the_Fifth_Shared_Task_on_Multilingual_.md
+[待修正]  68.80 - 02_raw/已处理-2026-05-22-006-"I_didn't_Make_the_Micro_Decisions":_Measuring,_In.md
+[合格]  70.55 - 02_raw/已处理-2026-05-22-006-Tokenization_with_Split_Trees.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-22-007-LASH:_Adaptive_Semantic_Hybridization_for_Black-Bo.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-22-007-Self-Policy_Distillation_via_Capability-Selective_.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-008-Moral_Semantics_Survive_Machine_Translation:_Cross.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-22-008-Text_Analytics_Evaluation_Framework:_A_Case_Study_.md
+[待修正]  69.00 - 02_raw/已处理-2026-05-22-009-Seeing_the_Poem:_Image-Semantic_Detection_of_AI-Ge.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-22-009-SymbolicLight_V1:_Spike-Gated_Dual-Path_Language_M.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-22-010-TextReg:_Mitigating_Prompt_Distributional_Overfitt.md
+[待修正]  68.80 - 02_raw/已处理-2026-05-22-010-Whose_Voice_Counts?_Mapping_Stakeholder_Perspectiv.md
+[合格]  70.95 - 02_raw/已处理-2026-05-22-011-Boiling_the_Frog:_A_Multi-Turn_Benchmark_for_Agent.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-011-Tracing_the_ongoing_emergence_of_human-like_reason.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-012-More_Context,_Larger_Models,_or_Moral_Knowledge?_A.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-012-Reliable_Automated_Triage_in_Spanish_Clinical_Note.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-013-Chinese_sensorimotor_and_embodiment_norms_for_3,00.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-013-LamPO:_A_Lambda_Style_Policy_Optimization_for_Reas.md
+[合格]  71.10 - 02_raw/已处理-2026-05-22-014-Agentic_CLEAR:_Automating_Multi-Level_Evaluation_o.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-22-014-Do_LLMs_Know_What_Luxembourgish_Borrows?_Probing_L.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-015-Beyond_Temperature:_Hyperfitting_as_a_Late-Stage_G.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-22-015-Manga109-v2026:_Revisiting_Manga109_Annotations_fo.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-22-016-LANG:_Reinforcement_Learning_for_Multilingual_Reas.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-016-Metaphors_in_Literary_Post-Editing:_Opening_Pandor.md
+[待修正]  68.30 - 02_raw/已处理-2026-05-22-017-Automated_ICD_Classification_of_Psychiatric_Diagno.md
+[合格]  70.00 - 02_raw/已处理-2026-05-22-017-SynAE:_A_Framework_for_Measuring_the_Quality_of_Sy.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-22-018-One_prompt_is_not_enough:_Instruction_Sensitivity_.md
+[待修正]  67.50 - 02_raw/已处理-2026-05-22-018-Smarter_edits?_Post-editing_with_error_highlights_.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-019-ACL-Verbatim:_hallucination-free_question_answerin.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-019-Scene_Abstraction_for_Lexical_Semantics:_Structure.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-020-BeLink:_Biomedical_Entity_Linking_Meets_Generative.md
+[待修正]  66.40 - 02_raw/已处理-2026-05-22-020-WCXB:_A_Multi-Type_Web_Content_Extraction_Benchmar.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-021-Integrable_Elasticity_via_Neural_Demand_Potentials.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-22-021-Variance_Reduction_for_Expectations_with_Diffusion.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-022-Equilibrium_Reasoners:_Learning_Attractors_Enables.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-22-022-Vector_Policy_Optimization:_Training_for_Diversity.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-22-023-Quantifying_Hyperparameter_Transfer_and_the_Import.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-22-023-Remember_to_be_Curious:_Episodic_Context_and_Persi.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-024-EvoStruct:_Bridging_Evolutionary_and_Structural_Pr.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-024-The_Matching_Principle:_A_Geometric_Theory_of_Loss.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-025-Is_Fixing_Schema_Graphs_Necessary?_Full-Resolution.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-025-SDPM:_Survival_Diffusion_Probabilistic_Model_for_C.md
+[待修正]  69.40 - 02_raw/已处理-2026-05-22-026-Agent_JIT_Compilation_for_Latency-Optimizing_Web_A.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-22-026-MambaGaze:_Bidirectional_Mamba_with_Explicit_Missi.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-22-027-CogAdapt:_Transferring_Clinical_ECG_Foundation_Mod.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-22-027-You_Only_Need_Minimal_RLVR_Training:_Extrapolating.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-22-028-DelTA:_Discriminative_Token_Credit_Assignment_for_.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-22-028-Uniform_Diffusion_Models_Revisited:_Leave-One-Out_.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-029-A_Machine_Learning_Framework_for_Weighted_Least_Sq.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-029-Lumberjack:_Better_Differentially_Private_Random_F.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-030-Cyber-Physical_Anomaly_Detection_in_IoT-Enabled_Sm.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-22-030-Mitigating_Label_Bias_with_Interpretable_Rubric_Em.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-031-Approximation_Theory_for_Neural_Networks:_Old_and_.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-22-031-Plug-in_Losses_for_Evidential_Deep_Learning:_A_Sim.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-22-032-SeqLoRA:_Bilevel_Orthogonal_Adaptation_for_Continu.md
+[待修正]  69.10 - 02_raw/已处理-2026-05-22-032-torchtune:_PyTorch_native_post-training_library.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-033-Gaussian_Sheaf_Neural_Networks.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-22-033-Ternary_Decision_Trees_with_Locally-Adaptive_Uncer.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-034-Polynomial-Time_Robust_Multiclass_Linear_Classific.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-22-034-Proxy-Based_Approximation_of_Shapley_and_Banzhaf_I.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-22-035-Adaptive_Signal_Resuscitation:_Channel-wise_Post-P.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-035-The_Distillation_Game:_Adaptive_Attacks_&_Efficien.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-22-036-Post-Training_is_About_States,_Not_Tokens:_A_State.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-036-Preference-aware_Influence-function-based_Data_Sel.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-037-HiRes:_Inspectable_Precedent_Memory_for_Reaction_C.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-22-037-Multiple_Neural_Operators_Achieve_Near-Optimal_Rat.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-038-FedCritic:_Serverless_Federated_Critic_Learning-ba.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-22-038-The_Value_of_Covariance_Matching_in_Gaussian_DDPMs.md
+[待修正]  69.10 - 02_raw/已处理-2026-05-22-039-Reading_Task_Failure_Off_the_Activations:_A_Sparse.md
+[合格]  70.55 - 02_raw/已处理-2026-05-22-039-What_Twelve_LLM_Agent_Benchmark_Papers_Disclose_Ab.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-22-040-Abstraction_for_Offline_Goal-Conditioned_Reinforce.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-22-040-On_the_Regularity_and_Generalization_of_One-Step_W.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-041-Hugging_Face.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-22-042-Bucketsnew.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-043-Enterprise.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-044-HuggingChat.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-045-Collections.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-046-Organizations.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-22-047-Daily_Papers.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-048-Team_&_Enterprise.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-049-Hugging_Face_PRO.md
+[待修正]  65.50 - 02_raw/已处理-2026-05-22-050-Enterprise_Support.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-051-Inference_Providers.md
+[待修正]  65.50 - 02_raw/已处理-2026-05-22-052-Inference_Endpoints.md
+[待修正]  67.80 - 02_raw/已处理-2026-05-22-053-Storage_Buckets.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-22-054-LeRobot_Humanoid:_An_Open,_Low-Cost,_3D-Printed_Hu.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-22-054-Training-Free_Reasoning_at_88.89%_on_GPQA_Diamond:.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-22-055-Skip_to_main_content.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-22-056-Developers.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-22-057-Foundation(opens_in_a_new_window).md
+[待修正]  68.40 - 02_raw/已处理-2026-05-22-058-Try_ChatGPT(opens_in_a_new_window).md
+[待修正]  67.10 - 02_raw/已处理-2026-05-22-059-Engineering.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-22-060-Global_Affairs.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-22-061-AI_Adoption.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-22-062-An_OpenAI_model_has_disproved_a_central_conjecture.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-22-063-Advancing_content_provenance_for_a_safer,_more_tra.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-22-064-OpenAI_and_Dell_Technologies_partner_to_bring_Code.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-22-065-A_new_personal_finance_experience_in_ChatGPTProduc.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-22-066-Work_with_Codex_from_anywhereProductMay_14,_2026.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-22-067-Helping_ChatGPT_better_recognize_context_in_sensit.md
+[待修正]  67.35 - 02_raw/已处理-2026-05-22-068-Building_a_safe,_effective_sandbox_to_enable_Codex.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-22-069-Our_response_to_the_TanStack_npm_supply_chain_atta.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-22-070-Skip_to_main_content.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-22-071-Skip_to_footer.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-22-072-Economic_Futures.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-22-073-Try_Claude.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-22-074-Economic_Research.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-22-075-Interpretability.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-22-076-Societal_Impacts.md
+[合格]  70.35 - 02_raw/已处理-2026-05-22-077-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+[合格]  71.20 - 02_raw/已处理-2026-05-22-078-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-22-079-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-22-080-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-22-081-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-22-082-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-22-083-May_8,_2026AlignmentTeaching_Claude_why.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-22-084-May_7,_2026InterpretabilityNatural_Language_Autoen.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-22-085-Skip_to_main_content.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-086-Explore_models.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-22-087-GeminiBuild_intelligent_agents.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-22-088-Gemini_OmniCreate_anything_from_anything.md
+[待修正]  66.80 - 02_raw/已处理-2026-05-22-089-Nano_BananaCreate_and_edit_detailed_images.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-22-090-Gemini_AudioTalk,_create_and_control_audio.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-091-VeoGenerate_cinematic_video_with_audio.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-092-ImagenGenerate_high-quality_images_from_text.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-093-LyriaGenerate_high_fidelity_music_and_audio.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-094-Genie_3Generate_and_explore_interactive_worlds.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-22-095-Gemini_RoboticsPerceive,_reason,_use_tools_and_int.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-22-096-GemmaBuild_responsible_AI_applications_at_scale.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-097-Explore_research.md
+[待修正]  68.05 - 02_raw/已处理-2026-05-22-098-SIMA_2An_agent_that_plays,_reasons,_and_learns_wit.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-22-099-AlphaGoMastering_the_game_of_Go.md
+[待修正]  69.00 - 02_raw/已处理-2026-05-22-100-anthropics_claude-plugins-official.md
+[待修正]  68.50 - 02_raw/已处理-2026-05-22-101-HKUDS_CLI-Anything.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-22-101-rohitg00_ai-engineering-from-scratch.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-22-102-odoo_odoo.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-22-102-rohitg00_ai-engineering-from-scratch.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-22-103-Fincept-Corporation_FinceptTerminal.md
+[合格]  70.35 - 02_raw/已处理-2026-05-22-103-teng-lin_notebooklm-py.md
+[待修正]  68.65 - 02_raw/已处理-2026-05-22-104-antoinezambelli_forge.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-104-yt-dlp_yt-dlp.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-22-105-Imbad0202_academic-research-skills.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-22-105-NousResearch_hermes-agent.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-22-106-Alishahryar1_free-claude-code.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-22-106-facebookresearch_sam3.md
+[待修正]  69.55 - 02_raw/已处理-2026-05-22-107-karpathy_autoresearch.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-22-107-lllyasviel_Fooocus.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-22-108-HKUDS_ViMax.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-22-108-microsoft_markitdown.md
+[待修正]  68.15 - 02_raw/已处理-2026-05-22-109-ZhuLinsen_daily_stock_analysis.md
+[待修正]  66.70 - 02_raw/已处理-2026-05-22-109-plastic-labs_honcho.md
+[合格]  70.05 - 02_raw/已处理-2026-05-22-110-microsoft_agent-governance-toolkit.md
+[待修正]  67.35 - 02_raw/已处理-2026-05-22-110-openai_whisper.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-22-111-awslabs_aidlc-workflows.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-22-111-volcengine_OpenViking.md
+[待修正]  69.75 - 02_raw/已处理-2026-05-22-112-Tracer-Cloud_opensre.md
+[待修正]  68.50 - 02_raw/已处理-2026-05-22-112-google_adk-samples.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-22-113-NousResearch_hermes-agent.md
+[待修正]  67.80 - 02_raw/已处理-2026-05-22-113-langchain-ai_langchain.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-22-114-HKUDS_ViMax.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-22-114-Imbad0202_academic-research-skills.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-22-115-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  66.65 - 02_raw/已处理-2026-05-22-116-520当天400万AI人，都在量子位听这近20场演讲&对谈｜第四届中国AIGC产业峰会.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-22-116-顶流里最快！智谱，你是在「喷」代码吧.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-22-117-2026中国AIGC最值得关注的企业&产品图鉴来了！谁在造浪，谁在落地？.md
+[待修正]  66.65 - 02_raw/已处理-2026-05-22-117-520当天400万AI人，都在量子位听这近20场演讲&对谈｜第四届中国AIGC产业峰会.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-22-118-2026中国AIGC最值得关注的企业&产品图鉴来了！谁在造浪，谁在落地？.md
+[待修正]  66.50 - 02_raw/已处理-2026-05-22-118-苏姿丰上海开讲：AI正在重新定义计算的每一层.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-22-119-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-22-119-抢先李飞飞！世界模型能多人联机玩FPS游戏了.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-22-120-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  66.70 - 02_raw/已处理-2026-05-22-120-李飞飞再出手，空间智能的ImageNet来了.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-22-121-腾讯混元开源全新翻译模型Hy-MT2_，上线小程序「腾讯Hy翻译」.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-22-121-融资700亿！DeepSeek_Code真要来了，ACM金牌大神崔添翼挂帅.md
+[待修正]  66.50 - 02_raw/已处理-2026-05-22-122-狂揽F轮融资+拿下4100万用户！深圳玩家出手，把企业旧系统变成AI能力库.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-22-122-菲尔兹奖得主都看懵了：OpenAI非数学模型首次自主突破80年未解数学难题.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-22-123-Snowflakenew.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-22-123-风行在线CEO易正朝：先全员Coding，再All_in众创丨AIGC2026.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-22-124-Snowflakenew.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-124-内容投稿：editors@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-125-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-125-内容投稿：editors@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-126-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-126-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-127-加入我们：zhaopin@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-127-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-22-128-加入我们：zhaopin@geekbang.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-22-128-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[合格]  70.05 - 02_raw/已处理-2026-05-22-129-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-22-129-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[合格]  70.05 - 02_raw/已处理-2026-05-22-130-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-22-130-京_ICP_备_16027448_号_-_5.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-22-131-京_ICP_备_16027448_号_-_5.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-23-001-Tokenisation_via_Convex_Relaxations.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-23-002-Evaluating_Commercial_AI_Chatbots_as_News_Intermed.md
+[待修正]  68.95 - 02_raw/已处理-2026-05-23-003-Reducing_Political_Manipulation_with_Consistency_T.md
+[待修正]  68.95 - 02_raw/已处理-2026-05-23-004-Understanding_Data_Temporality_Impact_on_Large_Lan.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-23-005-ChronoMedKG:_A_Temporally-Grounded_Biomedical_Know.md
+[合格]  70.55 - 02_raw/已处理-2026-05-23-006-Tokenization_with_Split_Trees.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-23-007-Self-Policy_Distillation_via_Capability-Selective_.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-23-008-Moral_Semantics_Survive_Machine_Translation:_Cross.md
+[待修正]  69.00 - 02_raw/已处理-2026-05-23-009-Seeing_the_Poem:_Image-Semantic_Detection_of_AI-Ge.md
+[待修正]  68.80 - 02_raw/已处理-2026-05-23-010-Whose_Voice_Counts?_Mapping_Stakeholder_Perspectiv.md
+[合格]  70.95 - 02_raw/已处理-2026-05-23-011-Boiling_the_Frog:_A_Multi-Turn_Benchmark_for_Agent.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-23-012-More_Context,_Larger_Models,_or_Moral_Knowledge?_A.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-23-013-Chinese_sensorimotor_and_embodiment_norms_for_3,00.md
+[合格]  71.10 - 02_raw/已处理-2026-05-23-014-Agentic_CLEAR:_Automating_Multi-Level_Evaluation_o.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-23-015-Beyond_Temperature:_Hyperfitting_as_a_Late-Stage_G.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-23-016-LANG:_Reinforcement_Learning_for_Multilingual_Reas.md
+[合格]  70.00 - 02_raw/已处理-2026-05-23-017-SynAE:_A_Framework_for_Measuring_the_Quality_of_Sy.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-23-018-One_prompt_is_not_enough:_Instruction_Sensitivity_.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-23-019-Scene_Abstraction_for_Lexical_Semantics:_Structure.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-23-020-BeLink:_Biomedical_Entity_Linking_Meets_Generative.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-23-021-Integrable_Elasticity_via_Neural_Demand_Potentials.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-23-022-Vector_Policy_Optimization:_Training_for_Diversity.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-23-023-Remember_to_be_Curious:_Episodic_Context_and_Persi.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-23-024-The_Matching_Principle:_A_Geometric_Theory_of_Loss.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-23-025-SDPM:_Survival_Diffusion_Probabilistic_Model_for_C.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-23-026-MambaGaze:_Bidirectional_Mamba_with_Explicit_Missi.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-23-027-CogAdapt:_Transferring_Clinical_ECG_Foundation_Mod.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-23-028-Uniform_Diffusion_Models_Revisited:_Leave-One-Out_.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-23-029-Lumberjack:_Better_Differentially_Private_Random_F.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-23-030-Cyber-Physical_Anomaly_Detection_in_IoT-Enabled_Sm.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-23-031-Plug-in_Losses_for_Evidential_Deep_Learning:_A_Sim.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-23-032-SeqLoRA:_Bilevel_Orthogonal_Adaptation_for_Continu.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-23-033-Ternary_Decision_Trees_with_Locally-Adaptive_Uncer.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-23-034-Proxy-Based_Approximation_of_Shapley_and_Banzhaf_I.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-23-035-The_Distillation_Game:_Adaptive_Attacks_&_Efficien.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-23-036-Post-Training_is_About_States,_Not_Tokens:_A_State.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-23-037-Multiple_Neural_Operators_Achieve_Near-Optimal_Rat.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-23-038-The_Value_of_Covariance_Matching_in_Gaussian_DDPMs.md
+[待修正]  69.10 - 02_raw/已处理-2026-05-23-039-Reading_Task_Failure_Off_the_Activations:_A_Sparse.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-23-040-Abstraction_for_Offline_Goal-Conditioned_Reinforce.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-041-Hugging_Face.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-23-042-Bucketsnew.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-043-Enterprise.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-044-HuggingChat.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-045-Collections.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-046-Organizations.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-23-047-Daily_Papers.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-048-Team_&_Enterprise.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-049-Hugging_Face_PRO.md
+[待修正]  65.50 - 02_raw/已处理-2026-05-23-050-Enterprise_Support.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-051-Inference_Providers.md
+[待修正]  65.50 - 02_raw/已处理-2026-05-23-052-Inference_Endpoints.md
+[待修正]  67.80 - 02_raw/已处理-2026-05-23-053-Storage_Buckets.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-23-054-LeRobot_Humanoid:_An_Open,_Low-Cost,_3D-Printed_Hu.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-23-055-Skip_to_main_content.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-23-056-Developers.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-23-057-Foundation(opens_in_a_new_window).md
+[待修正]  68.40 - 02_raw/已处理-2026-05-23-058-Try_ChatGPT(opens_in_a_new_window).md
+[待修正]  67.10 - 02_raw/已处理-2026-05-23-059-Engineering.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-23-060-Global_Affairs.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-23-061-AI_Adoption.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-23-062-OpenAI_named_a_Leader_in_enterprise_coding_agents_.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-23-063-An_OpenAI_model_has_disproved_a_central_conjecture.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-23-064-Advancing_content_provenance_for_a_safer,_more_tra.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-23-065-OpenAI_and_Dell_Technologies_partner_to_bring_Code.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-23-066-A_new_personal_finance_experience_in_ChatGPTProduc.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-23-067-Work_with_Codex_from_anywhereProductMay_14,_2026.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-23-068-Helping_ChatGPT_better_recognize_context_in_sensit.md
+[待修正]  67.35 - 02_raw/已处理-2026-05-23-069-Building_a_safe,_effective_sandbox_to_enable_Codex.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-23-070-Skip_to_main_content.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-23-071-Skip_to_footer.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-23-072-Economic_Futures.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-23-073-Try_Claude.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-23-074-Economic_Research.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-23-075-Interpretability.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-23-076-Societal_Impacts.md
+[合格]  70.35 - 02_raw/已处理-2026-05-23-077-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+[合格]  71.20 - 02_raw/已处理-2026-05-23-078-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-23-079-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-23-080-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-23-081-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-23-082-May_22,_2026AnnouncementsProject_Glasswing:_An_ini.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-23-083-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-23-084-May_8,_2026AlignmentTeaching_Claude_why.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-23-085-Skip_to_main_content.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-086-Explore_models.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-23-087-GeminiBuild_intelligent_agents.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-23-088-Gemini_OmniCreate_anything_from_anything.md
+[待修正]  66.80 - 02_raw/已处理-2026-05-23-089-Nano_BananaCreate_and_edit_detailed_images.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-23-090-Gemini_AudioTalk,_create_and_control_audio.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-091-VeoGenerate_cinematic_video_with_audio.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-23-092-ImagenGenerate_high-quality_images_from_text.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-23-093-LyriaGenerate_high_fidelity_music_and_audio.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-23-094-Genie_3Generate_and_explore_interactive_worlds.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-23-095-Gemini_RoboticsPerceive,_reason,_use_tools_and_int.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-23-096-GemmaBuild_responsible_AI_applications_at_scale.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-097-Explore_research.md
+[待修正]  68.05 - 02_raw/已处理-2026-05-23-098-SIMA_2An_agent_that_plays,_reasons,_and_learns_wit.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-23-099-AlphaGoMastering_the_game_of_Go.md
+[待修正]  69.00 - 02_raw/已处理-2026-05-23-100-anthropics_claude-plugins-official.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-23-101-rohitg00_ai-engineering-from-scratch.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-23-102-odoo_odoo.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-23-103-Fincept-Corporation_FinceptTerminal.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-23-104-yt-dlp_yt-dlp.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-23-105-NousResearch_hermes-agent.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-23-106-facebookresearch_sam3.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-23-107-lllyasviel_Fooocus.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-23-108-HKUDS_ViMax.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-23-109-D4Vinci_Scrapling.md
+[待修正]  66.70 - 02_raw/已处理-2026-05-23-110-plastic-labs_honcho.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-23-111-aiming-lab_AutoResearchClaw.md
+[合格]  70.05 - 02_raw/已处理-2026-05-23-112-microsoft_agent-governance-toolkit.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-23-113-awslabs_aidlc-workflows.md
+[待修正]  69.75 - 02_raw/已处理-2026-05-23-114-Tracer-Cloud_opensre.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-23-115-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-23-116-顶流里最快！智谱，你是在「喷」代码吧.md
+[待修正]  66.65 - 02_raw/已处理-2026-05-23-117-520当天400万AI人，都在量子位听这近20场演讲&对谈｜第四届中国AIGC产业峰会.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-23-118-2026中国AIGC最值得关注的企业&产品图鉴来了！谁在造浪，谁在落地？.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-23-119-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  66.40 - 02_raw/已处理-2026-05-23-120-龙虾养不动了？周鸿祎给虾搭了个云端办公室，专业私教在线炼虾.md
+[待修正]  66.70 - 02_raw/已处理-2026-05-23-121-李飞飞再出手，空间智能的ImageNet来了.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-23-122-融资700亿！DeepSeek_Code真要来了，ACM金牌大神崔添翼挂帅.md
+[待修正]  66.50 - 02_raw/已处理-2026-05-23-123-狂揽F轮融资+拿下4100万用户！深圳玩家出手，把企业旧系统变成AI能力库.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-23-124-Snowflakenew.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-23-125-内容投稿：editors@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-23-126-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-23-127-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-23-128-加入我们：zhaopin@geekbang.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-23-129-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[合格]  70.05 - 02_raw/已处理-2026-05-23-130-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-23-131-京_ICP_备_16027448_号_-_5.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-25-001-Multilingual_Knowledge_Transfer_under_Data_Constra.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-25-001-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-25-002-Hierarchical_Concept_Geometry_in_Language_Models_E.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-25-002-什么！你说胡彦斌也在苦修Vibe_Coding.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-25-003-Is_a_Document_Educational_or_Just_Wikipedia-Style?.md
+[待修正]  66.35 - 02_raw/已处理-2026-05-25-003-“五类人AI替代不了，企业做第二名最稳妥”_|_昆仑万维方汉@AIGC2026.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-25-004-NLG_Evaluation:_Past,_Present,_Future.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-004-OpenAI大神教你如何榨干Codex.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-25-005-A_graph-based_analysis_of_semantic_types_and_coerc.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-25-005-顶流里最快！智谱，你是在「喷」代码吧.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-25-006-Metadata_Predictability_Is_Not_Evidence_Dependence.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-25-006-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  68.80 - 02_raw/已处理-2026-05-25-007-ChartFI:_Benchmarking_Faithfulness_and_Insightfuln.md
+[待修正]  68.50 - 02_raw/已处理-2026-05-25-007-未来推理将吃掉70%算力，30%留给训练丨硅谷投资人张璐@AIGC2026.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-25-008-OnePred:_Next-Query_Prediction_via_Recursive_Inten.md
+[待修正]  68.65 - 02_raw/已处理-2026-05-25-008-卷到今天，Agent的含金量还在提升丨AIGC2026圆桌论坛.md
+[合格]  70.50 - 02_raw/已处理-2026-05-25-009-OpenSkillEval:_Automatically_Auditing_the_Open_Ski.md
+[待修正]  66.70 - 02_raw/已处理-2026-05-25-009-谷歌CEO承认Coding落后了.md
+[待修正]  69.70 - 02_raw/已处理-2026-05-25-010-How_Human-Like_Are_Large_Language_Models?_A_Regist.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-25-010-Snowflakenew.md
+[合格]  71.45 - 02_raw/已处理-2026-05-25-011-Benchmarking_Google_Embeddings_2_against_Open-Sour.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-011-内容投稿：editors@geekbang.com.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-25-012-Structure-Guided_Entity_Resolution:_Fine-Tuning_LL.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-012-业务合作：hezuo@geekbang.com.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-25-013-Asking_For_An_Old_Friend:_Diagnosing_and_Mitigatin.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-013-反馈投诉：feedback@geekbang.com.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-25-014-ARES:_Automated_Rubric_Synthesis_for_Scalable_LLM_.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-014-加入我们：zhaopin@geekbang.com.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-25-015-SSDAU:_Structured_Semantic_Data_Augmentation_for_J.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-015-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-25-016-Naturalistic_measure_of_social_norms_alignment.md
+[合格]  70.05 - 02_raw/已处理-2026-05-25-016-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-25-017-Articulatory_strategy_as_a_source_of_variation_in_.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-25-017-京_ICP_备_16027448_号_-_5.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-25-018-EquiSumm_:_A_Gender_Bias-Aware_Framework_for_Inclu.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-019-Metacognition_as_Reward:_Reinforcing_LLM_Reasoning.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-25-020-From_Correctness_to_Preference:_A_Framework_for_Pe.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-25-021-LLMs_as_Noisy_Channels:_A_Shannon_Perspective_on_M.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-25-022-Complete-muE:_Optimal_Hyperparameter_Transfer_and_.md
+[待修正]  69.85 - 02_raw/已处理-2026-05-25-023-Training-Free_Looped_Transformers.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-25-024-Leveraging_Foundation_Models_for_Causal_Generative.md
+[待修正]  69.65 - 02_raw/已处理-2026-05-25-025-Strong_Teacher_Not_Needed?_On_Distillation_in_LLM_.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-25-026-Entrywise_Error_Bounds_for_Spectral_Ranking_with_S.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-25-027-It's_the_humans,_not_the_data:_Geopolitical_bias_i.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-25-028-Debiased_Negative_Mining_Improves_Out-of-distribut.md
+[合格]  70.00 - 02_raw/已处理-2026-05-25-029-LLM-driven_design_of_physics-constrained_constitut.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-25-030-SeedER:_Seed-and-Expand_Retrieval_from_Knowledge_G.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-25-031-Approaching_I_O-optimality_for_Approximate_Attenti.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-25-032-Contrast_to_Detect:_Dynamic_Graph_Contrastive_Regu.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-25-033-Optimal_Dimension-Free_Sampling_for_Regularized_Cl.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-25-034-Learning_Dynamic_Stability_Landscapes_in_Synchroni.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-25-035-Graph-based_Complexity_Forecasts_in_UK_En_Route_Ai.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-25-036-Optimization_of_randomized_neural_networks_for_tra.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-25-037-Relevant_Walk_Search_for_Explaining_Graph_Neural_N.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-25-038-Learning_Through_Noise:_Why_Subliminal_Learning_Wo.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-25-039-Valid_and_Expressive_Copulas_for_Irregular_Multiva.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-25-040-How_Hard_is_it_to_Rig_a_Benchmark?_A_Social_Choice.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-25-041-Skip_to_main_content.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-25-042-Developers.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-25-042-Skip_to_footer.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-25-043-Economic_Futures.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-25-043-Foundation(opens_in_a_new_window).md
+[待修正]  68.40 - 02_raw/已处理-2026-05-25-044-Try_ChatGPT(opens_in_a_new_window).md
+[待修正]  68.45 - 02_raw/已处理-2026-05-25-044-Try_Claude.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-25-045-Economic_Research.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-25-045-Engineering.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-25-046-Global_Affairs.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-25-046-Interpretability.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-25-047-AI_Adoption.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-25-047-Societal_Impacts.md
+[合格]  70.35 - 02_raw/已处理-2026-05-25-048-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-25-048-OpenAI_named_a_Leader_in_enterprise_coding_agents_.md
+[合格]  71.20 - 02_raw/已处理-2026-05-25-049-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-25-049-An_OpenAI_model_has_disproved_a_central_conjecture.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-25-050-Advancing_content_provenance_for_a_safer,_more_tra.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-25-050-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-25-051-OpenAI_and_Dell_Technologies_partner_to_bring_Code.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-25-051-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-25-052-A_new_personal_finance_experience_in_ChatGPTProduc.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-25-052-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-25-053-May_22,_2026AnnouncementsProject_Glasswing:_An_ini.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-25-053-Work_with_Codex_from_anywhereProductMay_14,_2026.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-25-054-Helping_ChatGPT_better_recognize_context_in_sensit.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-25-054-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  67.35 - 02_raw/已处理-2026-05-25-055-Building_a_safe,_effective_sandbox_to_enable_Codex.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-25-055-May_8,_2026AlignmentTeaching_Claude_why.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-25-056-Skip_to_main_content.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-25-056-rohitg00_ai-engineering-from-scratch.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-25-057-Skip_to_footer.md
+[待修正]  69.00 - 02_raw/已处理-2026-05-25-057-anthropics_claude-plugins-official.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-25-058-Economic_Futures.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-25-058-anthropics_knowledge-work-plugins.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-25-059-Alishahryar1_free-claude-code.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-25-059-Try_Claude.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-25-060-Economic_Research.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-25-060-shiyu-coder_Kronos.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-25-061-666ghj_MiroFish.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-25-061-Interpretability.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-25-062-Societal_Impacts.md
+[合格]  71.40 - 02_raw/已处理-2026-05-25-062-mukul975_Anthropic-Cybersecurity-Skills.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-25-063-D4Vinci_Scrapling.md
+[合格]  70.35 - 02_raw/已处理-2026-05-25-063-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+[合格]  71.20 - 02_raw/已处理-2026-05-25-064-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-25-064-NVlabs_LongLive.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-25-065-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+[待修正]  68.15 - 02_raw/已处理-2026-05-25-065-onyx-dot-app_onyx.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-25-066-Fincept-Corporation_FinceptTerminal.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-25-066-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-25-067-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-25-067-cheahjs_free-llm-api-resources.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-25-068-May_22,_2026AnnouncementsProject_Glasswing:_An_ini.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-068-bleachbit_bleachbit.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-25-069-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  66.70 - 02_raw/已处理-2026-05-25-069-plastic-labs_honcho.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-25-070-May_8,_2026AlignmentTeaching_Claude_why.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-25-070-google-research_timesfm.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-25-071-Skip_to_main_content.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-25-071-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-25-072-Explore_models.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-25-072-什么！你说胡彦斌也在苦修Vibe_Coding.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-25-073-GeminiBuild_intelligent_agents.md
+[待修正]  66.35 - 02_raw/已处理-2026-05-25-073-“五类人AI替代不了，企业做第二名最稳妥”_|_昆仑万维方汉@AIGC2026.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-25-074-Gemini_OmniCreate_anything_from_anything.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-074-OpenAI大神教你如何榨干Codex.md
+[待修正]  66.80 - 02_raw/已处理-2026-05-25-075-Nano_BananaCreate_and_edit_detailed_images.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-25-075-顶流里最快！智谱，你是在「喷」代码吧.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-25-076-Gemini_AudioTalk,_create_and_control_audio.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-25-076-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-25-077-VeoGenerate_cinematic_video_with_audio.md
+[待修正]  68.50 - 02_raw/已处理-2026-05-25-077-未来推理将吃掉70%算力，30%留给训练丨硅谷投资人张璐@AIGC2026.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-078-ImagenGenerate_high-quality_images_from_text.md
+[待修正]  68.65 - 02_raw/已处理-2026-05-25-078-卷到今天，Agent的含金量还在提升丨AIGC2026圆桌论坛.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-079-LyriaGenerate_high_fidelity_music_and_audio.md
+[待修正]  66.70 - 02_raw/已处理-2026-05-25-079-谷歌CEO承认Coding落后了.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-080-Genie_3Generate_and_explore_interactive_worlds.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-25-080-Snowflakenew.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-25-081-Gemini_RoboticsPerceive,_reason,_use_tools_and_int.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-081-内容投稿：editors@geekbang.com.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-25-082-GemmaBuild_responsible_AI_applications_at_scale.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-082-业务合作：hezuo@geekbang.com.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-25-083-Explore_research.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-083-反馈投诉：feedback@geekbang.com.md
+[待修正]  68.05 - 02_raw/已处理-2026-05-25-084-SIMA_2An_agent_that_plays,_reasons,_and_learns_wit.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-084-加入我们：zhaopin@geekbang.com.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-25-085-AlphaGoMastering_the_game_of_Go.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-085-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-25-086-rohitg00_ai-engineering-from-scratch.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-25-086-zhaoyunfeng@jiqizhixin.com.md
+[合格]  70.05 - 02_raw/已处理-2026-05-25-086-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[合格]  70.15 - 02_raw/已处理-2026-05-25-087-DeepSeek_V4还能更省！新工具缓存命中率高达99.82%，2折稳定到手.md
+[待修正]  69.00 - 02_raw/已处理-2026-05-25-087-anthropics_claude-plugins-official.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-25-087-京_ICP_备_16027448_号_-_5.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-25-087-什么！你说胡彦斌也在苦修Vibe_Coding.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-25-088-anthropics_knowledge-work-plugins.md
+[待修正]  66.35 - 02_raw/已处理-2026-05-25-088-“五类人AI替代不了，企业做第二名最稳妥”_|_昆仑万维方汉@AIGC2026.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-25-088-什么！你说胡彦斌也在苦修Vibe_Coding.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-25-089-Alishahryar1_free-claude-code.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-089-OpenAI大神教你如何榨干Codex.md
+[待修正]  66.35 - 02_raw/已处理-2026-05-25-089-“五类人AI替代不了，企业做第二名最稳妥”_|_昆仑万维方汉@AIGC2026.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-090-OpenAI大神教你如何榨干Codex.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-25-090-shiyu-coder_Kronos.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-25-090-顶流里最快！智谱，你是在「喷」代码吧.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-25-091-666ghj_MiroFish.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-25-091-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[合格]  71.40 - 02_raw/已处理-2026-05-25-092-mukul975_Anthropic-Cybersecurity-Skills.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-25-092-华为具身大脑一号位创业，用认知科学造世界模型，获亿元级融资.md
+[待修正]  66.65 - 02_raw/已处理-2026-05-25-092-图灵奖得主领衔，中国大模型第一梯队集结！2026智源大会，看懂AI下一程.md
+[待修正]  69.95 - 02_raw/已处理-2026-05-25-093-Claude_通过率不到4%，SaaS-Bench撕碎了Computer-Use的「全自动办公」幻想.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-25-093-D4Vinci_Scrapling.md
+[待修正]  68.50 - 02_raw/已处理-2026-05-25-093-未来推理将吃掉70%算力，30%留给训练丨硅谷投资人张璐@AIGC2026.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-25-094-NVlabs_LongLive.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-25-094-Snowflakenew.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-25-094-华为具身大脑一号位创业，用认知科学造世界模型，获亿元级融资.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-25-095-Snowflakenew.md
+[待修正]  68.15 - 02_raw/已处理-2026-05-25-095-onyx-dot-app_onyx.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-095-内容投稿：editors@geekbang.com.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-25-096-Fincept-Corporation_FinceptTerminal.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-096-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-096-内容投稿：editors@geekbang.com.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-25-097-cheahjs_free-llm-api-resources.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-097-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-097-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-098-bleachbit_bleachbit.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-098-加入我们：zhaopin@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-098-反馈投诉：feedback@geekbang.com.md
+[待修正]  66.70 - 02_raw/已处理-2026-05-25-099-plastic-labs_honcho.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-099-加入我们：zhaopin@geekbang.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-099-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-25-100-google-research_timesfm.md
+[合格]  70.05 - 02_raw/已处理-2026-05-25-100-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-100-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-25-101-zhaoyunfeng@jiqizhixin.com.md
+[合格]  70.05 - 02_raw/已处理-2026-05-25-101-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-25-101-京_ICP_备_16027448_号_-_5.md
+[合格]  70.15 - 02_raw/已处理-2026-05-25-102-DeepSeek_V4还能更省！新工具缓存命中率高达99.82%，2折稳定到手.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-25-102-京_ICP_备_16027448_号_-_5.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-25-103-什么！你说胡彦斌也在苦修Vibe_Coding.md
+[待修正]  66.35 - 02_raw/已处理-2026-05-25-104-“五类人AI替代不了，企业做第二名最稳妥”_|_昆仑万维方汉@AIGC2026.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-105-OpenAI大神教你如何榨干Codex.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-25-106-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  66.65 - 02_raw/已处理-2026-05-25-107-图灵奖得主领衔，中国大模型第一梯队集结！2026智源大会，看懂AI下一程.md
+[待修正]  69.95 - 02_raw/已处理-2026-05-25-108-Claude_通过率不到4%，SaaS-Bench撕碎了Computer-Use的「全自动办公」幻想.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-25-109-华为具身大脑一号位创业，用认知科学造世界模型，获亿元级融资.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-25-110-Snowflakenew.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-25-111-ThoughtWorks.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-112-内容投稿：editors@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-113-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-114-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-25-115-加入我们：zhaopin@geekbang.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-25-116-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[合格]  70.05 - 02_raw/已处理-2026-05-25-117-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-25-118-京_ICP_备_16027448_号_-_5.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-26-001-Language_Models_Need_Sleep.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-26-001-Multilingual_Knowledge_Transfer_under_Data_Constra.md
+[合格]  70.40 - 02_raw/已处理-2026-05-26-002-Automated_Benchmark_Auditing_for_AI_Agents_and_Lar.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-26-002-Hierarchical_Concept_Geometry_in_Language_Models_E.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-26-003-Is_a_Document_Educational_or_Just_Wikipedia-Style?.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-26-003-StakeBench:_Evaluating_Language_Understanding_Grou.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-26-004-NLG_Evaluation:_Past,_Present,_Future.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-26-004-WhoSaidIt:_Human-LLM_Collaborative_Annotation_for_.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-26-005-A_graph-based_analysis_of_semantic_types_and_coerc.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-26-005-When_Gradients_Collide:_Failure_Modes_of_Multi-Obj.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-26-006-Confidence_and_Calibration_of_Activation_Oracles_f.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-26-006-Metadata_Predictability_Is_Not_Evidence_Dependence.md
+[待修正]  68.80 - 02_raw/已处理-2026-05-26-007-ChartFI:_Benchmarking_Faithfulness_and_Insightfuln.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-26-007-Peak-Then-Collapse_and_the_Four_Interface_Channels.md
+[合格]  70.20 - 02_raw/已处理-2026-05-26-008-Forgotten_Words:_Benchmarking_NeoBERT_for_Dementia.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-26-008-OnePred:_Next-Query_Prediction_via_Recursive_Inten.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-26-009-AI-Assisted_Systematization_for_Evaluating_GenAI_S.md
+[合格]  70.50 - 02_raw/已处理-2026-05-26-009-OpenSkillEval:_Automatically_Auditing_the_Open_Ski.md
+[待修正]  69.70 - 02_raw/已处理-2026-05-26-010-How_Human-Like_Are_Large_Language_Models?_A_Regist.md
+[合格]  70.15 - 02_raw/已处理-2026-05-26-010-What_Makes_a_Medical_Checker_Trainable?_Diagnosing.md
+[合格]  71.45 - 02_raw/已处理-2026-05-26-011-Benchmarking_Google_Embeddings_2_against_Open-Sour.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-26-011-SafeCtrl-RL:_Inference-Time_Adaptive_Behaviour_Con.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-26-012-Structure-Guided_Entity_Resolution:_Fine-Tuning_LL.md
+[合格]  70.30 - 02_raw/已处理-2026-05-26-012-When_Do_LLM_Agents_Treat_Surface_Noise_Differently.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-26-013-Asking_For_An_Old_Friend:_Diagnosing_and_Mitigatin.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-26-013-Creative_Quality_Alignment:_Expert_Tacit_Knowledge.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-26-014-ARES:_Automated_Rubric_Synthesis_for_Scalable_LLM_.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-26-014-Anticipate_and_Learn:_Unleashing_Idle-Time_Compute.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-26-015-SSDAU:_Structured_Semantic_Data_Augmentation_for_J.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-26-015-Triplet-Block_Diffusion_RWKV.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-26-016-Naturalistic_measure_of_social_norms_alignment.md
+[合格]  70.60 - 02_raw/已处理-2026-05-26-016-PolyGnosis_2.0:_Enhancing_LLM_Reasoning_via_Agenti.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-26-017-Articulatory_strategy_as_a_source_of_variation_in_.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-26-017-QUIET:_A_Multi-Blank_Cascaded_Story_Cloze_Benchmar.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-26-018-EquiSumm_:_A_Gender_Bias-Aware_Framework_for_Inclu.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-26-018-Thaka_at_KSAA-2026_Task_2:_Regularized_Fine-Tuning.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-26-019-Does_Continued_Pretraining_on_a_Learner_Corpus_Imp.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-26-019-Metacognition_as_Reward:_Reinforcing_LLM_Reasoning.md
+[合格]  70.45 - 02_raw/已处理-2026-05-26-020-Can_LLMs_Time_Travel?_Enhancing_Temporal_Consisten.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-26-020-From_Correctness_to_Preference:_A_Framework_for_Pe.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-26-021-LLMs_as_Noisy_Channels:_A_Shannon_Perspective_on_M.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-26-021-Prism:_A_Plug-in_Reproducible_Infrastructure_for_S.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-26-022-Complete-muE:_Optimal_Hyperparameter_Transfer_and_.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-26-022-Looped_Diffusion_Language_Models.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-26-023-Forgetting_in_Language_Models:_Capacity,_Optimizat.md
+[待修正]  69.85 - 02_raw/已处理-2026-05-26-023-Training-Free_Looped_Transformers.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-26-024-Goal-driven_Bayesian_Optimal_Experimental_Design_f.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-26-024-Leveraging_Foundation_Models_for_Causal_Generative.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-26-025-OrpQuant:_Geometric_Orthogonal_Residual_Projection.md
+[待修正]  69.65 - 02_raw/已处理-2026-05-26-025-Strong_Teacher_Not_Needed?_On_Distillation_in_LLM_.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-26-026-Entrywise_Error_Bounds_for_Spectral_Ranking_with_S.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-26-026-Global_Convergence_of_Wasserstein_Policy_Gradient_.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-26-027-Active_Query_Synthesis_for_Preference_Learning.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-26-027-It's_the_humans,_not_the_data:_Geopolitical_bias_i.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-26-028-Debiased_Negative_Mining_Improves_Out-of-distribut.md
+[待修正]  68.90 - 02_raw/已处理-2026-05-26-028-Rethinking_Weak_Supervision_in_Anomaly_Detection:_.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-26-029-Conditional_KRR:_Injecting_Unpenalized_Features_in.md
+[合格]  70.00 - 02_raw/已处理-2026-05-26-029-LLM-driven_design_of_physics-constrained_constitut.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-26-030-Neuronal_Stochastic_Attention_Circuit_(NSAC)_for_P.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-26-030-SeedER:_Seed-and-Expand_Retrieval_from_Knowledge_G.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-26-031-Approaching_I_O-optimality_for_Approximate_Attenti.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-26-031-Length_Generalization_with_Log-Depth_Recurrent_Uni.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-26-032-Contrast_to_Detect:_Dynamic_Graph_Contrastive_Regu.md
+[待修正]  66.90 - 02_raw/已处理-2026-05-26-032-Retrieval-Augmented_Detection_of_Potentially_Abusi.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-26-033-AdvantageFlow:_Advantage-Weighted_Least_Squares_fo.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-26-033-Optimal_Dimension-Free_Sampling_for_Regularized_Cl.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-26-034-Learning_Dynamic_Stability_Landscapes_in_Synchroni.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-26-034-Learning_in_Low-Dimensional_Subspaces:_Orthogonal_.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-26-035-Causal_methods_for_LLM_development_and_evaluation.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-26-035-Graph-based_Complexity_Forecasts_in_UK_En_Route_Ai.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-26-036-Deployment-complete_benchmarking.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-26-036-Optimization_of_randomized_neural_networks_for_tra.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-26-037-Fuzzy_PyTorch:_Rapid_Numerical_Variability_Evaluat.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-26-037-Relevant_Walk_Search_for_Explaining_Graph_Neural_N.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-26-038-Hidden_in_Plain_Tokens:_Simply_Robust,_Gradient-Fr.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-26-038-Learning_Through_Noise:_Why_Subliminal_Learning_Wo.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-26-039-Mapping_the_Schedule_x_Bit-Width_Boundary_in_Sub-1.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-26-039-Valid_and_Expressive_Copulas_for_Irregular_Multiva.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-26-040-How_Hard_is_it_to_Rig_a_Benchmark?_A_Social_Choice.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-26-040-Step-TP:_A_Grounded,_Step-Level_Dataset_with_Chain.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-26-041-Skip_to_main_content.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-26-042-Developers.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-26-043-Foundation(opens_in_a_new_window).md
+[待修正]  68.40 - 02_raw/已处理-2026-05-26-044-Try_ChatGPT(opens_in_a_new_window).md
+[待修正]  67.10 - 02_raw/已处理-2026-05-26-045-Engineering.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-26-046-Global_Affairs.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-26-047-AI_Adoption.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-26-048-OpenAI_named_a_Leader_in_enterprise_coding_agents_.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-26-049-An_OpenAI_model_has_disproved_a_central_conjecture.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-26-050-Advancing_content_provenance_for_a_safer,_more_tra.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-26-051-OpenAI_and_Dell_Technologies_partner_to_bring_Code.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-26-052-A_new_personal_finance_experience_in_ChatGPTProduc.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-26-053-Work_with_Codex_from_anywhereProductMay_14,_2026.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-26-054-Helping_ChatGPT_better_recognize_context_in_sensit.md
+[待修正]  67.35 - 02_raw/已处理-2026-05-26-055-Building_a_safe,_effective_sandbox_to_enable_Codex.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-26-056-Skip_to_main_content.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-26-057-Skip_to_footer.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-26-058-Economic_Futures.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-26-059-Try_Claude.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-26-060-Economic_Research.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-26-061-Interpretability.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-26-062-Societal_Impacts.md
+[合格]  70.35 - 02_raw/已处理-2026-05-26-063-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+[合格]  71.20 - 02_raw/已处理-2026-05-26-064-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-26-065-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-26-066-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-26-067-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-26-068-May_22,_2026AnnouncementsProject_Glasswing:_An_ini.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-26-069-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-26-070-May_8,_2026AlignmentTeaching_Claude_why.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-26-071-Skip_to_main_content.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-26-072-Explore_models.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-26-073-GeminiBuild_intelligent_agents.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-26-074-Gemini_OmniCreate_anything_from_anything.md
+[待修正]  66.80 - 02_raw/已处理-2026-05-26-075-Nano_BananaCreate_and_edit_detailed_images.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-26-076-Gemini_AudioTalk,_create_and_control_audio.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-26-077-VeoGenerate_cinematic_video_with_audio.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-078-ImagenGenerate_high-quality_images_from_text.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-079-LyriaGenerate_high_fidelity_music_and_audio.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-080-Genie_3Generate_and_explore_interactive_worlds.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-26-081-Gemini_RoboticsPerceive,_reason,_use_tools_and_int.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-26-082-GemmaBuild_responsible_AI_applications_at_scale.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-26-083-Explore_research.md
+[待修正]  68.05 - 02_raw/已处理-2026-05-26-084-SIMA_2An_agent_that_plays,_reasons,_and_learns_wit.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-26-085-AlphaGoMastering_the_game_of_Go.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-26-086-anthropics_knowledge-work-plugins.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-26-086-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-26-087-rohitg00_ai-engineering-from-scratch.md
+[待修正]  68.80 - 02_raw/已处理-2026-05-26-087-刚刚，国产Agent模型闯入全球第一梯队！限时免费.md
+[合格]  71.40 - 02_raw/已处理-2026-05-26-088-mukul975_Anthropic-Cybersecurity-Skills.md
+[待修正]  66.50 - 02_raw/已处理-2026-05-26-088-“VLA和世界模型都不是终局，会有物理世界独有的模型”_|_蚂蚁灵波沈宇军@AIGC2026.md
+[合格]  70.15 - 02_raw/已处理-2026-05-26-089-DeepSeek_V4还能更省！新工具缓存命中率高达99.82%，2折稳定到手.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-26-089-Fincept-Corporation_FinceptTerminal.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-26-090-paperless-ngx_paperless-ngx.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-26-090-什么！你说胡彦斌也在苦修Vibe_Coding.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-26-091-shiyu-coder_Kronos.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-26-091-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[合格]  70.05 - 02_raw/已处理-2026-05-26-092-microsoft_agent-governance-toolkit.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-26-092-荣耀600系列手机发布：4K闪光微单Live，国补价2294.15元起.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-26-093-st-tech_ppf-contact-solver.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-26-093-“卡车界特斯拉”，刚刚又融了2亿美元.md
+[合格]  70.90 - 02_raw/已处理-2026-05-26-094-sansan0_TrendRadar.md
+[待修正]  69.40 - 02_raw/已处理-2026-05-26-094-编程权威榜单：千问3.7仅次于Claude，阿里全球第二.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-26-095-666ghj_MiroFish.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-26-095-Snowflakenew.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-26-096-Datalux_Osintgram.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-26-096-Windows_Azure.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-26-097-OpenBB-finance_OpenBB.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-097-内容投稿：editors@geekbang.com.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-26-098-freqtrade_freqtrade-strategies.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-098-业务合作：hezuo@geekbang.com.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-26-099-donnemartin_system-design-primer.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-099-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-100-yt-dlp_yt-dlp.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-100-加入我们：zhaopin@geekbang.com.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-26-101-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-26-101-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[待修正]  66.50 - 02_raw/已处理-2026-05-26-102-“VLA和世界模型都不是终局，会有物理世界独有的模型”_|_蚂蚁灵波沈宇军@AIGC2026.md
+[合格]  70.05 - 02_raw/已处理-2026-05-26-102-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[合格]  70.15 - 02_raw/已处理-2026-05-26-103-DeepSeek_V4还能更省！新工具缓存命中率高达99.82%，2折稳定到手.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-26-103-京_ICP_备_16027448_号_-_5.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-26-104-什么！你说胡彦斌也在苦修Vibe_Coding.md
+[待修正]  66.35 - 02_raw/已处理-2026-05-26-105-“五类人AI替代不了，企业做第二名最稳妥”_|_昆仑万维方汉@AIGC2026.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-26-106-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  67.50 - 02_raw/已处理-2026-05-26-107-京东JoyInside戴文军：AI的终极形态不是聊天，是融入你家每一件物品丨AIGC2026.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-26-108-中国AIGC产业峰会2026.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-26-109-无人车遇水则瘫？Waymo大规模召回，叫停多城Robotaxi服务.md
+[待修正]  66.70 - 02_raw/已处理-2026-05-26-110-打造创投生态的超级枢纽，_2026投资界SuperLink大会定档6月.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-26-111-Snowflakenew.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-112-内容投稿：editors@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-113-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-114-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-26-115-加入我们：zhaopin@geekbang.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-26-116-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[合格]  70.05 - 02_raw/已处理-2026-05-26-117-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-26-118-京_ICP_备_16027448_号_-_5.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-27-001-Language_Models_Need_Sleep.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-27-001-MATCHA:_Matching_Text_via_Contrastive_Semantic_Ali.md
+[合格]  70.40 - 02_raw/已处理-2026-05-27-002-Automated_Benchmark_Auditing_for_AI_Agents_and_Lar.md
+[合格]  70.15 - 02_raw/已处理-2026-05-27-002-FinHarness:_An_Inline_Lifecycle_Safety_Harness_for.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-27-003-Semantic_Gradients_Interactions_in_SSD:_A_Case_Stu.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-003-StakeBench:_Evaluating_Language_Understanding_Grou.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-004-Real_Images,_Worse_Judgments:_Evaluating_Vision-La.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-27-004-WhoSaidIt:_Human-LLM_Collaborative_Annotation_for_.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-27-005-When_Does_Demographic_Information_Help?_Data_and_M.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-27-005-When_Gradients_Collide:_Failure_Modes_of_Multi-Obj.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-27-006-Chartographer:_Counterfactual_Chart_Generation_for.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-006-Confidence_and_Calibration_of_Activation_Oracles_f.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-27-007-Peak-Then-Collapse_and_the_Four_Interface_Channels.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-27-007-Self-Ensembling_Vision-Language_Models_for_Chart_D.md
+[合格]  70.20 - 02_raw/已处理-2026-05-27-008-Forgotten_Words:_Benchmarking_NeoBERT_for_Dementia.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-27-008-Probing_Cultural_Awareness_in_LLMs:_A_Case_Study_o.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-27-009-AI-Assisted_Systematization_for_Evaluating_GenAI_S.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-27-009-Separating_Semantic_Competition_from_Context_Lengt.md
+[待修正]  69.60 - 02_raw/已处理-2026-05-27-010-It's_Not_Always_Sycophancy:_Measuring_LLM_Conformi.md
+[合格]  70.15 - 02_raw/已处理-2026-05-27-010-What_Makes_a_Medical_Checker_Trainable?_Diagnosing.md
+[合格]  70.00 - 02_raw/已处理-2026-05-27-011-Lost_in_Sampling:_Assessing_Lexical_Reachability_i.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-27-011-SafeCtrl-RL:_Inference-Time_Adaptive_Behaviour_Con.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-27-012-Pair-In,_Pair-Out:_Latent_Multi-Token_Prediction_f.md
+[合格]  70.30 - 02_raw/已处理-2026-05-27-012-When_Do_LLM_Agents_Treat_Surface_Noise_Differently.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-27-013-Creative_Quality_Alignment:_Expert_Tacit_Knowledge.md
+[合格]  70.30 - 02_raw/已处理-2026-05-27-013-ENPMR-Bench:_Benchmarking_Proactive_Memory_Retriev.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-27-014-Anticipate_and_Learn:_Unleashing_Idle-Time_Compute.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-27-014-Temporal_Simultaneity_Predicts_Annotation_Quality_.md
+[合格]  70.20 - 02_raw/已处理-2026-05-27-015-The_Coverage_Illusion:_From_Pre-retrieval_Routing_.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-27-015-Triplet-Block_Diffusion_RWKV.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-27-016-GraphReview:_Scientific_Paper_Evaluation_via_LLM-B.md
+[合格]  70.60 - 02_raw/已处理-2026-05-27-016-PolyGnosis_2.0:_Enhancing_LLM_Reasoning_via_Agenti.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-27-017-EpiCurveBench:_Evaluating_VLMs_on_Epidemic_Curve_D.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-27-017-QUIET:_A_Multi-Blank_Cascaded_Story_Cloze_Benchmar.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-27-018-Not_All_Tokens_Matter_Equally:_Dynamic_In-context_.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-018-Thaka_at_KSAA-2026_Task_2:_Regularized_Fine-Tuning.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-27-019-Does_Continued_Pretraining_on_a_Learner_Corpus_Imp.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-019-Learning_When_to_Think_While_Listening_in_Large_Au.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-27-020-Beyond_Binary:_Speech_Representations_Across_the_C.md
+[合格]  70.45 - 02_raw/已处理-2026-05-27-020-Can_LLMs_Time_Travel?_Enhancing_Temporal_Consisten.md
+[合格]  70.40 - 02_raw/已处理-2026-05-27-021-MobileMoE:_Scaling_On-Device_Mixture_of_Experts.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-27-021-Prism:_A_Plug-in_Reproducible_Infrastructure_for_S.md
+[待修正]  69.75 - 02_raw/已处理-2026-05-27-022-Guiding_LLM_Post-training_Data_Engineering_with_Mo.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-27-022-Looped_Diffusion_Language_Models.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-27-023-Forgetting_in_Language_Models:_Capacity,_Optimizat.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-023-From_Scores_to_Gibbs_Correctors:_Accelerating_Unif.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-27-024-Goal-driven_Bayesian_Optimal_Experimental_Design_f.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-024-Probabilistic_Smoothing_with_Ratio-Monotone_Transf.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-27-025-Greening_AI_Inference_with_Accuracy_and_Latency-aw.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-27-025-OrpQuant:_Geometric_Orthogonal_Residual_Projection.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-026-Global_Convergence_of_Wasserstein_Policy_Gradient_.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-27-026-Normal_Guidance_is_what_Attention_Needs.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-27-027-Active_Query_Synthesis_for_Preference_Learning.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-27-027-BASIS:_Batchwise_Advantage_Estimation_from_Single-.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-27-028-Detectability_in_Diversity:_Improved_Canary_Crafti.md
+[待修正]  68.90 - 02_raw/已处理-2026-05-27-028-Rethinking_Weak_Supervision_in_Anomaly_Detection:_.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-029-Conditional_KRR:_Injecting_Unpenalized_Features_in.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-27-029-Falcon-X:_A_Time_Series_Foundation_Model_for_Heter.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-27-030-Causal_Risk_Minimization_for_High-Dimensional_Trea.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-27-030-Neuronal_Stochastic_Attention_Circuit_(NSAC)_for_P.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-27-031-Length_Generalization_with_Log-Depth_Recurrent_Uni.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-031-Transfer_Learning_using_66_Diseases_for_Disease_Fo.md
+[待修正]  69.55 - 02_raw/已处理-2026-05-27-032-Kan_Extension_Transformers:_A_Categorical_Unificat.md
+[待修正]  66.90 - 02_raw/已处理-2026-05-27-032-Retrieval-Augmented_Detection_of_Potentially_Abusi.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-27-033-AdvantageFlow:_Advantage-Weighted_Least_Squares_fo.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-033-LUCoS:_Latent_Unsupervised_Context_Selection_for_T.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-27-034-Learning_in_Low-Dimensional_Subspaces:_Orthogonal_.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-27-034-Symbolic_Regression_via_Latent_Iterative_Refinemen.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-27-035-Causal_methods_for_LLM_development_and_evaluation.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-27-035-Explainable_Comparison_of_Feature-Based_and_Deep_L.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-27-036-Deployment-complete_benchmarking.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-036-Nonlinear_Data_Integration_via_Kernel_Methods_for_.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-27-037-Fuzzy_PyTorch:_Rapid_Numerical_Variability_Evaluat.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-27-037-The_Role_of_Causal_Features_in_Strategic_Classific.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-038-Deep-layer_limit_and_stability_analysis_of_the_bas.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-27-038-Hidden_in_Plain_Tokens:_Simply_Robust,_Gradient-Fr.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-27-039-DEI:_Diversity_in_Evolutionary_Inference_for_Quali.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-27-039-Mapping_the_Schedule_x_Bit-Width_Boundary_in_Sub-1.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-27-040-High-Quality_Synthetic_Financial_Time-Series_using.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-27-040-Step-TP:_A_Grounded,_Step-Level_Dataset_with_Chain.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-041-Hugging_Face.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-27-041-Skip_to_main_content.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-27-042-Bucketsnew.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-27-042-Developers.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-043-Enterprise.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-27-043-Foundation(opens_in_a_new_window).md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-044-HuggingChat.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-27-044-Try_ChatGPT(opens_in_a_new_window).md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-045-Collections.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-27-045-Engineering.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-27-046-Global_Affairs.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-046-Organizations.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-27-047-AI_Adoption.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-27-047-Daily_Papers.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-27-048-OpenAI_named_a_Leader_in_enterprise_coding_agents_.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-048-Team_&_Enterprise.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-27-049-An_OpenAI_model_has_disproved_a_central_conjecture.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-049-Hugging_Face_PRO.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-27-050-Advancing_content_provenance_for_a_safer,_more_tra.md
+[待修正]  65.50 - 02_raw/已处理-2026-05-27-050-Enterprise_Support.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-051-Inference_Providers.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-27-051-OpenAI_and_Dell_Technologies_partner_to_bring_Code.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-27-052-A_new_personal_finance_experience_in_ChatGPTProduc.md
+[待修正]  65.50 - 02_raw/已处理-2026-05-27-052-Inference_Endpoints.md
+[待修正]  67.80 - 02_raw/已处理-2026-05-27-053-Storage_Buckets.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-27-053-Work_with_Codex_from_anywhereProductMay_14,_2026.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-27-054-Helping_ChatGPT_better_recognize_context_in_sensit.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-054-LeRobot_Humanoid:_An_Open,_Low-Cost,_3D-Printed_Hu.md
+[待修正]  67.35 - 02_raw/已处理-2026-05-27-055-Building_a_safe,_effective_sandbox_to_enable_Codex.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-27-055-Skip_to_main_content.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-27-056-Developers.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-27-056-Skip_to_main_content.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-27-057-Foundation(opens_in_a_new_window).md
+[待修正]  65.40 - 02_raw/已处理-2026-05-27-057-Skip_to_footer.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-27-058-Economic_Futures.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-27-058-Try_ChatGPT(opens_in_a_new_window).md
+[待修正]  67.10 - 02_raw/已处理-2026-05-27-059-Engineering.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-27-059-Try_Claude.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-27-060-Economic_Research.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-27-060-Global_Affairs.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-27-061-AI_Adoption.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-27-061-Interpretability.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-27-062-OpenAI_named_a_Leader_in_enterprise_coding_agents_.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-27-062-Societal_Impacts.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-27-063-An_OpenAI_model_has_disproved_a_central_conjecture.md
+[合格]  70.35 - 02_raw/已处理-2026-05-27-063-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-27-064-Advancing_content_provenance_for_a_safer,_more_tra.md
+[合格]  71.20 - 02_raw/已处理-2026-05-27-064-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-27-065-OpenAI_and_Dell_Technologies_partner_to_bring_Code.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-27-065-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-27-066-A_new_personal_finance_experience_in_ChatGPTProduc.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-27-066-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-27-067-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-27-067-Work_with_Codex_from_anywhereProductMay_14,_2026.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-27-068-Helping_ChatGPT_better_recognize_context_in_sensit.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-27-068-May_22,_2026AnnouncementsProject_Glasswing:_An_ini.md
+[待修正]  67.35 - 02_raw/已处理-2026-05-27-069-Building_a_safe,_effective_sandbox_to_enable_Codex.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-27-069-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-27-070-May_8,_2026AlignmentTeaching_Claude_why.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-27-070-Skip_to_main_content.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-27-071-Skip_to_footer.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-27-071-Skip_to_main_content.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-27-072-Economic_Futures.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-072-Explore_models.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-27-073-GeminiBuild_intelligent_agents.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-27-073-Try_Claude.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-27-074-Economic_Research.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-27-074-Gemini_OmniCreate_anything_from_anything.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-27-075-Interpretability.md
+[待修正]  66.80 - 02_raw/已处理-2026-05-27-075-Nano_BananaCreate_and_edit_detailed_images.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-27-076-Gemini_AudioTalk,_create_and_control_audio.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-27-076-Societal_Impacts.md
+[合格]  70.35 - 02_raw/已处理-2026-05-27-077-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-077-VeoGenerate_cinematic_video_with_audio.md
+[合格]  71.20 - 02_raw/已处理-2026-05-27-078-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-078-ImagenGenerate_high-quality_images_from_text.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-079-LyriaGenerate_high_fidelity_music_and_audio.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-27-079-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-080-Genie_3Generate_and_explore_interactive_worlds.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-27-080-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-27-081-Gemini_RoboticsPerceive,_reason,_use_tools_and_int.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-27-081-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-27-082-GemmaBuild_responsible_AI_applications_at_scale.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-27-082-May_22,_2026AnnouncementsProject_Glasswing:_An_ini.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-083-Explore_research.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-27-083-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-27-084-May_8,_2026AlignmentTeaching_Claude_why.md
+[待修正]  68.05 - 02_raw/已处理-2026-05-27-084-SIMA_2An_agent_that_plays,_reasons,_and_learns_wit.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-085-AlphaGoMastering_the_game_of_Go.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-27-085-Skip_to_main_content.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-086-Explore_models.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-27-086-rohitg00_ai-engineering-from-scratch.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-27-087-GeminiBuild_intelligent_agents.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-27-087-anthropics_knowledge-work-plugins.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-27-088-Gemini_OmniCreate_anything_from_anything.md
+[合格]  71.40 - 02_raw/已处理-2026-05-27-088-mukul975_Anthropic-Cybersecurity-Skills.md
+[待修正]  66.80 - 02_raw/已处理-2026-05-27-089-Nano_BananaCreate_and_edit_detailed_images.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-089-st-tech_ppf-contact-solver.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-27-090-Gemini_AudioTalk,_create_and_control_audio.md
+[合格]  70.05 - 02_raw/已处理-2026-05-27-090-microsoft_agent-governance-toolkit.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-091-VeoGenerate_cinematic_video_with_audio.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-091-p-e-w_heretic.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-092-ImagenGenerate_high-quality_images_from_text.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-092-harvard-edge_cs249r_book.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-093-LyriaGenerate_high_fidelity_music_and_audio.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-27-093-shareAI-lab_learn-claude-code.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-094-Genie_3Generate_and_explore_interactive_worlds.md
+[待修正]  69.50 - 02_raw/已处理-2026-05-27-094-dograh-hq_dograh.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-27-095-Gemini_RoboticsPerceive,_reason,_use_tools_and_int.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-095-sherlock-project_sherlock.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-27-096-666ghj_MiroFish.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-27-096-GemmaBuild_responsible_AI_applications_at_scale.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-097-Explore_research.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-27-097-paperless-ngx_paperless-ngx.md
+[待修正]  68.05 - 02_raw/已处理-2026-05-27-098-SIMA_2An_agent_that_plays,_reasons,_and_learns_wit.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-098-elebumm_RedditVideoMakerBot.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-27-099-AlphaGoMastering_the_game_of_Go.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-099-shiyu-coder_Kronos.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-100-francescopace_espectre.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-27-100-rohitg00_ai-engineering-from-scratch.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-27-101-anthropics_knowledge-work-plugins.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-27-101-zhaoyunfeng@jiqizhixin.com.md
+[合格]  71.40 - 02_raw/已处理-2026-05-27-102-mukul975_Anthropic-Cybersecurity-Skills.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-27-102-刚刚，国产AI自己造了AI，全球首例！.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-103-st-tech_ppf-contact-solver.md
+[待修正]  67.00 - 02_raw/已处理-2026-05-27-103-留给人类数学家的悬赏不多了！谷歌DeepMind一口气解决9道埃尔德什问题.md
+[合格]  70.05 - 02_raw/已处理-2026-05-27-104-microsoft_agent-governance-toolkit.md
+[待修正]  68.80 - 02_raw/已处理-2026-05-27-104-刚刚，国产Agent模型闯入全球第一梯队！限时免费.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-105-p-e-w_heretic.md
+[待修正]  66.50 - 02_raw/已处理-2026-05-27-105-“VLA和世界模型都不是终局，会有物理世界独有的模型”_|_蚂蚁灵波沈宇军@AIGC2026.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-106-harvard-edge_cs249r_book.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-27-106-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-27-107-shareAI-lab_learn-claude-code.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-27-107-卡帕西Anthropic最新头衔：技术员工（MTS）.md
+[待修正]  69.50 - 02_raw/已处理-2026-05-27-108-dograh-hq_dograh.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-27-108-华为发布AI_DC数据基础设施全栈方案，加速行业智能化跃升.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-109-sherlock-project_sherlock.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-27-109-荣耀600系列手机发布：4K闪光微单Live，国补价2294.15元起.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-27-110-666ghj_MiroFish.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-27-110-“卡车界特斯拉”，刚刚又融了2亿美元.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-27-111-Snowflakenew.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-27-111-paperless-ngx_paperless-ngx.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-112-elebumm_RedditVideoMakerBot.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-112-内容投稿：editors@geekbang.com.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-113-shiyu-coder_Kronos.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-113-业务合作：hezuo@geekbang.com.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-27-114-francescopace_espectre.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-114-反馈投诉：feedback@geekbang.com.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-27-115-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-115-加入我们：zhaopin@geekbang.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-27-116-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[待修正]  69.55 - 02_raw/已处理-2026-05-27-116-将DSA注意力引入多模态，快手Keye2.0开启强化推理新范式.md
+[合格]  70.05 - 02_raw/已处理-2026-05-27-117-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-27-117-刚刚，国产AI自己造了AI，全球首例！.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-27-118-京_ICP_备_16027448_号_-_5.md
+[待修正]  67.00 - 02_raw/已处理-2026-05-27-118-留给人类数学家的悬赏不多了！谷歌DeepMind一口气解决9道埃尔德什问题.md
+[待修正]  68.80 - 02_raw/已处理-2026-05-27-119-刚刚，国产Agent模型闯入全球第一梯队！限时免费.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-27-120-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-27-121-触觉具身来了个梦之队：天使轮近亿.md
+[待修正]  69.10 - 02_raw/已处理-2026-05-27-122-Codex自我蒸馏玩法火了！OpenAI员工亲授：复制粘贴就能让AI消灭重复劳动.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-27-123-DeepSeek陈德里开发自动研究Skill，写一篇论文人类只动脑2小时.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-27-124-Snowflakenew.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-125-内容投稿：editors@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-126-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-127-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-27-128-加入我们：zhaopin@geekbang.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-27-129-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[合格]  70.05 - 02_raw/已处理-2026-05-27-130-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-27-131-京_ICP_备_16027448_号_-_5.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-28-001-MATCHA:_Matching_Text_via_Contrastive_Semantic_Ali.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-28-001-VLMs_May_Not_Globally_Enhance_Human_Alignment_over.md
+[合格]  70.15 - 02_raw/已处理-2026-05-28-002-FinHarness:_An_Inline_Lifecycle_Safety_Harness_for.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-002-Self-Improving_Language_Models_with_Bidirectional_.md
+[待修正]  66.90 - 02_raw/已处理-2026-05-28-003-OmniVerifier-M1:_Multimodal_Meta-Verifier_with_Exp.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-28-003-Semantic_Gradients_Interactions_in_SSD:_A_Case_Stu.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-28-004-Human_Label_Variation_as_Stable_Signal:_Learning_A.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-004-Real_Images,_Worse_Judgments:_Evaluating_Vision-La.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-28-005-Skill-Conditioned_Gated_Self-Distillation_for_LLM_.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-28-005-When_Does_Demographic_Information_Help?_Data_and_M.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-006-Can_Large_Language_Models_Handle_Discourse_Particl.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-006-Chartographer:_Counterfactual_Chart_Generation_for.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-28-007-Self-Ensembling_Vision-Language_Models_for_Chart_D.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-007-The_Abstraction_Gap_in_Vision-Language_Causal_Reas.md
+[待修正]  69.65 - 02_raw/已处理-2026-05-28-008-Can_LLMs_Use_Linguistic_Uncertainty_Markers_to_Rel.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-28-008-Probing_Cultural_Awareness_in_LLMs:_A_Case_Study_o.md
+[合格]  70.90 - 02_raw/已处理-2026-05-28-009-Agent_Explorative_Policy_Optimization_for_Multimod.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-28-009-Separating_Semantic_Competition_from_Context_Lengt.md
+[待修正]  69.60 - 02_raw/已处理-2026-05-28-010-It's_Not_Always_Sycophancy:_Measuring_LLM_Conformi.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-28-010-Rethinking_Memory_as_Continuously_Evolving_Connect.md
+[合格]  70.00 - 02_raw/已处理-2026-05-28-011-Lost_in_Sampling:_Assessing_Lexical_Reachability_i.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-011-Stance_Detection_in_Prediction_Markets:_Addressing.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-28-012-Pair-In,_Pair-Out:_Latent_Multi-Token_Prediction_f.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-28-012-Reverse_Probing:_Supervised_Token-level_Uncertaint.md
+[合格]  70.30 - 02_raw/已处理-2026-05-28-013-ENPMR-Bench:_Benchmarking_Proactive_Memory_Retriev.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-28-013-MemTrace:_Tracing_and_Attributing_Errors_in_Large_.md
+[待修正]  67.00 - 02_raw/已处理-2026-05-28-014-IPO-Mine:_A_Toolkit_and_Dataset_for_Section-Struct.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-28-014-Temporal_Simultaneity_Predicts_Annotation_Quality_.md
+[合格]  70.20 - 02_raw/已处理-2026-05-28-015-The_Coverage_Illusion:_From_Pre-retrieval_Routing_.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-28-015-Towards_Reliable_Multilingual_LLMs-as-a-Judge:_An_.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-28-016-GraphReview:_Scientific_Paper_Evaluation_via_LLM-B.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-28-016-Sense_Representations_Are_Inducible_Interfaces.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-28-017-EpiCurveBench:_Evaluating_VLMs_on_Epidemic_Curve_D.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-28-017-GraphLit:_Learning_Text-Enriched_Dynamic_Character.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-28-018-Not_All_Tokens_Matter_Equally:_Dynamic_In-context_.md
+[合格]  70.15 - 02_raw/已处理-2026-05-28-018-The_Attentional_White_Bear_Effect_in_Transformer_L.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-019-Learning_When_to_Think_While_Listening_in_Large_Au.md
+[合格]  70.15 - 02_raw/已处理-2026-05-28-019-Mobile-Aptus:_Confidence-Driven_Proactive_and_Robu.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-28-020-Beyond_Binary:_Speech_Representations_Across_the_C.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-020-Measuring_Form_and_Function_in_Language_Models.md
+[合格]  70.40 - 02_raw/已处理-2026-05-28-021-MobileMoE:_Scaling_On-Device_Mixture_of_Experts.md
+[待修正]  66.90 - 02_raw/已处理-2026-05-28-021-PEFT-Arena:_Understanding_Parameter-Efficient_Fine.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-28-022-Affective_Music_Recommendation:_A_Rollout-Based_Wo.md
+[待修正]  69.75 - 02_raw/已处理-2026-05-28-022-Guiding_LLM_Post-training_Data_Engineering_with_Mo.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-023-From_Scores_to_Gibbs_Correctors:_Accelerating_Unif.md
+[待修正]  69.70 - 02_raw/已处理-2026-05-28-023-Learn_from_Weaknesses:_Automated_Domain_Specializa.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-024-Multi-Mixer_Models:_Flexible_Sequence_Modeling_wit.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-024-Probabilistic_Smoothing_with_Ratio-Monotone_Transf.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-28-025-Greening_AI_Inference_with_Accuracy_and_Latency-aw.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-025-Principled_Algorithms_for_Optimizing_Generalized_M.md
+[待修正]  68.30 - 02_raw/已处理-2026-05-28-026-LLM_Zeroth-Order_Fine-Tuning_is_an_Inference_Workl.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-28-026-Normal_Guidance_is_what_Attention_Needs.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-28-027-BASIS:_Batchwise_Advantage_Estimation_from_Single-.md
+[待修正]  68.90 - 02_raw/已处理-2026-05-28-027-Extrapolative_Weight_Averaging_Reveals_Correctness.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-028-BIRDNet:_Mining_and_Encoding_Boolean_Implication_K.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-028-Detectability_in_Diversity:_Improved_Canary_Crafti.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-28-029-Falcon-X:_A_Time_Series_Foundation_Model_for_Heter.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-029-Stage-wise_Distortion-Perception_Traversal_in_Zero.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-030-Causal_Risk_Minimization_for_High-Dimensional_Trea.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-030-Understanding_Generalization_and_Forgetting_in_In-.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-031-Expressive_Power_of_Floating-Point_Neural_Networks.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-031-Transfer_Learning_using_66_Diseases_for_Disease_Fo.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-28-032-History-aware_adaptive_reduced-order_models_via_in.md
+[待修正]  69.55 - 02_raw/已处理-2026-05-28-032-Kan_Extension_Transformers:_A_Categorical_Unificat.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-033-LUCoS:_Latent_Unsupervised_Context_Selection_for_T.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-28-033-Optimal_ridge_regularization_revisited.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-034-Optimal_Data_Acquisition_for_Reinforcement_Learnin.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-034-Symbolic_Regression_via_Latent_Iterative_Refinemen.md
+[待修正]  66.90 - 02_raw/已处理-2026-05-28-035-Activation_Steering_for_Synthetic_Data_Generation:.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-28-035-Explainable_Comparison_of_Feature-Based_and_Deep_L.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-036-Applications_of_temporal_graph_learning_for_predic.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-036-Nonlinear_Data_Integration_via_Kernel_Methods_for_.md
+[待修正]  66.90 - 02_raw/已处理-2026-05-28-037-Interpretability-Guided_Layer_Selection_over_Subsp.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-28-037-The_Role_of_Causal_Features_in_Strategic_Classific.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-28-038-Augmenting_Attention_with_Exponentially_Decaying_M.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-038-Deep-layer_limit_and_stability_analysis_of_the_bas.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-28-039-DEI:_Diversity_in_Evolutionary_Inference_for_Quali.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-28-039-Single-Rollout_Hidden-State_Dynamics_for_Training-.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-28-040-High-Quality_Synthetic_Financial_Time-Series_using.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-28-040-When_Interpretability_Is_Unequally_Distributed:_Fa.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-041-Hugging_Face.md
+[待修正]  67.30 - 02_raw/已处理-2026-05-28-042-Bucketsnew.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-043-Enterprise.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-044-HuggingChat.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-045-Collections.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-046-Organizations.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-28-047-Daily_Papers.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-048-Team_&_Enterprise.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-049-Hugging_Face_PRO.md
+[待修正]  65.50 - 02_raw/已处理-2026-05-28-050-Enterprise_Support.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-051-Inference_Providers.md
+[待修正]  65.50 - 02_raw/已处理-2026-05-28-052-Inference_Endpoints.md
+[待修正]  67.80 - 02_raw/已处理-2026-05-28-053-Storage_Buckets.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-28-054-LeRobot_Humanoid:_An_Open,_Low-Cost,_3D-Printed_Hu.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-28-054-Skip_to_main_content.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-28-055-Developers.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-28-055-Skip_to_main_content.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-28-056-Developers.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-28-056-Foundation(opens_in_a_new_window).md
+[待修正]  67.10 - 02_raw/已处理-2026-05-28-057-Foundation(opens_in_a_new_window).md
+[待修正]  68.40 - 02_raw/已处理-2026-05-28-057-Try_ChatGPT(opens_in_a_new_window).md
+[待修正]  67.10 - 02_raw/已处理-2026-05-28-058-Engineering.md
+[待修正]  68.40 - 02_raw/已处理-2026-05-28-058-Try_ChatGPT(opens_in_a_new_window).md
+[待修正]  67.10 - 02_raw/已处理-2026-05-28-059-Engineering.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-28-059-Global_Affairs.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-28-060-AI_Adoption.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-28-060-Global_Affairs.md
+[待修正]  67.10 - 02_raw/已处理-2026-05-28-061-AI_Adoption.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-28-061-Building_self-improving_tax_agents_with_CodexEngin.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-28-062-Building_self-improving_tax_agents_with_CodexEngin.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-28-062-OpenAI_named_a_Leader_in_enterprise_coding_agents_.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-28-063-An_OpenAI_model_has_disproved_a_central_conjecture.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-28-063-OpenAI_named_a_Leader_in_enterprise_coding_agents_.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-28-064-Advancing_content_provenance_for_a_safer,_more_tra.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-28-064-An_OpenAI_model_has_disproved_a_central_conjecture.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-28-065-Advancing_content_provenance_for_a_safer,_more_tra.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-28-065-OpenAI_and_Dell_Technologies_partner_to_bring_Code.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-28-066-A_new_personal_finance_experience_in_ChatGPTProduc.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-28-066-OpenAI_and_Dell_Technologies_partner_to_bring_Code.md
+[待修正]  68.25 - 02_raw/已处理-2026-05-28-067-A_new_personal_finance_experience_in_ChatGPTProduc.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-28-067-Work_with_Codex_from_anywhereProductMay_14,_2026.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-28-068-Helping_ChatGPT_better_recognize_context_in_sensit.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-28-068-Work_with_Codex_from_anywhereProductMay_14,_2026.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-28-069-Helping_ChatGPT_better_recognize_context_in_sensit.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-28-069-Skip_to_main_content.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-28-070-Skip_to_footer.md
+[待修正]  67.70 - 02_raw/已处理-2026-05-28-070-Skip_to_main_content.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-28-071-Economic_Futures.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-28-071-Skip_to_footer.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-28-072-Economic_Futures.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-28-072-Try_Claude.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-28-073-Economic_Research.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-28-073-Try_Claude.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-28-074-Economic_Research.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-28-074-Interpretability.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-28-075-Interpretability.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-28-075-Societal_Impacts.md
+[合格]  70.35 - 02_raw/已处理-2026-05-28-076-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+[待修正]  65.40 - 02_raw/已处理-2026-05-28-076-Societal_Impacts.md
+[合格]  71.20 - 02_raw/已处理-2026-05-28-077-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+[合格]  70.35 - 02_raw/已处理-2026-05-28-077-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+[合格]  71.20 - 02_raw/已处理-2026-05-28-078-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-28-078-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-28-079-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-28-079-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-28-080-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-28-080-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-28-081-May_22,_2026AnnouncementsProject_Glasswing:_An_ini.md
+[待修正]  69.15 - 02_raw/已处理-2026-05-28-081-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-28-082-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-28-082-May_22,_2026AnnouncementsProject_Glasswing:_An_ini.md
+[待修正]  68.65 - 02_raw/已处理-2026-05-28-082-May_27,_2026Economic_ResearchCoding_agents_in_the_.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-28-083-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  66.15 - 02_raw/已处理-2026-05-28-083-May_22,_2026AnnouncementsProject_Glasswing:_An_ini.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-28-083-May_8,_2026AlignmentTeaching_Claude_why.md
+[待修正]  67.95 - 02_raw/已处理-2026-05-28-084-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+[待修正]  68.70 - 02_raw/已处理-2026-05-28-084-May_8,_2026AlignmentTeaching_Claude_why.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-28-084-Skip_to_main_content.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-085-Explore_models.md
+[待修正]  66.60 - 02_raw/已处理-2026-05-28-085-Skip_to_main_content.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-086-Explore_models.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-28-086-GeminiBuild_intelligent_agents.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-28-087-GeminiBuild_intelligent_agents.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-28-087-Gemini_OmniCreate_anything_from_anything.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-28-088-Gemini_OmniCreate_anything_from_anything.md
+[待修正]  66.80 - 02_raw/已处理-2026-05-28-088-Nano_BananaCreate_and_edit_detailed_images.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-28-089-Gemini_AudioTalk,_create_and_control_audio.md
+[待修正]  66.80 - 02_raw/已处理-2026-05-28-089-Nano_BananaCreate_and_edit_detailed_images.md
+[待修正]  66.95 - 02_raw/已处理-2026-05-28-090-Gemini_AudioTalk,_create_and_control_audio.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-090-VeoGenerate_cinematic_video_with_audio.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-091-ImagenGenerate_high-quality_images_from_text.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-091-VeoGenerate_cinematic_video_with_audio.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-092-ImagenGenerate_high-quality_images_from_text.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-092-LyriaGenerate_high_fidelity_music_and_audio.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-093-Genie_3Generate_and_explore_interactive_worlds.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-093-LyriaGenerate_high_fidelity_music_and_audio.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-28-094-Gemini_RoboticsPerceive,_reason,_use_tools_and_int.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-094-Genie_3Generate_and_explore_interactive_worlds.md
+[待修正]  68.10 - 02_raw/已处理-2026-05-28-095-Gemini_RoboticsPerceive,_reason,_use_tools_and_int.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-28-095-GemmaBuild_responsible_AI_applications_at_scale.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-096-Explore_research.md
+[待修正]  66.00 - 02_raw/已处理-2026-05-28-096-GemmaBuild_responsible_AI_applications_at_scale.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-097-Explore_research.md
+[待修正]  68.05 - 02_raw/已处理-2026-05-28-097-SIMA_2An_agent_that_plays,_reasons,_and_learns_wit.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-098-AlphaGoMastering_the_game_of_Go.md
+[待修正]  68.05 - 02_raw/已处理-2026-05-28-098-SIMA_2An_agent_that_plays,_reasons,_and_learns_wit.md
+[待修正]  64.80 - 02_raw/已处理-2026-05-28-099-AlphaGoMastering_the_game_of_Go.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-28-099-harry0703_MoneyPrinterTurbo.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-28-100-anthropics_knowledge-work-plugins.md
+[待修正]  67.85 - 02_raw/已处理-2026-05-28-100-harry0703_MoneyPrinterTurbo.md
+[待修正]  68.00 - 02_raw/已处理-2026-05-28-101-anthropics_knowledge-work-plugins.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-101-p-e-w_heretic.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-102-p-e-w_heretic.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-28-102-shiyu-coder_Kronos.md
+[合格]  71.40 - 02_raw/已处理-2026-05-28-103-mukul975_Anthropic-Cybersecurity-Skills.md
+[待修正]  65.55 - 02_raw/已处理-2026-05-28-103-shiyu-coder_Kronos.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-104-harvard-edge_cs249r_book.md
+[合格]  71.40 - 02_raw/已处理-2026-05-28-104-mukul975_Anthropic-Cybersecurity-Skills.md
+[待修正]  69.50 - 02_raw/已处理-2026-05-28-105-dograh-hq_dograh.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-105-harvard-edge_cs249r_book.md
+[待修正]  69.50 - 02_raw/已处理-2026-05-28-106-dograh-hq_dograh.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-28-106-vllm-project_vllm.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-28-107-agentscope-ai_agentscope.md
+[待修正]  68.55 - 02_raw/已处理-2026-05-28-107-vllm-project_vllm.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-28-108-NVIDIA-NeMo_Megatron-Bridge.md
+[待修正]  68.85 - 02_raw/已处理-2026-05-28-108-agentscope-ai_agentscope.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-28-109-NVIDIA-NeMo_Megatron-Bridge.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-28-109-paperless-ngx_paperless-ngx.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-28-110-anthropics_skills.md
+[待修正]  66.25 - 02_raw/已处理-2026-05-28-110-paperless-ngx_paperless-ngx.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-28-111-anthropics_skills.md
+[待修正]  66.50 - 02_raw/已处理-2026-05-28-111-zai-org_GLM-OCR.md
+[合格]  70.05 - 02_raw/已处理-2026-05-28-112-microsoft_agent-governance-toolkit.md
+[待修正]  66.50 - 02_raw/已处理-2026-05-28-112-zai-org_GLM-OCR.md
+[合格]  70.05 - 02_raw/已处理-2026-05-28-113-microsoft_agent-governance-toolkit.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-28-113-unclecode_crawl4ai.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-28-114-unclecode_crawl4ai.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-28-114-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  68.65 - 02_raw/已处理-2026-05-28-115-1400亿Agent入场，“流量”这条护城河要塌了.md
+[待修正]  62.70 - 02_raw/已处理-2026-05-28-115-zhaoyunfeng@jiqizhixin.com.md
+[待修正]  68.65 - 02_raw/已处理-2026-05-28-116-1400亿Agent入场，“流量”这条护城河要塌了.md
+[待修正]  69.55 - 02_raw/已处理-2026-05-28-116-将DSA注意力引入多模态，快手Keye2.0开启强化推理新范式.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-28-116-清华有了新老师：黄仁勋.md
+[待修正]  68.65 - 02_raw/已处理-2026-05-28-117-1400亿Agent入场，“流量”这条护城河要塌了.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-28-117-刚刚，国产AI自己造了AI，全球首例！.md
+[待修正]  69.55 - 02_raw/已处理-2026-05-28-117-将DSA注意力引入多模态，快手Keye2.0开启强化推理新范式.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-28-118-刚刚，国产AI自己造了AI，全球首例！.md
+[待修正]  69.55 - 02_raw/已处理-2026-05-28-118-将DSA注意力引入多模态，快手Keye2.0开启强化推理新范式.md
+[待修正]  67.00 - 02_raw/已处理-2026-05-28-118-留给人类数学家的悬赏不多了！谷歌DeepMind一口气解决9道埃尔德什问题.md
+[待修正]  66.20 - 02_raw/已处理-2026-05-28-119-刚刚，国产AI自己造了AI，全球首例！.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-28-119-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  67.00 - 02_raw/已处理-2026-05-28-119-留给人类数学家的悬赏不多了！谷歌DeepMind一口气解决9道埃尔德什问题.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-28-120-5秒完成3D场景编辑，北大&港中文&上海AI_Lab搞出VGGT-Edit，120倍加速太炸了.md
+[待修正]  66.85 - 02_raw/已处理-2026-05-28-120-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-28-121-5秒完成3D场景编辑，北大&港中文&上海AI_Lab搞出VGGT-Edit，120倍加速太炸了.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-28-121-OpenAI挖来了个F1级别车手搞公关.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-28-121-「斯隆奖」得主戴亮全职加盟复旦.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-28-122-5秒完成3D场景编辑，北大&港中文&上海AI_Lab搞出VGGT-Edit，120倍加速太炸了.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-28-122-OpenAI挖来了个F1级别车手搞公关.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-28-122-触觉具身来了个梦之队：天使轮近亿.md
+[待修正]  67.20 - 02_raw/已处理-2026-05-28-123-OpenAI挖来了个F1级别车手搞公关.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-28-123-Snowflakenew.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-28-123-触觉具身来了个梦之队：天使轮近亿.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-28-124-Snowflakenew.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-124-内容投稿：editors@geekbang.com.md
+[待修正]  65.70 - 02_raw/已处理-2026-05-28-124-触觉具身来了个梦之队：天使轮近亿.md
+[待修正]  65.60 - 02_raw/已处理-2026-05-28-125-Snowflakenew.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-125-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-125-内容投稿：editors@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-126-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-126-内容投稿：editors@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-126-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-127-业务合作：hezuo@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-127-加入我们：zhaopin@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-127-反馈投诉：feedback@geekbang.com.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-128-加入我们：zhaopin@geekbang.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-28-128-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-128-反馈投诉：feedback@geekbang.com.md
+[合格]  70.05 - 02_raw/已处理-2026-05-28-129-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  64.20 - 02_raw/已处理-2026-05-28-129-加入我们：zhaopin@geekbang.com.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-28-129-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[合格]  70.05 - 02_raw/已处理-2026-05-28-130-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-28-130-京_ICP_备_16027448_号_-_5.md
+[待修正]  68.20 - 02_raw/已处理-2026-05-28-130-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+[合格]  70.05 - 02_raw/已处理-2026-05-28-131-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-28-131-京_ICP_备_16027448_号_-_5.md
+[待修正]  65.20 - 02_raw/已处理-2026-05-28-132-京_ICP_备_16027448_号_-_5.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-29-001-LLMSurgeon:_Diagnosing_Data_Mixture_of_Large_Langu.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-002-Unlocking_the_Working_Memory_of_Large_Language_Mod.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-29-003-COMPOSE:_Composing_Future_Theorems_from_Citations_.md
+[待修正]  68.30 - 02_raw/已处理-2026-05-29-004-Resolution_Diagnostics_for_Paired_LLM_Evaluation.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-29-005-MedCase-Structured:_A_Text-to-FHIR_Dataset_for_Ben.md
+[合格]  70.15 - 02_raw/已处理-2026-05-29-006-Loong:_A_Human-Like_Long_Document_Translation_Agen.md
+[合格]  70.65 - 02_raw/已处理-2026-05-29-007-How_LoRA_Remembers?_A_Parametric_Memory_Law_for_LL.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-29-008-Same_Evidence,_Different_Answers:_Canonical-Contex.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-009-Knowing_What_to_Solve_Before_How:_Preplan_Empowere.md
+[待修正]  68.95 - 02_raw/已处理-2026-05-29-010-CommunityFact:_A_Dynamic,_Multilingual,_Multi-doma.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-29-011-Do_Language_Models_Track_Entities_Across_State_Cha.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-012-GRUFF:_LLM_Pronoun_Fidelity,_Reasoning,_and_Biases.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-013-A_Dual-Path_Architecture_for_Scaling_Compute_and_C.md
+[合格]  71.05 - 02_raw/已处理-2026-05-29-014-Do_Proactive_Agents_Really_Need_an_LLM_to_Decide_W.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-29-015-CorPipe_at_CRAC_2026:_Empty_Nodes_and_Cross-Lingua.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-016-CCS:_Clinical_Consensus_Selection_for_Radiology_Re.md
+[待修正]  67.60 - 02_raw/已处理-2026-05-29-017-Dial_HEALTHDIAL_for_Advice:_A_Multilingual_and_Mul.md
+[待修正]  69.05 - 02_raw/已处理-2026-05-29-018-SEAL:_Can_Saturated_Benchmarks_Be_Revived_by_LLM-a.md
+[待修正]  69.35 - 02_raw/已处理-2026-05-29-019-DirectorBench:_Diagnosing_Long-Form_Video_Generati.md
+[待修正]  68.45 - 02_raw/已处理-2026-05-29-020-Adaptive_Targeted_Dynamic_Chunking_for_Tokenizatio.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-021-Efficient_Test-Time_Finetuning_of_LLMs_via_Convex_.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-022-Fairness-Aware_Federated_Learning_with_Trajectory_.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-023-When,_why,_and_how_do_diffusion_posterior_samplers.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-024-SoundnessBench:_Can_Your_AI_Scientist_Really_Tell_.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-29-025-Reasoning_with_Sampling:_Cutting_at_Decision_Point.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-29-026-In-Context_Reward_Adaptation_for_Robust_Preference.md
+[待修正]  67.15 - 02_raw/已处理-2026-05-29-027-Gram:_Assessing_sabotage_propensities_via_automate.md
+[合格]  70.35 - 02_raw/已处理-2026-05-29-028-Self-Trained_Verification_for_Training-_and_Test-T.md
+[待修正]  69.75 - 02_raw/已处理-2026-05-29-029-Statistical_Embeddings_for_Similarity,_Retrieval,_.md
+[待修正]  66.30 - 02_raw/已处理-2026-05-29-030-Neural_Operator-Based_Surrogate_Model_for_CFD:Heli.md
+[待修正]  68.80 - 02_raw/已处理-2026-05-29-031-Digitally_enriching_a_screening_population_for_pan.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-29-032-OOD-GraphLLM:_Graph_Large_Language_Model_for_Out-o.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-033-How's_it_going?_Reinforcement_learning_in_language.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-29-034-Anti_Mode-Collapse_in_Mean-Field_Transformer_via_A.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-29-035-ExDBSCAN:_Explaining_DBSCAN_with_Counterfactual_Re.md
+[待修正]  67.05 - 02_raw/已处理-2026-05-29-036-TriSearch:_Learning_to_Optimize_Triangulations_via.md
+[待修正]  68.35 - 02_raw/已处理-2026-05-29-037-MarginGate:_Sparse_Margin-Triggered_Verification_f.md
+[待修正]  69.25 - 02_raw/已处理-2026-05-29-038-Faithful_Embeddings_of_Irregular_and_Asynchronous_.md
+[待修正]  67.75 - 02_raw/已处理-2026-05-29-039-HPO:_Hysteretic_Policy_Optimization_for_Stable_and.md
+[待修正]  66.45 - 02_raw/已处理-2026-05-29-040-Active_Continual_Learning_with_Metaplastic_Binary_.md
+[优秀]  85.60 - 02_raw/已处理-大模型学习资源汇总.md
+[不合格]  45.90 - 05_papers/test_from_cmd.md
+[待修正]  63.20 - 06_tools/03_ai_wiki/2026-05-22-知识蒸馏报告.md

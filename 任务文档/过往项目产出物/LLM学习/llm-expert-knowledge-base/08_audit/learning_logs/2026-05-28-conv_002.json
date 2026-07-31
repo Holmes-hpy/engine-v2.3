@@ -1,0 +1,39 @@
+
+{
+  "timestamp": "2026-05-28T14:20:00",
+  "conversation_id": "conv_002",
+  "conversation_data": {
+    "type": "问题解决类",
+    "key_info": {
+      "topic": "Python编程",
+      "concept": "异步编程"
+    }
+  },
+  "quality_scores": {
+    "overall_score": 78.0,
+    "dimensions": {
+      "准确性": 82.0,
+      "完整性": 75.0,
+      "相关性": 88.0,
+      "清晰度": 80.0,
+      "实用性": 70.0,
+      "时效性": 73.0
+    }
+  },
+  "feedback_analysis": {
+    "type": "followup",
+    "sentiment": "neutral"
+  },
+  "knowledge_gaps": [
+    {
+      "type": "完全缺失",
+      "description": "asyncio高级特性"
+    }
+  ],
+  "optimization": {
+    "suggestions": [
+      "增加更多代码示例"
+    ],
+    "preference_update": false
+  }
+}

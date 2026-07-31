@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-06-15T10:30:00",
+  "conversation_id": "conv_001",
+  "conversation_data": {
+    "type": "技术咨询类",
+    "key_info": {
+      "topic": "知识库健康度评估",
+      "concept": "五维评分体系",
+      "context": "用户咨询如何评估大型文档知识库的整体质量"
+    }
+  },
+  "quality_scores": {
+    "overall_score": 82.5,
+    "dimensions": {
+      "准确性": 85.0,
+      "完整性": 78.0,
+      "相关性": 88.0,
+      "清晰度": 82.0,
+      "实用性": 80.0,
+      "时效性": 90.0
+    }
+  },
+  "feedback_analysis": {
+    "type": "positive",
+    "sentiment": "good",
+    "comment": "评估维度很清晰，已采纳建议"
+  },
+  "knowledge_gaps": [
+    {
+      "type": "检索不到",
+      "description": "缺少自动化评分工具的具体实现方案"
+    },
+    {
+      "type": "不完整或不准确",
+      "description": "文档质量评估算法细节不够深入"
+    }
+  ],
+  "optimization": {
+    "suggestions": [
+      "增加评分工具的代码示例",
+      "补充不同类型知识库的评估差异"
+    ],
+    "preference_update": true
+  }
+}

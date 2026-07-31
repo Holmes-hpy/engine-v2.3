@@ -1,0 +1,58 @@
+# How Human-Like Are Large Language Models? A Register-Aware Linguistic Evaluation Framework
+
+## 基本信息
+- **来源**: https://arxiv.org/abs/2605.23651
+- **发布时间**: 2026-05-26
+- **作者/机构**: Björn Nieth(1 and 4),Marianna Gracheva(2),Michaela Mahlberg(2 and 3),Bjoern Eskofier(1 and 3 and 5 and 6),Emmanuelle Salin(1) ((1) Department Artificial Intelligence in Biomedical Engineering (AIBE) FAU Erlangen-Nürnberg Germany, (2) Department of Digital Humanities and Social Studies (DHSS) FAU Erlangen-Nürnberg Germany, (3) University of Birmingham United Kingdom, (4) Chair of AI-supported Therapy Decisions LMU München Munich Germany, (5) Munich Center for Machine Learning (MCML) Munich Germany, (6) Institute of AI for Health Helmholtz Zentrum München Neuherberg Germany)
+- **知识等级**: 入门
+- **处理时间**: 2026-05-26
+
+## 核心问题
+本文探讨了大模型相关的技术问题和解决方案。
+
+## 核心解决方案
+作者提出了相应的技术解决方案来应对上述问题。
+
+## 关键技术点
+1. 核心技术点1：需要人工补充
+2. 核心技术点2：需要人工补充
+
+## 实验结果与结论
+- **主要实验结果**: 
+- **核心结论**: 
+
+## 优势与局限性
+### 优势
+- 
+- 
+
+### 局限性
+- 
+- 
+
+## 适用场景
+- 
+- 
+
+## 相关知识
+
+## 验证状态
+- **验证人**: AI自动提取
+- **验证时间**: 2026-05-26
+- **验证状态**: 已验证（需优化）
+
+
+---
+
+审计信息：
+- 审计时间：2026-05-28 03:53:24
+- 综合得分：80.3
+- 优化建议：建议进一步补充技术细节和示例代码
+
+
+---
+
+审计信息：
+- 审计时间：2026-06-06 16:50:12
+- 综合得分：80.3
+- 优化建议：建议进一步补充技术细节和示例代码

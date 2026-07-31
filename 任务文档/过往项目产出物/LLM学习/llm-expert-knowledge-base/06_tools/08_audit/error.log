@@ -1,0 +1,169 @@
+[2026-05-22 20:01:39] [ERROR] 任务 radar 执行失败，返回码: 1 | 2026-05-22 20:00:53,791 - __main__ - INFO - ==================================================
+2026-05-22 20:00:53,791 - __main__ - INFO - 开始大模型信息雷达采集
+2026-05-22 20:00:53,791 - __main__ - INFO - ==================================================
+2026-05-22 20:00:53,791 - __main__ - INFO - 正在采集: arXiv cs.CL
+2026-05-22 20:00:54,848 - __main__ - INFO - 从 arXiv cs.CL 获取了 20 条内容
+2026-05-22 20:00:56,849 - __main__ - INFO - 正在采集: arXiv cs.LG
+2026-05-22 20:01:00,100 - __main__ - INFO - 从 arXiv cs.LG 获取了 20 条内容
+2026-05-22 20:01:02,110 - __main__ - INFO - 正在采集: Hugging Face Blog
+2026-05-22 20:01:04,099 - __main__ - INFO - 从 Hugging Face Blog 获取了 14 条内容
+2026-05-22 20:01:06,109 - __main__ - INFO - 正在采集: Hugging Face Papers
+2026-05-22 20:01:07,118 - __main__ - INFO - 从 Hugging Face Papers 未获取到内容
+2026-05-22 20:01:09,118 - __main__ - INFO - 正在采集: OpenAI Blog
+2026-05-22 20:01:12,186 - __main__ - INFO - 从 OpenAI Blog 获取了 15 条内容
+2026-05-22 20:01:14,196 - __main__ - INFO - 正在采集: Anthropic Research
+2026-05-22 20:01:19,438 - __main__ - INFO - 从 Anthropic Research 获取了 15 条内容
+2026-05-22 20:01:21,449 - __main__ - INFO - 正在采集: DeepMind Blog
+2026-05-22 20:01:23,497 - __main__ - INFO - 从 DeepMind Blog 获取了 15 条内容
+2026-05-22 20:01:25,507 - __main__ - INFO - 正在采集: GitHub Trending Python
+2026-05-22 20:01:27,403 - __main__ - INFO - 从 GitHub Trending Python 获取了 15 条内容
+2026-05-22 20:01:29,414 - __main__ - INFO - 正在采集: GitHub Trending ML
+2026-05-22 20:01:30,494 - __main__ - INFO - 从 GitHub Trending ML 未获取到内容
+2026-05-22 20:01:32,504 - __main__ - INFO - 正在采集: 机器之心
+2026-05-22 20:01:32,611 - __main__ - INFO - 从 机器之心 获取了 1 条内容
+2026-05-22 20:01:34,622 - __main__ - INFO - 正在采集: 量子位
+2026-05-22 20:01:34,751 - __main__ - INFO - 从 量子位 获取了 7 条内容
+2026-05-22 20:01:36,761 - __main__ - INFO - 正在采集: InfoQ AI
+2026-05-22 20:01:37,036 - __main__ - INFO - 从 InfoQ AI 获取了 8 条内容
+2026-05-22 20:01:39,046 - __main__ - INFO - 总共采集 130 条内容
+2026-05-22 20:01:39,048 - __main__ - INFO - 保存条目: 2026-05-22-001-Tokenisation_via_Convex_Relaxations.md
+2026-05-22 20:01:39,048 - __main__ - INFO - 保存条目: 2026-05-22-002-Evaluating_Commercial_AI_Chatbots_as_News_Intermed.md
+2026-05-22 20:01:39,049 - __main__ - INFO - 保存条目: 2026-05-22-003-Reducing_Political_Manipulation_with_Consistency_T.md
+2026-05-22 20:01:39,050 - __main__ - INFO - 保存条目: 2026-05-22-004-Understanding_Data_Temporality_Impact_on_Large_Lan.md
+2026-05-22 20:01:39,050 - __main__ - INFO - 保存条目: 2026-05-22-005-ChronoMedKG:_A_Temporally-Grounded_Biomedical_Know.md
+2026-05-22 20:01:39,051 - __main__ - INFO - 保存条目: 2026-05-22-006-Tokenization_with_Split_Trees.md
+2026-05-22 20:01:39,051 - __main__ - INFO - 保存条目: 2026-05-22-007-Self-Policy_Distillation_via_Capability-Selective_.md
+2026-05-22 20:01:39,052 - __main__ - INFO - 保存条目: 2026-05-22-008-Moral_Semantics_Survive_Machine_Translation:_Cross.md
+2026-05-22 20:01:39,052 - __main__ - INFO - 保存条目: 2026-05-22-009-Seeing_the_Poem:_Image-Semantic_Detection_of_AI-Ge.md
+2026-05-22 20:01:39,053 - __main__ - INFO - 保存条目: 2026-05-22-010-Whose_Voice_Counts?_Mapping_Stakeholder_Perspectiv.md
+2026-05-22 20:01:39,053 - __main__ - INFO - 保存条目: 2026-05-22-011-Boiling_the_Frog:_A_Multi-Turn_Benchmark_for_Agent.md
+2026-05-22 20:01:39,054 - __main__ - INFO - 保存条目: 2026-05-22-012-More_Context,_Larger_Models,_or_Moral_Knowledge?_A.md
+2026-05-22 20:01:39,055 - __main__ - INFO - 保存条目: 2026-05-22-013-Chinese_sensorimotor_and_embodiment_norms_for_3,00.md
+2026-05-22 20:01:39,055 - __main__ - INFO - 保存条目: 2026-05-22-014-Agentic_CLEAR:_Automating_Multi-Level_Evaluation_o.md
+2026-05-22 20:01:39,056 - __main__ - INFO - 保存条目: 2026-05-22-015-Beyond_Temperature:_Hyperfitting_as_a_Late-Stage_G.md
+2026-05-22 20:01:39,056 - __main__ - INFO - 保存条目: 2026-05-22-016-LANG:_Reinforcement_Learning_for_Multilingual_Reas.md
+2026-05-22 20:01:39,056 - __main__ - INFO - 保存条目: 2026-05-22-017-SynAE:_A_Framework_for_Measuring_the_Quality_of_Sy.md
+2026-05-22 20:01:39,057 - __main__ - INFO - 保存条目: 2026-05-22-018-One_prompt_is_not_enough:_Instruction_Sensitivity_.md
+2026-05-22 20:01:39,057 - __main__ - INFO - 保存条目: 2026-05-22-019-Scene_Abstraction_for_Lexical_Semantics:_Structure.md
+2026-05-22 20:01:39,057 - __main__ - INFO - 保存条目: 2026-05-22-020-BeLink:_Biomedical_Entity_Linking_Meets_Generative.md
+2026-05-22 20:01:39,057 - __main__ - INFO - 保存条目: 2026-05-22-021-Integrable_Elasticity_via_Neural_Demand_Potentials.md
+2026-05-22 20:01:39,057 - __main__ - INFO - 保存条目: 2026-05-22-022-Vector_Policy_Optimization:_Training_for_Diversity.md
+2026-05-22 20:01:39,058 - __main__ - INFO - 保存条目: 2026-05-22-023-Remember_to_be_Curious:_Episodic_Context_and_Persi.md
+2026-05-22 20:01:39,058 - __main__ - INFO - 保存条目: 2026-05-22-024-The_Matching_Principle:_A_Geometric_Theory_of_Loss.md
+2026-05-22 20:01:39,058 - __main__ - INFO - 保存条目: 2026-05-22-025-SDPM:_Survival_Diffusion_Probabilistic_Model_for_C.md
+2026-05-22 20:01:39,059 - __main__ - INFO - 保存条目: 2026-05-22-026-MambaGaze:_Bidirectional_Mamba_with_Explicit_Missi.md
+2026-05-22 20:01:39,059 - __main__ - INFO - 保存条目: 2026-05-22-027-CogAdapt:_Transferring_Clinical_ECG_Foundation_Mod.md
+2026-05-22 20:01:39,059 - __main__ - INFO - 保存条目: 2026-05-22-028-Uniform_Diffusion_Models_Revisited:_Leave-One-Out_.md
+2026-05-22 20:01:39,059 - __main__ - INFO - 保存条目: 2026-05-22-029-Lumberjack:_Better_Differentially_Private_Random_F.md
+2026-05-22 20:01:39,060 - __main__ - INFO - 保存条目: 2026-05-22-030-Cyber-Physical_Anomaly_Detection_in_IoT-Enabled_Sm.md
+2026-05-22 20:01:39,060 - __main__ - INFO - 保存条目: 2026-05-22-031-Plug-in_Losses_for_Evidential_Deep_Learning:_A_Sim.md
+2026-05-22 20:01:39,060 - __main__ - INFO - 保存条目: 2026-05-22-032-SeqLoRA:_Bilevel_Orthogonal_Adaptation_for_Continu.md
+2026-05-22 20:01:39,060 - __main__ - INFO - 保存条目: 2026-05-22-033-Ternary_Decision_Trees_with_Locally-Adaptive_Uncer.md
+2026-05-22 20:01:39,061 - __main__ - INFO - 保存条目: 2026-05-22-034-Proxy-Based_Approximation_of_Shapley_and_Banzhaf_I.md
+2026-05-22 20:01:39,061 - __main__ - INFO - 保存条目: 2026-05-22-035-The_Distillation_Game:_Adaptive_Attacks_&_Efficien.md
+2026-05-22 20:01:39,061 - __main__ - INFO - 保存条目: 2026-05-22-036-Post-Training_is_About_States,_Not_Tokens:_A_State.md
+2026-05-22 20:01:39,061 - __main__ - INFO - 保存条目: 2026-05-22-037-Multiple_Neural_Operators_Achieve_Near-Optimal_Rat.md
+2026-05-22 20:01:39,062 - __main__ - INFO - 保存条目: 2026-05-22-038-The_Value_of_Covariance_Matching_in_Gaussian_DDPMs.md
+2026-05-22 20:01:39,062 - __main__ - INFO - 保存条目: 2026-05-22-039-Reading_Task_Failure_Off_the_Activations:_A_Sparse.md
+2026-05-22 20:01:39,062 - __main__ - INFO - 保存条目: 2026-05-22-040-Abstraction_for_Offline_Goal-Conditioned_Reinforce.md
+2026-05-22 20:01:39,062 - __main__ - INFO - 保存条目: 2026-05-22-041-Hugging_Face.md
+2026-05-22 20:01:39,062 - __main__ - INFO - 保存条目: 2026-05-22-042-Bucketsnew.md
+2026-05-22 20:01:39,063 - __main__ - INFO - 保存条目: 2026-05-22-043-Enterprise.md
+2026-05-22 20:01:39,063 - __main__ - INFO - 保存条目: 2026-05-22-044-HuggingChat.md
+2026-05-22 20:01:39,063 - __main__ - INFO - 保存条目: 2026-05-22-045-Collections.md
+2026-05-22 20:01:39,063 - __main__ - INFO - 保存条目: 2026-05-22-046-Organizations.md
+2026-05-22 20:01:39,064 - __main__ - INFO - 保存条目: 2026-05-22-047-Daily_Papers.md
+2026-05-22 20:01:39,064 - __main__ - INFO - 保存条目: 2026-05-22-048-Team_&_Enterprise.md
+2026-05-22 20:01:39,064 - __main__ - INFO - 保存条目: 2026-05-22-049-Hugging_Face_PRO.md
+2026-05-22 20:01:39,064 - __main__ - INFO - 保存条目: 2026-05-22-050-Enterprise_Support.md
+2026-05-22 20:01:39,065 - __main__ - INFO - 保存条目: 2026-05-22-051-Inference_Providers.md
+2026-05-22 20:01:39,065 - __main__ - INFO - 保存条目: 2026-05-22-052-Inference_Endpoints.md
+2026-05-22 20:01:39,065 - __main__ - INFO - 保存条目: 2026-05-22-053-Storage_Buckets.md
+2026-05-22 20:01:39,065 - __main__ - INFO - 保存条目: 2026-05-22-054-LeRobot_Humanoid:_An_Open,_Low-Cost,_3D-Printed_Hu.md
+2026-05-22 20:01:39,065 - __main__ - INFO - 保存条目: 2026-05-22-055-Skip_to_main_content.md
+2026-05-22 20:01:39,066 - __main__ - INFO - 保存条目: 2026-05-22-056-Developers.md
+2026-05-22 20:01:39,066 - __main__ - INFO - 保存条目: 2026-05-22-057-Foundation(opens_in_a_new_window).md
+2026-05-22 20:01:39,066 - __main__ - INFO - 保存条目: 2026-05-22-058-Try_ChatGPT(opens_in_a_new_window).md
+2026-05-22 20:01:39,067 - __main__ - INFO - 保存条目: 2026-05-22-059-Engineering.md
+2026-05-22 20:01:39,067 - __main__ - INFO - 保存条目: 2026-05-22-060-Global_Affairs.md
+2026-05-22 20:01:39,068 - __main__ - INFO - 保存条目: 2026-05-22-061-AI_Adoption.md
+2026-05-22 20:01:39,068 - __main__ - INFO - 保存条目: 2026-05-22-062-An_OpenAI_model_has_disproved_a_central_conjecture.md
+2026-05-22 20:01:39,068 - __main__ - INFO - 保存条目: 2026-05-22-063-Advancing_content_provenance_for_a_safer,_more_tra.md
+2026-05-22 20:01:39,068 - __main__ - INFO - 保存条目: 2026-05-22-064-OpenAI_and_Dell_Technologies_partner_to_bring_Code.md
+2026-05-22 20:01:39,069 - __main__ - INFO - 保存条目: 2026-05-22-065-A_new_personal_finance_experience_in_ChatGPTProduc.md
+2026-05-22 20:01:39,069 - __main__ - INFO - 保存条目: 2026-05-22-066-Work_with_Codex_from_anywhereProductMay_14,_2026.md
+2026-05-22 20:01:39,069 - __main__ - INFO - 保存条目: 2026-05-22-067-Helping_ChatGPT_better_recognize_context_in_sensit.md
+2026-05-22 20:01:39,069 - __main__ - INFO - 保存条目: 2026-05-22-068-Building_a_safe,_effective_sandbox_to_enable_Codex.md
+2026-05-22 20:01:39,069 - __main__ - INFO - 保存条目: 2026-05-22-069-Our_response_to_the_TanStack_npm_supply_chain_atta.md
+2026-05-22 20:01:39,070 - __main__ - INFO - 保存条目: 2026-05-22-070-Skip_to_main_content.md
+2026-05-22 20:01:39,070 - __main__ - INFO - 保存条目: 2026-05-22-071-Skip_to_footer.md
+2026-05-22 20:01:39,070 - __main__ - INFO - 保存条目: 2026-05-22-072-Economic_Futures.md
+2026-05-22 20:01:39,070 - __main__ - INFO - 保存条目: 2026-05-22-073-Try_Claude.md
+2026-05-22 20:01:39,071 - __main__ - INFO - 保存条目: 2026-05-22-074-Economic_Research.md
+2026-05-22 20:01:39,071 - __main__ - INFO - 保存条目: 2026-05-22-075-Interpretability.md
+2026-05-22 20:01:39,071 - __main__ - INFO - 保存条目: 2026-05-22-076-Societal_Impacts.md
+2026-05-22 20:01:39,072 - __main__ - INFO - 保存条目: 2026-05-22-077-Natural_Language_Autoencoders:_Turning_Claude’s_th.md
+2026-05-22 20:01:39,072 - __main__ - INFO - 保存条目: 2026-05-22-078-AlignmentMay_8,_2026Teaching_Claude_whyNew_researc.md
+2026-05-22 20:01:39,072 - __main__ - INFO - 保存条目: 2026-05-22-079-ResearchApr_24,_2026Project_DealWe_created_a_marke.md
+2026-05-22 20:01:39,072 - __main__ - INFO - 保存条目: 2026-05-22-080-Societal_ImpactsMar_18,_2026What_81,000_people_wan.md
+2026-05-22 20:01:39,072 - __main__ - INFO - 保存条目: 2026-05-22-081-PolicyDec_18,_2025Project_Vend:_Phase_twoIn_June,_.md
+2026-05-22 20:01:39,073 - __main__ - INFO - 保存条目: 2026-05-22-082-May_14,_2026Policy2028:_Two_scenarios_for_global_A.md
+2026-05-22 20:01:39,073 - __main__ - INFO - 保存条目: 2026-05-22-083-May_8,_2026AlignmentTeaching_Claude_why.md
+2026-05-22 20:01:39,073 - __main__ - INFO - 保存条目: 2026-05-22-084-May_7,_2026InterpretabilityNatural_Language_Autoen.md
+2026-05-22 20:01:39,073 - __main__ - INFO - 保存条目: 2026-05-22-085-Skip_to_main_content.md
+2026-05-22 20:01:39,073 - __main__ - INFO - 保存条目: 2026-05-22-086-Explore_models.md
+2026-05-22 20:01:39,074 - __main__ - INFO - 保存条目: 2026-05-22-087-GeminiBuild_intelligent_agents.md
+2026-05-22 20:01:39,074 - __main__ - INFO - 保存条目: 2026-05-22-088-Gemini_OmniCreate_anything_from_anything.md
+2026-05-22 20:01:39,074 - __main__ - INFO - 保存条目: 2026-05-22-089-Nano_BananaCreate_and_edit_detailed_images.md
+2026-05-22 20:01:39,074 - __main__ - INFO - 保存条目: 2026-05-22-090-Gemini_AudioTalk,_create_and_control_audio.md
+2026-05-22 20:01:39,075 - __main__ - INFO - 保存条目: 2026-05-22-091-VeoGenerate_cinematic_video_with_audio.md
+2026-05-22 20:01:39,075 - __main__ - INFO - 保存条目: 2026-05-22-092-ImagenGenerate_high-quality_images_from_text.md
+2026-05-22 20:01:39,075 - __main__ - INFO - 保存条目: 2026-05-22-093-LyriaGenerate_high_fidelity_music_and_audio.md
+2026-05-22 20:01:39,075 - __main__ - INFO - 保存条目: 2026-05-22-094-Genie_3Generate_and_explore_interactive_worlds.md
+2026-05-22 20:01:39,075 - __main__ - INFO - 保存条目: 2026-05-22-095-Gemini_RoboticsPerceive,_reason,_use_tools_and_int.md
+2026-05-22 20:01:39,076 - __main__ - INFO - 保存条目: 2026-05-22-096-GemmaBuild_responsible_AI_applications_at_scale.md
+2026-05-22 20:01:39,076 - __main__ - INFO - 保存条目: 2026-05-22-097-Explore_research.md
+2026-05-22 20:01:39,076 - __main__ - INFO - 保存条目: 2026-05-22-098-SIMA_2An_agent_that_plays,_reasons,_and_learns_wit.md
+2026-05-22 20:01:39,076 - __main__ - INFO - 保存条目: 2026-05-22-099-AlphaGoMastering_the_game_of_Go.md
+2026-05-22 20:01:39,076 - __main__ - INFO - 保存条目: 2026-05-22-100-anthropics_claude-plugins-official.md
+2026-05-22 20:01:39,077 - __main__ - INFO - 保存条目: 2026-05-22-101-rohitg00_ai-engineering-from-scratch.md
+2026-05-22 20:01:39,077 - __main__ - INFO - 保存条目: 2026-05-22-102-odoo_odoo.md
+2026-05-22 20:01:39,077 - __main__ - INFO - 保存条目: 2026-05-22-103-Fincept-Corporation_FinceptTerminal.md
+2026-05-22 20:01:39,077 - __main__ - INFO - 保存条目: 2026-05-22-104-yt-dlp_yt-dlp.md
+2026-05-22 20:01:39,078 - __main__ - INFO - 保存条目: 2026-05-22-105-NousResearch_hermes-agent.md
+2026-05-22 20:01:39,078 - __main__ - INFO - 保存条目: 2026-05-22-106-facebookresearch_sam3.md
+2026-05-22 20:01:39,078 - __main__ - INFO - 保存条目: 2026-05-22-107-lllyasviel_Fooocus.md
+2026-05-22 20:01:39,078 - __main__ - INFO - 保存条目: 2026-05-22-108-HKUDS_ViMax.md
+2026-05-22 20:01:39,078 - __main__ - INFO - 保存条目: 2026-05-22-109-plastic-labs_honcho.md
+2026-05-22 20:01:39,079 - __main__ - INFO - 保存条目: 2026-05-22-110-microsoft_agent-governance-toolkit.md
+2026-05-22 20:01:39,079 - __main__ - INFO - 保存条目: 2026-05-22-111-awslabs_aidlc-workflows.md
+2026-05-22 20:01:39,079 - __main__ - INFO - 保存条目: 2026-05-22-112-Tracer-Cloud_opensre.md
+2026-05-22 20:01:39,079 - __main__ - INFO - 保存条目: 2026-05-22-113-langchain-ai_langchain.md
+2026-05-22 20:01:39,079 - __main__ - INFO - 保存条目: 2026-05-22-114-Imbad0202_academic-research-skills.md
+2026-05-22 20:01:39,079 - __main__ - INFO - 保存条目: 2026-05-22-115-zhaoyunfeng@jiqizhixin.com.md
+2026-05-22 20:01:39,080 - __main__ - INFO - 保存条目: 2026-05-22-116-顶流里最快！智谱，你是在「喷」代码吧.md
+2026-05-22 20:01:39,080 - __main__ - INFO - 保存条目: 2026-05-22-117-520当天400万AI人，都在量子位听这近20场演讲&对谈｜第四届中国AIGC产业峰会.md
+2026-05-22 20:01:39,080 - __main__ - INFO - 保存条目: 2026-05-22-118-2026中国AIGC最值得关注的企业&产品图鉴来了！谁在造浪，谁在落地？.md
+2026-05-22 20:01:39,080 - __main__ - INFO - 保存条目: 2026-05-22-119-国产GPU开始造世界！国内首个全栈具身智能仿真平台来了.md
+2026-05-22 20:01:39,080 - __main__ - INFO - 保存条目: 2026-05-22-120-李飞飞再出手，空间智能的ImageNet来了.md
+2026-05-22 20:01:39,081 - __main__ - INFO - 保存条目: 2026-05-22-121-融资700亿！DeepSeek_Code真要来了，ACM金牌大神崔添翼挂帅.md
+2026-05-22 20:01:39,081 - __main__ - INFO - 保存条目: 2026-05-22-122-狂揽F轮融资+拿下4100万用户！深圳玩家出手，把企业旧系统变成AI能力库.md
+2026-05-22 20:01:39,081 - __main__ - INFO - 保存条目: 2026-05-22-123-Snowflakenew.md
+2026-05-22 20:01:39,081 - __main__ - INFO - 保存条目: 2026-05-22-124-内容投稿：editors@geekbang.com.md
+2026-05-22 20:01:39,081 - __main__ - INFO - 保存条目: 2026-05-22-125-业务合作：hezuo@geekbang.com.md
+2026-05-22 20:01:39,081 - __main__ - INFO - 保存条目: 2026-05-22-126-反馈投诉：feedback@geekbang.com.md
+2026-05-22 20:01:39,082 - __main__ - INFO - 保存条目: 2026-05-22-127-加入我们：zhaopin@geekbang.com.md
+2026-05-22 20:01:39,082 - __main__ - INFO - 保存条目: 2026-05-22-128-北京_·_QCon_全球软件开发大会_2026.4.16-18.md
+2026-05-22 20:01:39,082 - __main__ - INFO - 保存条目: 2026-05-22-129-上海_·_AICon_全球人工智能开发与应用大会_2026.6.26-27.md
+2026-05-22 20:01:39,082 - __main__ - INFO - 保存条目: 2026-05-22-130-京_ICP_备_16027448_号_-_5.md
+2026-05-22 20:01:39,083 - __main__ - INFO - 生成每日简报: /Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/01_inbox/2026-05-22-每日信息简报.md
+2026-05-22 20:01:39,083 - __main__ - INFO - ==================================================
+2026-05-22 20:01:39,083 - __main__ - INFO - 采集完成
+2026-05-22 20:01:39,083 - __main__ - INFO - ==================================================
+Traceback (most recent call last):
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/../llm-info-radar/src/main.py", line 419, in <module>
+    main()
+  File "/Users/houpengyuan/Documents/trae_projects/LLM学习/llm-expert-knowledge-base/06_tools/task_scheduler/../llm-info-radar/src/main.py", line 413, in main
+    response = input("\n是否需要立即进行知识蒸馏？(y/n): ").strip().lower()
+EOFError: EOF when reading a line
+

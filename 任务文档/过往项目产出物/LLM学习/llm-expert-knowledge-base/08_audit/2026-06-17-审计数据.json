@@ -1,0 +1,155 @@
+{
+  "audit_time": "2026-06-17 21:04:53",
+  "mode": "full",
+  "total_documents": 1783,
+  "categories": {
+    "优秀": 18,
+    "合格": 504,
+    "待修正": 1261,
+    "不合格": 0
+  },
+  "average_score": 70.11,
+  "score_distribution": {
+    "90-100": 7,
+    "85-89": 11,
+    "80-84": 16,
+    "70-79": 488,
+    "60-69": 1261,
+    "50-59": 0,
+    "< 50": 0
+  },
+  "dimension_averages": {
+    "准确性": 70.42,
+    "完整性": 62.97,
+    "一致性": 91.38,
+    "时效性": 78.73,
+    "相关性": 41.36,
+    "可理解性": 58.94
+  },
+  "directory_summary": [
+    {
+      "name": "01_inbox",
+      "count": 12,
+      "avg_score": 89.24
+    },
+    {
+      "name": "04_permanent",
+      "count": 345,
+      "avg_score": 78.16
+    },
+    {
+      "name": "02_raw",
+      "count": 1425,
+      "avg_score": 68.01
+    },
+    {
+      "name": "06_tools/03_ai_wiki",
+      "count": 1,
+      "avg_score": 63.95
+    }
+  ],
+  "top_documents": [
+    {
+      "file": "01_inbox/2026-05-21-每日信息简报.md",
+      "score": 91.2,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-25-每日信息简报.md",
+      "score": 91.15,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-27-每日信息简报.md",
+      "score": 91.05,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-26-每日信息简报.md",
+      "score": 91.0,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-22-每日信息简报.md",
+      "score": 90.85,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-23-每日信息简报.md",
+      "score": 90.85,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/llm-course/README.md",
+      "score": 90.35,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-05-28-每日信息简报.md",
+      "score": 89.8,
+      "category": "优秀"
+    },
+    {
+      "file": "01_inbox/2026-06-03-每日信息简报.md",
+      "score": 89.2,
+      "category": "优秀"
+    },
+    {
+      "file": "04_permanent/模型架构/主要大模型介绍.md",
+      "score": 86.45,
+      "category": "优秀"
+    }
+  ],
+  "bottom_documents": [
+    {
+      "file": "02_raw/已处理-2026-05-25-001-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 63.45,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-25-071-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 63.45,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-25-086-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 63.45,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-25-101-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 63.45,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-26-086-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 63.45,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-26-101-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 63.45,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-27-101-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 63.45,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-27-115-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 63.45,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-28-114-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 63.45,
+      "category": "待修正"
+    },
+    {
+      "file": "02_raw/已处理-2026-05-28-115-zhaoyunfeng@jiqizhixin.com.md",
+      "score": 63.45,
+      "category": "待修正"
+    }
+  ]
+}

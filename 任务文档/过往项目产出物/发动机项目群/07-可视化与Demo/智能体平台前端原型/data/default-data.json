@@ -1,0 +1,82 @@
+{
+  "version": "2.0",
+  "global": {
+    "refresh_interval": 5,
+    "max_concurrent": 10,
+    "default_strategy": "优先级",
+    "token_alert_threshold": 100000,
+    "auto_simulate": true,
+    "simulation_speed": 1
+  },
+  "leaders": [
+    {
+      "id": "L-2001",
+      "name": "首席投研分析师",
+      "priority": "P0",
+      "status": "running",
+      "task": "雄安数字孪生城市项目可行性研究",
+      "progress": 38,
+      "token": 528400,
+      "token_rate": 4200,
+      "elapsed": 52.8,
+      "workers": [
+        { "id": "W-2001-1", "name": "政策研究员", "status": "completed", "progress": 100, "token": 38600, "token_rate": 0, "elapsed": 6.2, "trace_id": "a1b2c3d4e5f6", "description": "梳理十四五数字城市政策，雄安新区已获专项批复3项" },
+        { "id": "W-2001-2", "name": "市场规模分析师", "status": "running", "progress": 85, "token": 215300, "token_rate": 4800, "elapsed": 24.5, "trace_id": "b2c3d4e5f6g7", "description": "数字孪生城市市场2026年预计达1200亿，CAGR 22.7%" },
+        { "id": "W-2001-3", "name": "技术架构师", "status": "running", "progress": 45, "token": 168500, "token_rate": 3600, "elapsed": 15.8, "trace_id": "c3d4e5f6g7h8", "description": "评估CIM平台+IoT+AI推理三层架构可行性" },
+        { "id": "W-2001-4", "name": "财务测算师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "d4e5f6g7h8i9", "queue_position": 1, "description": "等待市场规模分析结果后启动IRR测算" },
+        { "id": "W-2001-5", "name": "风险评估师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "e5f6g7h8i9j0", "queue_position": 2, "description": "等待财务测算与技术评估完成后启动" },
+        { "id": "W-2001-6", "name": "竞品调研员", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "f6g7h8i9j0k1", "queue_position": 3, "description": "等待团长指令，调研华为/阿里/腾讯同类项目" }
+      ]
+    },
+    {
+      "id": "L-2002",
+      "name": "供应链优化总监",
+      "priority": "P1",
+      "status": "running",
+      "task": "华东区域冷链物流网络优化方案",
+      "progress": 15,
+      "token": 89000,
+      "token_rate": 800,
+      "elapsed": 8.5,
+      "workers": [
+        { "id": "W-2002-1", "name": "需求预测师", "status": "running", "progress": 32, "token": 62000, "token_rate": 800, "elapsed": 6.5, "trace_id": "1a2b3c4d5e6f", "description": "基于历史数据预测Q4冷链需求量，当前建模中" },
+        { "id": "W-2002-2", "name": "路径规划师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "2b3c4d5e6f7g", "queue_position": 1, "description": "等待需求预测结果" },
+        { "id": "W-2002-3", "name": "成本分析师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "3c4d5e6f7g8h", "queue_position": 2, "description": "等待路径规划方案" },
+        { "id": "W-2002-4", "name": "碳排放审计员", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "4d5e6f7g8h9i", "queue_position": 3, "description": "等待成本分析后评估碳排" }
+      ]
+    },
+    {
+      "id": "L-2000",
+      "name": "舆情预警总监",
+      "priority": "P2",
+      "status": "completed",
+      "task": "品牌公关危机实时监测报告",
+      "progress": 100,
+      "token": 312000,
+      "token_rate": 0,
+      "elapsed": 48.7,
+      "workers": [
+        { "id": "W-2000-1", "name": "全渠道爬虫", "status": "completed", "progress": 100, "token": 92500, "token_rate": 0, "elapsed": 10.3, "trace_id": "aa1bb2cc3dd4", "description": "覆盖微博/抖音/小红书/黑猫投诉，共采集18,742条" },
+        { "id": "W-2000-2", "name": "情感分析引擎", "status": "completed", "progress": 100, "token": 148200, "token_rate": 0, "elapsed": 22.1, "trace_id": "bb2cc3dd4ee5", "description": "负面情绪占比34%（↑12%），集中指向售后服务" },
+        { "id": "W-2000-3", "name": "传播链路分析师", "status": "completed", "progress": 100, "token": 71300, "token_rate": 0, "elapsed": 16.3, "trace_id": "cc3dd4ee5ff6", "description": "识别3个核心传播节点，KOL@科技老张 贡献42%扩散量" }
+      ]
+    }
+  ],
+  "analysis": {
+    "title": "执行分析报告：舆情预警总监 - \"品牌公关危机实时监测报告\"",
+    "status": "completed",
+    "generated_at": "2026-07-29 16:32:08",
+    "analysis_duration": 9.8,
+    "summary": {
+      "efficiency": "任务总耗时 48.7s，优于同类任务均值（55s）。情感分析引擎耗时占比 45%，为主要瓶颈。",
+      "token_usage": "总计消耗 312.0K tokens。情感分析引擎消耗 148.2K（占比 48%），因处理长文本评论导致 Token 偏高。",
+      "consistency": "三个 Worker 结论高度一致：负面情绪上升源头为售后服务体验，非产品质量问题。",
+      "anomalies": "全渠道爬虫在采集抖音数据时遭遇 1 次限流（HTTP 429），自动降级为采样模式，采集量减少 8% 但未影响分析结论。"
+    },
+    "recommendations": [
+      { "type": "warning", "title": "舆情扩散风险", "content": "KOL@科技老张 传播影响力显著，建议公关团队在 2 小时内介入沟通，避免负面舆情二次扩散至主流媒体。" },
+      { "type": "info", "title": "采集策略优化", "content": "抖音渠道限频问题可通过增加请求间隔 + 多账号轮换解决，预计可将采集完整度从 92% 提升至 99%。" },
+      { "type": "info", "title": "Token 成本优化", "content": "情感分析引擎可对评论做预过滤（去除表情/重复内容），预计可减少 30% Token 消耗。" }
+    ]
+  }
+}

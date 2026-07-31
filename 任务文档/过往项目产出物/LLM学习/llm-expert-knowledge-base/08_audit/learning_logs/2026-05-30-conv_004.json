@@ -1,0 +1,44 @@
+
+{
+  "timestamp": "2026-05-30T16:45:00",
+  "conversation_id": "conv_004",
+  "conversation_data": {
+    "type": "行业分析类",
+    "key_info": {
+      "topic": "人工智能",
+      "concept": "AI产业发展趋势"
+    }
+  },
+  "quality_scores": {
+    "overall_score": 72.5,
+    "dimensions": {
+      "准确性": 75.0,
+      "完整性": 68.0,
+      "相关性": 80.0,
+      "清晰度": 75.0,
+      "实用性": 70.0,
+      "时效性": 67.0
+    }
+  },
+  "feedback_analysis": {
+    "type": "negative",
+    "sentiment": "needs_improvement"
+  },
+  "knowledge_gaps": [
+    {
+      "type": "已过时",
+      "description": "2025年之前的产业数据"
+    },
+    {
+      "type": "不完整或不准确",
+      "description": "最新AI应用案例"
+    }
+  ],
+  "optimization": {
+    "suggestions": [
+      "更新产业数据",
+      "增加最新案例"
+    ],
+    "preference_update": true
+  }
+}

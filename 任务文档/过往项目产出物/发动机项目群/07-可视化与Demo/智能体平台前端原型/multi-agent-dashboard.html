@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能体并发看板 - 智能体操作系统</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f9fafb; }
+  .sidebar-item { transition: all 0.2s ease; cursor: pointer; }
+  .sidebar-item:hover { background-color: #f3f4f6; }
+  .sidebar-item.active { background-color: #eff6ff; color: #2563eb; border-left: 3px solid #2563eb; }
+  .pulse-dot { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+  .progress-bar { transition: width 0.5s linear; }
+  .tooltip { position: relative; display: inline-block; }
+  .tooltip-content {
+    visibility: hidden; width: 220px; background-color: #1f2937; color: #fff;
+    text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute;
+    z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%);
+    opacity: 0; transition: opacity 0.2s; font-size: 11px; line-height: 1.5; font-weight: normal;
+  }
+  .tooltip-content::after {
+    content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px;
+    border-width: 5px; border-style: solid; border-color: #1f2937 transparent transparent transparent;
+  }
+  .tooltip:hover .tooltip-content { visibility: visible; opacity: 1; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #f1f1f1; }
+  ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+  .tree-row-content { transition: all 0.3s ease; }
+  .collapsed { display: none; }
+  .caret { transition: transform 0.2s ease; display: inline-block; }
+  .caret.open { transform: rotate(90deg); }
+
+  .drawer { 
+    position: fixed; top: 0; right: -400px; width: 400px; height: 100%; 
+    background: white; box-shadow: -4px 0 20px rgba(0,0,0,0.1); 
+    transition: right 0.3s ease; z-index: 200; 
+  }
+  .drawer.open { right: 0; }
+  .drawer-overlay { 
+    position: fixed; inset: 0; background: rgba(0,0,0,0.3); 
+    opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 199; 
+  }
+  .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+
+  .modal-overlay { 
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4); 
+    display: flex; align-items: center; justify-content: center; 
+    opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 300; 
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  .modal-box { 
+    background: white; border-radius: 12px; width: 480px; max-height: 80vh; 
+    overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.2); 
+    transform: scale(0.95); transition: transform 0.2s; 
+  }
+  .modal-overlay.open .modal-box { transform: scale(1); }
+  .speed-btn.active { background-color: #2563eb; color: white; border-color: #2563eb; }
+</style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+<!-- Sidebar -->
+<aside class="w-64 bg-white border-r border-gray-200 flex flex-col flex-shrink-0">
+  <div class="h-14 flex items-center px-6 border-b border-gray-100">
+    <div class="flex items-center space-x-2">
+      <div class="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center">
+        <i class="ri-robot-fill text-white text-sm"></i>
+      </div>
+      <span class="font-semibold text-gray-800 text-sm">智驭 智能体操作系统</span>
+    </div>
+  </div>
+  <nav class="flex-1 overflow-y-auto py-4">
+    <ul class="space-y-1 text-sm">
+      <li class="sidebar-item flex items-center px-4 py-2.5 text-gray-600"><i class="ri-message-2-line mr-3 text-lg"></i><span>对话</span></li>
+      <li class="sidebar-item flex items-center px-4 py-2.5 text-gray-600"><i class="ri-file-list-3-line mr-3 text-lg"></i><span>投研报告</span></li>
+      <li class="sidebar-item flex items-center px-4 py-2.5 text-gray-600"><i class="ri-briefcase-4-line mr-3 text-lg"></i><span>工作空间</span></li>
+      <li class="sidebar-item flex items-center px-4 py-2.5 text-gray-600"><i class="ri-bar-chart-box-line mr-3 text-lg"></i><span>智能体评测</span></li>
+      <li class="sidebar-item flex items-center px-4 py-2.5 text-gray-600"><i class="ri-shield-check-line mr-3 text-lg"></i><span>智能体安全</span></li>
+      <li class="sidebar-item flex items-center px-4 py-2.5 text-gray-600"><i class="ri-console-line mr-3 text-lg"></i><span>MCP</span></li>
+      <li class="sidebar-item flex items-center px-4 py-2.5 text-gray-600"><i class="ri-file-search-line mr-3 text-lg"></i><span>审计日志</span></li>
+      <div class="mt-2">
+        <li class="sidebar-item flex items-center justify-between px-4 py-2.5 bg-blue-50/50 text-blue-600 font-medium">
+          <div class="flex items-center"><i class="ri-eye-line mr-3 text-lg"></i><span>运行观测</span></div>
+          <i class="ri-arrow-down-s-line text-blue-400"></i>
+        </li>
+        <div class="pl-12 space-y-0.5 mt-1">
+          <li class="sidebar-item flex items-center py-1.5 px-2 text-gray-500 text-xs"><i class="ri-pulse-line mr-2"></i>Token 用量</li>
+          <li class="sidebar-item active flex items-center py-1.5 px-2 text-xs font-medium"><i class="ri-dashboard-line mr-2"></i>智能体并发看板</li>
+          <li class="sidebar-item flex items-center py-1.5 px-2 text-gray-500 text-xs"><i class="ri-flow-chart mr-2"></i>链路追踪</li>
+        </div>
+      </div>
+      <li class="sidebar-item flex items-center px-4 py-2.5 text-gray-600 mt-2"><i class="ri-store-2-line mr-3 text-lg"></i><span>智能体广场</span></li>
+      <li class="sidebar-item flex items-center px-4 py-2.5 text-gray-600"><i class="ri-tools-line mr-3 text-lg"></i><span>技能广场</span></li>
+      <li class="sidebar-item flex items-center px-4 py-2.5 text-gray-600"><i class="ri-settings-3-line mr-3 text-lg"></i><span>系统管理</span></li>
+    </ul>
+  </nav>
+  <div class="p-4 border-t border-gray-100">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold text-sm">A</div>
+      <div class="flex-1 min-w-0"><p class="text-sm font-medium text-gray-800 truncate">admin</p></div>
+      <i class="ri-more-2-fill text-gray-400 cursor-pointer"></i>
+    </div>
+  </div>
+</aside>
+
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden">
+  <header class="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-6">
+    <div class="flex items-center space-x-3 text-sm">
+      <span class="text-gray-400">运行观测</span><span class="text-gray-300">/</span><span class="font-semibold text-gray-800">智能体并发看板</span>
+    </div>
+    <div class="flex items-center space-x-3">
+      <label class="cursor-pointer text-gray-400 hover:text-blue-600 transition-colors" title="上传数据">
+        <i class="ri-upload-2-line text-lg"></i>
+        <input type="file" id="fileInput" accept=".json" class="hidden" onchange="handleFileUpload(this)">
+      </label>
+      <button class="text-gray-400 hover:text-blue-600 transition-colors" onclick="openGlobalConfig()" title="全局配置">
+        <i class="ri-settings-3-line text-lg"></i>
+      </button>
+      <button class="text-gray-400 hover:text-gray-600"><i class="ri-notification-3-line text-lg"></i></button>
+    </div>
+  </header>
+
+  <div class="flex-1 overflow-y-auto p-6 space-y-8" id="mainContent">
+    <!-- Dynamic content rendered here -->
+  </div>
+</main>
+
+<!-- Global Config Drawer -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeGlobalConfig()"></div>
+<div class="drawer" id="globalDrawer">
+  <div class="h-14 border-b border-gray-100 flex items-center justify-between px-6">
+    <h3 class="font-semibold text-gray-800">全局配置</h3>
+    <button onclick="closeGlobalConfig()" class="text-gray-400 hover:text-gray-600"><i class="ri-close-line text-xl"></i></button>
+  </div>
+  <div class="p-6 space-y-6">
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">默认调度策略</label>
+      <select id="globalStrategy" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm">
+        <option>优先级</option><option>FIFO</option><option>公平调度</option><option>自适应</option>
+      </select>
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">全局并发上限</label>
+      <input type="number" id="globalMaxConcurrent" value="10" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm">
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Token 预警阈值</label>
+      <input type="number" id="globalTokenAlert" value="100000" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm">
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">自动刷新间隔 (秒)</label>
+      <input type="number" id="globalRefresh" value="5" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm">
+    </div>
+    <div class="pt-4 border-t border-gray-100">
+      <button onclick="saveGlobalConfig()" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 text-sm">保存配置</button>
+    </div>
+  </div>
+</div>
+
+<!-- Leader Config Modal -->
+<div class="modal-overlay" id="leaderModalOverlay" onclick="closeLeaderConfig()"></div>
+<div class="modal-overlay" id="leaderModal">
+  <div class="modal-box">
+    <div class="p-5 border-b border-gray-100 flex items-center justify-between">
+      <h3 class="font-semibold text-gray-800" id="modalTitle">团长配置</h3>
+      <button onclick="closeLeaderConfig()" class="text-gray-400 hover:text-gray-600"><i class="ri-close-line text-xl"></i></button>
+    </div>
+    <div class="p-5 space-y-4" id="modalContent"></div>
+    <div class="p-5 border-t border-gray-100 flex justify-end space-x-2">
+      <button onclick="closeLeaderConfig()" class="px-4 py-2 border border-gray-200 rounded-md text-sm text-gray-600 hover:bg-gray-50">取消</button>
+      <button onclick="saveLeaderConfig()" class="px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== Embedded Default Data ====================
+const DEFAULT_DATA = {
+  "version": "2.0",
+  "global": {
+    "refresh_interval": 5,
+    "max_concurrent": 10,
+    "default_strategy": "优先级",
+    "token_alert_threshold": 100000,
+    "auto_simulate": true,
+    "simulation_speed": 1
+  },
+  "leaders": [
+    {
+      "id": "L-2001",
+      "name": "首席投研分析师",
+      "priority": "P0",
+      "status": "running",
+      "task": "雄安数字孪生城市项目可行性研究",
+      "progress": 38,
+      "token": 528400,
+      "token_rate": 4200,
+      "elapsed": 52.8,
+      "workers": [
+        { "id": "W-2001-1", "name": "政策研究员", "status": "completed", "progress": 100, "token": 38600, "token_rate": 0, "elapsed": 6.2, "trace_id": "a1b2c3d4e5f6", "description": "梳理十四五数字城市政策，雄安新区已获专项批复3项" },
+        { "id": "W-2001-2", "name": "市场规模分析师", "status": "running", "progress": 85, "token": 215300, "token_rate": 4800, "elapsed": 24.5, "trace_id": "b2c3d4e5f6g7", "description": "数字孪生城市市场2026年预计达1200亿，CAGR 22.7%" },
+        { "id": "W-2001-3", "name": "技术架构师", "status": "running", "progress": 45, "token": 168500, "token_rate": 3600, "elapsed": 15.8, "trace_id": "c3d4e5f6g7h8", "description": "评估CIM平台+IoT+AI推理三层架构可行性" },
+        { "id": "W-2001-4", "name": "财务测算师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "d4e5f6g7h8i9", "queue_position": 1, "description": "等待市场规模分析结果后启动IRR测算" },
+        { "id": "W-2001-5", "name": "风险评估师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "e5f6g7h8i9j0", "queue_position": 2, "description": "等待财务测算与技术评估完成后启动" },
+        { "id": "W-2001-6", "name": "竞品调研员", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "f6g7h8i9j0k1", "queue_position": 3, "description": "等待团长指令，调研华为/阿里/腾讯同类项目" }
+      ]
+    },
+    {
+      "id": "L-2002",
+      "name": "供应链优化总监",
+      "priority": "P1",
+      "status": "running",
+      "task": "华东区域冷链物流网络优化方案",
+      "progress": 15,
+      "token": 89000,
+      "token_rate": 800,
+      "elapsed": 8.5,
+      "workers": [
+        { "id": "W-2002-1", "name": "需求预测师", "status": "running", "progress": 32, "token": 62000, "token_rate": 800, "elapsed": 6.5, "trace_id": "1a2b3c4d5e6f", "description": "基于历史数据预测Q4冷链需求量，当前建模中" },
+        { "id": "W-2002-2", "name": "路径规划师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "2b3c4d5e6f7g", "queue_position": 1, "description": "等待需求预测结果" },
+        { "id": "W-2002-3", "name": "成本分析师", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "3c4d5e6f7g8h", "queue_position": 2, "description": "等待路径规划方案" },
+        { "id": "W-2002-4", "name": "碳排放审计员", "status": "waiting", "progress": 0, "token": 0, "token_rate": 0, "elapsed": 0, "trace_id": "4d5e6f7g8h9i", "queue_position": 3, "description": "等待成本分析后评估碳排" }
+      ]
+    },
+    {
+      "id": "L-2000",
+      "name": "舆情预警总监",
+      "priority": "P2",
+      "status": "completed",
+      "task": "品牌公关危机实时监测报告",
+      "progress": 100,
+      "token": 312000,
+      "token_rate": 0,
+      "elapsed": 48.7,
+      "workers": [
+        { "id": "W-2000-1", "name": "全渠道爬虫", "status": "completed", "progress": 100, "token": 92500, "token_rate": 0, "elapsed": 10.3, "trace_id": "aa1bb2cc3dd4", "description": "覆盖微博/抖音/小红书/黑猫投诉，共采集18,742条" },
+        { "id": "W-2000-2", "name": "情感分析引擎", "status": "completed", "progress": 100, "token": 148200, "token_rate": 0, "elapsed": 22.1, "trace_id": "bb2cc3dd4ee5", "description": "负面情绪占比34%（↑12%），集中指向售后服务" },
+        { "id": "W-2000-3", "name": "传播链路分析师", "status": "completed", "progress": 100, "token": 71300, "token_rate": 0, "elapsed": 16.3, "trace_id": "cc3dd4ee5ff6", "description": "识别3个核心传播节点，KOL@科技老张 贡献42%扩散量" }
+      ]
+    }
+  ],
+  "analysis": {
+    "title": "执行分析报告：舆情预警总监 - \"品牌公关危机实时监测报告\"",
+    "status": "completed",
+    "generated_at": "2026-07-29 16:32:08",
+    "analysis_duration": 9.8,
+    "summary": {
+      "efficiency": "任务总耗时 48.7s，优于同类任务均值（55s）。情感分析引擎耗时占比 45%，为主要瓶颈。",
+      "token_usage": "总计消耗 312.0K tokens。情感分析引擎消耗 148.2K（占比 48%），因处理长文本评论导致 Token 偏高。",
+      "consistency": "三个 Worker 结论高度一致：负面情绪上升源头为售后服务体验，非产品质量问题。",
+      "anomalies": "全渠道爬虫在采集抖音数据时遭遇 1 次限流（HTTP 429），自动降级为采样模式，采集量减少 8% 但未影响分析结论。"
+    },
+    "recommendations": [
+      { "type": "warning", "title": "舆情扩散风险", "content": "KOL@科技老张 传播影响力显著，建议公关团队在 2 小时内介入沟通，避免负面舆情二次扩散至主流媒体。" },
+      { "type": "info", "title": "采集策略优化", "content": "抖音渠道限频问题可通过增加请求间隔 + 多账号轮换解决，预计可将采集完整度从 92% 提升至 99%。" },
+      { "type": "info", "title": "Token 成本优化", "content": "情感分析引擎可对评论做预过滤（去除表情/重复内容），预计可减少 30% Token 消耗。" }
+    ]
+  }
+};
+
+// ==================== DataStore ====================
+const DataStore = {
+  STORAGE_KEY: 'dashboard_data_v1',
+  get() {
+    const stored = localStorage.getItem(this.STORAGE_KEY);
+    if (stored) return JSON.parse(stored);
+    return null;
+  },
+  set(data) {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+  },
+  clear() {
+    localStorage.removeItem(this.STORAGE_KEY);
+  },
+  loadDefault() {
+    return JSON.parse(JSON.stringify(DEFAULT_DATA));
+  }
+};
+
+// ==================== DataSimulator ====================
+const DataSimulator = {
+  timer: null,
+  speed: 1,
+  interval: 1000,
+  start() {
+    if (this.timer) clearInterval(this.timer);
+    this.timer = setInterval(() => this.tick(), this.interval);
+  },
+  stop() {
+    if (this.timer) { clearInterval(this.timer); this.timer = null; }
+  },
+  setSpeed(speed) {
+    this.speed = speed;
+    if (speed === 0) {
+      this.stop();
+    } else {
+      this.start();
+    }
+  },
+  tick() {
+    const data = DataStore.get();
+    if (!data || !data.leaders) return;
+    let changed = false;
+    data.leaders.forEach(leader => {
+      if (leader.status !== 'running') return;
+      let totalProgress = 0;
+      let completedCount = 0;
+      let totalToken = 0;
+      let totalElapsed = 0;
+      leader.workers.forEach(worker => {
+        if (worker.status === 'running') {
+          const increment = (Math.random() * 3 + 1) * this.speed;
+          worker.progress = Math.min(100, worker.progress + increment);
+          worker.elapsed += (this.interval / 1000) * this.speed;
+          if (worker.token_rate > 0) {
+            worker.token += Math.floor(worker.token_rate * (this.interval / 1000) * this.speed);
+          }
+          if (worker.progress >= 100) {
+            worker.progress = 100;
+            worker.status = 'completed';
+            worker.token_rate = 0;
+          }
+          changed = true;
+        } else if (worker.status === 'waiting') {
+          const activeWorkers = leader.workers.filter(w => w.status === 'running').length;
+          const maxConcurrent = data.global.max_concurrent || 10;
+          if (activeWorkers < maxConcurrent && worker.queue_position === 1) {
+            worker.status = 'running';
+            worker.progress = 1;
+            worker.token_rate = 2000 + Math.floor(Math.random() * 3000);
+            changed = true;
+          }
+        }
+        if (worker.status === 'completed') completedCount++;
+        totalProgress += worker.progress;
+        totalToken += worker.token;
+        totalElapsed = Math.max(totalElapsed, worker.elapsed);
+      });
+      leader.token = totalToken;
+      leader.elapsed = totalElapsed;
+      leader.progress = Math.round(totalProgress / leader.workers.length);
+      let queuePos = 1;
+      leader.workers.filter(w => w.status === 'waiting').forEach(w => { w.queue_position = queuePos++; });
+      if (completedCount === leader.workers.length && leader.status === 'running') {
+        leader.status = 'completed';
+        leader.progress = 100;
+        changed = true;
+      }
+    });
+    if (changed) {
+      DataStore.set(data);
+      renderAll();
+    }
+  }
+};
+
+// ==================== Rendering ====================
+function formatToken(token) {
+  if (token >= 1000000) return (token / 1000000).toFixed(2) + 'M';
+  if (token >= 1000) return (token / 1000).toFixed(1) + 'K';
+  return token.toString();
+}
+function formatTime(seconds) {
+  return seconds.toFixed(1) + 's';
+}
+function getStatusBadge(status) {
+  const badges = {
+    running: '<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-700"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-1 pulse-dot"></span>运行中</span>',
+    waiting: '<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-amber-50 text-amber-700">排队中</span>',
+    completed: '<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-50 text-green-700">已完成</span>',
+    error: '<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-50 text-red-700">异常</span>'
+  };
+  return badges[status] || status;
+}
+function getPriorityBadge(priority) {
+  const colors = { 'P0': 'bg-red-50 text-red-600 border-red-100', 'P1': 'bg-orange-50 text-orange-600 border-orange-100', 'P2': 'bg-gray-100 text-gray-500 border-gray-200' };
+  const cls = colors[priority] || colors['P2'];
+  return `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ${cls}">${priority}</span>`;
+}
+function getProgressColor(status) {
+  if (status === 'completed') return 'bg-green-500';
+  if (status === 'waiting') return 'bg-amber-400';
+  if (status === 'error') return 'bg-red-500';
+  return 'bg-gradient-to-r from-blue-400 to-blue-600';
+}
+
+function renderKPIs(data) {
+  let running = 0, waiting = 0, totalTokenRate = 0, errors = 0;
+  data.leaders.forEach(l => {
+    l.workers.forEach(w => {
+      if (w.status === 'running') { running++; totalTokenRate += w.token_rate; }
+      else if (w.status === 'waiting') waiting++;
+      else if (w.status === 'error') errors++;
+    });
+  });
+  return `
+    <section>
+      <h2 class="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+        <span class="w-1 h-4 bg-blue-600 rounded mr-2"></span>
+        实时运行总览
+        <span class="tooltip ml-1 cursor-help text-gray-400"><i class="ri-information-line"></i>
+          <span class="tooltip-content">当前账户下所有并发 Agent 任务的核心指标概览。<br>展示系统整体运行健康度。</span>
+        </span>
+      </h2>
+      <div class="grid grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-xs text-gray-500 mb-1">运行中任务</p>
+              <p class="text-2xl font-bold text-gray-800">${running}</p>
+              <p class="text-xs text-blue-600 mt-1 flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-1.5 pulse-dot"></span>实时监控</p>
+            </div>
+            <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center"><i class="ri-loader-4-line text-blue-500 text-xl animate-spin"></i></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-xs text-gray-500 mb-1">队列等待</p>
+              <p class="text-2xl font-bold text-gray-800">${waiting}</p>
+              <p class="text-xs text-amber-600 mt-1"><i class="ri-alarm-line mr-0.5"></i>平均等待 <span class="font-medium">2.3s</span></p>
+            </div>
+            <div class="w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center"><i class="ri-time-line text-amber-500 text-xl"></i></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-xs text-gray-500 mb-1">Token 消耗速率</p>
+              <p class="text-2xl font-bold text-gray-800">${formatToken(totalTokenRate)} <span class="text-sm font-normal text-gray-500">/s</span></p>
+              <p class="text-xs text-green-600 mt-1 flex items-center"><i class="ri-arrow-up-line"></i> 实时累计</p>
+            </div>
+            <div class="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center"><i class="ri-lightning-flash-line text-indigo-500 text-xl"></i></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-xs text-gray-500 mb-1">异常/超时</p>
+              <p class="text-2xl font-bold ${errors > 0 ? 'text-red-600' : 'text-gray-800'}">${errors}</p>
+              <p class="text-xs text-gray-500 mt-1">${errors > 0 ? '需关注' : '正常'}</p>
+            </div>
+            <div class="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center"><i class="ri-error-warning-line text-red-500 text-xl"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderTaskTable(data) {
+  let rows = '';
+  data.leaders.forEach(leader => {
+    const isExpanded = leader.status === 'running';
+    const leaderColor = leader.status === 'completed' ? 'bg-green-50/30' : leader.status === 'running' ? 'bg-blue-50/30' : 'bg-gray-50/30';
+    const dotColor = leader.status === 'completed' ? 'bg-green-500' : leader.status === 'running' ? 'bg-blue-500 pulse-dot' : 'bg-gray-400';
+    rows += `
+      <tr class="tree-row ${leaderColor}" data-leader="${leader.id}">
+        <td class="px-4 py-3">
+          <div class="flex items-center">
+            <button class="toggle-btn mr-2 text-gray-400 hover:text-gray-600" onclick="toggleTree('${leader.id}')">
+              <i class="caret ri-arrow-right-s-line text-sm ${isExpanded ? 'open' : ''}"></i>
+            </button>
+            <div class="w-2 h-2 rounded-full ${dotColor} mr-2"></div>
+            <div>
+              <p class="font-bold text-gray-800">${leader.name}</p>
+              <p class="text-xs text-gray-500"><span class="text-blue-600 font-medium">团长</span> · ${leader.status === 'completed' ? '已完成' : '正在执行'}: "${leader.task}" · 下属 ${leader.workers.length} 个 Worker</p>
+            </div>
+          </div>
+        </td>
+        <td class="px-4 py-3">${getPriorityBadge(leader.priority)}</td>
+        <td class="px-4 py-3">
+          <div class="relative">
+            <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+              <div class="progress-bar ${getProgressColor(leader.status)} h-full rounded-full" style="width: ${leader.progress}%"></div>
+            </div>
+            <span class="text-xs text-gray-600 mt-1 inline-block font-medium">${leader.progress}% - ${leader.status === 'running' ? '执行中...' : leader.status === 'completed' ? '已完成' : '等待中'}</span>
+          </div>
+        </td>
+        <td class="px-4 py-3">
+          <div>
+            <p class="font-semibold text-gray-800">${formatToken(leader.token)}</p>
+            <p class="text-xs text-gray-500">合计</p>
+          </div>
+        </td>
+        <td class="px-4 py-3 text-gray-700">${formatTime(leader.elapsed)}</td>
+        <td class="px-4 py-3">${getStatusBadge(leader.status)}</td>
+        <td class="px-4 py-3 text-right text-sm">
+          <button class="text-gray-400 hover:text-blue-600 mr-2" onclick="openLeaderConfig('${leader.id}')" title="行内配置"><i class="ri-settings-4-line"></i></button>
+          <button class="text-blue-600 hover:text-blue-700 mr-2" title="查看链路详情"><i class="ri-external-link-line"></i></button>
+          ${leader.status !== 'completed' ? `<button class="text-red-500 hover:text-red-600" onclick="stopLeader('${leader.id}')" title="终止任务"><i class="ri-close-circle-line"></i></button>` : '<button class="text-gray-300 cursor-not-allowed"><i class="ri-close-circle-line"></i></button>'}
+        </td>
+      </tr>
+    `;
+    leader.workers.forEach(worker => {
+      const workerStatus = worker.status === 'running' ? `<span class="inline-flex items-center text-blue-600 font-medium"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-1 pulse-dot"></span>运行中</span>` : 
+                            worker.status === 'completed' ? '<span class="inline-flex items-center text-green-600 font-medium">已完成</span>' :
+                            worker.status === 'waiting' ? '<span class="inline-flex items-center text-amber-600 font-medium">排队中</span>' :
+                            '<span class="inline-flex items-center text-red-600 font-medium">异常</span>';
+      const progressText = worker.status === 'waiting' ? `等待团长指令 (排队第 ${worker.queue_position || 1} 位)` : 
+                           worker.status === 'completed' ? '100%' : `${Math.round(worker.progress)}% - ${worker.description || '执行中...'}`;
+      rows += `
+        <tr class="tree-row-content ${isExpanded ? '' : 'collapsed'} bg-gray-50/50 text-xs" data-parent="${leader.id}">
+          <td class="px-4 py-3">
+            <div class="flex items-center pl-6">
+              <i class="ri-user-line text-gray-400 mr-2"></i>
+              <div>
+                <p class="font-medium text-gray-700">${worker.name}</p>
+                <p class="text-xs text-gray-400">Trace ID: ${worker.trace_id}</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-4 py-3">${getPriorityBadge(leader.priority)}</td>
+          <td class="px-4 py-3">
+            <div class="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
+              <div class="progress-bar ${getProgressColor(worker.status)} h-full rounded-full" style="width: ${worker.progress}%"></div>
+            </div>
+            <span class="text-xs text-gray-500 mt-0.5 inline-block">${progressText}</span>
+          </td>
+          <td class="px-4 py-3 text-gray-600">${worker.token > 0 ? formatToken(worker.token) : '-'}</td>
+          <td class="px-4 py-3 text-gray-600">${worker.elapsed > 0 ? formatTime(worker.elapsed) : '-'}</td>
+          <td class="px-4 py-3">${workerStatus}</td>
+          <td class="px-4 py-3 text-right">
+            <button class="text-blue-500 hover:text-blue-700 mr-1" title="查看详情"><i class="ri-external-link-line"></i></button>
+            ${worker.status === 'running' ? `<button class="text-red-400 hover:text-red-600" onclick="stopWorker('${leader.id}', '${worker.id}')" title="终止"><i class="ri-close-circle-line"></i></button>` : ''}
+          </td>
+        </tr>
+      `;
+    });
+  });
+  return `
+    <section>
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold text-gray-700 flex items-center">
+          <span class="w-1 h-4 bg-blue-600 rounded mr-2"></span>
+          任务调度中心
+          <span class="tooltip ml-1 cursor-help text-gray-400"><i class="ri-information-line"></i>
+            <span class="tooltip-content">管理正在运行的 Agent 任务（团长）。<br>点击行首箭头可展开查看下属 Worker 的执行详情。</span>
+          </span>
+        </h2>
+        <div class="flex items-center space-x-2">
+          <button class="text-xs px-3 py-1.5 border border-gray-200 rounded-md bg-white hover:bg-gray-50 text-gray-600"><i class="ri-filter-3-line mr-1"></i>筛选</button>
+          <button class="text-xs px-3 py-1.5 border border-gray-200 rounded-md bg-white hover:bg-gray-50 text-gray-600">只看运行中</button>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 text-left text-xs text-gray-500 uppercase tracking-wider">
+            <tr>
+              <th class="px-4 py-3 font-medium w-1/5">任务 / Agent 名称</th>
+              <th class="px-4 py-3 font-medium w-16">优先级</th>
+              <th class="px-4 py-3 font-medium w-1/5">实时进度</th>
+              <th class="px-4 py-3 font-medium w-28">Token 消耗</th>
+              <th class="px-4 py-3 font-medium w-20">耗时</th>
+              <th class="px-4 py-3 font-medium w-20">状态</th>
+              <th class="px-4 py-3 font-medium w-32 text-right">操作</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">${rows}</tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
+function renderAnalysis(data) {
+  if (!data.analysis) return '';
+  const a = data.analysis;
+  const recs = a.recommendations.map(r => {
+    const color = r.type === 'warning' ? 'amber' : 'blue';
+    const icon = r.type === 'warning' ? 'ri-error-warning-line' : 'ri-information-line';
+    return `
+      <div class="p-3 bg-${color}-50 border border-${color}-100 rounded-lg">
+        <p class="text-xs font-medium text-${color}-800 mb-1"><i class="${icon} mr-0.5"></i>${r.title}</p>
+        <p class="text-xs text-${color}-700 leading-relaxed">${r.content}</p>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <section>
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-sm font-semibold text-gray-700 flex items-center">
+          <span class="w-1 h-4 bg-indigo-500 rounded mr-2"></span>
+          智能分析与建议
+          <span class="tooltip ml-1 cursor-help text-gray-400"><i class="ri-information-line"></i>
+            <span class="tooltip-content">基于已完成任务，由系统自动生成的执行分析报告与优化建议。<br>点击可查看详细报告。</span>
+          </span>
+        </h2>
+        <button class="text-xs text-gray-500 hover:text-blue-600 flex items-center"><i class="ri-history-line mr-1"></i>查看历史报告</button>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div class="p-5 border-b border-gray-100 bg-gradient-to-r from-indigo-50 to-white flex items-center justify-between">
+          <div class="flex items-start space-x-4">
+            <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <i class="ri-file-list-3-line text-indigo-500 text-lg"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-800 flex items-center">${a.title}
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-700 ml-2"><i class="ri-check-line mr-0.5"></i>分析完成</span>
+              </h3>
+              <p class="text-xs text-gray-500 mt-1">报告生成时间：${a.generated_at} · 分析耗时：${a.analysis_duration}s</p>
+            </div>
+          </div>
+          <button class="text-xs px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"><i class="ri-download-line mr-1"></i>查看详细报告</button>
+        </div>
+        <div class="p-5">
+          <div class="grid grid-cols-3 gap-6">
+            <div class="col-span-2">
+              <h4 class="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-3 flex items-center"><i class="ri-dashboard-line mr-1.5 text-indigo-400"></i>执行摘要</h4>
+              <div class="space-y-3 text-sm text-gray-700 leading-relaxed">
+                <div class="flex items-start"><span class="font-semibold text-gray-800 min-w-[80px]">执行效率：</span><p>${a.summary.efficiency}</p></div>
+                <div class="flex items-start"><span class="font-semibold text-gray-800 min-w-[80px]">Token消耗：</span><p>${a.summary.token_usage}</p></div>
+                <div class="flex items-start"><span class="font-semibold text-gray-800 min-w-[80px]">结论一致性：</span><p class="text-green-700">${a.summary.consistency}</p></div>
+                <div class="flex items-start"><span class="font-semibold text-gray-800 min-w-[80px]">异常事件：</span><p>${a.summary.anomalies}</p></div>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-3 flex items-center"><i class="ri-lightbulb-flash-line mr-1.5 text-amber-400"></i>优化建议</h4>
+              <div class="space-y-3">${recs}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderAll() {
+  const data = DataStore.get();
+  if (!data) return;
+  const container = document.getElementById('mainContent');
+  container.innerHTML = renderKPIs(data) + renderTaskTable(data) + renderAnalysis(data);
+}
+
+// ==================== Event Handlers ====================
+let expandedLeaders = new Set();
+
+function toggleTree(leaderId) {
+  const workers = document.querySelectorAll(`[data-parent="${leaderId}"]`);
+  const toggleBtn = document.querySelector(`[data-leader="${leaderId}"] .toggle-btn i`);
+  const isExpanded = expandedLeaders.has(leaderId);
+  
+  workers.forEach(worker => {
+    if (isExpanded) worker.classList.add('collapsed');
+    else worker.classList.remove('collapsed');
+  });
+  
+  if (toggleBtn) {
+    if (isExpanded) toggleBtn.classList.remove('open');
+    else toggleBtn.classList.add('open');
+  }
+  
+  if (isExpanded) expandedLeaders.delete(leaderId);
+  else expandedLeaders.add(leaderId);
+}
+
+function openGlobalConfig() {
+  document.getElementById('globalDrawer').classList.add('open');
+  document.getElementById('drawerOverlay').classList.add('open');
+}
+
+function closeGlobalConfig() {
+  document.getElementById('globalDrawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+}
+
+function saveGlobalConfig() {
+  const data = DataStore.get();
+  data.global.default_strategy = document.getElementById('globalStrategy').value;
+  data.global.max_concurrent = parseInt(document.getElementById('globalMaxConcurrent').value);
+  data.global.token_alert_threshold = parseInt(document.getElementById('globalTokenAlert').value);
+  data.global.refresh_interval = parseInt(document.getElementById('globalRefresh').value);
+  DataStore.set(data);
+  closeGlobalConfig();
+  renderAll();
+}
+
+let currentLeaderId = null;
+
+function openLeaderConfig(leaderId) {
+  currentLeaderId = leaderId;
+  const data = DataStore.get();
+  const leader = data.leaders.find(l => l.id === leaderId);
+  if (!leader) return;
+  
+  document.getElementById('modalTitle').textContent = `${leader.name} - 配置`;
+  document.getElementById('modalContent').innerHTML = `
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">任务优先级</label>
+      <select id="leaderPriority" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm">
+        <option value="P0" ${leader.priority === 'P0' ? 'selected' : ''}>P0 - 最高</option>
+        <option value="P1" ${leader.priority === 'P1' ? 'selected' : ''}>P1 - 中等</option>
+        <option value="P2" ${leader.priority === 'P2' ? 'selected' : ''}>P2 - 低</option>
+      </select>
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">最大并发 Worker 数</label>
+      <input type="number" id="leaderMaxWorkers" value="${data.global.max_concurrent}" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm">
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">当前任务</label>
+      <input type="text" id="leaderTask" value="${leader.task}" class="w-full border border-gray-200 rounded-md px-3 py-2 text-sm">
+    </div>
+    <div class="p-3 bg-red-50 border border-red-100 rounded-lg">
+      <p class="text-xs font-medium text-red-800 mb-1"><i class="ri-alarm-warning-line mr-0.5"></i>危险操作</p>
+      <button onclick="emergencyStop('${leaderId}')" class="w-full text-xs px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">
+        <i class="ri-stop-circle-line mr-1"></i>紧急终止该团长及所有 Worker
+      </button>
+    </div>
+  `;
+  document.getElementById('leaderModal').classList.add('open');
+  document.getElementById('leaderModalOverlay').classList.add('open');
+}
+
+function closeLeaderConfig() {
+  document.getElementById('leaderModal').classList.remove('open');
+  document.getElementById('leaderModalOverlay').classList.remove('open');
+  currentLeaderId = null;
+}
+
+function saveLeaderConfig() {
+  if (!currentLeaderId) return;
+  const data = DataStore.get();
+  const leader = data.leaders.find(l => l.id === currentLeaderId);
+  if (leader) {
+    leader.priority = document.getElementById('leaderPriority').value;
+    leader.task = document.getElementById('leaderTask').value;
+  }
+  DataStore.set(data);
+  closeLeaderConfig();
+  renderAll();
+}
+
+function emergencyStop(leaderId) {
+  const data = DataStore.get();
+  const leader = data.leaders.find(l => l.id === leaderId);
+  if (leader) {
+    leader.status = 'error';
+    leader.workers.forEach(w => { if (w.status === 'running') w.status = 'error'; });
+  }
+  DataStore.set(data);
+  closeLeaderConfig();
+  renderAll();
+}
+
+function stopLeader(leaderId) {
+  const data = DataStore.get();
+  const leader = data.leaders.find(l => l.id === leaderId);
+  if (leader && leader.status === 'running') {
+    leader.status = 'completed';
+    leader.progress = 100;
+    leader.workers.forEach(w => {
+      if (w.status === 'running' || w.status === 'waiting') {
+        w.status = 'completed';
+        w.progress = 100;
+      }
+    });
+    DataStore.set(data);
+    renderAll();
+  }
+}
+
+function stopWorker(leaderId, workerId) {
+  const data = DataStore.get();
+  const leader = data.leaders.find(l => l.id === leaderId);
+  if (leader) {
+    const worker = leader.workers.find(w => w.id === workerId);
+    if (worker && worker.status === 'running') {
+      worker.status = 'error';
+      worker.token_rate = 0;
+      DataStore.set(data);
+      renderAll();
+    }
+  }
+}
+
+function handleFileUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      DataStore.set(data);
+      expandedLeaders.clear();
+      renderAll();
+      alert('数据上传成功！');
+    } catch (err) {
+      alert('JSON 解析失败：' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  input.value = '';
+}
+
+function setSpeed(speed) {
+  DataSimulator.setSpeed(speed);
+  document.querySelectorAll('.speed-btn').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.speed) === speed);
+  });
+}
+
+// ==================== Init ====================
+function init() {
+  // Always start fresh from embedded default data
+  const data = DataStore.loadDefault();
+  DataStore.set(data);
+  
+  // Auto-expand running leaders
+  data.leaders.forEach(l => { if (l.status === 'running') expandedLeaders.add(l.id); });
+  
+  renderAll();
+  
+  // Start simulation immediately
+  DataSimulator.setSpeed(1);
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>
