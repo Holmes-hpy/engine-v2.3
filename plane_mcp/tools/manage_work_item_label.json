@@ -1,0 +1,42 @@
+{
+  "name": "manage_work_item_label",
+  "description": "Add or remove a single label on a work item without replacing the full list.\n\nProvide add_label_id, remove_label_id, or both. If both are given the\nremoval is applied first, then the addition. Already-attached labels in\nadd_label_id are silently skipped.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    add_label_id: UUID of the label to add\n    remove_label_id: UUID of the label to remove\n\nReturns:\n    Updated WorkItem object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "add_label_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "remove_label_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

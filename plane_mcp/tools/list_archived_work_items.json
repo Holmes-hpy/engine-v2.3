@@ -1,0 +1,83 @@
+{
+  "name": "list_archived_work_items",
+  "description": "List archived work items in a project with optional PQL filtering.\n\nArgs:\n    project_id: UUID of the project\n    pql: PQL filter expression. Omit to list all archived items.\n    order_by: Field to sort by; prefix with `-` for descending\n        (default `-archived_at`).\n    per_page: Results per page, 1-100 (default 100).\n    cursor: Pagination cursor from a previous response's `next_cursor`.\n    expand: Comma-separated related fields to expand.\n    fields: Comma-separated sparse fieldset.\n\nReturns:\n    Paginated envelope with results, total_count, next_cursor, prev_cursor.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "pql": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "description": "Optional Plane Query Language (PQL) filter. Examples: `priority = \"urgent\" AND assignee = currentUser()`, `stateGroup IN openStates() AND isOverdue()`. UUID fields (project, assignee, state, label, cycle, module, type, milestone, createdBy) need UUIDs — call the relevant `list_*` tool first if you only have a name or short identifier (e.g. `LSS` → call `list_projects` and match `identifier` to get `id`). Call `get_pql_reference` for full PQL syntax before composing complex queries."
+      },
+      "order_by": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "per_page": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "cursor": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "expand": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "fields": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id"
+    ],
+    "type": "object"
+  }
+}

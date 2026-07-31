@@ -1,0 +1,56 @@
+{
+  "name": "create_customer_request",
+  "description": "Create a request on a customer.\n\nArgs:\n    customer_id: UUID of the customer\n    name: Request name\n    description_html: HTML description\n    link: URL associated with the request\n    work_item_ids: UUIDs of work items addressing this request; links them to\n        the customer as the request is created. Only settable here — use\n        manage_customer_work_items to change links afterwards.\n\nReturns:\n    The created CustomerRequest. work_item_ids is never echoed back; read the\n    links with list_customer_work_items.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "description_html": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "link": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "work_item_ids": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "customer_id",
+      "name"
+    ],
+    "type": "object"
+  }
+}

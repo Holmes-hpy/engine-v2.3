@@ -1,0 +1,9 @@
+{
+  "name": "get_me",
+  "description": "Get current user information.\n\nReturns:\n    UserLite object containing current user information",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {},
+    "type": "object"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "get_work_item_attachment_download_url",
+  "description": "Get a presigned download URL for a work item attachment.\n\nReturns a time-limited URL (typically valid ~1 hour) that can be\nopened directly in a browser or downloaded with any HTTP client —\nno Plane authentication required on the URL itself.\n\nUse list_work_item_attachments first to get attachment IDs and names.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    attachment_id: UUID of the attachment\n\nReturns:\n    Dict with: download_url (presigned S3 URL), attachment_id, name.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "attachment_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "attachment_id"
+    ],
+    "type": "object"
+  }
+}

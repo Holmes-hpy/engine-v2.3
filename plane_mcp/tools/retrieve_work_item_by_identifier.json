@@ -1,0 +1,71 @@
+{
+  "name": "retrieve_work_item_by_identifier",
+  "description": "Retrieve a work item by its full identifier (project prefix + sequence number).\n\nThe identifier must be in PROJECT-N format where PROJECT is the project's\nidentifier string and N is the sequence number. Both parts are required.\n\nValid sparse `fields` values include: id, name, sequence_id, priority,\nstate, project, workspace, parent, assignees, labels, type_id,\nstart_date, target_date, created_at, updated_at, created_by,\nupdated_by, is_draft, external_source, external_id, estimate_point.\nUse `project` (not `project_id`) to get the project UUID.\n\nIf you need the project UUID from a short identifier like \"SHO\",\nuse `list_projects()` instead — it returns `id` and `identifier`\nfor every project.\n\nArgs:\n    work_item_identifier: Full work item identifier in PROJECT-N format\n    expand: Comma-separated fields to expand (e.g., \"assignees,labels,state\")\n    fields: Comma-separated sparse fieldset (see valid values above)\n    external_id: External system identifier for filtering\n    external_source: External system source name for filtering\n    order_by: Field to order results by\n\nReturns:\n    WorkItemDetail object with expanded relationships",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "work_item_identifier": {
+        "type": "string"
+      },
+      "expand": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "fields": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "order_by": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "work_item_identifier"
+    ],
+    "type": "object"
+  }
+}

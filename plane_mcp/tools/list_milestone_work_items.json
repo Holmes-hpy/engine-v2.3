@@ -1,0 +1,32 @@
+{
+  "name": "list_milestone_work_items",
+  "description": "List work items in a milestone.\n\nArgs:\n    project_id: UUID of the project\n    milestone_id: UUID of the milestone\n    params: Optional query parameters as a dictionary\n\nReturns:\n    List of MilestoneWorkItem objects in the milestone",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "milestone_id": {
+        "type": "string"
+      },
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "milestone_id"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "manage_cycle_archive",
+  "description": "Archive or unarchive a cycle.\n\nPlane requires the cycle end_date to be in the past before archiving.\nWhen archive=True, this tool automatically sets end_date to today if\nthe cycle is still active (end_date is missing or in the future),\nthen archives it.\n\nArgs:\n    project_id: UUID of the project\n    cycle_id: UUID of the cycle\n    archive: True to archive the cycle, False to unarchive it\n\nReturns:\n    True if the operation completed successfully",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "cycle_id": {
+        "type": "string"
+      },
+      "archive": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "project_id",
+      "cycle_id",
+      "archive"
+    ],
+    "type": "object"
+  }
+}

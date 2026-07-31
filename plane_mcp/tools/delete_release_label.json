@@ -1,0 +1,16 @@
+{
+  "name": "delete_release_label",
+  "description": "Delete a release label from the workspace palette, detaching it everywhere.\n\nTo only remove a label from one release, use manage_release_labels with\naction=\"detach\".\n\nArgs:\n    label_id: UUID of the release label",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "label_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "label_id"
+    ],
+    "type": "object"
+  }
+}

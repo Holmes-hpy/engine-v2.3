@@ -1,0 +1,28 @@
+{
+  "name": "list_intake_work_items",
+  "description": "List all intake work items in a project.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n    params: Optional query parameters as a dictionary (e.g., per_page, cursor)\n\nReturns:\n    List of IntakeWorkItem objects",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id"
+    ],
+    "type": "object"
+  }
+}

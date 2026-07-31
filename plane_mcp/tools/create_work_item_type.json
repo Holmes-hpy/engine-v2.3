@@ -1,0 +1,85 @@
+{
+  "name": "create_work_item_type",
+  "description": "Create a new work item type.\n\nTo get a usable type for a project (e.g. \"Epic\"), prefer resolve_work_item_type,\nwhich finds-or-creates at the correct scope and never duplicates.\n\nArgs:\n    name: Work item type name\n    project_id: UUID of the project. Omit for workspace-level type.\n    description: Work item type description\n    project_ids: List of project IDs this type applies to\n    is_active: Whether the type is active\n    external_source: External system source name\n    external_id: External system identifier\n\nReturns:\n    Created WorkItemType object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "project_ids": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_active": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "type": "object"
+  }
+}

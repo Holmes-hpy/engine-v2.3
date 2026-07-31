@@ -1,0 +1,49 @@
+{
+  "name": "list_customer_requests",
+  "description": "List a customer's requests (paginated).\n\nA customer request records something the customer asked for. The work items\naddressing it are read with list_customer_work_items, not from here.\n\nArgs:\n    customer_id: UUID of the customer\n    query: Filter to requests whose name contains this text.\n    cursor: Prior response's next_cursor; omit for first page.\n    per_page: Results per page (1-1000, default 1000).\n\nReturns:\n    Paginated envelope: results + total_count, next_cursor,\n    next_page_results (page again while next_page_results is true).",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "type": "string"
+      },
+      "query": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "cursor": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "per_page": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "customer_id"
+    ],
+    "type": "object"
+  }
+}

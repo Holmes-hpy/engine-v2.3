@@ -1,0 +1,20 @@
+{
+  "name": "list_work_item_attachments",
+  "description": "List all attachments for a work item.\n\nReturns metadata for each attachment. To get a downloadable link\nfor a specific attachment, use get_work_item_attachment_download_url.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n\nReturns:\n    List of attachments, each with: id, name, size, content_type,\n    created_at, created_by.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

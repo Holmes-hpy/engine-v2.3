@@ -1,0 +1,32 @@
+{
+  "name": "list_work_logs",
+  "description": "List work logs for a work item.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    params: Optional query parameters as a dictionary\n\nReturns:\n    List of WorkItemWorkLog objects",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

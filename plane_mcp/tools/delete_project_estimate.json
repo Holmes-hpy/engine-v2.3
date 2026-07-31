@@ -1,0 +1,16 @@
+{
+  "name": "delete_project_estimate",
+  "description": "Delete the estimate for a project.\n\nArgs:\n    project_id: UUID of the project",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id"
+    ],
+    "type": "object"
+  }
+}

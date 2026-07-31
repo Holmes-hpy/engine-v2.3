@@ -1,0 +1,76 @@
+{
+  "name": "create_work_item_comment",
+  "description": "Create a comment for a work item.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    comment_html: Comment content in HTML format\n    comment_json: Comment content in JSON format\n    access: Access level for the comment (INTERNAL or EXTERNAL)\n    external_source: External system source name\n    external_id: External system identifier\n\nReturns:\n    Created WorkItemComment object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "comment_html": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "comment_json": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "access": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

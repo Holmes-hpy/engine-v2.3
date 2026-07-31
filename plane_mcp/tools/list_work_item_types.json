@@ -1,0 +1,33 @@
+{
+  "name": "list_work_item_types",
+  "description": "List work item types. Omit project_id for workspace-level types.\n\nEach result's `id` is the `work_item_type_id` needed by list_work_item_properties\nto look up custom property and option UUIDs for PQL cf[] filters.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "type": "object"
+  }
+}

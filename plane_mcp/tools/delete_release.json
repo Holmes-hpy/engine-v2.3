@@ -1,0 +1,16 @@
+{
+  "name": "delete_release",
+  "description": "Delete a release by ID.\n\nArgs:\n    release_id: UUID of the release",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "release_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "release_id"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "manage_initiative_projects",
+  "description": "Link or unlink projects of an initiative. Use list_initiative_projects to read.\n\nArgs:\n    initiative_id: UUID of the initiative\n    action: \"add\" to link the projects, \"remove\" to unlink them\n    project_ids: Project UUIDs to link/unlink\n\nReturns:\n    The initiative's linked projects after the operation",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "initiative_id": {
+        "type": "string"
+      },
+      "action": {
+        "enum": [
+          "add",
+          "remove"
+        ],
+        "type": "string"
+      },
+      "project_ids": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "initiative_id",
+      "action",
+      "project_ids"
+    ],
+    "type": "object"
+  }
+}

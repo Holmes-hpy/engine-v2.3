@@ -1,0 +1,28 @@
+{
+  "name": "list_initiative_projects",
+  "description": "List projects linked to an initiative.\n\nArgs:\n    initiative_id: UUID of the initiative\n    params: Optional query parameters (e.g., per_page, cursor)\n\nReturns:\n    List of linked Project objects",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "initiative_id": {
+        "type": "string"
+      },
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "initiative_id"
+    ],
+    "type": "object"
+  }
+}

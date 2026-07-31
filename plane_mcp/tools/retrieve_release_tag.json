@@ -1,0 +1,16 @@
+{
+  "name": "retrieve_release_tag",
+  "description": "Retrieve a release tag by ID.\n\nArgs:\n    tag_id: UUID of the release tag\n\nReturns:\n    The ReleaseTag",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "tag_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "tag_id"
+    ],
+    "type": "object"
+  }
+}

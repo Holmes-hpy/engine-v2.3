@@ -1,0 +1,21 @@
+{
+  "name": "get_features",
+  "description": "Get feature flags.\n\nReturns a project's features if project_id is given, otherwise the\nworkspace's features.\n\nArgs:\n    project_id: UUID of the project. Omit for workspace features.\n\nReturns:\n    ProjectFeature when project_id is given, otherwise WorkspaceFeature.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "type": "object"
+  }
+}

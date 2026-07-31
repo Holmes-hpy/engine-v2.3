@@ -1,0 +1,90 @@
+{
+  "name": "create_cycle",
+  "description": "Create a new cycle.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n    name: Cycle name\n    owned_by: UUID of the user who owns the cycle\n    description: Cycle description\n    start_date: Cycle start date (ISO 8601 format)\n    end_date: Cycle end date (ISO 8601 format)\n    external_source: External system source name\n    external_id: External system identifier\n    timezone: Cycle timezone\n\nReturns:\n    Created Cycle object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "owned_by": {
+        "type": "string"
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "start_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "end_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "timezone": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "name",
+      "owned_by"
+    ],
+    "type": "object"
+  }
+}

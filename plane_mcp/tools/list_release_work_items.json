@@ -1,0 +1,38 @@
+{
+  "name": "list_release_work_items",
+  "description": "List the work items linked to a release (paginated).\n\nArgs:\n    release_id: UUID of the release\n    cursor: Prior response's next_cursor; omit for first page.\n    per_page: Results per page (default 20).\n\nReturns:\n    Paginated envelope: results + total_count, next_cursor,\n    next_page_results (page again while next_page_results is true).",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "release_id": {
+        "type": "string"
+      },
+      "cursor": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "per_page": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "release_id"
+    ],
+    "type": "object"
+  }
+}

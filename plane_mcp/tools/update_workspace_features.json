@@ -1,0 +1,76 @@
+{
+  "name": "update_workspace_features",
+  "description": "Update features of the current workspace.\n\nArgs:\n    project_grouping: Enable/disable project grouping feature\n    initiatives: Enable/disable initiatives feature\n    teams: Enable/disable teams feature\n    customers: Enable/disable customers feature\n    wiki: Enable/disable wiki feature\n    pi: Enable/disable PI (Program Increment) feature\n\nReturns:\n    Updated WorkspaceFeature object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_grouping": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "initiatives": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "teams": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "customers": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "wiki": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "pi": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "type": "object"
+  }
+}

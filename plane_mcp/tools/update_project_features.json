@@ -1,0 +1,82 @@
+{
+  "name": "update_project_features",
+  "description": "Update features of a project.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n    modules: Enable/disable modules feature\n    cycles: Enable/disable cycles feature\n    views: Enable/disable views feature\n    pages: Enable/disable pages feature\n    intakes: Enable/disable intakes feature\n    work_item_types: Enable/disable work item types feature\n\nReturns:\n    Updated ProjectFeature object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "modules": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "cycles": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "views": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "pages": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "intakes": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "work_item_types": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id"
+    ],
+    "type": "object"
+  }
+}

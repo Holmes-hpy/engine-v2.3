@@ -1,0 +1,122 @@
+{
+  "name": "update_customer_property",
+  "description": "Update a customer property. Only the fields you pass are changed.\n\nproperty_type, is_multi and settings cannot be changed after creation — delete\nand recreate the property instead.\n\nArgs:\n    property_id: UUID of the customer property\n    display_name: User-facing label. Also re-slugs the property's internal name,\n        so it must stay unique in the workspace.\n    relation_type: ISSUE | USER — only for RELATION properties\n    description: Property description\n    is_required: Whether a value must be set; forces default_value to be empty\n    default_value: Default value(s); at most one unless the property is is_multi\n    is_active: Whether the property is active\n    options: For OPTION type — [{\"id\": str, ...}] to edit an existing option,\n        or [{\"name\": str, ...}] without an id to add one\n    external_source: External system this property came from\n    external_id: The property's ID in that external system\n\nReturns:\n    The updated CustomerProperty",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "property_id": {
+        "type": "string"
+      },
+      "display_name": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "relation_type": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_required": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "default_value": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_active": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "options": {
+        "anyOf": [
+          {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "property_id"
+    ],
+    "type": "object"
+  }
+}

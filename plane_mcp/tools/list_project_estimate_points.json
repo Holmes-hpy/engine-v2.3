@@ -1,0 +1,20 @@
+{
+  "name": "list_project_estimate_points",
+  "description": "List all valid estimate points for a project.\n\nUse this to discover the available estimate point UUIDs before calling\nupdate_work_item with an estimate_point value. Each EstimatePoint has\nan id (UUID to pass to update_work_item) and a value (display label\nsuch as \"1\", \"2\", \"3\", \"5\", \"8\" or \"XS\", \"S\", \"M\", \"L\", \"XL\").\n\nWorkflow:\n    1. Call get_project_estimate to get the estimate_id\n    2. Call list_project_estimate_points with that estimate_id\n    3. Pick the EstimatePoint whose value matches the user's intent\n    4. Pass that EstimatePoint.id to update_work_item(estimate_point=...)\n\nArgs:\n    project_id: UUID of the project\n    estimate_id: UUID of the estimate (from get_project_estimate)\n\nReturns:\n    List of EstimatePoint objects, each with id and value fields",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "estimate_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "estimate_id"
+    ],
+    "type": "object"
+  }
+}

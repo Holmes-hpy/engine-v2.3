@@ -1,0 +1,49 @@
+{
+  "name": "create_release_tag",
+  "description": "Create a release tag (version marker). Version must be unique in the workspace.\n\nArgs:\n    version: Version string, e.g. \"v1.2.0\"\n    description: Optional notes about the version\n    commit_hash: Git commit the version was cut from\n    git_tag: Corresponding git tag name\n\nReturns:\n    The created ReleaseTag",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "version": {
+        "type": "string"
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "commit_hash": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "git_tag": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "version"
+    ],
+    "type": "object"
+  }
+}

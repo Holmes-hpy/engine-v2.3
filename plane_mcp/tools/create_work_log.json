@@ -1,0 +1,42 @@
+{
+  "name": "create_work_log",
+  "description": "Create a work log for a work item.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    duration: Duration of work in minutes\n    description: Description of the work performed\n\nReturns:\n    Created WorkItemWorkLog object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "duration": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

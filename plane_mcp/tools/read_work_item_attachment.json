@@ -1,0 +1,24 @@
+{
+  "name": "read_work_item_attachment",
+  "description": "Fetch an attachment's content so the LLM can read or analyze it.\n\nSupported file types:\n  Images (returned as vision-readable image, max 5 MB):\n    PNG, JPEG, GIF, WEBP\n  Text (returned as a string, max 1 MB):\n    TXT, MD, CSV, HTML, XML, YAML, JSON\n\nNot supported (use get_work_item_attachment_download_url instead):\n  PDF            — requires a text-extraction library (not installed)\n  DOCX/XLSX/PPTX — binary Office formats, require extraction\n  Audio / Video  — non-textual binary formats\n  Generic binary — executables, archives, etc.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    attachment_id: UUID of the attachment\n\nReturns:\n    Image object for image files, plain string for text files.\n\nRaises:\n    ValueError: If the file type is unsupported or the file exceeds\n                the size limit for its category.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "attachment_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "attachment_id"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "import_work_item_types_to_project",
+  "description": "Bulk-link workspace-level work item types to a project.\n\nImports one or more workspace-scoped work item types into a project so\nthat they become available for use within that project.\n\nFor the common case of getting one named type usable in a project, prefer\nresolve_work_item_type, which finds-or-creates and imports in one step.\n\nArgs:\n    project_id: UUID of the project\n    work_item_type_ids: List of workspace-level work item type UUIDs to import",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_type_ids": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_type_ids"
+    ],
+    "type": "object"
+  }
+}

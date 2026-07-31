@@ -1,0 +1,142 @@
+{
+  "name": "create_customer_property",
+  "description": "Create a customer property (a workspace-wide custom field on customers).\n\nproperty_type, is_multi and settings are fixed once created — recreate the\nproperty to change them.\n\nArgs:\n    name: Required, but discarded — the stored name is a slug of display_name.\n        Pass display_name here too if you have nothing else.\n    display_name: User-facing label. Must be unique in the workspace: it derives\n        the property's slug, so a display name already in use is rejected.\n    property_type: TEXT | DATETIME | DECIMAL | BOOLEAN | OPTION | RELATION | URL | EMAIL | FILE\n    relation_type: ISSUE | USER — required when property_type=RELATION\n    description: Property description\n    is_required: Whether a value must be set; forces default_value to be empty\n    default_value: Default value(s); at most one unless is_multi\n    settings: Required for TEXT/DATETIME.\n        TEXT:     {\"display_format\": \"single-line\"|\"multi-line\"|\"readonly\"}\n        DATETIME: {\"display_format\": \"MMM dd, yyyy\"|\"dd/MM/yyyy\"|\"MM/dd/yyyy\"|\"yyyy/MM/dd\"}\n    is_active: Whether the property is active\n    is_multi: Whether the property holds multiple values\n    options: For OPTION type — [{\"name\": str, \"description\"?: str, \"is_default\"?: bool}]\n    external_source: External system this property came from, e.g. \"salesforce\"\n    external_id: The property's ID in that external system\n\nReturns:\n    The created CustomerProperty, including its options for OPTION type",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "display_name": {
+        "type": "string"
+      },
+      "property_type": {
+        "type": "string"
+      },
+      "relation_type": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_required": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "default_value": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "settings": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_active": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_multi": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "options": {
+        "anyOf": [
+          {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "name",
+      "display_name",
+      "property_type"
+    ],
+    "type": "object"
+  }
+}

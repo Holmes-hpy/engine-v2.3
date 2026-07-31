@@ -1,0 +1,16 @@
+{
+  "name": "retrieve_customer",
+  "description": "Retrieve a customer by ID.\n\nArgs:\n    customer_id: UUID of the customer\n\nReturns:\n    The Customer",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "customer_id"
+    ],
+    "type": "object"
+  }
+}

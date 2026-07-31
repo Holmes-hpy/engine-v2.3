@@ -1,0 +1,120 @@
+{
+  "name": "create_release",
+  "description": "Create a release in the workspace. Name must be unique in the workspace.\n\nArgs:\n    name: Release name\n    description_html: HTML body of the release notes\n    status: unreleased (default) | released | cancelled\n    release_date: The date shown as \"Target date\" in the Plane UI, YYYY-MM-DD.\n        Use this for the date a user calls the release's target/release date.\n    target_date: A separate date stored on the release but not shown in the\n        release UI. Prefer release_date unless you specifically need this field.\n    tag_id: UUID of a release tag (version marker) to attach\n    lead_id: UUID of the user leading the release\n    is_prerelease: Whether this is a pre-release\n    external_source: External system this release came from, e.g. \"github\"\n    external_id: The release's ID in that external system\n\nReturns:\n    The created Release. Its description comes back as a nested object.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "description_html": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "status": {
+        "anyOf": [
+          {
+            "enum": [
+              "unreleased",
+              "released",
+              "cancelled"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "target_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "release_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "tag_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "lead_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_prerelease": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "type": "object"
+  }
+}

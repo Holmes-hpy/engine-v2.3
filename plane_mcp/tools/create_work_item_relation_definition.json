@@ -1,0 +1,60 @@
+{
+  "name": "create_work_item_relation_definition",
+  "description": "Create a new workspace relation definition.\n\nA relation definition describes a named relationship type with an\noutward label (how the source item describes the target) and an\ninward label (how the target item describes the source).\n\nArgs:\n    name: Unique name for this relation definition.\n    outward: Label describing the relation from the source item's perspective.\n    inward: Label describing the relation from the target item's perspective.\n    is_active: Whether this definition is active and available for use.\n    color: Hex color code for UI display.\n\nReturns:\n    Created WorkItemRelationDefinition object.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "outward": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "inward": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_active": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "color": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "type": "object"
+  }
+}

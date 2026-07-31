@@ -1,0 +1,86 @@
+{
+  "name": "create_work_item_property_option",
+  "description": "Create an option on a work item property.\n\nArgs:\n    property_id: UUID of the work item property\n    name: Display name for the option\n    project_id: UUID of the project. Omit for workspace scope.\n    description: Option description\n    color: Hex color string e.g. \"#FF5733\"\n    is_default: Whether this is the default option\n    external_source: External system source name\n    external_id: External system identifier\n\nReturns:\n    Created WorkItemPropertyOption object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "property_id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "color": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_default": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "property_id",
+      "name"
+    ],
+    "type": "object"
+  }
+}

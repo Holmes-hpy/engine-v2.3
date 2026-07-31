@@ -1,0 +1,20 @@
+{
+  "name": "retrieve_customer_request",
+  "description": "Retrieve a customer request by ID.\n\nArgs:\n    customer_id: UUID of the customer\n    request_id: UUID of the customer request\n\nReturns:\n    The CustomerRequest",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "type": "string"
+      },
+      "request_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "customer_id",
+      "request_id"
+    ],
+    "type": "object"
+  }
+}

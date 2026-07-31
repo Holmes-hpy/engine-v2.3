@@ -1,0 +1,48 @@
+{
+  "name": "manage_module_work_items",
+  "description": "Add or remove work items on a module in a single call.\n\nAt least one of add_ids or remove_ids must be provided.\n\nArgs:\n    project_id: UUID of the project\n    module_id: UUID of the module\n    add_ids: UUIDs of work items to add to the module\n    remove_ids: UUIDs of work items to remove from the module",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "module_id": {
+        "type": "string"
+      },
+      "add_ids": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "remove_ids": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "module_id"
+    ],
+    "type": "object"
+  }
+}

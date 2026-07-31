@@ -1,0 +1,24 @@
+{
+  "name": "detach_page_from_work_item",
+  "description": "Remove a page link from a work item.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    work_item_page_id: UUID of the work item page link (not the page ID)",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "work_item_page_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "work_item_page_id"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "list_roles",
+  "description": "List role definitions in the workspace.\n\nnamespace=\"workspace\" → Owner/Admin/Member/Guest; \"project\" → project-role\ndefs shared across all projects (Admin/Contributor/Commenter/Guest); omit\nfor both. slug is stable but NOT globally unique (admin/guest exist in\nboth namespaces) — key by (namespace, slug).\n\nArgs:\n    namespace: \"workspace\" or \"project\"; omit for both.\n    per_page: Results per page (server default 20).\n    cursor: Prior response's next_cursor.\n\nReturns:\n    Paginated envelope: results (name, slug, namespace) + pagination fields.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "namespace": {
+        "anyOf": [
+          {
+            "enum": [
+              "workspace",
+              "project"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "per_page": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "cursor": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "type": "object"
+  }
+}

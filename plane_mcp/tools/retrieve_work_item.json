@@ -1,0 +1,75 @@
+{
+  "name": "retrieve_work_item",
+  "description": "Retrieve a work item by ID.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    expand: Comma-separated fields to expand (e.g., \"assignees,labels,state\")\n    fields: Comma-separated fields to include in response\n    external_id: External system identifier for filtering\n    external_source: External system source name for filtering\n    order_by: Field to order results by\n\nReturns:\n    WorkItemDetail object with expanded relationships",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "expand": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "fields": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "order_by": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

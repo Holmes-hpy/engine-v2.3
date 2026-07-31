@@ -1,0 +1,20 @@
+{
+  "name": "delete_customer_request",
+  "description": "Delete a customer request, and unlink the work items linked through it.\n\nArgs:\n    customer_id: UUID of the customer\n    request_id: UUID of the customer request",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "type": "string"
+      },
+      "request_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "customer_id",
+      "request_id"
+    ],
+    "type": "object"
+  }
+}

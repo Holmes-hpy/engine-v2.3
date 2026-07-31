@@ -1,0 +1,21 @@
+{
+  "name": "create_intake_work_item",
+  "description": "Create a new intake work item in a project.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n    data: Intake work item data as a dictionary\n\nReturns:\n    Created IntakeWorkItem object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "data": {
+        "additionalProperties": true,
+        "type": "object"
+      }
+    },
+    "required": [
+      "project_id",
+      "data"
+    ],
+    "type": "object"
+  }
+}

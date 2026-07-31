@@ -1,0 +1,32 @@
+{
+  "name": "list_work_item_relation_definitions",
+  "description": "List every relation type usable with create_work_item_relation.\n\nMatch the user's wording against an entry here before creating a relation.\nbuilt_in_dependencies are fixed scheduling/blocking types; custom_definitions\nare workspace-specific, each with an outward and inward label. custom_definitions\nare also what create/update/delete_work_item_relation_definition manage.\n\nArgs:\n    is_default: Filter custom definitions to default/non-default only.\n    is_active: Filter custom definitions to active/inactive only.\n\nReturns:\n    built_in_dependencies: relation_type values for the dependency path.\n    custom_definitions: workspace definitions; use the id plus the matched\n        outward or inward label.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "is_default": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_active": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "type": "object"
+  }
+}

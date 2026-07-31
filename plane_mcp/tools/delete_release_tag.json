@@ -1,0 +1,16 @@
+{
+  "name": "delete_release_tag",
+  "description": "Delete a release tag by ID.\n\nArgs:\n    tag_id: UUID of the release tag",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "tag_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "tag_id"
+    ],
+    "type": "object"
+  }
+}

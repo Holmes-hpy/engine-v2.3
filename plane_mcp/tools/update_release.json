@@ -1,0 +1,109 @@
+{
+  "name": "update_release",
+  "description": "Update a release by ID. Only the fields you pass are changed.\n\nArgs:\n    release_id: UUID of the release\n    name: Release name\n    description_html: HTML body of the release notes\n    status: unreleased | released | cancelled\n    release_date: The date shown as \"Target date\" in the Plane UI, YYYY-MM-DD.\n        Use this for the date a user calls the release's target/release date.\n    target_date: A separate date stored on the release but not shown in the\n        release UI. Prefer release_date unless you specifically need this field.\n    tag_id: UUID of a release tag to attach\n    lead_id: UUID of the user leading the release\n    is_prerelease: Whether this is a pre-release\n\nReturns:\n    The updated Release",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "release_id": {
+        "type": "string"
+      },
+      "name": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description_html": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "status": {
+        "anyOf": [
+          {
+            "enum": [
+              "unreleased",
+              "released",
+              "cancelled"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "target_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "release_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "tag_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "lead_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_prerelease": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "release_id"
+    ],
+    "type": "object"
+  }
+}

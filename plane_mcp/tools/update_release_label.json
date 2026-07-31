@@ -1,0 +1,49 @@
+{
+  "name": "update_release_label",
+  "description": "Update a release label in the palette. Only the fields you pass are changed.\n\nArgs:\n    label_id: UUID of the release label\n    name: Label name\n    color: Hex color, e.g. \"#4E5355\"\n    sort_order: Position in the palette\n\nReturns:\n    The updated ReleaseLabel",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "label_id": {
+        "type": "string"
+      },
+      "name": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "color": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "sort_order": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "label_id"
+    ],
+    "type": "object"
+  }
+}

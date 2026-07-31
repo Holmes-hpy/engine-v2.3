@@ -1,0 +1,24 @@
+{
+  "name": "manage_module_archive",
+  "description": "Archive or unarchive a module.\n\nArgs:\n    project_id: UUID of the project\n    module_id: UUID of the module\n    archive: True to archive the module, False to unarchive it",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "module_id": {
+        "type": "string"
+      },
+      "archive": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "project_id",
+      "module_id",
+      "archive"
+    ],
+    "type": "object"
+  }
+}

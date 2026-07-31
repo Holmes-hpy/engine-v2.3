@@ -1,0 +1,48 @@
+{
+  "name": "manage_cycle_work_items",
+  "description": "Add or remove work items on a cycle in a single call.\n\nAt least one of add_ids or remove_ids must be provided.\n\nArgs:\n    project_id: UUID of the project\n    cycle_id: UUID of the cycle\n    add_ids: UUIDs of work items to add to the cycle\n    remove_ids: UUIDs of work items to remove from the cycle",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "cycle_id": {
+        "type": "string"
+      },
+      "add_ids": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "remove_ids": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "cycle_id"
+    ],
+    "type": "object"
+  }
+}

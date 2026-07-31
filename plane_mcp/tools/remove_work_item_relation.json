@@ -1,0 +1,28 @@
+{
+  "name": "remove_work_item_relation",
+  "description": "Remove ONE relation between two work items.\n\nA built-in dependency and a custom relation are removed independently —\nremoving one leaves the other intact. Set is_dependency from the relation\nthe user named (see list_work_item_relations): True for a built-in\ndependency (blocking, blocked_by, start/finish ordering), False for a\ncustom relation.\n\nArgs:\n    project_id: UUID of the project.\n    work_item_id: UUID of the source work item.\n    related_work_item_id: UUID of the related work item.\n    is_dependency: True to remove a built-in dependency, False to remove a\n        custom relation.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "related_work_item_id": {
+        "type": "string"
+      },
+      "is_dependency": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "related_work_item_id",
+      "is_dependency"
+    ],
+    "type": "object"
+  }
+}

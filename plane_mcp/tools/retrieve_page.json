@@ -1,0 +1,27 @@
+{
+  "name": "retrieve_page",
+  "description": "Retrieve a page by ID.\n\nRetrieves a project page if project_id is given, otherwise a workspace page.\n\nArgs:\n    page_id: UUID of the page\n    project_id: UUID of the project. Omit for a workspace page.\n\nReturns:\n    Page object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "page_id": {
+        "type": "string"
+      },
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "page_id"
+    ],
+    "type": "object"
+  }
+}

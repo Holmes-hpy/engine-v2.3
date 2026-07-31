@@ -1,0 +1,96 @@
+{
+  "name": "update_work_item_type",
+  "description": "Update a work item type by ID.\n\nArgs:\n    work_item_type_id: UUID of the work item type\n    project_id: UUID of the project. Omit for workspace scope.\n    name: Work item type name\n    description: Work item type description\n    project_ids: List of project IDs this type applies to\n    is_active: Whether the type is active\n    external_source: External system source name\n    external_id: External system identifier\n\nReturns:\n    Updated WorkItemType object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "work_item_type_id": {
+        "type": "string"
+      },
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "name": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "project_ids": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_active": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "work_item_type_id"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "name": "create_customer",
+  "description": "Create a customer, or update the existing one it matches (upsert).\n\nThis is an upsert, not a plain create. When external_source and external_id\nare both given, the customer matching them is updated; otherwise a customer\nwith the same name is updated. A new customer is created only when neither\nmatches — so a repeated call never duplicates.\n\nArgs:\n    name: Name of the person or business; also the match key when no external\n        reference is given\n    description_html: HTML description\n    email: Primary contact email\n    website_url: Customer website, e.g. \"https://acme.com\"\n    domain: The customer's industry — shown as \"Industry\" in Plane. Free text,\n        e.g. \"Retail\", \"e-Commerce\", \"Fintech\", \"Banking\". This is NOT a web\n        domain; the site belongs in website_url.\n    employees: Number of employees, if the customer is a business\n    stage: Lifecycle stage. Stored free-form, but Plane only renders:\n        lead | sales_qualified_lead | contract_negotiation | closed_won | closed_lost\n    contract_status: Stored free-form, but Plane only renders:\n        active | pre_contract | signed | inactive\n    revenue: Annual revenue the customer generates, as a string, e.g. \"5000000\"\n    external_source: External system the customer came from, e.g. \"salesforce\"\n    external_id: The customer's ID in that external system\n\nReturns:\n    The created or updated Customer",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "description_html": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "email": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "website_url": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "domain": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "employees": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "stage": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "contract_status": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "revenue": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "type": "object"
+  }
+}

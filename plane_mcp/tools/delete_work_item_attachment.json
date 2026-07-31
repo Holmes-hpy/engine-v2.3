@@ -1,0 +1,24 @@
+{
+  "name": "delete_work_item_attachment",
+  "description": "Delete an attachment from a work item.\n\nUse list_work_item_attachments to get the attachment_id.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    attachment_id: UUID of the attachment to delete",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "attachment_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "attachment_id"
+    ],
+    "type": "object"
+  }
+}

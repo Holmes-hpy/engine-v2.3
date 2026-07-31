@@ -1,0 +1,33 @@
+{
+  "name": "list_pages",
+  "description": "List pages.\n\nLists a project's pages if project_id is given, otherwise workspace-level pages.\n\nArgs:\n    project_id: UUID of the project. Omit to list workspace pages.\n    params: Optional query parameters as a dictionary (e.g., per_page, cursor)\n\nReturns:\n    List of Page objects",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "type": "object"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "transfer_cycle_work_items",
+  "description": "Transfer work items from one cycle to another.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n    cycle_id: UUID of the source cycle\n    new_cycle_id: UUID of the target cycle to transfer issues to",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "cycle_id": {
+        "type": "string"
+      },
+      "new_cycle_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "cycle_id",
+      "new_cycle_id"
+    ],
+    "type": "object"
+  }
+}

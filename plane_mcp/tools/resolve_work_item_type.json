@@ -1,0 +1,20 @@
+{
+  "name": "resolve_work_item_type",
+  "description": "Find a work item type by name for a project, create it if missing, and\nguarantee it is usable inside that project. Use this to resolve the\ntype_id for a typed work item such as an \"Epic\" or \"Initiative\" before\ncalling create_work_item(type_id=...).\n\nHandles workspace-level and project-level work item types automatically,\nso the caller never has to decide which mode the workspace is in:\n- If the workspace owns work item types, the type is found (or created)\n  at the workspace level and imported into the project. Project-level\n  creation is blocked in this mode, so importing is the only valid path.\n- Otherwise the type is found (or created) at the project level, enabling\n  the project's work item types feature first if it is off.\n\nMatching is exact (case-sensitive, whitespace-stripped); an existing type is never duplicated.\n\nPrefer this over manually combining get_workspace_features, list_work_item_types,\ncreate_work_item_type, and import_work_item_types_to_project — it does all of\nthat deterministically.\n\nArgs:\n    project_id: UUID of the project the type must be usable in\n    name: Work item type name, e.g. \"Epic\" or \"Initiative\"\n\nReturns:\n    The WorkItemType. Its `id` is the `type_id` for create_work_item.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "name"
+    ],
+    "type": "object"
+  }
+}

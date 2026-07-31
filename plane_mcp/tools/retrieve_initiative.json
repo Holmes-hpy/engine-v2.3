@@ -1,0 +1,16 @@
+{
+  "name": "retrieve_initiative",
+  "description": "Retrieve an initiative by ID.\n\nArgs:\n    initiative_id: UUID of the initiative\n\nReturns:\n    Initiative object\n\nRaises:\n    ToolError: if the initiatives feature is disabled. When disabled, the\n        initiative is an \"Initiative\" work item — the error gives the steps.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "initiative_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "initiative_id"
+    ],
+    "type": "object"
+  }
+}

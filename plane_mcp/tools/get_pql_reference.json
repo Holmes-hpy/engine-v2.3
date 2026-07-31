@@ -1,0 +1,18 @@
+{
+  "name": "get_pql_reference",
+  "description": "Return the Plane Query Language (PQL) syntax reference.\n\nCall this when composing the `pql` filter for `list_work_items`,\n`list_archived_work_items`, `list_cycle_work_items`, `list_module_work_items`,\nor `count_work_items`.\n\nArgs:\n    detail: \"full\" (default) returns the comprehensive reference with\n        all operators, functions, common mistakes, and worked examples.\n        \"brief\" returns the compact field/operator/function quick\n        reference (lighter payload for simple queries).\n\nReturns:\n    Dict with `detail` (which version was returned) and `reference`\n    (the PQL syntax text).",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "detail": {
+        "default": "full",
+        "enum": [
+          "brief",
+          "full"
+        ],
+        "type": "string"
+      }
+    },
+    "type": "object"
+  }
+}

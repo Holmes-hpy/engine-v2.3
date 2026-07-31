@@ -1,0 +1,32 @@
+{
+  "name": "retrieve_intake_work_item",
+  "description": "Retrieve an intake work item by work item ID.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n    work_item_id: UUID of the work item (use the issue field from\n        IntakeWorkItem response, not the intake work item ID)\n    params: Optional query parameters as a dictionary (e.g., expand, fields)\n\nReturns:\n    IntakeWorkItem object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "delete_customer",
+  "description": "Delete a customer, addressed either by ID or by its external reference.\n\nPass customer_id, or pass both external_source and external_id for a\ncustomer synced from an external system. Deleting by an external reference\nthat matches nothing succeeds silently.\n\nArgs:\n    customer_id: UUID of the customer\n    external_source: External system the customer came from\n    external_id: The customer's ID in that external system",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "type": "object"
+  }
+}

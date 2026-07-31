@@ -1,0 +1,38 @@
+{
+  "name": "create_release_label",
+  "description": "Create a release label in the workspace palette. Name must be unique.\n\nThis defines a label; attach it to a release with manage_release_labels.\n\nArgs:\n    name: Label name\n    color: Hex color, e.g. \"#4E5355\"\n    sort_order: Position in the palette\n\nReturns:\n    The created ReleaseLabel",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "color": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "sort_order": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "type": "object"
+  }
+}

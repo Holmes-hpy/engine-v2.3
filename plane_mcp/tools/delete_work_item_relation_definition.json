@@ -1,0 +1,16 @@
+{
+  "name": "delete_work_item_relation_definition",
+  "description": "Delete a workspace relation definition.\n\nArgs:\n    definition_id: UUID of the relation definition to delete.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "definition_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "definition_id"
+    ],
+    "type": "object"
+  }
+}

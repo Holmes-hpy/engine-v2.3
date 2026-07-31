@@ -1,0 +1,60 @@
+{
+  "name": "create_work_item_relation",
+  "description": "Relate a work item to one or more targets.\n\nAlways call list_work_item_relation_definitions first and match the user's\nwording to an entry there. If it is a built_in_dependencies value, pass it\nas relation_type. If it is a custom_definitions entry, pass that\ndefinition's id as relation_definition_id and the matched outward/inward\nlabel as relation_definition_label (the label sets directionality).\n\nArgs:\n    project_id: UUID of the project.\n    work_item_id: UUID of the source work item.\n    work_item_ids: UUIDs of the target work items.\n    relation_type: A built_in_dependencies value, or None for a custom relation.\n    relation_definition_id: UUID of the relation definition (custom relations).\n    relation_definition_label: Definition's outward or inward label (custom relations).\n\nReturns:\n    List of created WorkItemWithRelationType objects.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "work_item_ids": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "relation_type": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "relation_definition_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "relation_definition_label": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "work_item_ids"
+    ],
+    "type": "object"
+  }
+}

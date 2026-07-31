@@ -1,0 +1,35 @@
+{
+  "name": "upload_work_item_attachment_from_url",
+  "description": "Fetch a file from a public URL and attach it to a work item.\n\nThe MCP server downloads the file server-side and uploads it to Plane\nvia the standard three-step presigned S3 flow. The source URL must be\npublicly accessible without authentication and must not resolve to a\nprivate/internal network address.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    url: Publicly accessible URL of the file to attach\n        (e.g. a GitHub raw URL, public S3 link, or direct download link)\n    name: Override the filename. Defaults to the filename in the URL path.\n\nReturns:\n    Created attachment metadata: id, name, size, content_type.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "url": {
+        "type": "string"
+      },
+      "name": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "url"
+    ],
+    "type": "object"
+  }
+}

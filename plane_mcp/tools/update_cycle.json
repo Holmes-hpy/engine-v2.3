@@ -1,0 +1,108 @@
+{
+  "name": "update_cycle",
+  "description": "Update a cycle by ID.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n    cycle_id: UUID of the cycle\n    name: Cycle name\n    description: Cycle description\n    start_date: Cycle start date (ISO 8601 format)\n    end_date: Cycle end date (ISO 8601 format)\n    owned_by: UUID of the user who owns the cycle\n    external_source: External system source name\n    external_id: External system identifier\n    timezone: Cycle timezone\n\nReturns:\n    Updated Cycle object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "cycle_id": {
+        "type": "string"
+      },
+      "name": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "start_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "end_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "owned_by": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "timezone": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "cycle_id"
+    ],
+    "type": "object"
+  }
+}

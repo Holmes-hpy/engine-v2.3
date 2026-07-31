@@ -1,0 +1,42 @@
+{
+  "name": "manage_work_item_assignee",
+  "description": "Add or remove a single assignee on a work item without replacing the full list.\n\nProvide add_user_id, remove_user_id, or both. If both are given the\nremoval is applied first, then the addition. Already-assigned users in\nadd_user_id are silently skipped.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    add_user_id: UUID of the user to add as assignee\n    remove_user_id: UUID of the user to remove from assignees\n\nReturns:\n    Updated WorkItem object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "add_user_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "remove_user_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

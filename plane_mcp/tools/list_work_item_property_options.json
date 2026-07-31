@@ -1,0 +1,39 @@
+{
+  "name": "list_work_item_property_options",
+  "description": "List options for a work item property.\n\nArgs:\n    property_id: UUID of the work item property\n    project_id: UUID of the project. Omit for workspace scope.\n    params: Optional query parameters\n\nReturns:\n    List of WorkItemPropertyOption objects",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "property_id": {
+        "type": "string"
+      },
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "property_id"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "name": "create_project_estimate",
+  "description": "Create a new estimate for a project.\n\nArgs:\n    project_id: UUID of the project\n    name: Name of the estimate (e.g., \"Story Points\", \"T-Shirt Sizes\")\n    type: Estimate type — \"categories\", \"points\", or \"time\"\n    description: Optional description\n    last_used: Whether this becomes the active estimate (default True)\n    external_id: External system identifier\n    external_source: External system source name\n\nReturns:\n    Created Estimate object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "type": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "last_used": {
+        "default": true,
+        "type": "boolean"
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "name"
+    ],
+    "type": "object"
+  }
+}

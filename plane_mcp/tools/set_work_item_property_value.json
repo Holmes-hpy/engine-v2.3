@@ -1,0 +1,69 @@
+{
+  "name": "set_work_item_property_value",
+  "description": "Set (create or update) the value of a custom property on a work item.\n\nActs as an upsert — creates the value if it does not exist, updates it\nif it does. For multi-value properties (is_multi=True), replaces all\nexisting values with the new ones.\n\nValue types by property type:\n    TEXT/URL/EMAIL/FILE: string\n    DATETIME: string (YYYY-MM-DD or YYYY-MM-DD HH:MM:SS)\n    DECIMAL: int or float\n    BOOLEAN: true or false\n    OPTION/RELATION (single): UUID string\n    OPTION/RELATION (multi, is_multi=True): list of UUID strings\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    property_id: UUID of the work item property\n    value: The value to set (type depends on the property type — see above)\n    external_id: Optional external identifier for syncing\n    external_source: Optional external source name (e.g. \"github\", \"jira\")\n\nReturns:\n    Single WorkItemPropertyValueDetail for non-multi properties,\n    or list of WorkItemPropertyValueDetail for multi-value properties",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "property_id": {
+        "type": "string"
+      },
+      "value": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        ]
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "property_id",
+      "value"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "update_intake_work_item",
+  "description": "Update an intake work item, including triage status.\n\nStatus values:\n    -2 = pending (default/unreviewed)\n    -1 = declined\n     0 = snoozed (requires snoozed_till date)\n     1 = accepted (converts intake item to active work item)\n     2 = duplicate (requires duplicate_to work item ID)\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item (use the issue field from\n        IntakeWorkItem response, not the intake work item ID)\n    status: Triage status (-2=pending, -1=declined, 0=snoozed, 1=accepted, 2=duplicate)\n    snoozed_till: ISO 8601 date string, required when status=0\n    duplicate_to: UUID of the work item this duplicates, required when status=2\n    source: Source identifier\n    source_email: Source email address\n\nReturns:\n    Updated IntakeWorkItem object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "status": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "snoozed_till": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "duplicate_to": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "source_email": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

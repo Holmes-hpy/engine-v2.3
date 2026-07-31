@@ -1,0 +1,24 @@
+{
+  "name": "manage_work_item_archive",
+  "description": "Archive or unarchive a work item.\n\nOnly work items in a completed or cancelled state can be archived.\nArchived work items no longer appear in active work item lists.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    archive: True to archive the work item, False to unarchive it",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "archive": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "archive"
+    ],
+    "type": "object"
+  }
+}

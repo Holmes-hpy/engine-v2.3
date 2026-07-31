@@ -1,0 +1,44 @@
+{
+  "name": "list_work_item_properties",
+  "description": "List custom work item properties.\n\nScope resolution (highest priority first):\n  - no args                              → ALL workspace-level properties (one API call)\n  - work_item_type_id only               → workspace-level properties linked to that type\n  - project_id only                      → all properties in that project (any type)\n  - project_id + work_item_type_id       → properties linked to that type in that project,\n                                           falling back to project-flat then workspace if empty\n\nFor PQL filtering by name, prefer calling with NO args — one workspace-wide\nfetch beats iterating every work item type. Each result includes the\n`display_name` you can match in-memory before composing `cf[\"<id>\"]` in PQL.\n\nEach result includes:\n- id: property UUID — use as cf[\"<id>\"] in PQL filters\n- display_name: user-facing label (e.g. \"Fed\", \"Acceptance Criteria\")\n- property_type: TEXT | OPTION | DECIMAL | BOOLEAN | DATETIME | RELATION | URL | EMAIL\n- options: for OPTION type, each option has id + name; use option id in PQL\n\nPQL workflow for filtering by custom property (efficient path):\n  1. list_work_item_properties()                  → all workspace properties, one call\n  2. find the property by display_name in-memory  → property.id\n  3. list_work_items(pql='cf[\"<property.id>\"] = \"<option.id>\"')",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "work_item_type_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "type": "object"
+  }
+}

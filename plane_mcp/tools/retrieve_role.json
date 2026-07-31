@@ -1,0 +1,16 @@
+{
+  "name": "retrieve_role",
+  "description": "Retrieve a role definition by ID.\n\nArgs:\n    role_id: UUID of the role.\n\nReturns:\n    Role (name, slug, namespace).",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "role_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "role_id"
+    ],
+    "type": "object"
+  }
+}

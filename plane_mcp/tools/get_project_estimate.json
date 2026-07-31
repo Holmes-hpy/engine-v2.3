@@ -1,0 +1,16 @@
+{
+  "name": "get_project_estimate",
+  "description": "Get the estimate configuration for a project.\n\nReturns the active estimate system including its ID, which is required\nto call list_project_estimate_points.\n\nArgs:\n    project_id: UUID of the project\n\nReturns:\n    Estimate object with id, name, and type fields",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id"
+    ],
+    "type": "object"
+  }
+}

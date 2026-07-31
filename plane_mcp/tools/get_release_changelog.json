@@ -1,0 +1,16 @@
+{
+  "name": "get_release_changelog",
+  "description": "Get a release's changelog. Each release has a single changelog, created\nempty on first access, so this always returns one.\n\nArgs:\n    release_id: UUID of the release\n\nReturns:\n    The ReleaseChangelog. Its body comes back as a nested object.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "release_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "release_id"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "name": "update_project_estimate_point",
+  "description": "Update a single estimate point.\n\nArgs:\n    project_id: UUID of the project\n    estimate_id: UUID of the estimate\n    estimate_point_id: UUID of the estimate point to update\n    value: New display value (max 20 chars, e.g. \"XL\", \"13\")\n    key: New sort key (integer)\n    description: New description\n    external_id: External system identifier\n    external_source: External system source name\n\nReturns:\n    Updated EstimatePoint object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "estimate_id": {
+        "type": "string"
+      },
+      "estimate_point_id": {
+        "type": "string"
+      },
+      "value": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "key": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "estimate_id",
+      "estimate_point_id"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "manage_release_labels",
+  "description": "Attach or detach existing palette labels on a release. Use list_release_labels\nwith release_id to read.\n\nArgs:\n    release_id: UUID of the release\n    action: \"attach\" to add the labels, \"detach\" to remove them\n    label_ids: UUIDs of palette labels to attach/detach\n\nReturns:\n    The release's attached labels after the operation",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "release_id": {
+        "type": "string"
+      },
+      "action": {
+        "enum": [
+          "attach",
+          "detach"
+        ],
+        "type": "string"
+      },
+      "label_ids": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "release_id",
+      "action",
+      "label_ids"
+    ],
+    "type": "object"
+  }
+}

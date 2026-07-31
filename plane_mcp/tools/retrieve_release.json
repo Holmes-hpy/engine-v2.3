@@ -1,0 +1,16 @@
+{
+  "name": "retrieve_release",
+  "description": "Retrieve a release by ID.\n\nArgs:\n    release_id: UUID of the release\n\nReturns:\n    The Release",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "release_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "release_id"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "list_states",
+  "description": "List all states in a project.\n\nArgs:\n    project_id: UUID of the project\n    params: Optional query parameters as a dictionary\n\nReturns:\n    List of State objects",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id"
+    ],
+    "type": "object"
+  }
+}

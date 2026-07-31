@@ -1,0 +1,42 @@
+{
+  "name": "manage_customer_work_items",
+  "description": "Link or unlink work items on a customer. Use list_customer_work_items to read.\n\nArgs:\n    customer_id: UUID of the customer\n    action: \"link\" to attach the work items, \"unlink\" to detach them\n    work_item_ids: Work item UUIDs to link/unlink\n    customer_request_id: Scope the links to this request of the customer. On\n        unlink, omitting it drops every link to the work item, whichever\n        request made it.\n\nReturns:\n    The customer's linked work items after the operation",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "type": "string"
+      },
+      "action": {
+        "enum": [
+          "link",
+          "unlink"
+        ],
+        "type": "string"
+      },
+      "work_item_ids": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "customer_request_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "customer_id",
+      "action",
+      "work_item_ids"
+    ],
+    "type": "object"
+  }
+}

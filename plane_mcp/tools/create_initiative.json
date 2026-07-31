@@ -1,0 +1,94 @@
+{
+  "name": "create_initiative",
+  "description": "Create a new initiative in the workspace.\n\nArgs:\n    name: Initiative name\n    description_html: HTML description of the initiative\n    start_date: Initiative start date (ISO 8601 format)\n    end_date: Initiative end date (ISO 8601 format)\n    logo_props: Logo properties dictionary\n    state: Initiative state (DRAFT, PLANNED, ACTIVE, COMPLETED, CLOSED)\n    lead: UUID of the user who leads the initiative\n\nReturns:\n    Created Initiative object\n\nRaises:\n    ToolError: if the workspace's initiatives feature is disabled. Native\n        initiatives require the feature to be enabled in workspace settings.\n        When disabled, create an \"Initiative\" work item instead — the error\n        message gives the exact steps.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "description_html": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "start_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "end_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "logo_props": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "state": {
+        "anyOf": [
+          {
+            "description": "Initiative state enumeration.",
+            "enum": [
+              "DRAFT",
+              "PLANNED",
+              "ACTIVE",
+              "COMPLETED",
+              "CLOSED"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "lead": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "name"
+    ],
+    "type": "object"
+  }
+}

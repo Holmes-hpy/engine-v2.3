@@ -1,0 +1,31 @@
+{
+  "name": "manage_release_work_items",
+  "description": "Add or remove work items on a release. Use list_release_work_items to read.\n\nArgs:\n    release_id: UUID of the release\n    action: \"add\" to link the work items, \"remove\" to unlink them\n    work_item_ids: Work item UUIDs to add/remove\n\nReturns:\n    The release's linked work items after the operation",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "release_id": {
+        "type": "string"
+      },
+      "action": {
+        "enum": [
+          "add",
+          "remove"
+        ],
+        "type": "string"
+      },
+      "work_item_ids": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "release_id",
+      "action",
+      "work_item_ids"
+    ],
+    "type": "object"
+  }
+}

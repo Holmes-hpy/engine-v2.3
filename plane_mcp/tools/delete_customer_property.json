@@ -1,0 +1,16 @@
+{
+  "name": "delete_customer_property",
+  "description": "Delete a customer property, and every customer's values for it.\n\nArgs:\n    property_id: UUID of the customer property",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "property_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "property_id"
+    ],
+    "type": "object"
+  }
+}

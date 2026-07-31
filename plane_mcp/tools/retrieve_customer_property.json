@@ -1,0 +1,16 @@
+{
+  "name": "retrieve_customer_property",
+  "description": "Retrieve a customer property by ID.\n\nArgs:\n    property_id: UUID of the customer property\n\nReturns:\n    The CustomerProperty, including its options for OPTION type",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "property_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "property_id"
+    ],
+    "type": "object"
+  }
+}

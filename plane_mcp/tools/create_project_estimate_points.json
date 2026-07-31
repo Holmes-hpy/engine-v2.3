@@ -1,0 +1,28 @@
+{
+  "name": "create_project_estimate_points",
+  "description": "Create estimate points for a project estimate.\n\nEach point dict may have: value (required, max 20 chars), key (int),\ndescription, external_id, external_source.\n\nExample:\n    points=[\n        {\"value\": \"1\", \"key\": 0},\n        {\"value\": \"2\", \"key\": 1},\n        {\"value\": \"3\", \"key\": 2},\n        {\"value\": \"5\", \"key\": 3},\n        {\"value\": \"8\", \"key\": 4},\n    ]\n\nArgs:\n    project_id: UUID of the project\n    estimate_id: UUID of the estimate\n    points: List of point definitions\n\nReturns:\n    List of created EstimatePoint objects",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "estimate_id": {
+        "type": "string"
+      },
+      "points": {
+        "items": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "required": [
+      "project_id",
+      "estimate_id",
+      "points"
+    ],
+    "type": "object"
+  }
+}

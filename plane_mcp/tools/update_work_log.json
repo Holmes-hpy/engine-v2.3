@@ -1,0 +1,46 @@
+{
+  "name": "update_work_log",
+  "description": "Update a work log for a work item.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    work_log_id: UUID of the work log\n    duration: Duration of work in minutes\n    description: Description of the work performed\n\nReturns:\n    Updated WorkItemWorkLog object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "work_log_id": {
+        "type": "string"
+      },
+      "duration": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "work_log_id"
+    ],
+    "type": "object"
+  }
+}

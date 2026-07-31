@@ -1,0 +1,20 @@
+{
+  "name": "manage_project_archive",
+  "description": "Archive or unarchive a project.\n\nArchived projects are hidden from active project lists but not deleted.\nAll work items, cycles, and modules are preserved.\n\nArgs:\n    project_id: UUID of the project\n    archive: True to archive the project, False to unarchive it",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "archive": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "project_id",
+      "archive"
+    ],
+    "type": "object"
+  }
+}

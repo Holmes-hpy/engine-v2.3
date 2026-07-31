@@ -1,0 +1,48 @@
+{
+  "name": "manage_work_item_type_properties",
+  "description": "Attach or detach properties on a work item type in a single call.\n\nAt least one of attach_ids or detach_ids must be provided.\nDetach does not delete the property — it only removes the association.\n\nArgs:\n    project_id: UUID of the project\n    work_item_type_id: UUID of the work item type\n    attach_ids: Property UUIDs to attach to the type\n    detach_ids: Property UUIDs to detach from the type\n\nReturns:\n    List of attached property UUIDs if attach_ids was provided, else None",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_type_id": {
+        "type": "string"
+      },
+      "attach_ids": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "detach_ids": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_type_id"
+    ],
+    "type": "object"
+  }
+}

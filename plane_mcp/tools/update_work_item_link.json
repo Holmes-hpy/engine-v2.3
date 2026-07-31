@@ -1,0 +1,35 @@
+{
+  "name": "update_work_item_link",
+  "description": "Update a link for a work item.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    link_id: UUID of the link\n    url: Updated URL of the link\n\nReturns:\n    Updated WorkItemLink object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "link_id": {
+        "type": "string"
+      },
+      "url": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "link_id"
+    ],
+    "type": "object"
+  }
+}

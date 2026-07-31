@@ -1,0 +1,22 @@
+{
+  "name": "list_initiatives",
+  "description": "List all initiatives in a workspace.\n\nArgs:\n    params: Optional query parameters as a dictionary (e.g., per_page, cursor)\n\nReturns:\n    List of Initiative objects\n\nRaises:\n    ToolError: if the initiatives feature is disabled. When disabled,\n        initiatives are \"Initiative\" work items — the error gives the steps.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "params": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "type": "object"
+  }
+}

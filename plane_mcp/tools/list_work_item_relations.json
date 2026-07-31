@@ -1,0 +1,20 @@
+{
+  "name": "list_work_item_relations",
+  "description": "List every relation for a work item.\n\nArgs:\n    project_id: UUID of the project.\n    work_item_id: UUID of the work item.\n\nReturns:\n    dependencies: Built-in dependencies grouped by the six directions.\n    custom: Custom relations grouped by definition label.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

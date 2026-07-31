@@ -1,0 +1,27 @@
+{
+  "name": "get_customer_property_values",
+  "description": "Read the custom property values a customer holds.\n\nArgs:\n    customer_id: UUID of the customer\n    property_id: UUID of one customer property; omit to read them all\n\nReturns:\n    Property UUID mapped to its values. Properties with no value set, and\n    inactive properties, are absent.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "type": "string"
+      },
+      "property_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "customer_id"
+    ],
+    "type": "object"
+  }
+}

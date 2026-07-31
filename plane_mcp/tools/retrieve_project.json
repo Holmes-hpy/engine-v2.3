@@ -1,0 +1,16 @@
+{
+  "name": "retrieve_project",
+  "description": "Retrieve a project by ID.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n\nReturns:\n    Project object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id"
+    ],
+    "type": "object"
+  }
+}

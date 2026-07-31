@@ -1,0 +1,47 @@
+{
+  "name": "update_release_changelog",
+  "description": "Update a release's changelog body.\n\nThe changelog UI renders from description_json, so plain text passed as\ndescription_stripped is also converted into a matching ProseMirror doc;\notherwise the editor would show nothing.\n\nArgs:\n    release_id: UUID of the release\n    description_html: HTML body of the changelog\n    description_stripped: Plain text body. Convenience only — it is wrapped\n        into both HTML (description_html) and a ProseMirror doc\n        (description_json) so it renders in the changelog editor. Ignored if\n        description_html is set.\n    description_json: Optional ProseMirror doc. Pass this for rich content;\n        it wins over the doc generated from description_stripped.\n\nReturns:\n    The updated ReleaseChangelog",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "release_id": {
+        "type": "string"
+      },
+      "description_html": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description_stripped": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description_json": {
+        "anyOf": [
+          {},
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "release_id"
+    ],
+    "type": "object"
+  }
+}

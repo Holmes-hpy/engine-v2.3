@@ -1,0 +1,38 @@
+{
+  "name": "list_customer_work_items",
+  "description": "List the work items linked to a customer. Returns all of them, unpaginated.\n\nArgs:\n    customer_id: UUID of the customer\n    customer_request_id: Only work items linked through this request of the customer\n    search: Filter by work item name, sequence ID, or project identifier\n\nReturns:\n    The linked work items",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "type": "string"
+      },
+      "customer_request_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "search": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "customer_id"
+    ],
+    "type": "object"
+  }
+}

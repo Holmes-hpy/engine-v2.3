@@ -1,0 +1,20 @@
+{
+  "name": "link_estimate_to_project",
+  "description": "Link an estimate to a project, making it the active estimate system.\n\nArgs:\n    project_id: UUID of the project\n    estimate_id: UUID of the estimate to activate\n\nReturns:\n    Updated Project object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "estimate_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "estimate_id"
+    ],
+    "type": "object"
+  }
+}

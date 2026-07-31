@@ -1,0 +1,71 @@
+{
+  "name": "search_work_items",
+  "description": "Search work items by text across a workspace.\n\nMatches on work item name, sequence id, and project identifier (not\ndescription). For structured filtering (priority, state, assignee,\ndates, etc.) use `list_work_items` with a PQL expression.\n\nArgs:\n    query: Free-text string matched against name, sequence id, and project identifier\n    expand: Comma-separated list of related fields to expand in response\n    fields: Comma-separated list of fields to include in response\n    external_id: External system identifier for filtering\n    external_source: External system source name for filtering\n    order_by: Field to order results by. Prefix with '-' for descending\n\nReturns:\n    WorkItemSearch object containing search results",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "query": {
+        "type": "string"
+      },
+      "expand": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "fields": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "order_by": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "query"
+    ],
+    "type": "object"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "set_customer_property_values",
+  "description": "Set a customer's custom property values, replacing any current ones.\n\nOnly the properties named are touched; the rest keep their values. Every\nvalue is a string, whatever the property's type:\n    TEXT/URL/EMAIL/FILE: the text\n    DATETIME: \"YYYY-MM-DD\"\n    DECIMAL: the number as a string, e.g. \"12.5\"\n    BOOLEAN: \"True\" or \"False\"\n    OPTION/RELATION: the option or related record's UUID\nPass a single-item list for properties that are not is_multi.\n\nArgs:\n    customer_id: UUID of the customer\n    values: Property UUID mapped to its new values,\n        e.g. {\"<property_id>\": [\"Enterprise\"]}",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "type": "string"
+      },
+      "values": {
+        "additionalProperties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": "object"
+      }
+    },
+    "required": [
+      "customer_id",
+      "values"
+    ],
+    "type": "object"
+  }
+}

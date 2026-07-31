@@ -9,3 +9,7 @@ logs/
 # End bootstrap section
 
 # User additions below
+# Plane MCP 敏感凭证
+plane_mcp/.env
+*.env
+!*.env.example__pycache__/

@@ -1,0 +1,16 @@
+{
+  "name": "get_project_worklog_summary",
+  "description": "Get work log summary for a project.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n\nReturns:\n    List of ProjectWorklogSummary objects containing work item IDs and durations",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id"
+    ],
+    "type": "object"
+  }
+}

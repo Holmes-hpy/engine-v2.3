@@ -1,0 +1,53 @@
+{
+  "name": "update_customer_request",
+  "description": "Update a customer request. Only the fields you pass are changed.\n\nWork item links cannot be changed here — use manage_customer_work_items with\nthis request_id as customer_request_id.\n\nArgs:\n    customer_id: UUID of the customer\n    request_id: UUID of the customer request\n    name: Request name\n    description_html: HTML description\n    link: URL associated with the request\n\nReturns:\n    The updated CustomerRequest",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "customer_id": {
+        "type": "string"
+      },
+      "request_id": {
+        "type": "string"
+      },
+      "name": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description_html": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "link": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "customer_id",
+      "request_id"
+    ],
+    "type": "object"
+  }
+}

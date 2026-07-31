@@ -1,0 +1,64 @@
+{
+  "name": "update_milestone",
+  "description": "Update a milestone by ID.\n\nArgs:\n    project_id: UUID of the project\n    milestone_id: UUID of the milestone\n    title: Milestone title\n    target_date: Target date for the milestone (ISO 8601 format)\n    external_source: External system source name\n    external_id: External system identifier\n\nReturns:\n    Updated Milestone object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "milestone_id": {
+        "type": "string"
+      },
+      "title": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "target_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id",
+      "milestone_id"
+    ],
+    "type": "object"
+  }
+}

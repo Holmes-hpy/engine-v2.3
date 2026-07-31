@@ -1,0 +1,20 @@
+{
+  "name": "delete_state",
+  "description": "Delete a state by ID.\n\nArgs:\n    project_id: UUID of the project\n    state_id: UUID of the state",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "state_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "state_id"
+    ],
+    "type": "object"
+  }
+}

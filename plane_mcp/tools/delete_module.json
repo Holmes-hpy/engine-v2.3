@@ -1,0 +1,20 @@
+{
+  "name": "delete_module",
+  "description": "Delete a module by ID.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n    module_id: UUID of the module",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "module_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "module_id"
+    ],
+    "type": "object"
+  }
+}

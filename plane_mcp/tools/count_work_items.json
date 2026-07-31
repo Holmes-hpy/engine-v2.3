@@ -1,0 +1,44 @@
+{
+  "name": "count_work_items",
+  "description": "Count work items across the workspace with optional grouping.\n\nUse this for analytics — \"how many urgent items?\", \"distribution by state?\" —\nwithout fetching full work item payloads.\n\nArgs:\n    pql: PQL filter to scope the count (e.g. 'priority = \"urgent\"').\n    group_by: Dimension to group counts by. Supported values:\n        state_id, state__group, priority, project_id, type_id,\n        labels__id, assignees__id, issue_module__module_id,\n        release_work_items__release_id, cycle_id, milestone_id,\n        created_by, target_date, start_date.\n    sub_group_by: Second dimension for nested grouping (requires group_by).\n\nReturns:\n    grouped_by: The group_by field used (null if none).\n    sub_grouped_by: The sub_group_by field used (null if none).\n    total_count: Total matching work items.\n    grouped_counts: Dict of group_key → {count} or\n        {count, sub_grouped_counts} when sub_group_by is set.\n        Keys are UUIDs for FK fields, plain strings for priority/state__group,\n        ISO dates for target_date/start_date, \"None\" for unset values.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "pql": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "description": "Optional Plane Query Language (PQL) filter. Examples: `priority = \"urgent\" AND assignee = currentUser()`, `stateGroup IN openStates() AND isOverdue()`. UUID fields (project, assignee, state, label, cycle, module, type, milestone, createdBy) need UUIDs — call the relevant `list_*` tool first if you only have a name or short identifier (e.g. `LSS` → call `list_projects` and match `identifier` to get `id`). Call `get_pql_reference` for full PQL syntax before composing complex queries."
+      },
+      "group_by": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "sub_group_by": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "type": "object"
+  }
+}

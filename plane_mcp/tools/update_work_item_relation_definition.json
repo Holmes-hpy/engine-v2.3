@@ -1,0 +1,71 @@
+{
+  "name": "update_work_item_relation_definition",
+  "description": "Update an existing workspace relation definition.\n\nArgs:\n    definition_id: UUID of the relation definition to update.\n    name: New name for this definition.\n    outward: Updated outward label.\n    inward: Updated inward label.\n    is_active: Updated active status.\n    color: Updated hex color code.\n\nReturns:\n    Updated WorkItemRelationDefinition object.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "definition_id": {
+        "type": "string"
+      },
+      "name": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "outward": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "inward": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_active": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "color": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "definition_id"
+    ],
+    "type": "object"
+  }
+}

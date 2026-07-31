@@ -1,0 +1,20 @@
+{
+  "name": "delete_intake_work_item",
+  "description": "Delete an intake work item by work item ID.\n\nArgs:\n    workspace_slug: The workspace slug identifier\n    project_id: UUID of the project\n    work_item_id: UUID of the work item (use the issue field from\n        IntakeWorkItem response, not the intake work item ID)",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id"
+    ],
+    "type": "object"
+  }
+}

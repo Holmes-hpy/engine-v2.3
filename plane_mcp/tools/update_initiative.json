@@ -1,0 +1,105 @@
+{
+  "name": "update_initiative",
+  "description": "Update an initiative by ID.\n\nArgs:\n    initiative_id: UUID of the initiative\n    name: Initiative name\n    description_html: HTML description of the initiative\n    start_date: Initiative start date (ISO 8601 format)\n    end_date: Initiative end date (ISO 8601 format)\n    logo_props: Logo properties dictionary\n    state: Initiative state (DRAFT, PLANNED, ACTIVE, COMPLETED, CLOSED)\n    lead: UUID of the user who leads the initiative\n\nReturns:\n    Updated Initiative object\n\nRaises:\n    ToolError: if the initiatives feature is disabled. When disabled, the\n        initiative is an \"Initiative\" work item — the error gives the steps.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "initiative_id": {
+        "type": "string"
+      },
+      "name": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description_html": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "start_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "end_date": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "logo_props": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "state": {
+        "anyOf": [
+          {
+            "description": "Initiative state enumeration.",
+            "enum": [
+              "DRAFT",
+              "PLANNED",
+              "ACTIVE",
+              "COMPLETED",
+              "CLOSED"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "lead": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "initiative_id"
+    ],
+    "type": "object"
+  }
+}

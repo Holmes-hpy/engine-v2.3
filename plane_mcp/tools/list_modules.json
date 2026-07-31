@@ -1,0 +1,53 @@
+{
+  "name": "list_modules",
+  "description": "List modules in a project.\n\nArgs:\n    project_id: UUID of the project\n    archived: Set True to list archived modules instead of active ones.\n    cursor: Pagination cursor from a previous response's next_cursor\n        (form \"{per_page}:{page}:{offset}\"). Omit for the first page.\n    per_page: Number of results per page (1-1000, default and max 1000).\n    order_by: Field to order results by. Prefix with '-' for descending.\n\nReturns:\n    Paginated envelope: results (lite modules) + total_count,\n    next_cursor, next_page_results.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "archived": {
+        "default": false,
+        "type": "boolean"
+      },
+      "cursor": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "per_page": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "order_by": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "project_id"
+    ],
+    "type": "object"
+  }
+}

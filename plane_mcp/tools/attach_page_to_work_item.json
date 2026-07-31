@@ -1,0 +1,24 @@
+{
+  "name": "attach_page_to_work_item",
+  "description": "Link a page to a work item.\n\nArgs:\n    project_id: UUID of the project\n    work_item_id: UUID of the work item\n    page_id: UUID of the page to link\n\nReturns:\n    WorkItemPage link object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "project_id": {
+        "type": "string"
+      },
+      "work_item_id": {
+        "type": "string"
+      },
+      "page_id": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "project_id",
+      "work_item_id",
+      "page_id"
+    ],
+    "type": "object"
+  }
+}

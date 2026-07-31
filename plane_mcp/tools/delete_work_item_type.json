@@ -1,0 +1,27 @@
+{
+  "name": "delete_work_item_type",
+  "description": "Delete a work item type by ID.\n\nArgs:\n    work_item_type_id: UUID of the work item type\n    project_id: UUID of the project. Omit for workspace scope.",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "work_item_type_id": {
+        "type": "string"
+      },
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "work_item_type_id"
+    ],
+    "type": "object"
+  }
+}

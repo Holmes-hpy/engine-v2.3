@@ -1,0 +1,172 @@
+{
+  "name": "create_work_item_property",
+  "description": "Create a new work item property.\n\nScope resolution:\n  - project_id + work_item_type_id → type-scoped project property (legacy)\n  - project_id only               → project-level property (not yet linked to a type)\n  - neither                        → workspace-level property\n\nArgs:\n    display_name: Display name for the property\n    property_type: TEXT | DATETIME | DECIMAL | BOOLEAN | OPTION | RELATION | URL | EMAIL | FILE | FORMULA\n    project_id: UUID of the project. Omit for workspace-level property.\n    work_item_type_id: UUID of the work item type — omit to create at project level\n    relation_type: ISSUE | USER — required when property_type=RELATION\n    description: Property description\n    is_required: Whether the property is required\n    default_value: Default value(s) for the property\n    settings: Required for TEXT/DATETIME.\n        TEXT:     {\"display_format\": \"single-line\"|\"multi-line\"|\"readonly\"}\n        DATETIME: {\"display_format\": \"MMM dd, yyyy\"|\"dd/MM/yyyy\"|\"MM/dd/yyyy\"|\"yyyy/MM/dd\"}\n    is_active: Whether the property is active\n    is_multi: Whether the property supports multiple values\n    validation_rules: Validation rules dictionary\n    external_source: External system source name\n    external_id: External system identifier\n    options: List of {name, color?, is_default?} dicts — for OPTION type\n\nReturns:\n    Created WorkItemProperty object",
+  "arguments": {
+    "additionalProperties": false,
+    "properties": {
+      "display_name": {
+        "type": "string"
+      },
+      "property_type": {
+        "type": "string"
+      },
+      "project_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "work_item_type_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "relation_type": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "description": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_required": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "default_value": {
+        "anyOf": [
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "settings": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_active": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "is_multi": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "validation_rules": {
+        "anyOf": [
+          {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_source": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "external_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "options": {
+        "anyOf": [
+          {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "required": [
+      "display_name",
+      "property_type"
+    ],
+    "type": "object"
+  }
+}
