@@ -1,0 +1,6 @@
+BOOTSTRAP_VERSION=2.3.0
+CODENAME=幻觉防控
+INIT_TIMESTAMP=2026-07-31T08:57:00Z
+PROJECT_SLUG=001-发动机V2.3
+STATUS=SUCCESS
+FEATURES=7+1-rules,task-workspace,dual-knowledge-sedimentation,immutable-artifacts,junk-collection,hallucination-prevention

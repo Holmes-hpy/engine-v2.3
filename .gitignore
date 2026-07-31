@@ -1,0 +1,11 @@
+# Bootstrap generated - do not edit this section
+.memory/
+memory/episodes/
+捡破烂/
+logs/
+*.backup.*
+.DS_Store
+
+# End bootstrap section
+
+# User additions below

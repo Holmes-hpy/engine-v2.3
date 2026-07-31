@@ -1,0 +1,170 @@
+# 规则注册表 v2.3.0
+# 自动生成，可手动更新
+# 启动包版本: v2.3.0
+
+registry_version: "2.3"
+generated_at: "2026-07-23T00:00:00+08:00"
+bootstrap_version: "v2.3.0"
+
+rules:
+  RULE-00:
+    id: "RULE-00"
+    name: "元规则"
+    file: "00-meta.md"
+    priority: 0
+    version: "2.2.0"
+    status: active
+    scope: ["meta"]
+    description: "规则体系本身的规则，定义优先级、冲突解决、扩展协议"
+    depends_on: []
+    depended_by: ["RULE-01", "RULE-02", "RULE-03", "RULE-04", "RULE-05"]
+
+  RULE-01:
+    id: "RULE-01"
+    name: "LLM行为约束"
+    file: "01-llm-behavior.md"
+    priority: 1
+    version: "2.2.0"
+    status: active
+    scope: ["global", "behavior", "security"]
+    description: "LLM行为方式：规则加载优先、方案优先、反问不猜、延迟沉淀、敏感数据过滤、对话保存"
+    depends_on: ["RULE-00"]
+    depended_by: ["RULE-02", "RULE-03", "RULE-04", "RULE-05"]
+
+  RULE-02:
+    id: "RULE-02"
+    name: "项目结构与命名"
+    file: "02-project-structure.md"
+    priority: 2
+    version: "2.2.0"
+    status: active
+    scope: ["structure", "naming"]
+    description: "目录结构、命名规范、路径引用、目录初始化时机"
+    depends_on: ["RULE-00", "RULE-01"]
+    depended_by: ["RULE-03", "RULE-05"]
+
+  RULE-03:
+    id: "RULE-03"
+    name: "任务执行流程"
+    file: "03-task-execution.md"
+    priority: 3
+    version: "2.2.0"
+    status: active
+    scope: ["task", "workflow", "lifecycle"]
+    description: "任务状态机、生命周期、故障恢复、自动认知、会话持久化"
+    depends_on: ["RULE-00", "RULE-01", "RULE-02"]
+    depended_by: ["RULE-04", "RULE-05"]
+
+  RULE-04:
+    id: "RULE-04"
+    name: "知识管理与沉淀"
+    file: "04-knowledge.md"
+    priority: 4
+    version: "2.2.0"
+    status: active
+    scope: ["knowledge", "memory", "sedimentation"]
+    description: "三层漏斗沉淀（实时+会话标记+周度挖掘）、延迟执行、知识存储、捡破烂机制"
+    depends_on: ["RULE-00", "RULE-01", "RULE-03"]
+    depended_by: []
+
+  RULE-05:
+    id: "RULE-05"
+    name: "产出物管理"
+    file: "05-output.md"
+    priority: 5
+    version: "2.3.0"
+    status: active
+    scope: ["output", "version", "handoff"]
+    description: "不可变交付物、版本管理、命名规范、交接契约"
+    depends_on: ["RULE-00", "RULE-01", "RULE-02", "RULE-03"]
+    depended_by: []
+
+  RULE-06:
+    id: "RULE-06"
+    name: "大模型幻觉防控"
+    file: "06-hallucination-prevention.md"
+    priority: 6
+    version: "2.3.0"
+    status: active
+    scope: ["hallucination", "quality", "llm"]
+    description: "置信度标记、输出自检、魔鬼代言人反向论证机制"
+    depends_on: ["RULE-00", "RULE-01"]
+    depended_by: ["RULE-07"]
+
+  RULE-07:
+    id: "RULE-07"
+    name: "发包测试规范"
+    file: "07-testing.md"
+    priority: 7
+    version: "2.3.0"
+    status: active
+    scope: ["testing", "quality", "release"]
+    description: "版本发布前一致性检查：结构/实现/引用/数据/流程/表述 6 维度自动化验证"
+    depends_on: ["RULE-00", "RULE-01", "RULE-02", "RULE-03", "RULE-04", "RULE-05", "RULE-06"]
+    depended_by: []
+
+priority_chain:
+  - "RULE-00 > RULE-01 > RULE-02 > RULE-03 > RULE-04 > RULE-05 > RULE-06 > RULE-07"
+  - "编号越小优先级越高，冲突时小编号胜出"
+
+loading_strategy:
+  on_bootstrap:
+    - "全部8个规则文件"
+    - "项目使用指南.md"
+    - "_registry.yaml"
+  on_new_task:
+    - "根目录 rules.md（规则入口，优先加载）"
+    - "rules/00-meta.md ~ rules/07-testing.md（全部8个规则文件）"
+    - "项目使用指南.md（项目速览）"
+  note: "所有规则文件在新建任务时必须全部加载，无需LLM判断加载哪些。R01-17为旧版编号，已废弃。"
+
+scenario_rule_mapping:
+  "新建任务": ["RULE-00", "RULE-01", "RULE-02", "RULE-03"]
+  "执行任务": ["RULE-01", "RULE-03", "RULE-04", "RULE-05"]
+  "知识沉淀": ["RULE-01", "RULE-04"]
+  "创建产出物": ["RULE-01", "RULE-02", "RULE-05"]
+  "故障恢复": ["RULE-01", "RULE-03"]
+  "周度挖掘": ["RULE-01", "RULE-04"]
+  "敏感输出": ["RULE-01"]
+  "LLM输出": ["RULE-01", "RULE-06"]
+  "方案设计": ["RULE-01", "RULE-06"]
+  "决策分析": ["RULE-01", "RULE-06"]
+  "版本发布": ["RULE-07"]
+  "一致性检查": ["RULE-07"]
+
+changelog:
+  - version: "2.3.0"
+    date: "2026-07-23"
+    changes:
+      - "新增 RULE-06：大模型幻觉防控规则"
+      - "置信度标记机制：[可靠]/[推断]/[推测] 三级标记"
+      - "输出前自检清单：5项强制 + 2项建议"
+      - "魔鬼代言人反向论证机制：核心假设摧毁 + 极端情景 + 视角切换"
+      - "新增 scripts/prompts/rag_anchored.py 知识锚定模板"
+      - "新增 scripts/prompts/devils_advocate.py 反向论证模板"
+    date: "2026-07-22"
+    changes:
+      - "新增00节：规则加载优先原则，解决'先读规则'vs'方案优先'死循环"
+      - "01-llm-behavior.md 增加 rules.md 加载指令和延迟沉淀机制"
+      - "沉淀触发改为'延迟执行'模式：下一轮发言前检查上一轮"
+      - "修复 memory 路径不一致（去掉 knowledge/ 中间层）"
+      - "任务模板 R01-R17 改为 00-05 实际规则编号"
+      - "统一所有规则文件版本号为 v2.2.0"
+  - version: "2.1.0"
+    date: "2026-07-22"
+    changes:
+      - "新增根目录 rules.md 规则入口文件"
+      - "产出物位置统一：任务文档/{任务}/产出物/（任务自包含，删除了项目级 output/ 双路径）"
+      - "轮次命名统一为 round-01.md"
+      - "重写 rules/README.md 清除 v1.0 僵尸"
+      - "任务模板增加第零步规则加载检查点"
+      - "04-knowledge.md 新增会话级标记层（第二层）"
+  - version: "2.0.0"
+    date: "2026-07-18"
+    changes:
+      - "重构为6+1扁平结构（00-meta + 01-05）"
+      - "新增RULE-01: 方案优先、反问不猜、对话保存等核心行为规则"
+      - "新增RULE-04: 双层知识沉淀（实时静默+捡破烂周度挖掘）"
+      - "新增RULE-05: 不可变交付物和版本链"
+      - "整合v1.6.0的8条规则到新体系中"
+      - "新增捡破烂目录和任务文档目录规范"

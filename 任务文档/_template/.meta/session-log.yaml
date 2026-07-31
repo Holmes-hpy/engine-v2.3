@@ -1,0 +1,10 @@
+task_id: "TASK-{NNNN}"
+sessions: []
+
+# 会话日志格式示例：
+# sessions:
+#   - round: 1
+#     timestamp: "{ISO8601}"
+#     user_input_summary: "{摘要}"
+#     assistant_response_summary: "{摘要}"
+#     knowledge_extracted: 0

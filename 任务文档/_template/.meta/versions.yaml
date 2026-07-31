@@ -1,0 +1,15 @@
+task_id: "TASK-{NNNN}"
+task_name: "{任务标题}"
+created_at: "{ISO8601}"
+
+versions: []
+
+# 版本链格式示例（创建任务后由LLM维护）：
+# versions:
+#   - version: "v1.0"
+#     file: "产出物/v1.0-20260718-{描述}.md"
+#     created_at: "{ISO8601}"
+#     type: "draft"
+#     description: "初稿"
+#     predecessor: null
+#     successor: null

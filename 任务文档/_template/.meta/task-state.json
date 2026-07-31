@@ -1,0 +1,17 @@
+{
+  "task_id": "TASK-{NNNN}",
+  "title": "{任务标题}",
+  "status": "pending",
+  "priority": "normal",
+  "version": 1,
+  "retry_count": 0,
+  "max_retry_count": 3,
+  "created_at": "{ISO8601}",
+  "started_at": null,
+  "completed_at": null,
+  "task_folder": "任务文档/{YYYYMMDD}-{主题}/",
+  "junk_folder": "捡破烂/{YYYYMMDD}-{主题}/",
+  "artifact_version_counter": 0,
+  "conversation_rounds": 0,
+  "knowledge_extracted": 0
+}
