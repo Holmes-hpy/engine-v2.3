@@ -1,7 +1,7 @@
 # 供应链治理智能体团队
 
 > 基于 AgentScope 2.0 架构 | 演示案例：howdoi
-> 版本：v3.3.0 — 取消质量监理Agent，团长直接审查+退回补查，采用 TeamWait 同步模式
+> 版本：v3.4.0 — 治理维度从4个扩展到6个，新增SBOM分析和投毒分析
 
 ---
 
@@ -23,6 +23,12 @@ agent-team/
 │   └── integrity-checker/
 │       ├── SKILL.md                       # 执行专家：完整性校验
 │       └── SKILL.zip
+│   ├── sbom-analyzer/
+│   │   ├── SKILL.md                       # 执行专家：SBOM分析
+│   │   └── SKILL.zip
+│   └── poisoning-detector/
+│       ├── SKILL.md                       # 执行专家：投毒分析
+│       └── SKILL.zip
 ├── demo-data/
 │   └── governance-checklist.md            # 模拟治理清单（10条要求）
 └── README.md                              # 本文件
@@ -30,7 +36,7 @@ agent-team/
 
 > **每个 SKILL.md 开头必须包含 `name` 和 `description` 的 YAML frontmatter，这是智能体平台上传技能的必要条件。**
 >
-> **质量监理Agent 已取消（v3.3.0）**：由于系统底层对 Agent 嵌套创建存在硬伤，改为团长亲自审查四份报告的质量。审查维度不变（覆盖完整性、分析深度、证据充分性、一致性），退回补查机制不变，只是审查者从"监理Agent"变为"团长本人"。
+> **质量监理Agent 已取消（v3.3.0）、治理维度已扩展（v3.4.0）**：由于系统底层对 Agent 嵌套创建存在硬伤，改为团长亲自审查六份报告的质量。审查维度不变（覆盖完整性、分析深度、证据充分性、一致性），退回补查机制不变。v3.4.0 新增 SBOM 分析和投毒分析两个维度。
 
 ## 二、核心设计理念：AgentCreate + TeamWait（对齐可研报告 v1.7.7 模式）
 
@@ -47,13 +53,15 @@ agent-team/
 │     │ AgentCreate(角色2提示词+任务)                         │
 │     │ AgentCreate(角色3提示词+任务)                         │
 │     │ AgentCreate(角色4提示词+任务)                         │
+│     │ AgentCreate(角色5提示词+任务)                         │
+│     │ AgentCreate(角色6提示词+任务)                         │
 │     │ TeamWait() ← 阻塞等待全部 Worker 提交 final           │
 │     │ 团长读取报告 → 逐份审查 → 发现问题 → TeamSay 退回补查  │
 │     │ TeamWait() ← 阻塞等待补查完成                        │
 │     ▼                                                      │
 │  ┌──────────────────────────────────────────────────┐    │
 │  │ Worker 完成后通过 TeamSay(kind='final') 提交结果    │    │
-│  │ 依赖审计 │ 代码安全 │ 许可证合规 │ 完整性校验        │    │
+│  │ 依赖审计 │ 代码安全 │ 许可证合规 │ 完整性校验 │ SBOM │ 投毒 │    │
 │  └──────────────────────────────────────────────────┘    │
 └──────────────────────────────────────────────────────────┘
 ```
@@ -67,7 +75,7 @@ agent-team/
 | v2.0.0 | AgentCreate 后 TeamSay 发任务 | 手动"等回复" | 监理Agent | TeamSay 并行+提前解除 teamwait → 卡死 |
 | v2.1.0 | AgentCreate 后 TeamSay 逐个发 | 逐个等待回复 | 监理Agent | 仍然依赖 TeamSay 通信，逻辑复杂 |
 | v2.2.0 | AgentCreate 时嵌入任务 | TeamWait 平台同步 | 监理Agent | ✅ 同步正确，但监理Agent创建时卡死 |
-| **v3.3.0** | **AgentCreate 时嵌入任务** | **TeamWait 平台同步** | **团长亲自审查** | ✅ 彻底解决 |
+| **v3.4.0** | **AgentCreate 时嵌入任务** | **TeamWait 平台同步** | **团长亲自审查** | ✅ 6维度覆盖 |
 
 **SKILL.md 的角色：** skills/ 目录下的 SKILL.md 文件作为"参考文档"和"平台上传用技能包"保留，实际运行时 Agent 的提示词来自 AGENTS.md 中的角色库。
 
@@ -75,8 +83,8 @@ agent-team/
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                    执行层（4 个专家Agent）              │
-│  依赖审计 │ 代码安全分析 │ 许可证合规 │ 完整性校验      │
+│                    执行层（6 个专家Agent）              │
+│  依赖审计 │ 代码安全 │ 许可证合规 │ 完整性校验 │ SBOM │ 投毒 │
 │   ↓ 产出   ↓ 产出        ↓ 产出      ↓ 产出          │
 ├─────────────────────────────────────────────────────┤
 │                    主 Agent（编排 + 审查）             │
@@ -114,12 +122,12 @@ AgentScope 2.0 底层对 Agent 嵌套创建存在硬伤——第四个执行专�
 
 ### 第 2 幕：主Agent创建专家，TeamWait 等待（3 分钟）
 - 主Agent **逐个调用 AgentCreate**，每次传入完整提示词（含任务描述）
-- 四个 AgentCreate 完成后，调用 **TeamWait** 阻塞等待
-- 四个 Worker 在各自 Session 中并发执行，完成后通过 `TeamSay(kind='final')` 提交结果
-- TeamWait 返回后，输出"✅ 四个执行专家全部完成检测"
+- 六个 AgentCreate 完成后，调用 **TeamWait** 阻塞等待
+- 六个 Worker 在各自 Session 中并发执行，完成后通过 `TeamSay(kind='final')` 提交结果
+- TeamWait 返回后，输出"✅ 六个执行专家全部完成检测"
 
 ### 第 3 幕：团长亲自审查（2 分钟）★ 核心
-- 团长逐个读取四份报告
+- 团长逐个读取六份报告
 - 逐份审查：覆盖完整性、分析深度、证据充分性、一致性
 - 发现代码分析专家和完整性校验专家存在遗漏
 - **通过 TeamSay 退回两个专家，要求补查**
@@ -131,7 +139,7 @@ AgentScope 2.0 底层对 Agent 嵌套创建存在硬伤——第四个执行专�
 
 ### 第 5 幕：报告生成与交付（1 分钟）
 - 团长复核补查结果，确认合格
-- 输出治理报告套件（5份文档：1份总览 + 4份专家报告）
+- 输出治理报告套件（7份文档：1份总览 + 6份专家报告）
 - 调用 TeamFinish 结束任务
 
 ## 五、执行模式说明
@@ -140,13 +148,13 @@ AgentScope 2.0 底层对 Agent 嵌套创建存在硬伤——第四个执行专�
 
 AgentScope 2.0 的 Leader Agent 基于 ReAct 循环工作：每次只能调用一个工具，等待返回后再调用下一个。这意味着 **AgentCreate 只能逐个调用，不能并行**。
 
-但 Worker 被创建后立即在独立 Session 中开始执行——创建是串行的，执行是并发的。四个 Worker 创建完毕后，它们已经在各自 Session 中并发工作了。
+但 Worker 被创建后立即在独立 Session 中开始执行——创建是串行的，执行是并发的。六个 Worker 创建完毕后，它们已经在各自 Session 中并发工作了。
 
 ### 串行与并行的实际划分
 
 | 阶段 | 执行模式 | 原因 |
 |------|---------|------|
-| AgentCreate × 4 | **串行创建，并发执行** | ReAct 每次只能调一个工具；Worker 创建后立即独立运行 |
+| AgentCreate × 6 | **串行创建，并发执行** | ReAct 每次只能调一个工具；Worker 创建后立即独立运行 |
 | TeamWait | **平台级阻塞同步** | 等待所有 Worker 通过 `TeamSay(kind='final')` 提交结果 |
 | 团长审查 | **直接执行（Read + 分析）** | 团长自身能力，无需创建新Agent |
 | 退回补查 | **TeamSay 逐个发送 + TeamWait** | 补查指令发送完毕后，TeamWait 等待补查完成 |
@@ -155,7 +163,7 @@ AgentScope 2.0 的 Leader Agent 基于 ReAct 循环工作：每次只能调用�
 
 ### 核心文件：AGENTS.md（唯一必需）
 
-**AGENTS.md 已包含四个角色的完整提示词**，AgentCreate 时直接传入。因此只需导入 AGENTS.md 作为主 Agent 提示词即可运行。
+**AGENTS.md 已包含六个角色的完整提示词**，AgentCreate 时直接传入。因此只需导入 AGENTS.md 作为主 Agent 提示词即可运行。
 
 ### 可选：上传技能包（SKILL.zip）
 
@@ -167,21 +175,23 @@ skills/ 目录下的 SKILL.md 可作为独立技能上传到平台，供其他�
 | `skills/code-analyzer/` | `SKILL.zip` | 独立上传，其他项目可复用 |
 | `skills/license-compliance/` | `SKILL.zip` | 独立上传，其他项目可复用 |
 | `skills/integrity-checker/` | `SKILL.zip` | 独立上传，其他项目可复用 |
+| `skills/sbom-analyzer/` | `SKILL.zip` | 独立上传，其他项目可复用 |
+| `skills/poisoning-detector/` | `SKILL.zip` | 独立上传，其他项目可复用 |
 
 ### 导入顺序
 
 1. **导入 AGENTS.md** → 作为主 Agent 系统提示词（唯一必需步骤）
-   - AGENTS.md 的"角色库"章节包含四个角色的完整提示词
+   - AGENTS.md 的"角色库"章节包含六个角色的完整提示词
    - 主Agent 通过 AgentCreate 将对应提示词直接传给子Agent
    - 子Agent 不需要额外绑定技能即可运行
-2. （可选）上传 4 个 SKILL.zip 到平台技能库
+2. （可选）上传 6 个 SKILL.zip 到平台技能库
    - 这些技能是独立的"岗位说明书"，可供其他治理项目复用
    - 本项目的 Agent 运行时**不依赖**这些技能文件
 
 ## 七、注意事项
 
 - **TeamWait 是核心同步机制**：v3.3.0 最重要的架构变更。任务在 AgentCreate 时嵌入提示词，Worker 自主执行，Leader 通过 TeamWait 等待。禁止在 TeamWait 期间发 TeamSay 分配任务——那会扰乱 Worker 的 Session 状态。
-- **团长审查是质量保障**：不再创建监理Agent，但审查维度、退回机制、最多2轮补查的规则不变。团长必须逐份审查四份报告，不能偷懒跳过。
+- **团长审查是质量保障**：不再创建监理Agent，但审查维度、退回机制、最多2轮补查的规则不变。团长必须逐份审查六份报告，不能偷懒跳过。
 - **退回意见必须具体**：不能只说"不够全面"，必须包含具体问题（遗漏了什么）、具体位置（在哪里）、具体要求（需要补充什么）。
 - 如果客户问"为什么没有质量监理了"，回答："审查标准和流程完全一致，只是由团长亲自执行而非额外创建Agent。这样既保证了质量，又避免了系统底层Agent嵌套创建的不稳定性，实际效果不变。"
 - 如果客户问"为什么不是并行执行"，直接回答："AgentCreate 受 ReAct 循环限制只能串行调用，但 Worker 创建后各自在独立 Session 中并发运行。TeamWait 是平台级同步原语，确保所有 Worker 完成后再进入下一阶段，这是可研报告 v1.7.7 验证过的可靠模式。"
