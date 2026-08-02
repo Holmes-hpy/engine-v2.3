@@ -1,7 +1,7 @@
 # 供应链治理智能体团队
 
 > 基于 AgentScope 2.0 架构 | 演示案例：howdoi
-> 版本：v3.1.0 — TeamSay 改为阻塞等待模式，逐个发送+逐个收回复，防止 teamwait 提前解除
+> 版本：v3.2.0 — 采用 TeamWait 同步模式，任务在 AgentCreate 时嵌入提示词，Worker 自主执行
 
 ---
 
@@ -33,36 +33,43 @@ agent-team/
 
 > **每个 SKILL.md 开头必须包含 `name` 和 `description` 的 YAML frontmatter，这是智能体平台上传技能的必要条件。**
 
-## 二、核心设计理念：提示词嵌入 + 团队模式 API
+## 二、核心设计理念：AgentCreate + TeamWait（对齐可研报告 v1.7.7 模式）
 
-### 关键概念：完整提示词写在 AGENTS.md 里，AgentCreate 直接传入
+### 关键概念：任务嵌入提示词，TeamWait 做同步，Worker 自主执行
 
 ```
 ┌──────────────────────────────────────────────────────────┐
 │  主Agent（编排者）— AGENTS.md                              │
 │  ┌─────────────────────────────────────────────────┐    │
-│  │ TeamCreate → AgentCreate(完整提示词) → TeamSay → 收结果 │    │
-│  │ → 质量监理 → 补查循环 → 编排判定 → 输出报告套件          │    │
+│  │ TeamCreate → AgentCreate(提示词+任务) → TeamWait → 收结果│    │
+│  │ → 监理AgentCreate → TeamWait → 补查 → 判定 → TeamFinish│    │
 │  └─────────────────────────────────────────────────┘    │
-│     │ AgentCreate(角色1提示词)                               │
-│     │ AgentCreate(角色2提示词)                               │
-│     │ AgentCreate(角色3提示词)                               │
-│     │ AgentCreate(角色4提示词)                               │
-│     │ AgentCreate(角色5提示词)  ← 质量监理                  │
+│     │ AgentCreate(角色1提示词+任务)  ← Worker启动即执行      │
+│     │ AgentCreate(角色2提示词+任务)                         │
+│     │ AgentCreate(角色3提示词+任务)                         │
+│     │ AgentCreate(角色4提示词+任务)                         │
+│     │ TeamWait() ← 阻塞等待全部 Worker 提交 final           │
+│     │ AgentCreate(角色5提示词+审查材料)  ← 质量监理         │
+│     │ TeamWait() ← 阻塞等待监理提交 final                  │
 │     ▼                                                      │
 │  ┌──────────────────────────────────────────────────┐    │
-│  │ 5个子Agent，各自在独立Session中并发执行              │    │
+│  │ Worker 完成后通过 TeamSay(kind='final') 提交结果    │    │
 │  │ 依赖审计 │ 代码安全 │ 许可证合规 │ 完整性校验 │ 质量监理 │    │
 │  └──────────────────────────────────────────────────┘    │
 └──────────────────────────────────────────────────────────┘
 ```
 
-**核心原则：AGENTS.md 是"唯一真相源"。** 五个角色的完整提示词全部写在 AGENTS.md 的"角色库"章节中。AgentCreate 时直接复制传入，不依赖外部文件。这借鉴了产业园项目统筹团长的成功模式——提示词自包含，Agent 独立可运行。
+**核心原则：任务在 AgentCreate 时嵌入提示词。** Worker 创建后自动执行，不需要 Leader 再发 TeamSay 分配任务。Leader 通过 TeamWait 等待所有 Worker 完成。这借鉴了可研报告 v1.7.7 的成功模式——AgentCreate(完整提示词) → TeamWait → 收结果。
 
-**SKILL.md 的角色变化：** skills/ 目录下的 SKILL.md 文件现在作为"参考文档"和"平台上传用技能包"保留，但实际运行时 Agent 的提示词来自 AGENTS.md 中的角色库。这样做的优势：
-- Agent 不依赖外部文件加载，避免文件读取失败导致提示词缺失
-- 所有角色定义在 AGENTS.md 中一目了然，便于维护和版本管理
-- SKILL.md 仍可独立上传到平台，供其他场景复用
+**与之前版本的根本区别：**
+
+| 版本 | 任务分配方式 | 同步方式 | 问题 |
+|------|------------|---------|------|
+| v2.0.0 | AgentCreate 后 TeamSay 发任务 | 手动"等回复" | TeamSay 并行+提前解除 teamwait → 卡死 |
+| v2.1.0 | AgentCreate 后 TeamSay 逐个发 | 逐个等待回复 | 仍然依赖 TeamSay 通信，逻辑复杂 |
+| **v2.2.0** | **AgentCreate 时嵌入任务** | **TeamWait 平台同步** | ✅ 正确 |
+
+**SKILL.md 的角色：** skills/ 目录下的 SKILL.md 文件作为"参考文档"和"平台上传用技能包"保留，实际运行时 Agent 的提示词来自 AGENTS.md 中的角色库。
 
 ### 双层架构
 
@@ -152,11 +159,11 @@ agent-team/
 - 展示 10 条治理要求
 - 主 Agent 解析并生成任务 DAG
 
-### 第 2 幕：主Agent逐个创建专家并分配任务（5 分钟）
-- 主Agent **逐个调用 AgentCreate**，每次传入完整提示词
-- 四个 AgentCreate 完成后，逐个调用 TeamSay 分配任务
-- **每次 TeamSay 阻塞等待该专家的回复**，收到后输出"✅ XXAgent 已完成（X/4）"
-- 全部 4 份报告收齐后，进入监理阶段
+### 第 2 幕：主Agent创建专家，TeamWait 等待（3 分钟）
+- 主Agent **逐个调用 AgentCreate**，每次传入完整提示词（含任务描述）
+- 四个 AgentCreate 完成后，调用 **TeamWait** 阻塞等待
+- 四个 Worker 在各自 Session 中并发执行，完成后通过 `TeamSay(kind='final')` 提交结果
+- TeamWait 返回后，输出"✅ 四个执行专家全部完成检测"
 
 ### 第 3 幕：质量监理审查（3 分钟）★ 核心
 - 监理接收所有专家输出
@@ -190,9 +197,9 @@ AgentScope 2.0 的 Leader Agent 基于 ReAct 循环工作：每次只能调用�
 | 阶段 | 执行模式 | 原因 |
 |------|---------|------|
 | AgentCreate × 4 | **串行创建，并发执行** | ReAct 每次只能调一个工具；Worker 创建后立即独立运行 |
-| TeamSay 发送任务 | **逐个发送，阻塞等待回复** ⚠️ | 必须收到回复后才能发下一个，防止 teamwait 提前解除 |
-| 质量监理 | **串行** | 必须等所有 Worker 结果齐全才能做交叉验证 |
-| 退回补查 | **逐个发送，阻塞等待回复** | 同上，每个退回专家的补查结果必须收齐后统一发给监理 |
+| TeamWait | **平台级阻塞同步** | 等待所有 Worker 通过 `TeamSay(kind='final')` 提交结果 |
+| 质量监理 | **AgentCreate + TeamWait** | 等执行专家全部完成后，创建监理Agent，TeamWait 等待 |
+| 退回补查 | **TeamSay 逐个发送 + TeamWait** | 补查指令发送完毕后，TeamWait 等待补查完成 |
 
 ## 七、导入智能体平台
 
@@ -224,7 +231,7 @@ skills/ 目录下的 SKILL.md 可作为独立技能上传到平台，供其他�
 
 ## 八、注意事项
 
-- **TeamSay 必须阻塞等待**：这是 v3.1.0 最重要的修复。每次 TeamSay 发出后必须等待回复，收到后才能发下一个。禁止并行发送多个 TeamSay 后"等全部回复"，这会导致 teamwait 状态提前解除，系统卡死。
+- **TeamWait 是核心同步机制**：v3.2.0 最重要的架构变更。任务在 AgentCreate 时嵌入提示词，Worker 自主执行，Leader 通过 TeamWait 等待。禁止在 TeamWait 期间发 TeamSay 分配任务——那会扰乱 Worker 的 Session 状态。
 - 质量监理的退回必须是真的——不能是"先故意漏掉几个问题再让监理发现"这种表演，要真实
 - 如果客户问"监理会不会太严格导致效率低"，回答："质量监理的退回有次数上限（2 次），在质量和效率之间取得平衡。实际上，监理的审查成本远低于人工审查，但效果接近。"
-- 如果客户问"为什么专家不并行执行"，直接回答："四个专家的 AgentCreate 是串行的（受 ReAct 循环限制），但创建后各自在独立 Session 中并发运行。TeamSay 逐个发送是为了确保每个专家的回复都被可靠接收，防止消息丢失导致系统卡死。"
+- 如果客户问"为什么不是并行执行"，直接回答："AgentCreate 受 ReAct 循环限制只能串行调用，但 Worker 创建后各自在独立 Session 中并发运行。TeamWait 是平台级同步原语，确保所有 Worker 完成后再进入下一阶段，这是可研报告 v1.7.7 验证过的可靠模式。"
