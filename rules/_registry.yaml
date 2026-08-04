@@ -103,18 +103,30 @@ rules:
     depends_on: ["RULE-00", "RULE-01", "RULE-02", "RULE-03", "RULE-04", "RULE-05", "RULE-06"]
     depended_by: []
 
+  RULE-08:
+    id: "RULE-08"
+    name: "外部系统集成"
+    file: "08-external-integrations.md"
+    priority: 8
+    version: "2.4.0"
+    status: active
+    scope: ["integration", "plane", "mcp", "automation"]
+    description: "Plane MCP 集成、关键 ID 速查表、每日快报上传流程、常见任务速查"
+    depends_on: ["RULE-00", "RULE-01", "RULE-02"]
+    depended_by: []
+
 priority_chain:
-  - "RULE-00 > RULE-01 > RULE-02 > RULE-03 > RULE-04 > RULE-05 > RULE-06 > RULE-07"
+  - "RULE-00 > RULE-01 > RULE-02 > RULE-03 > RULE-04 > RULE-05 > RULE-06 > RULE-07 > RULE-08"
   - "编号越小优先级越高，冲突时小编号胜出"
 
 loading_strategy:
   on_bootstrap:
-    - "全部8个规则文件"
+    - "全部9个规则文件"
     - "项目使用指南.md"
     - "_registry.yaml"
   on_new_task:
     - "根目录 rules.md（规则入口，优先加载）"
-    - "rules/00-meta.md ~ rules/07-testing.md（全部8个规则文件）"
+    - "rules/00-meta.md ~ rules/08-external-integrations.md（全部9个规则文件）"
     - "项目使用指南.md（项目速览）"
   note: "所有规则文件在新建任务时必须全部加载，无需LLM判断加载哪些。R01-17为旧版编号，已废弃。"
 
@@ -131,8 +143,20 @@ scenario_rule_mapping:
   "决策分析": ["RULE-01", "RULE-06"]
   "版本发布": ["RULE-07"]
   "一致性检查": ["RULE-07"]
+  "外部集成": ["RULE-08"]
+  "Plane操作": ["RULE-08"]
+  "每日快报": ["RULE-08"]
 
 changelog:
+  - version: "2.4.0"
+    date: "2026-08-04"
+    changes:
+      - "新增 RULE-08：外部系统集成规则"
+      - "Plane MCP 集成文档（端点、凭证、客户端位置）"
+      - "关键 ID 速查表（项目、模块）"
+      - "每日快报上传脚本与流程"
+      - "常见任务速查命令"
+      - "新增 任务文档/20260731-同行发展情况/产出物/每日快报/upload_to_plane.py 上传脚本"
   - version: "2.3.0"
     date: "2026-07-23"
     changes:

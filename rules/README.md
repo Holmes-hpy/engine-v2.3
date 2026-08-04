@@ -1,7 +1,7 @@
 # 规则体系说明
 
-> **版本**: v2.3.0
-> **规则数量**: 7+1（7个核心规则 + 1个注册表）
+> **版本**: v2.4.0
+> **规则数量**: 8+1（8个核心规则 + 1个注册表）
 > **入口文件**: 根目录 `rules.md`（LLM 首先读取的跳板文件）
 
 ---
@@ -19,6 +19,8 @@
 | 04 | `04-knowledge.md` | 知识沉淀、捡破烂、三层挖掘机制 | P4 |
 | 05 | `05-output.md` | 产出物管理与不可变原则 | P5 |
 | 06 | `06-hallucination-prevention.md` | 大模型幻觉防控：置信度标记、魔鬼代言人 | P6 |
+| 07 | `07-testing.md` | 发包测试规范 | P7 |
+| 08 | `08-external-integrations.md` | 外部系统集成：Plane MCP、关键ID速查、快报上传 | P8 |
 | - | `_registry.yaml` | 规则注册表（机器可读的规则索引） | - |
 
 ---
@@ -35,7 +37,7 @@
 ## 规则优先级
 
 ```
-00-meta > 01-llm-behavior > 02-project-structure > 03-task-execution > 04-knowledge > 05-output > 06-hallucination-prevention
+00-meta > 01-llm-behavior > 02-project-structure > 03-task-execution > 04-knowledge > 05-output > 06-hallucination-prevention > 07-testing > 08-external-integrations
 ```
 
 冲突时编号小的规则胜出。
@@ -55,6 +57,7 @@
 
 | 版本 | 变更 |
 |------|------|
+| v2.4.0 | 新增RULE-08：外部系统集成（Plane MCP、关键ID速查、每日快报上传脚本） |
 | v2.3.0 | 新增RULE-06：幻觉防控规则（置信度标记 + 魔鬼代言人反向论证） |
 | v2.2.0 | 规则加载优先原则、延迟沉淀机制、Memory路径修复、版本统一 |
 | v2.1.0 | 产出物位置统一、轮次命名统一、新增根目录rules.md入口、新增会话级标记层 |
